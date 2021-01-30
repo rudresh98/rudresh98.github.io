@@ -1,7 +1,9 @@
+/* about me css */
+
 .heading {
   width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 0px 20px 30px 20px;
   color: #264466;
 }
 .heading h2 {
@@ -23,6 +25,7 @@
   min-width: 30%;
 }
 .w50 img {
+  border-radius: 50%;
   max-width: 100%;
 }
 
@@ -107,7 +110,7 @@
 
 /* contact css starts here */
 .contact {
-  background-color: rgb(94, 94, 94);
+  background-color: #7510f7;
 }
 .formbx {
   min-width: 60%;

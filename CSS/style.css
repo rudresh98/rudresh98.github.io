@@ -8,7 +8,7 @@
 }
 
 body::-webkit-scrollbar {
-  overflow: hidden;
+  width: 0px;
 }
 
 .banner {
