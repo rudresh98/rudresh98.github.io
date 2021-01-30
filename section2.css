@@ -1,0 +1,111 @@
+.heading {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #264466;
+}
+.heading h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+.contentbx {
+  padding: 0px 30px 0px 0px;
+}
+.contentbx h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.w50 {
+  min-width: 50%;
+}
+.w50 img {
+  max-width: 100%;
+}
+
+/* services css starts here */
+
+.services {
+  background: linear-gradient(#d5d5f1, #f3f3f3);
+}
+.heading.white {
+  color: #ac4d4d;
+}
+.services .content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.services .content .servicesbx {
+  padding: 20px 20px 20px 20px;
+  background-color: #222;
+  color: #ffffff;
+  max-width: 340px;
+  margin: 20px;
+  transition: 0.5s;
+  text-align: center;
+}
+.services .content .servicesbx:hover {
+  background-color: white;
+  color: #111;
+}
+
+.services .content .servicesbx h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* work css starts here */
+.work .content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.work .content .workbx {
+  width: 50%;
+  padding: 20px 20px 20px 20px;
+}
+.work .content .workbx img {
+  max-width: 100%;
+}
+
+/* testimonial css */
+.testimonial {
+  background-color: #f7f7f7;
+}
+.testimonial .content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.testimonial .content .testimonialbx {
+  max-width: calc(50%-40px);
+  padding: 60px 40px;
+  margin: 20px;
+  background-color: #212121;
+}
+.testimonial .content .testimonialbx p {
+  color: #fff;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 300;
+}
+.testimonial .content .testimonialbx h3 {
+  margin-top: 40px;
+  text-align: end;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+}
+
+/* contact css starts here */
+.contact {
+  background-color: #111;
+}
