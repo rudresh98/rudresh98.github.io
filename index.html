@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rudresh</title>
+    <title>Rudresh oza | Full Stack Developer</title>
+    <link rel="stylesheet" href="./CSS/responsivecss.css">
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/headercss.css">
     <link rel="stylesheet" href="./CSS/section2.css">
@@ -14,22 +15,21 @@
 </head>
 
 <body>
-    <div class="uparrow">
-        <a href="#headcome" id="upcss"><i class="fas fa-arrow-up" style="color: white;"></i></a>
-    </div>
+
+
 
     <!-- header have differemt CSS file  name as header.css -->
     <header data-aos="fade-up">
         <a href="" class="logo">Rudresh Oza</a>
-        <div class="toggle">
+        <div class="toggle" onclick="togglemenu();">
         </div>
-        <ul>
-            <li><a href="#headcome">Home</a></li>
-            <li><a href="#aboutme">About</a></li>
-            <li> <a href="#servicesnav">Services</a></li>
-            <li> <a href="#worknav">Work</a></li>
-            <li> <a href="">Testimonial</a></li>
-            <li> <a href="">Contact me</a></li>
+        <ul class="menu">
+            <li><a onclick="togglemenu();" href="">Home</a></li>
+            <li><a onclick="togglemenu();" href="#about">About</a></li>
+            <li> <a onclick="togglemenu();" href="#services">Services</a></li>
+            <li> <a onclick="togglemenu();" href="#worknav">Work</a></li>
+            <li> <a onclick="togglemenu();" href="#testimonial">Testimonial</a></li>
+            <li> <a onclick="togglemenu();" href="#contact">Contact me</a></li>
         </ul>
     </header>
     <!-- Header endds here -->
@@ -38,22 +38,27 @@
     <section class="banner" id="headcome" data-aos="zoom-out-up">
         <div class="textbx" data-aos="flip-up">
             <h2>
-                Hello, I'm <br>
+                <p>Hi, I'm</p>
                 <span>Rudresh oza.</span>
+                <!-- <p>
+                    Nice to Meet You
+                </p> -->
             </h2>
-            <h3>
-                I'm a Front End Developer
-            </h3>
-            <a href="#" class="btn"> About Me</a>
+            <div>
+                &lt&gt<span class="element"></span>
+            </div>
+            <!-- <a href="#" class="btn"> About Me</a> -->
         </div>
     </section>
     <!-- section 1 ends here -->
 
 
+
     <!-- section  2 starts here -->
-    <section class="about" id="aboutme">
+    <section class="about" id="about">
         <div class="heading" data-aos="fade-up">
-            <h2>About me</h2>
+            <!-- <h2 data-aos="fade-down">Hi, I’m Rudresh. Nice to meet you.</h2> -->
+            <h2 data-aos="fade-up">About me</h2>
         </div>
         <div class="content" data-aos="fade-down">
             <div class="contentbx">
@@ -97,7 +102,7 @@
 
 
 
-    <section id="servicesnav" class="services">
+    <section id="services" class="services">
         <div class="heading white" data-aos="fade-down">
             <h2>Our Services</h2>
             <p data-aos="fade-up">
@@ -213,7 +218,7 @@
 
     <!-- testimonial section starts here -->
 
-    <section class="testimonial">
+    <section class="testimonial" id="testimonial">
         <div class="heading">
             <h2>
                 Testimonial
@@ -262,7 +267,7 @@
     <!-- contact me starts here -->
 
 
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="heading white">
             <h2>
                 Contact Me
@@ -277,11 +282,11 @@
                     Contact Info
                 </h3>
                 <div class="contactinfobx">
-                    <div class="text">
-                        <div class="box">
-                            <div class="icon">
-                                <i class="fa fa-address-card" aria-hidden="true"></i>
-                            </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                        </div>
+                        <div class="text">
                             <h3>
                                 Address
                             </h3>
@@ -289,10 +294,12 @@
                                 F-317, Vardhman Sampada,<br>Vaishali Nagar,Jaipur,<br>302021
                             </p>
                         </div>
-                        <div class="box">
-                            <div class="icon">
-                                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa fa-phone-square" aria-hidden="true"></i>
+                        </div>
+                        <div class="text">
                             <h3>
                                 Phone
                             </h3>
@@ -300,10 +307,12 @@
                                 <a href="tel:8560839021">Call (+91)8560839021</a>
                             </p>
                         </div>
-                        <div class="box">
-                            <div class="icon">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="text">
                             <h3>
 
                                 Mail
@@ -314,6 +323,7 @@
                             </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -332,10 +342,35 @@
     <!-- contact me ends here -->
 
 
+    <!-- copyright starts here -->
 
+    <div class="copyright">
+        <p>
+            Copyright &copy; Rudresh oza .All Right Reserved .
+        </p>
+    </div>
+
+
+
+
+    <!-- copyrgiht ends here -->
     <script src="./JS/navabar.js" type="text/javascript"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
     <script>
+        var options = {
+            strings: ["Front-end Developer", 'Designer'],
+            typeSpeed: 60,
+            backSpeed: 60,
+            loop: true,
+            loopCount: Infinity,
+            cursorChar: '&lt/&gt',
+            bindInputFocusEvents: true,
+        };
+
+        var typed = new Typed('.element', options);
+
         AOS.init(
             {
                 debounceDelay: 400, // the delay on debounce used while resizing window (advanced)
