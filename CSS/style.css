@@ -16,7 +16,7 @@ body::-webkit-scrollbar {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-image: url("./Images/code.gif");
+  background-image: url("../Images/code.gif");
   /* background: linear-gradient(#eeebeb, #9999e2); */
   background-size: cover;
   background-position: right;
