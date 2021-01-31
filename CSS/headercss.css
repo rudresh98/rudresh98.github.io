@@ -41,8 +41,9 @@ header ul li a {
   display: inline-block;
   margin: 10px 10px 10px 10px;
   color: rgb(49, 49, 110);
-  font-size: 20px;
+  font-size: 18px;
 }
+
 header.sticky {
   background: rgba(0, 0, 0, 0.55);
   /* background: linear-gradient(#d5d5f1, #f3f3f3); */
@@ -53,6 +54,11 @@ header.sticky ul li a {
   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
+}
+header.sticky .logo span {
+  -webkit-text-fill-color: rgb(255, 77, 90);
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 77, 90); */
 }
 header.sticky .logo {
   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
