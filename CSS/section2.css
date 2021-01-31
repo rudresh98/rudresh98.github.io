@@ -35,7 +35,7 @@
   background: linear-gradient(#d5d5f1, #f3f3f3);
 }
 .heading.white {
-  color: #ac4d4d;
+  color: #56c1d4;
 }
 .services .content {
   display: flex;
@@ -110,7 +110,7 @@
 
 /* contact css starts here */
 .contact {
-  background-color: #7510f7;
+  background-color: #fafafb;
 }
 .formbx {
   min-width: 60%;
@@ -121,10 +121,13 @@
 }
 .formbx form h3,
 .contactbx h3 {
-  color: #fff;
+  color: #212121;
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
+}
+.content .contactinfobx .text {
+  /* color: #212121; */
 }
 .formbx form input,
 .formbx form textarea {
@@ -171,7 +174,7 @@
 .contactinfobx .box .icon {
   min-width: 40px;
   padding-top: 4px;
-  color: #fff;
+  color: #212121;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -181,7 +184,7 @@
   display: flex;
   margin-left: 20px;
   font-size: 16px;
-  color: #fff;
+  color: #212121;
   flex-direction: column;
   font-weight: 300;
 }
