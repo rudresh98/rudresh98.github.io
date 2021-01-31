@@ -28,14 +28,20 @@ section {
   padding: 100px;
 }
 .banner h2 {
-  font-size: 3em;
-  color: #1b3562;
-  font-weight: 500;
+  font-size: 2.4em;
+  /* color: #1b3562; */
+  -webkit-text-fill-color: #1b3562; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: white;
+  font-weight: 300;
   line-height: 1.5em;
 }
 .banner h2 span {
-  color: #3e25ca;
-  font-weight: 500;
+  /* color: #3e25ca; */
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: #3e25ca;
+  font-weight: 300;
   font-size: 1.5em;
 }
 .banner h3 {
