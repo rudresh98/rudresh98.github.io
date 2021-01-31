@@ -32,7 +32,7 @@
 /* services css starts here */
 
 .services {
-  background: linear-gradient(#d5d5f1, #f3f3f3);
+  /* background: linear-gradient(#3f3fe4, #f3f3f3); */
 }
 .heading.white {
   color: #56c1d4;
@@ -46,21 +46,31 @@
 
 .services .content .servicesbx {
   padding: 20px 20px 20px 20px;
-  background-color: #222;
-  color: #ffffff;
+  background-color: #fff;
+  color: #212121;
   max-width: 340px;
+  border-radius: 10px;
   margin: 20px;
   transition: 0.5s;
   text-align: center;
+  filter: blur(0.5px);
+  border: #212121 1px solid;
+  box-shadow: 8px 8px 2px 1px rgba(0, 0, 255, 0.2);
+}
+.services .content .servicesbx img {
+  width: 200px;
+  height: 200px;
 }
 .services .content .servicesbx:hover {
   background-color: white;
   color: #111;
+  filter: blur(0px);
+  cursor: inherit;
 }
 
 .services .content .servicesbx h2 {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 /* work css starts here */
@@ -170,6 +180,8 @@
   position: relative;
   padding: 20px 0px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .contactinfobx .box .icon {
   min-width: 40px;
@@ -177,7 +189,7 @@
   color: #212121;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   font-size: 24px;
 }
 .contactinfobx .box .text {
