@@ -18,11 +18,13 @@ header .logo {
   font-size: 24px;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
 }
 header a:hover {
-  opacity: 0.7;
+  /* opacity: 0.7; */
+  /* text-decoration: underline; */
+  transform: rotate(20deg);
 }
 
 header ul {
@@ -42,13 +44,20 @@ header ul li a {
   font-size: 20px;
 }
 header.sticky {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.4);
   /* background: linear-gradient(#d5d5f1, #f3f3f3); */
   padding: 20px 20px 20px 20px;
   box-shadow: 0 1px 12px rgba(61, 61, 61, 0.9);
 }
 header.sticky ul li a {
-  color: rgb(49, 49, 110);
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+header.sticky .logo {
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 .element {
@@ -61,8 +70,3 @@ header.sticky ul li a {
 }
 
 /* keyframes */
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}

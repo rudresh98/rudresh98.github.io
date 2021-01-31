@@ -18,6 +18,7 @@ body::-webkit-scrollbar {
   background-image: url("../Images/code.gif");
   /* background: linear-gradient(#eeebeb, #9999e2); */
   background-size: cover;
+  background-color: #212121;
   background-position: right;
   display: flex;
   justify-content: space-between;
@@ -26,6 +27,12 @@ body::-webkit-scrollbar {
 }
 section {
   padding: 100px;
+}
+section#about.about {
+  background-color: rgb(7, 33, 66);
+}
+section#services.services {
+  background-color: rgb(7, 33, 66);
 }
 .banner h2 {
   font-size: 2.4em;
