@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredoka+One&family=Indie+Flower&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -29,10 +31,19 @@ section {
   padding: 100px;
 }
 section#about.about {
-  background-color: rgb(7, 33, 66);
+  background: rgb(7, 33, 66, 0.93);
 }
-section#services.services {
-  background-color: rgb(7, 33, 66);
+.services {
+  background: rgb(7, 33, 66, 0.93);
+}
+.work {
+  background: rgb(7, 33, 66, 0.93);
+}
+section#testimonial.testimonial {
+  background: rgb(7, 33, 66, 0.93);
+}
+section#about.about {
+  background: rgb(7, 33, 66, 0.93);
 }
 .banner h2 {
   font-size: 2.4em;

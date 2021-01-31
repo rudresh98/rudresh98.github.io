@@ -18,8 +18,17 @@
   padding: 0px 30px 0px 0px;
 }
 .contentbx h3 {
+  color: rgb(174, 191, 207);
   font-size: 30px;
+  font-weight: 100;
   margin-bottom: 10px;
+}
+.education {
+  color: white !important;
+  font-family: "Comic Neue", cursive;
+}
+.institue {
+  color: rgb(255, 77, 90);
 }
 .w50 {
   min-width: 30%;
