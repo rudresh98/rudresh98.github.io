@@ -10,3 +10,9 @@ function togglemenu() {
     menushow.classList.toggle('active')
 
 }
+var preloader = document.querySelector('.loader')
+
+function myloader() {
+    preloader.style.display = "none"
+
+}
