@@ -35,7 +35,7 @@
             <li><a onclick="togglemenu();" href="#about"><i class="fas fa-user"></i> About</a></li>
             <li> <a onclick="togglemenu();" href="#services"> <i class="fas fa-pen"></i> Skills</a></li>
             <li> <a onclick="togglemenu();" href="#worknav"> <i class="fas fa-code"></i> Projects</a></li>
-            <li> <a onclick="togglemenu();"> <i class="fas fa-briefcase"></i> Work</a></li>
+            <!-- <li> <a onclick="togglemenu();"> <i class="fas fa-briefcase"></i> Work</a></li> -->
             <li><a onclick="togglemenu();" href="#testimonial"><i class="fas fa-award"></i> Achievements</a></li>
             <li> <a onclick="togglemenu();" href="#contact"> <i class="fas fa-id-card"></i> Contact me</a></li>
         </ul>
@@ -64,7 +64,7 @@
 
     <!-- section  2 starts here -->
     <section class="about" id="about">
-        <div class="heading">
+        <div class="heading" data-aos="fade-up">
             <!-- <h2 >Hi, I’m Rudresh. Nice to meet you.</h2> -->
             <h2>About me</h2>
             <div style="display: inline-flex; text-align: center;">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="content">
-            <div class="contentbx">
+            <div class="contentbx" data-aos="fade-left">
                 <h3>
                     <i class="fas fa-book-reader"></i> Education
                 </h3>
@@ -107,7 +107,7 @@
                 </ul>
 
             </div>
-            <div class="contentbx">
+            <div class="contentbx" data-aos="fade-right">
                 <h3>
                     <i class="fas fa-laptop-code"></i>
                     Profession
@@ -138,7 +138,7 @@
 
     <section id="services" class="services">
 
-        <div class="heading white">
+        <div class="heading white" data-aos="fade-up">
             <h2>My Skills</h2>
             <div style="display: inline-flex; text-align: center;">
                 <div style="width: 100px;height: 5px;background-color:  rgb(255, 77, 90);border-radius: 20px;">
@@ -154,8 +154,8 @@
             </p> -->
         </div>
         <div class="content">
-            <div class="servicesbx">
-                <img src="./Skills/Angular.png" alt="">
+            <div class="servicesbx" data-aos="zoom-in-up">
+                <img src="./Skills/Angular-removebg-preview.png" alt="">
                 <h2>Angular 11</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -164,8 +164,8 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
-                <img src="./Skills/react.png" alt="">
+            <div class="servicesbx" data-aos="zoom-in-up">
+                <img src="./Skills/react-removebg-preview.png" alt="">
                 <h2>React</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -174,8 +174,8 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
-                <img src="./Skills/reactnative.jpg" alt="">
+            <div class="servicesbx" data-aos="zoom-in-up">
+                <img src="./Skills/react-removebg-preview.png" alt="">
                 <h2>React Native</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -184,8 +184,8 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
-                <img src="./Skills/css.png" alt="">
+            <div class="servicesbx" data-aos="zoom-in-up">
+                <img src="./Skills/css-removebg-preview.png" alt="">
                 <h2>CSS</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -194,8 +194,8 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
-                <img src="./Skills/html.png" alt="">
+            <div class="servicesbx" data-aos="zoom-in-down">
+                <img src="./Skills/html-removebg-preview.png" alt="">
                 <h2>HTML 5</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -204,8 +204,8 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
-                <img src="./Skills/scss.png" alt="">
+            <div class="servicesbx" data-aos="zoom-in-down">
+                <img src="./Skills/scss-removebg-preview.png" alt="">
                 <h2>Scss</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
@@ -214,7 +214,7 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
+            <div class="servicesbx" data-aos="zoom-in-down">
                 <img src="./Skills/git.png" alt="">
                 <h2>Git</h2>
                 <!-- <p>
@@ -224,9 +224,29 @@
                     soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
                 </p> -->
             </div>
-            <div class="servicesbx">
+            <div class="servicesbx" data-aos="zoom-in-down">
                 <img src="./Skills/bootstrap.png" alt="">
                 <h2>Bootstrap v4.6</h2>
+                <!-- <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
+                    repudiandae necessitatibus mollitia sunt, officia atque autem recusandae animi consequuntur repellat
+                    fugiat doloribus accusantium veritatis assumenda sit nam! Eaque, libero illo temporibus tempore,
+                    soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
+                </p> -->
+            </div>
+            <div class="servicesbx" data-aos="zoom-in-down">
+                <img src="./Skills/js-removebg-preview.png" alt="">
+                <h2>Java script</h2>
+                <!-- <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
+                    repudiandae necessitatibus mollitia sunt, officia atque autem recusandae animi consequuntur repellat
+                    fugiat doloribus accusantium veritatis assumenda sit nam! Eaque, libero illo temporibus tempore,
+                    soluta hic, eum rem ut ducimus minima praesentium corrupti harum sint! Iste, asperiores placeat.
+                </p> -->
+            </div>
+            <div class="servicesbx" data-aos="zoom-in-down">
+                <img src="./Skills/bootstrap.png" alt="">
+                <h2>Java Script</h2>
                 <!-- <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo ea voluptate delectus iste
                     repudiandae necessitatibus mollitia sunt, officia atque autem recusandae animi consequuntur repellat
@@ -260,24 +280,48 @@
         </div>
         <div class="content">
             <div class="workbx">
-                <img src="./Images/product1.jpg"></img>
 
+                <p style="font-size: 35px;"><span style="color: rgb(213,54,39);">Celebal</span> <span
+                        style="color: rgb(99,96,102);">Technologies</span>
+                </p>
+                <p style="font-family: 'Comic Neue', cursive;color: wheat;">Associate Full-Stack Developer</p>
+                <p style="font-family: 'Comic Neue', cursive;color: wheat;">November 2020-Present</p>
+                <div style="padding-left: 30px;">
+                    <ul>
+                        <li style="color: wheat;;">
+                            <span style="font-family: 'Comic Neue', cursive;color: wheat;">
+                                Working on
+                            </span> <a href=" https://ims-frontend-prod.azurewebsites.net/" style="color:  rgb(255, 77, 90);
+                                font-weight: 100;">
+                                Intern Management System(IMS)</a>
+                        </li>
+                        <li style="color: wheat;">
+                            <span style="font-family: 'Comic Neue', cursive;color: wheat;"> Core Technologies:Azure Web
+                                apps,Resource Group,Angular</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="workbx">
-                <img src="./Images/product2.jpg"></img>
-
+            <div class=" workbx">
+                <!-- <img src="./Images/product2.jpg"></img> -->
+                <img src="./Skills/celebal.webp" id="imgtag">
             </div>
-            <div class="workbx">
+            <!-- <div class="workbx">
                 <img src="./Images/product3.jpg"></img>
 
             </div>
             <div class="workbx">
                 <img src="./Images/product4.jpg"></img>
 
-            </div>
+            </div> -->
         </div>
         <div class="heading">
-            <a href="https://github.com/rudresh98" target="_blank"> View More on Github</a>
+
+            <i class="fab fa-github-square" style="font-size: 20px;"></i>
+            <a href="https://github.com/rudresh98" target="_blank" style="color:  rgb(250, 208, 211);
+                                font-weight: 100;font-size: 20px;text-decoration: none;"> View More on Github... </a>
+
+
         </div>
 
 
@@ -290,7 +334,7 @@
     <section class="testimonial" id="testimonial">
         <div class="heading">
             <h2>
-                Testimonial
+                Achievements
             </h2>
             <div style="display: inline-flex; text-align: center;">
                 <div style="width: 100px;height: 5px;background-color:  rgb(255, 77, 90);border-radius: 20px;"></div>
@@ -305,7 +349,7 @@
             </p> -->
         </div>
         <div class="content">
-            <div class="testimonialbx">
+            <div class="testimonialbx" data-aos="fade-up">
                 <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, laborum recusandae, quasi
                     omnis quibusdam quo expedita officiis consequuntur dignissimos voluptates veritatis? Veniam nesciunt
@@ -316,7 +360,7 @@
                 </p>
                 <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui, quis!</h3>
             </div>
-            <div class="testimonialbx" data-aos="fade-up">
+            <div class=" testimonialbx" data-aos="fade-up">
                 <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, laborum recusandae, quasi
                     omnis quibusdam quo expedita officiis consequuntur dignissimos voluptates veritatis? Veniam nesciunt
@@ -451,7 +495,7 @@
 
     <script>
         var options = {
-            strings: ["Front-end Developer", 'Designer', 'App-Developer'],
+            strings: ["Full-Stack Developer(MEAN Stack)", 'Designer', 'App-Developer', 'Programmer'],
             typeSpeed: 60,
             backSpeed: 60,
             loop: true,

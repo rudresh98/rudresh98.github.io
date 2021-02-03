@@ -41,7 +41,10 @@
 /* services css starts here */
 
 .services {
-  /* background: linear-gradient(#3f3fe4, #f3f3f3); */
+  background: rgb(25, 49, 79);
+  background-size: cover, contain;
+  background-position: center, right bottom;
+  background-repeat: no-repeat, no-repeat;
 }
 .heading.white {
   color: #56c1d4;
@@ -62,19 +65,12 @@
   margin: 20px;
   transition: 0.5s;
   text-align: center;
-  filter: blur(0.5px);
-  border: #212121 1px solid;
-  box-shadow: 8px 8px 2px 1px rgba(0, 0, 255, 0.2);
+  border: #212121 3px solid;
+  /* box-shadow: 8px 8px 2px 1px rgba(0, 0, 255, 0.2); */
 }
 .services .content .servicesbx img {
   width: 200px;
   height: 200px;
-}
-.services .content .servicesbx:hover {
-  background-color: white;
-  color: #111;
-  filter: blur(0px);
-  cursor: inherit;
 }
 
 .services .content .servicesbx h2 {
@@ -115,7 +111,7 @@
 }
 .testimonial .content .testimonialbx p {
   color: #fff;
-  font-style: italic;
+  font-family: "Comic Neue";
   font-size: 16px;
   font-weight: 300;
 }
