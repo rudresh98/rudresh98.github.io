@@ -244,10 +244,10 @@ i {
   font-size: 17px;
 }
 .contact .right form .name {
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 .contact .right form .email {
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 .contact .right form .button {
   height: 47px;
@@ -276,5 +276,21 @@ i {
   color: #000;
   text-align: center;
   padding: 10px;
+}
+.fab {
+  cursor: pointer;
+}
+
+.fa-facebook-square {
+  color: rgb(20, 161, 249);
+}
+.fa-linkedin {
+  color: rgb(10, 102, 194);
+}
+.fa-instagram-square {
+  color: rgb(219, 49, 120);
+}
+.fa-github-square {
+  color: black;
 }
 /* copyright section ends here */
