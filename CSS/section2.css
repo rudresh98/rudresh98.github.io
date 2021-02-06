@@ -124,9 +124,7 @@
 }
 
 /* contact css starts here */
-.contact {
-  background-color: #fafafb;
-}
+
 .formbx {
   min-width: 60%;
 }
@@ -135,15 +133,6 @@
   flex-direction: column;
 }
 .formbx form h3,
-.contactbx h3 {
-  color: #212121;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-.content .contactinfobx .text {
-  /* color: #212121; */
-}
 .formbx form input,
 .formbx form textarea {
   margin-bottom: 20px;
@@ -175,46 +164,117 @@
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-.contactbx {
-  min-width: 40%;
-}
-.contactinfobx {
-  position: relative;
-}
-.contactinfobx .box {
-  position: relative;
-  padding: 20px 0px;
+
+/* contact section starts here */
+
+/* .contact .title:after {
+  content: "get in touch";
+} */
+
+.contact-content {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.contact .contact-content .column {
+  width: calc(50%);
+}
+.contact .contact-content .left p {
+  text-align: justify;
+}
+.column.left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100% !important;
+}
+
+i {
+  font-size: 30px;
+  border-radius: 100px;
+}
+.contact .contact-content .text {
+  font-size: 20px;
+  font-weight: 600;
+}
+.contact .contact-content .row {
+  display: flex;
+  height: 65px;
   align-items: center;
 }
-.contactinfobx .box .icon {
-  min-width: 40px;
-  padding-top: 4px;
-  color: #212121;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-}
-.contactinfobx .box .text {
-  display: flex;
+.contact .contact-content .row .info {
   margin-left: 20px;
-  font-size: 16px;
-  color: #212121;
-  flex-direction: column;
-  font-weight: 300;
 }
-
-.contactinfobx .box .text h3 {
+.contact .contact-content .row i {
+  font-size: 25px;
+  color: crimson;
+}
+.contact .contact-content .row .info .head {
   font-weight: 500;
-  color: #2196f3;
-  margin-bottom: 0px;
+}
+.contact .contact-content .row .info .sub-title {
+  color: #333;
 }
 
+.contact .right form .field {
+  display: flex;
+}
+
+.contact .right form .field .textarea {
+  height: 80px;
+  width: 170px;
+  resize: none;
+}
+
+.contact .right form .field,
+.contact .right form .fields .field {
+  height: 45px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.contact .right form .field input,
+.contact .right form .field .textarea textarea {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  outline: none;
+  padding: 0px 10px;
+  font-size: 17px;
+}
+.contact .right form .name {
+  margin-right: 10px;
+}
+.contact .right form .email {
+  margin-right: 10px;
+}
+.contact .right form .button {
+  height: 47px;
+  width: 100%;
+}
+.contact .right form .button button {
+  width: 100%;
+  height: 100%;
+  border: 1px crimson solid;
+  background-color: crimson;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 6px;
+}
+.contact .right form .button button:hover {
+  color: crimson;
+  background-color: white;
+  transition: 0.5s;
+  cursor: pointer;
+}
+/* contact section ends here */
+/* copyright section starts here */
 .copyright {
   background-color: #fff;
   color: #000;
   text-align: center;
   padding: 10px;
 }
+/* copyright section ends here */
