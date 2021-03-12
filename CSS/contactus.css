@@ -1,3 +1,110 @@
-.social{
-    margin-left: 10px;
+
+.contactus{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
+.getintouch{
+    color: rgb(0, 10, 146);
+    font-size: 35px;
+    margin-top: -25px ;
+    font-weight: 200;
+}
+hr.new {
+    width: 100%;
+    background: none;
+    border-top: 5px dotted rgb(0, 10, 146);
+  }
+  .fa-facebook-f{
+      font-size: 23px;
+      margin-bottom: 7px !important;
+  }
+  .contactpic{
+      width: 280px;
+      height: 180px;
+  }
+  .digitalicon{
+      margin:0px 0px 0px 20px ;
+    width: 100px;
+    height: 55px;
+  }
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .vocal{
+      height: 100px;
+      width: 100px;
+  }
+  .makeindiaicon{
+    margin:0px 0px 0px 20px ;
+      height: 50px;
+      width: 100px;
+  }
+
+  /* social icons css */
+  .socialfb{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, midnightblue, midnightblue 50%, lightgrey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialfb:hover{
+    color:#3B5998;
+    background-position: 0 100%;
+  }
+  .sociallinkedin{
+    color: lightgrey;
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, #04669A, #04669A 50%, lightgrey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+
+  }
+  .sociallinkedin:hover{
+    background-position: 0 100%;
+  }
+  .socialinsta{
+    color: lightgrey;
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, #d323ad, #d323ad 50%, lightgrey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+
+  }
+  .socialinsta:hover
+  {
+      
+      background-position: 0 100%;
+  }
+  .socialwhatsapp{
+    color: lightgrey;
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, green, green 50%, lightgrey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialwhatsapp:hover{
+      
+      background-position: 0 100%;
+  }
+  .contactsection{
+      padding-bottom: 0px !important ;
+  }
