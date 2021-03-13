@@ -109,6 +109,8 @@
   padding: 60px 40px;
   margin: 20px;
   background-color: #212121;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 25px;
 }
 .testimonial .content .testimonialbx p {
   color: #fff;
