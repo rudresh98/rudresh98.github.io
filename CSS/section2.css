@@ -1,5 +1,6 @@
 /* about me css */
 @import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
 .heading {
   width: 100%;
   text-align: center;
@@ -29,7 +30,7 @@
   font-family: "Comic Neue", cursive;
 }
 .institue {
-  color: rgb(255, 77, 90);
+  color: rgb(255, 77, 90) !important;
 }
 .w50 {
   min-width: 30%;
@@ -115,8 +116,8 @@
 }
  .testimonialbx p {
   color: #fff;
-  font-family: "Comic Neue";
-  font-size: 16px;
+  font-family: 'Redressed', cursive;
+  font-size: 25px;
   font-weight: 300;
 }
  .testimonialbx h3 {
@@ -311,4 +312,8 @@ i {
 }
 .fa-file{
   font-size: 15px;
+}
+.myprojectcss{
+  font-family: 'Comic Neue', cursive;color: wheat;
+  font-size: 18px;
 }

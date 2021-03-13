@@ -47,7 +47,7 @@ hr.new {
   /* social icons css */
   .socialfb{
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, midnightblue, midnightblue 50%, grey 50%);
+    background: linear-gradient(to right, midnightblue, midnightblue 50%, black 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -60,9 +60,8 @@ hr.new {
     background-position: 0 100%;
   }
   .sociallinkedin{
-    color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, #04669A, #04669A 50%, grey 50%);
+    background: linear-gradient(to right, #04669A, #04669A 50%, black 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -75,9 +74,8 @@ hr.new {
     background-position: 0 100%;
   }
   .socialinsta{
-    color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, #d323ad, #d323ad 50%, grey 50%);
+    background: linear-gradient(to right, #d323ad, #d323ad 50%, black 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -92,9 +90,8 @@ hr.new {
       background-position: 0 100%;
   }
   .socialwhatsapp{
-    color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, green, green 50%, grey 50%);
+    background: linear-gradient(to right, green, green 50%, black 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -110,7 +107,7 @@ hr.new {
       padding-bottom: 0px !important ;
   }
  .mailclass{
-  background: linear-gradient(to right, #3B5998, #3B5998 50%, grey 50%);
+  background: linear-gradient(to right, #3B5998, #3B5998 50%, black 50%);
   background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
@@ -126,7 +123,7 @@ transition: background-position 275ms ease;
   }
   .socialgit{
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, black, black 50%, grey 50%);
+    background: linear-gradient(to right, black, black 50%, black 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
