@@ -105,21 +105,21 @@
   flex-wrap: wrap;
 }
 
-.testimonial .content .testimonialbx {
-  max-width: calc(50%-40px);
+ .testimonialbx {
+  max-width: 100%;
   padding: 60px 40px;
   margin: 20px;
   background-color: #212121;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
 }
-.testimonial .content .testimonialbx p {
+ .testimonialbx p {
   color: #fff;
   font-family: "Comic Neue";
   font-size: 16px;
   font-weight: 300;
 }
-.testimonial .content .testimonialbx h3 {
+ .testimonialbx h3 {
   margin-top: 40px;
   text-align: end;
   font-weight: 100;
