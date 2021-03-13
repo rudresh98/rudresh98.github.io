@@ -1,5 +1,5 @@
 /* about me css */
-
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
 .heading {
   width: 100%;
   text-align: center;
@@ -9,6 +9,7 @@
   color: rgb(255, 77, 90);
   font-size: 40px;
   font-weight: 200;
+  letter-spacing: 2.5px;
 }
 .content {
   display: flex;
@@ -295,6 +296,13 @@ i {
 }
 /* copyright section ends here */
 .azurecss{
-  width: 250px !important;
+  width: 300px !important;
   height: 200px !important;
+}
+
+.framworkscss{
+  color: #f7f7f7;
+  font-size: 35px;
+  letter-spacing: 1px;
+  font-family: 'Redressed', cursive;
 }
