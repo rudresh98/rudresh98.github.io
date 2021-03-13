@@ -47,7 +47,7 @@
     background-repeat: no-repeat;
     background-size: 30px;
     cursor: pointer;
-    margin-right: 50px;
+    
   }
   header.sticky .toggle {
     color: white;
@@ -112,14 +112,14 @@
     padding: 10px !important;
   }
   /* testimonial starts here */
-  .testimonial .content .testimonialbx {
+   /* .testimonialbx {
     margin: 5px !important;
     padding: 20px !important;
-  }
-  .testimonial .content .testimonialbx p {
+  } */
+   .testimonialbx p {
     font-weight: 200 !important;
   }
-  .testimonial .content .testimonialbx h3 {
+   .testimonialbx h3 {
     font-weight: 300 !important;
   }
   /* testimonial ends here */
