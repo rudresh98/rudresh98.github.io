@@ -69,8 +69,8 @@
   /* box-shadow: 8px 8px 2px 1px rgba(0, 0, 255, 0.2); */
 }
 .services .content .servicesbx img {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 220px;
 }
 
 .services .content .servicesbx h2 {
@@ -294,3 +294,7 @@ i {
   color: black;
 }
 /* copyright section ends here */
+.azurecss{
+  width: 250px !important;
+  height: 200px !important;
+}

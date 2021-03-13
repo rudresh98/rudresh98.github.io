@@ -29,6 +29,7 @@ hr.new {
     height: 55px;
   }
   .center{
+    margin-top: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,7 +47,7 @@ hr.new {
   /* social icons css */
   .socialfb{
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, midnightblue, midnightblue 50%, lightgrey 50%);
+    background: linear-gradient(to right, midnightblue, midnightblue 50%, grey 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -61,7 +62,7 @@ hr.new {
   .sociallinkedin{
     color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, #04669A, #04669A 50%, lightgrey 50%);
+    background: linear-gradient(to right, #04669A, #04669A 50%, grey 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -76,7 +77,7 @@ hr.new {
   .socialinsta{
     color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, #d323ad, #d323ad 50%, lightgrey 50%);
+    background: linear-gradient(to right, #d323ad, #d323ad 50%, grey 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -93,7 +94,7 @@ hr.new {
   .socialwhatsapp{
     color: lightgrey;
     margin: 10px 0px 0px 30px;
-    background: linear-gradient(to right, green, green 50%, lightgrey 50%);
+    background: linear-gradient(to right, green, green 50%, grey 50%);
     background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -108,3 +109,37 @@ hr.new {
   .contactsection{
       padding-bottom: 0px !important ;
   }
+ .mailclass{
+  background: linear-gradient(to right, #3B5998, #3B5998 50%, grey 50%);
+  background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-size: 200% 100%;
+background-position: 100%;
+transition: background-position 275ms ease;
+  }
+  .mailclass:hover{
+    background-position: 0 100%;
+  }
+  .fa-paper-plane{
+    font-size: 20px;
+  }
+  .socialgit{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, black, black 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialgit:hover{
+    background-position: 0 100%;
+  }
+.naviconsize{
+  font-size: 20px;
+}
+.skillslink{
+  text-decoration: none;
+}
