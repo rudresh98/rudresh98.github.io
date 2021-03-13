@@ -36,6 +36,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 30px;
+    margin-right: 50px;
     cursor: pointer;
   }
   .toggle.active {
@@ -46,9 +47,10 @@
     background-repeat: no-repeat;
     background-size: 30px;
     cursor: pointer;
+    margin-right: 50px;
   }
   header.sticky .toggle {
-    filter: invert(1);
+    color: white;
   }
   section {
     padding: 50px 50px !important;
