@@ -126,3 +126,9 @@ section#about.about {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(10, 102, 194);
 }
+.fa-book-reader{
+  font-size: 22px;
+}
+.fa-laptop-code{
+  font-size: 22px;
+}
