@@ -140,3 +140,14 @@ transition: background-position 275ms ease;
 .skillslink{
   text-decoration: none;
 }
+.myprofilecss{
+width: 300px;
+height: 300px;
+border-radius: 25%;
+opacity: 0.8;
+cursor: pointer;
+}
+.myprofilecss:hover{
+  opacity: 1;
+  transition: 0.7s;
+}

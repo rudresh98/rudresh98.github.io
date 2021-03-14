@@ -82,7 +82,7 @@ section#about.about {
   text-transform: uppercase;
   text-decoration: none;
   border: #1b3562 1px solid;
-  font-family: "Fredoka One", cursive;
+  font-family: "Fredoka One", "Fredoka One";
 }
 .btn:hover {
   transition: 1s;
@@ -127,8 +127,26 @@ section#about.about {
   -webkit-text-stroke-color: rgb(10, 102, 194);
 }
 .fa-book-reader{
-  font-size: 22px;
+  font-size: 23px;
 }
 .fa-laptop-code{
-  font-size: 22px;
+  font-size: 23px;
+}
+.fa-envira{
+  font-size: 23px;
+}
+.fa-cloud{
+  font-size: 24px;
+}
+.fa-database{
+  font-size: 24px;
+}
+.fa-laptop-code{
+  font-size: 23px;
+}
+.fa-tasks{
+  font-size: 25px;
+}
+.fa-sourcetree{
+  font-size: 25px;
 }
