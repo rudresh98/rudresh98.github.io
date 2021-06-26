@@ -1,0 +1,152 @@
+
+.contactus{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.getintouch{
+    color: rgb(0, 10, 146);
+    font-size: 35px;
+    margin-top: -25px ;
+    font-weight: 200;
+}
+hr.new {
+    width: 100%;
+    background: none;
+    border-top: 5px dotted rgb(0, 10, 146);
+  }
+  .fa-facebook-f{
+      font-size: 23px;
+      margin-bottom: 7px !important;
+  }
+  .contactpic{
+      width: 280px;
+      height: 180px;
+  }
+  .digitalicon{
+      margin:0px 0px 0px 20px ;
+    width: 100px;
+    height: 55px;
+  }
+  .center{
+    margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .vocal{
+      height: 100px;
+      width: 100px;
+  }
+  .makeindiaicon{
+    margin:0px 0px 0px 20px ;
+      height: 50px;
+      width: 100px;
+  }
+
+  /* social icons css */
+  .socialfb{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, midnightblue, midnightblue 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialfb:hover{
+    color:#3B5998;
+    background-position: 0 100%;
+  }
+  .sociallinkedin{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, #04669A, #04669A 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+
+  }
+  .sociallinkedin:hover{
+    background-position: 0 100%;
+  }
+  .socialinsta{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, #d323ad, #d323ad 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+
+  }
+  .socialinsta:hover
+  {
+      
+      background-position: 0 100%;
+  }
+  .socialwhatsapp{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, green, green 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialwhatsapp:hover{
+      
+      background-position: 0 100%;
+  }
+  .contactsection{
+      padding-bottom: 0px !important ;
+  }
+ .mailclass{
+  background: linear-gradient(to right, #3B5998, #3B5998 50%, grey 50%);
+  background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-size: 200% 100%;
+background-position: 100%;
+transition: background-position 275ms ease;
+  }
+  .mailclass:hover{
+    background-position: 0 100%;
+  }
+  .fa-paper-plane{
+    font-size: 20px;
+  }
+  .socialgit{
+    margin: 10px 0px 0px 30px;
+    background: linear-gradient(to right, black, black 50%, grey 50%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  }
+  .socialgit:hover{
+    background-position: 0 100%;
+  }
+.naviconsize{
+  font-size: 20px;
+}
+.skillslink{
+  text-decoration: none;
+}
+.myprofilecss{
+width: 300px;
+height: 300px;
+border-top-left-radius: 5%;
+border-bottom-left-radius:5% ;
+cursor: pointer;
+}
+.myprofilecss:hover{
+  transition: 0.7s;
+}

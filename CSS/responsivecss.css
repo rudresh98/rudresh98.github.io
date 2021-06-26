@@ -1,0 +1,154 @@
+@media (max-width: 991px) {
+  header,
+  header.sticky {
+    padding: 20px 50px;
+    z-index: 1000;
+  }
+  .menu {
+    position: fixed;
+    top: 75px;
+    right: -100%;
+    /* left: -100%; */
+    display: block;
+    padding: 100px 50px;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    
+    background-color: rgba(180, 125, 180, 0.815);
+    transition: 0.5s;
+    z-index: 999;
+    border-top: 0px solid rgba(0, 0, 0, 0.2);
+  }
+  .menu.active {
+    right: 0px;
+    /* left: 0px; */
+  }
+  .menu.active li a:hover {
+    transition: 0.2s;
+    letter-spacing: 1px;
+  }
+
+  .toggle {
+    width: 40px;
+    height: 40px;
+    background: url("../Images/menu.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    margin-right: 60px;
+    cursor: pointer;
+  }
+  .toggle.active {
+    width: 40px;
+    height: 40px;
+    background: url("../Images/close.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    margin-right: 60px;
+    cursor: pointer;
+    
+  }
+  header.sticky .toggle {
+    color: white;
+  }
+  section {
+    padding: 50px 50px !important;
+  }
+
+  /* banner responsive */
+  .banner {
+    height: 100vh;
+    padding: 150px 50px 100px !important;
+  }
+  .banner .textbx h2 span {
+    font-weight: 100;
+    font-size: 1em;
+  }
+  .banner .textbx h2 p {
+    font-weight: 100;
+    font-size: 1em;
+  }
+  .banner h3 {
+    font-size: 1em;
+  }
+  /* banner responsive ends here */
+
+  /* about me starts here responsive */
+  .about .heading h2 {
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .about .contentbx h3 {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .content {
+    flex-direction: column-reverse;
+  }
+  .content .w50 .img1 {
+    /* text-align: center; */
+    width: 638px;
+    height: 575px;
+  }
+  .content .w50 {
+    margin-bottom: 20px;
+  }
+  .content .contentbx {
+    padding: 0px;
+  }
+  /* 
+  services responsive starts here */
+
+  .services .content .servicesbx {
+    padding: 0px !important;
+    margin: 10px !important;
+  }
+
+  /* works starts here */
+
+  .work .content .workbx {
+    width: 100% !important;
+    padding: 10px !important;
+  }
+  /* testimonial starts here */
+   /* .testimonialbx {
+    margin: 5px !important;
+    padding: 20px !important;
+  } */
+   .testimonialbx p {
+    font-weight: 200 !important;
+  }
+   .testimonialbx h3 {
+    font-weight: 300 !important;
+  }
+  /* testimonial ends here */
+
+  /* contactinfo start here */
+  .contact .heading h2 {
+    font-size: 38px;
+    font-weight: 400;
+  }
+  .contact .content .contactinfobx .box {
+    padding: 11px 0px;
+  }
+  /* contact ends here */
+}
+@media (max-width: 600px) {
+  header,
+  header.sticky {
+    padding: 20px 20px;
+    /* z-index: 1000; */
+  }
+  .banner {
+    padding: 100px 20px 50px !important;
+  }
+  section {
+    padding: 100px 20px !important;
+  }
+  .banner h2 {
+    margin-top: -250px;
+    font-size: 24px;
+  }
+}
