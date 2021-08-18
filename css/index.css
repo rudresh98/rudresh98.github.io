@@ -1,0 +1,701 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --white-color: white;
+  --blue-color: rgb(15, 21, 37);
+  --line-color: rgb(238, 166, 107);
+  --dot-color: rgb(15, 21, 37);
+  --heading-color: rgb(104, 134, 197);
+}
+
+.dark-theme {
+  --white-color: rgb(25, 25, 26);
+  --blue-color: #fff;
+  --p-color: rgb(238, 166, 107);
+  --custom-btn: white;
+  --line-color: white;
+  --dot-color: rgb(238, 166, 107);
+  --heading-color: rgb(104, 134, 197);
+  --heading-color: rgb(238, 166, 107);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--white-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue-color);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-color);
+}
+
+/* header css starts here */
+
+.bg-light {
+  background-color: var(--white-color) !important;
+  color: var(--blue-color) !important;
+  height: 80px;
+  z-index: 999;
+}
+
+.navbar-nav li {
+  margin: 0px 10px 0px 10px;
+}
+
+.nav-link {
+  color: var(--blue-color) !important;
+}
+
+.navbar-brand {
+  color: var(--blue-color) !important;
+}
+.navbar-collapse .nav-link {
+  font-family: "Big Shoulders Display", cursive;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
+.custom-icons i {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.custom-logo {
+  font-family: "Great Vibes", cursive;
+  font-size: 25px;
+}
+
+/* custom navabar */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  color: var(--blue-color);
+  background-color: var(--white-color);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--blue-color);
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: var(--blue-color);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.navbar-toggler {
+  color: var(--white-color) !important;
+  background-color: var(--blue-color) !important;
+}
+
+.container-fluid {
+  padding: 5px 55px 5px 55px;
+}
+
+/* }
+.navbar-toggler-icon {
+  color: var(--white-color) !important;
+  background-color: var(--blue-color) !important;
+} */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* custom navabar ends here */
+
+/* header css ends here */
+
+body {
+  background-color: var(--white-color);
+  color: var(--blue-color);
+}
+
+.custom-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  padding: 30px;
+}
+
+.custom-line {
+  width: 120px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+/* name sections starts here */
+#name-section {
+  height: 100vh;
+}
+
+#name-section .container .row p {
+  color: var(--blue-color);
+}
+
+#name-section .custom-span {
+  /* font-family: "Caveat", cursive; */
+  font-size: 90px;
+  font-family: "Great Vibes", cursive;
+  /* font-family: "Parisienne", cursive; */
+}
+
+.custom-designation {
+  font-family: "Big Shoulders Display", cursive;
+  letter-spacing: 3px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* skills section starts her */
+.custom-skills-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+.custom-skills-line {
+  width: 280px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-skills-heading {
+  font-weight: 500;
+  color: var(--heading-color);
+  font-size: 20px;
+  line-height: 20px;
+}
+
+#technologies .row img {
+  width: 150px;
+  height: 150px;
+}
+
+.card-desc {
+  display: block;
+  font-size: 1rem;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  top: 0;
+  opacity: 0;
+  left: 0;
+  color: var(--white-color);
+  background: var(--blue-color);
+  overflow-y: scroll;
+  transition: 0.8s ease;
+}
+
+.card {
+  transition: 0.3s;
+  border: 0px;
+  background-color: transparent !important;
+}
+.card:hover {
+  transition: 0.3s;
+  box-shadow: 1px 13px 30px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 13px 30px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 13px 30px 0px rgba(0, 0, 0, 0.75);
+}
+.card:hover .card-desc {
+  opacity: 1;
+  width: 100%;
+  /* height: 100%; */
+}
+
+/* contact me style starts here */
+.contactme-subheading {
+  font-size: 20px;
+  color: var(--heading-color);
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+
+.custom-contact-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+.custom-contact-line {
+  width: 300px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-contactme-instagram {
+  font-size: 100px;
+}
+
+.custom-contactme-instagram:hover {
+  color: rgb(197, 127, 127);
+  transition: 0.2s;
+}
+
+.custom-contactme-github {
+  font-size: 100px;
+  transition: 0.2s;
+}
+
+.custom-contactme-github:hover {
+  color: black;
+  transition: 0.2s;
+}
+
+.custom-contactme-twitter {
+  font-size: 100px;
+}
+
+.custom-contactme-twitter:hover {
+  color: lightseagreen;
+  transition: 0.2s;
+}
+
+.custom-contactme-linkedln {
+  font-size: 100px;
+}
+
+.custom-contactme-linkedln:hover {
+  color: blue;
+  transition: 0.2;
+}
+
+.custom-contactme-whatsapp {
+  font-size: 100px;
+}
+
+.custom-contactme-resume {
+  font-size: 100px;
+}
+
+.custom-contactme-whatsapp:hover {
+  color: green;
+  transition: 0.2s;
+}
+
+.fab {
+  cursor: pointer;
+}
+
+.custom-contactme-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-contactme-align span {
+  font-size: 50px;
+  color: var(--heading-color);
+}
+
+.custom-contactme-align a {
+  text-decoration: none;
+  color: var(--blue-color);
+}
+
+@media screen and (max-width: 500px) {
+  .custom-contact-me-row {
+    margin-top: 10px 0px 0px 0px;
+  }
+
+  .custom-designation {
+    font-size: 15px;
+    letter-spacing: 0px;
+  }
+
+  #name-section .custom-span {
+    font-family: "Caveat", cursive;
+    font-size: 60px;
+  }
+}
+
+/* name section ends here */
+
+/* about section starts here */
+.about-section {
+  color: var(--secondary-color);
+}
+
+.about-content {
+  font-size: 20px;
+  text-align: justify;
+}
+
+/* about section ends here */
+
+/* education css starts here */
+.custom-education-line {
+  width: 215px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-education-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+#edmundsimg {
+  width: 100px;
+  height: 130px;
+}
+
+#mpsimg {
+  width: 150px;
+  height: 130px;
+}
+/* education ends here */
+/* work css start here */
+.custom-work-line {
+  width: 100px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-work-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+/* projects section starts here */
+
+.custom-projects-line {
+  width: 155px;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+
+.custom-projects-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+
+.custom-top {
+  top: -170px;
+}
+
+.custom-span-color {
+  font-size: 50px;
+  font-family: "Righteous", cursive;
+  color: var(--p-color) !important;
+}
+/* achievement and certification start here */
+.custom-achiev-line {
+  width: 17.6cm;
+  background-color: var(--line-color);
+  height: 5px;
+  margin-right: 5px;
+}
+.custom-achiev-dot {
+  background-color: var(--dot-color);
+  width: 10px;
+  height: 5px;
+}
+/* achievement and certification ends here */
+/* bootstrap custominsation css */
+.card-body {
+  background-color: var(--white-color) !important;
+}
+
+.img-fluid {
+  height: 100%;
+  width: 80%;
+}
+
+.card-title {
+  color: var(--p-color);
+}
+
+@media screen and (max-width: 500px) {
+  .custom-top {
+    top: 0px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .custom-top {
+    top: 0px;
+  }
+}
+
+/* projects section ends here */
+
+/* 
+
+mouse scroll css starts here
+
+*/
+
+.mouse_scroll {
+  display: block;
+  margin: 0 auto;
+  width: 24px;
+  height: 100px;
+  margin-top: 125px;
+}
+
+.m_scroll_arrows {
+  display: block;
+  width: 5px;
+  height: 5px;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+
+  border-right: 2px solid var(--blue-color);
+  border-bottom: 2px solid var(--blue-color);
+  margin: 0 0 3px 4px;
+
+  width: 16px;
+  height: 16px;
+}
+
+.unu {
+  margin-top: 1px;
+}
+
+.unu,
+.doi,
+.trei {
+  -webkit-animation: mouse-scroll 1s infinite;
+  -moz-animation: mouse-scroll 1s infinite;
+  animation: mouse-scroll 1s infinite;
+}
+
+.unu {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -webkit-animation-direction: alternate;
+
+  animation-direction: alternate;
+  animation-delay: alternate;
+}
+
+.doi {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -webkit-animation-direction: alternate;
+
+  animation-delay: 0.2s;
+  animation-direction: alternate;
+
+  margin-top: -6px;
+}
+
+.trei {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -webkit-animation-direction: alternate;
+
+  animation-delay: 0.3s;
+  animation-direction: alternate;
+
+  margin-top: -6px;
+}
+
+.mouse {
+  height: 42px;
+  width: 24px;
+  border-radius: 14px;
+  transform: none;
+  border: 2px solid var(--blue-color);
+  top: 170px;
+}
+
+.wheel {
+  height: 5px;
+  width: 2px;
+  display: block;
+  margin: 5px auto;
+  background: var(--blue-color);
+  position: relative;
+
+  height: 4px;
+  width: 4px;
+  border: 2px solid var(--blue-color);
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.wheel {
+  -webkit-animation: mouse-wheel 0.6s linear infinite;
+  -moz-animation: mouse-wheel 0.6s linear infinite;
+  animation: mouse-wheel 0.6s linear infinite;
+}
+
+@-webkit-keyframes mouse-wheel {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(6px);
+    -ms-transform: translateY(6px);
+    transform: translateY(6px);
+  }
+}
+@-moz-keyframes mouse-wheel {
+  0% {
+    top: 1px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 3px;
+  }
+  75% {
+    top: 2px;
+  }
+  100% {
+    top: 1px;
+  }
+}
+@-o-keyframes mouse-wheel {
+  0% {
+    top: 1px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 3px;
+  }
+  75% {
+    top: 2px;
+  }
+  100% {
+    top: 1px;
+  }
+}
+@keyframes mouse-wheel {
+  0% {
+    top: 1px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 3px;
+  }
+  75% {
+    top: 2px;
+  }
+  100% {
+    top: 1px;
+  }
+}
+
+@-webkit-keyframes mouse-scroll {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes mouse-scroll {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes mouse-scroll {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes mouse-scroll {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* mouse scroll css ends here */
