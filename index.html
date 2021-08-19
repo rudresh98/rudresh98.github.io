@@ -16,9 +16,15 @@
 
 </head>
 
-<body>
+<body onload="loadfun()">
+    <div id="loading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-light position-fixed w-100">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light position-fixed w-100" data-aos="fade-left"
+            data-aos-duration="2000">
             <div class="container-fluid">
                 <a class="navbar-brand" href=""><span class="custom-logo">RO</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -106,24 +112,24 @@
     </header>
     <main>
         <section id="name-section" class="custom-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 custom-center">
-                        <p class="custom-span" data-aos="fade-up" data-aos-duration="1500">
+            <div class="container mt-5">
+                <div class="row mt-5">
+                    <div class="col-sm-12 custom-center mt-5">
+                        <p class="custom-span" data-aos="fade-left" data-aos-duration="1500">
                             Rudresh Oza
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 custom-center">
-                        <p class="custom-designation" data-aos="fade-down" data-aos-duration="1000">
+                        <p class="custom-designation" data-aos="fade-left" data-aos-duration="1000">
                             <!-- &lt;&gt;  -->
                             FULL STACK DEVELOPER | MEAN STACK | DESIGNER
                             <!-- &#60;&#47;&#62; -->
                         </p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" data-aos="fade-left" data-aos-duration="1500">
                     <div class="col-sm-12">
                         <div class="mouse_scroll">
 
@@ -153,7 +159,8 @@
                             </div>
                         </div>
                         <p class="about-content mt-3">
-                            I'm <div class="custom-span-color">Full Stack Developer</div> living in Jaipur,Rajasthan.
+                            I'm
+                            <div class="custom-span-color">Full Stack Developer</div> living in Jaipur,Rajasthan.
                             Currently I'm a Full Stack Developer at Celebal Technologies,
                             I design and code beautiful and simple things, and I love what I do.
                             <p>
@@ -234,25 +241,46 @@
         <section class="work-section" id="work">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <span class="custom-span-color">
-                            Work
-                        </span>
-                        <div style="display: flex;">
-                            <div class="custom-work-line">
+                    <div class="col-sm-6">
+                        <p>
+                            <div class="alert alert-light worktitle" role="alert" data-bs-toggle="collapse"
+                                data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                aria-controls="collapseWidthExample">
+                                <img src="./images/Project/c-smartdata.png" class="img-custom-fluid" alt="">
+                                <span>CSMART </span>- Cloud-Secured Managed Automated Reporting Tool
                             </div>
-                            <div class="custom-work-dot">
+                        </p>
+                        <div>
+                            <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                <div class="card card-body">
+                                    <p>
+                                        This is some placeholder content for a horizontal collapse. It's hidden by
+                                        default and shown when triggered.
+
+                                    </p>
+                                    <p>
+                                        This is some placeholder content for a horizontal collapse. It's hidden by
+                                        default and shown when triggered.
+
+                                    </p>
+                                    <p>
+                                        This is some placeholder content for a horizontal collapse. It's hidden by
+                                        default and shown when triggered.
+
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </section>
         <section class="skills-section" id="technologies">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <span class="custom-span-color">Technologies</span>
                         <div style="display: flex;">
                             <div class="custom-skills-line"></div>
@@ -261,14 +289,14 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/angular.svg" alt="Angular"></a>
                             <p class="card-desc">A component-based framework for building scalable web applications.</p>
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/react.svg" alt="Reactjs"></a>
                             <p class="card-desc">React. js is an open-source JavaScript library that is used for
@@ -276,7 +304,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/js.png" alt="Angular"></a>
                             <p class="card-desc">JavaScript is a text-based programming language used both on the
@@ -284,7 +312,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/chartjs.png" alt="Chartjs"></a>
                             <p class="card-desc">Chart. js is a community maintained open-source library (it's available
@@ -294,7 +322,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/sequelize.png" alt="Sequelize"></a>
                             <p class="card-desc">Sequelize is a promise-based, Node. js ORM (Object-relational mapping)
@@ -302,7 +330,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/expressjs.png" alt="Express js"></a>
                             <p class="card-desc">Express. js is a Node. js web application server framework, designed
@@ -311,7 +339,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/ts.png" alt="TypeScript"></a>
                             <p class="card-desc">TypeScript is a superset of the JavaScript language that has a single
@@ -321,7 +349,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/git.png" alt="Git"></a>
                             <p class="card-desc">
@@ -334,7 +362,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/html.png" alt="HTML"></a>
                             <p class="card-desc">HyperText Markup Language (HTML) is the set of markup symbols or codes
@@ -343,7 +371,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/css.png" alt="CSS"></a>
                             <p class="card-desc">CSS is the language for describing the presentation of Web pages,
@@ -353,7 +381,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/nodejs.png" alt="Nodejs"></a>
                             <p class="card-desc">Node. js is primarily used for non-blocking, event-driven servers, due
@@ -362,7 +390,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/azure.png" alt="Angular"></a>
                             <p class="card-desc">At its core, Azure is a public cloud computing platform—with solutions
@@ -374,7 +402,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/mysql.png" alt="Angular"></a>
                             <p class="card-desc">
@@ -384,7 +412,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/mongodb.png" alt="Angular"></a>
                             <p class="card-desc">
@@ -394,7 +422,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/angular-material.png" alt="Angular"></a>
                             <p class="card-desc">Angular Material is a User Interface (UI) component library that
@@ -403,7 +431,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/bootstrap.png" alt="Angular"></a>
                             <p class="card-desc">
@@ -415,8 +443,8 @@
                     </div>
                 </div>
                 <div class="row mt-5 m-auto ">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/sass.png" alt="SASS"></a>
                             <p class="card-desc">
@@ -426,7 +454,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
+                    <div class="col-md-3 text-center">
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/cicd.png" alt="CICD"></a>
                             <p class="card-desc">
@@ -435,7 +463,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-3"></div>
+                    <div class="col-md-3"></div>
                 </div>
             </div>
         </section>
