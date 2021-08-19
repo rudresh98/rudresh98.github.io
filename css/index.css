@@ -282,6 +282,7 @@ body {
 
 .custom-contactme-instagram {
   font-size: 100px;
+  color: var(--blue-color);
 }
 
 .custom-contactme-instagram:hover {
@@ -292,8 +293,13 @@ body {
 .custom-contactme-github {
   font-size: 100px;
   transition: 0.2s;
+  color: var(--blue-color);
 }
-
+.custom-contactme-stackoverflow {
+  font-size: 100px;
+  transition: 0.2s;
+  color: var(--blue-color);
+}
 .custom-contactme-github:hover {
   color: black;
   transition: 0.2s;
@@ -301,6 +307,7 @@ body {
 
 .custom-contactme-twitter {
   font-size: 100px;
+  color: var(--blue-color);
 }
 
 .custom-contactme-twitter:hover {
@@ -310,6 +317,7 @@ body {
 
 .custom-contactme-linkedln {
   font-size: 100px;
+  color: var(--blue-color);
 }
 
 .custom-contactme-linkedln:hover {
@@ -318,11 +326,17 @@ body {
 }
 
 .custom-contactme-whatsapp {
+  color: var(--blue-color);
+  font-size: 100px;
+}
+.custom-contactme-mail {
+  color: var(--blue-color);
   font-size: 100px;
 }
 
 .custom-contactme-resume {
   font-size: 100px;
+  color: var(--blue-color);
 }
 
 .custom-contactme-whatsapp:hover {
@@ -334,11 +348,11 @@ body {
   cursor: pointer;
 }
 
-.custom-contactme-align {
+/* .custom-contactme-align {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .custom-contactme-align span {
   font-size: 50px;
