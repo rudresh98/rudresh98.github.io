@@ -470,6 +470,17 @@ body {
   font-family: "Righteous", cursive;
   color: var(--p-color) !important;
 }
+#projects .row .col-sm-4 .accordion {
+  background-color: var(--blue-color);
+  color: var(--blue-color);
+}
+#projects .row .col-md-4 .accordion .accordion-item .accordion-header p {
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  margin: 0px;
+  font-size: 17px;
+  font-weight: 600;
+}
 /* achievement and certification start here */
 .custom-achiev-line {
   width: 17.6cm;
