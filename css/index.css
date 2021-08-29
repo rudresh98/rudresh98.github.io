@@ -445,6 +445,14 @@ body {
   width: 250px;
   height: 200px;
 }
+.company-logo{
+  width: 100%;
+  height: 100%;
+}
+.work-post{
+  font-size: 30px;
+  color: var(--blue-color);
+}
 
 /* projects section starts here */
 
