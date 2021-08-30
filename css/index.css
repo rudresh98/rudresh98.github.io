@@ -761,3 +761,19 @@ mouse scroll css starts here
   align-items: center;
   display: flex;
 }
+/* foooter css starts here */
+.india-logo img:first-child{
+  width: 70px;
+  height: 30px;
+  margin-left: 10px;
+}
+.india-logo img:nth-child(2){
+  width: 90px;
+  height: 40px;
+  margin-left: 10px;
+}
+.india-logo img:nth-child(3){
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+}
