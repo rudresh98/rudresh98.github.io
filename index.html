@@ -40,27 +40,27 @@
                             <a class="nav-link" aria-current="page" href="">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#aboutme">About Me</a>
+                            <a class="nav-link" href="#nav-about">About Me</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#work">Work Experience</a>
+                            <a class="nav-link" href="#nav-work">Work Experience</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#education">Education</a>
+                            <a class="nav-link" href="#nav-education">Education</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#technologies">Technologies</a>
+                            <a class="nav-link" href="#nav-tech">Technologies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#projects">Projects</a>
+                            <a class="nav-link" href="#nav-projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#achievements">Achievements & Certification</a>
+                            <a class="nav-link" href="#nav-achievements">Achievements & Certification</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#contactme">Contact Me</a>
+                            <a class="nav-link" href="#nav-contactme">Contact Me</a>
                         </li>
                     </ul>
                     <ul class="custom-icons navbar-nav ">
@@ -78,8 +78,10 @@
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="fas fa-moon" id="moon" onclick="toogleThemeClick()"></i>
+                            <a class="nav-link d-flex">
+                                <span>Alt+G</span>
+                                <i class="fas fa-moon" id="moon" onclick="toogleThemeClick()" accesskey="g"
+                                    style="margin-left: 10px;"></i>
                             </a>
                         </li>
                     </ul>
@@ -146,7 +148,10 @@
                 </div>
             </div>
         </section>
-        <section class="about-section" id="aboutme">
+        <div id="nav-about" class="mb-5">
+
+        </div>
+        <section class="about-section" id="aboutme ">
             <div class="container">
                 <div class="row">
 
@@ -170,13 +175,16 @@
                         </p>
                     </div>
                     <div class="col-sm-6">
-                        <img src="./images/mypic.png" alt="My Profile" class="img-fluid" >
+                        <img src="./images/mypic.png" alt="My Profile" class="img-fluid">
                     </div>
                 </div>
 
 
             </div>
         </section>
+        <div id="nav-work" class="mb-5">
+
+        </div>
         <section class="work-section" id="work">
             <div class="container">
                 <div class="row">
@@ -192,15 +200,18 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-12">
-                        
-                                
-                            
-                        
+
+
+
+
                     </div>
-                    
+
                 </div>
             </div>
         </section>
+        <div id="nav-education" class="mb-5">
+
+        </div>
         <section class="education-section" id="education">
             <div class="container">
                 <div class="row ">
@@ -231,7 +242,7 @@
                 </div>
                 <div class="row mt-4 d-flex flex-row-reverse">
 
-                    
+
                     <div class="col-sm-8">
                         <p style="text-align: right;">
                             Under-Graduation 12 <sup>th</sup> (71%)
@@ -263,7 +274,9 @@
                 </div>
             </div>
         </section>
-        
+        <div id="nav-tech" class="mb-5">
+
+        </div>
         <section class="skills-section" id="technologies">
             <div class="container">
                 <div class="row">
@@ -454,6 +467,9 @@
                 </div>
             </div>
         </section>
+        <div id="nav-projects" class="mb-5">
+
+        </div>
         <section class="project-section" id="projects">
             <div class="container">
                 <div class="row">
@@ -469,106 +485,63 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <div class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                  <img src="./images/Project/c-smartdata.png" alt="CSMART" srcset="" class="img-fluid">
-                                </button>
-                                <p class="text-center custom-project-heading">CSMART</p>
-                              </div>
-                              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <!-- <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
+                <div class="row mt-5">
+                    <div class="col-md-3">
+                        <div class="card" >
+                            <img src="./images/Project/c-smartdata.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.
+                                </p>
+                                <div>
+                                    <a href="">Code</a>
                                 </div>
-                              </div>
                             </div>
-                            
-                          </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <div class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                  <img src="./images/Project/ims.png" alt="Intern Management System" class="img-fluid" style="height: 220px;">
-                                </button>
-                                <p class="text-center">INTERN MANAGEMENT SYSTEM</p>
-                              </div>
-                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <!-- <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
-                                </div>
-                              </div>
+                    <div class="col-md-3">
+                        <div class="card" >
+                            <img src="./images/Project/ims.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div>
+                                        <a href="">Code</a>
+                                    </div>
                             </div>
-                            
-                          </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <div class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="coll#collapseThree">
-                                  <img src="./images/Project/portfolio.png" alt="PORTFOLIO" class="img-fluid" style="height: 220px;">
-                                </button>
-                                <p class="text-center">MY PORTFOLIO</p>
-                              </div>
-                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <!-- <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
-                                </div>
-                              </div>
+                    <div class="col-md-3">
+                        <div class="card" >
+                            <img src="./images/Project/portfolio.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div>
+                                        <a href="https://rudresh98.github.io/" target="_blank">Code</a>
+                                    </div>
                             </div>
-                            
-                          </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <div class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                  <img src="./images/Project/qualitechGroups.png" alt="CSMART" srcset="" class="img-fluid">
-                                </button>
-                                <p class="text-center">Qualitech Groups</p>
-                              </div>
-                              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <!-- <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
-                                </div>
-                              </div>
+                    <div class="col-md-3">
+                        <div class="card" >
+                            <img src="./images/Project/qualitechArtsandCrafts.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div>
+                                        <a href="http://qualitechartsncrafts.com/" target="_blank">Link</a>
+                                    </div>
                             </div>
-                            
-                          </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <div class="accordion-header" id="headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                  <img src="./images/Project/qualitechArtsandCrafts.png" alt="CSMART" srcset="" class="img-fluid">
-                                </button>
-                                <p class="text-center">Qualitech Arts and Crafts</p>
-                              </div>
-                              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <!-- <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
-                                </div>
-                              </div>
-                            </div>
-                            
-                          </div>
-                    </div>
-                    <div class="col-md-4">
-                        
+                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
+        <div id="nav-achievements" class="mb-5">
+
+        </div>
         <section class="achievements-section" id="achievements">
             <div class="container">
                 <div class="row">
@@ -589,6 +562,9 @@
         </section>
 
     </main>
+    <div id="nav-contactme" class="mb-5">
+
+    </div>
     <footer id="contactme">
         <div class="container">
             <div class="row ">
@@ -651,10 +627,10 @@
             </div>
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                    
+
                     &copy; Copyright Reserved 2020-2021 <a href="#aboutme">Rudresh Oza</a>
-                      
-                    
+
+
                 </div>
             </div>
         </div>
