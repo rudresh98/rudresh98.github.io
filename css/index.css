@@ -180,8 +180,14 @@ body {
 
 /* name sections starts here */
 #name-section {
+  background-image: url('../images/mountains.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
   height: 100vh;
 }
+
+
 
 #name-section .container .row p {
   color: var(--blue-color);
@@ -762,6 +768,7 @@ mouse scroll css starts here
   display: flex;
 }
 /* foooter css starts here */
+
 .india-logo img:first-child{
   width: 70px;
   height: 30px;
