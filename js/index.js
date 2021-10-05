@@ -6,7 +6,7 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-// particle js
+
 
 // dark mode added starts here
 let darkmode = localStorage.getItem("darkMode");
@@ -34,8 +34,10 @@ toogleThemeClick = () => {
   darkmode = localStorage.getItem("darkMode");
   if (darkmode !== "enable") {
     enableDarkMode();
+    console.debug("dark mode ENABLED😍")
   } else {
     disableDarkMode();
+    console.debug("dark mode DISABLED 😢")
   }
 };
 
