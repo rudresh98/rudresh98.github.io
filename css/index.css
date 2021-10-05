@@ -180,14 +180,12 @@ body {
 
 /* name sections starts here */
 #name-section {
-  background-image: url('../images/mountains.png');
+  background-image: url("../images/mountains.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
   height: 100vh;
 }
-
-
 
 #name-section .container .row p {
   color: var(--blue-color);
@@ -402,6 +400,12 @@ body {
   font-size: 20px;
   text-align: justify;
 }
+.about-section #mypic {
+  height: 400px;
+  width: 330px;
+  image-resolution: inherit;
+  filter: grayscale(1);
+}
 
 /* about section ends here */
 
@@ -455,11 +459,11 @@ body {
   width: 250px;
   height: 200px;
 }
-.company-logo{
+.company-logo {
   width: 100%;
   height: 100%;
 }
-.work-post{
+.work-post {
   font-size: 30px;
   color: var(--blue-color);
 }
@@ -769,33 +773,29 @@ mouse scroll css starts here
 }
 /* foooter css starts here */
 
-.india-logo img:first-child{
+.india-logo img:first-child {
   width: 70px;
   height: 30px;
   margin-left: 10px;
 }
-.india-logo img:nth-child(2){
+.india-logo img:nth-child(2) {
   width: 90px;
   height: 40px;
   margin-left: 10px;
 }
-.india-logo img:nth-child(3){
+.india-logo img:nth-child(3) {
   width: 100px;
   height: 100px;
   margin-left: 10px;
 }
 
-
-
-
-
 /* flicker CSS */
 .text-flicker-in-glow {
-	-webkit-animation: text-flicker-in-glow 2s linear both;
-	        animation: text-flicker-in-glow 2s linear both;
+  -webkit-animation: text-flicker-in-glow 2s linear both;
+  animation: text-flicker-in-glow 2s linear both;
 }
 
- @-webkit-keyframes text-flicker-in-glow {
+@-webkit-keyframes text-flicker-in-glow {
   0% {
     opacity: 0;
   }
@@ -923,49 +923,48 @@ mouse scroll css starts here
 
 /* SUN AND MOOON CSS */
 .jello-diagonal-1 {
-	-webkit-animation: jello-diagonal-1 0.8s both;
-	        animation: jello-diagonal-1 0.8s both;
+  -webkit-animation: jello-diagonal-1 0.8s both;
+  animation: jello-diagonal-1 0.8s both;
 }
 
- @-webkit-keyframes jello-diagonal-1 {
+@-webkit-keyframes jello-diagonal-1 {
   0% {
     -webkit-transform: skew(0deg 0deg);
-            transform: skew(0deg 0deg);
+    transform: skew(0deg 0deg);
   }
   30% {
     -webkit-transform: skew(25deg 25deg);
-            transform: skew(25deg 25deg);
+    transform: skew(25deg 25deg);
   }
   40% {
     -webkit-transform: skew(-15deg, -15deg);
-            transform: skew(-15deg, -15deg);
+    transform: skew(-15deg, -15deg);
   }
   50% {
     -webkit-transform: skew(15deg, 15deg);
-            transform: skew(15deg, 15deg);
+    transform: skew(15deg, 15deg);
   }
   65% {
     -webkit-transform: skew(-5deg, -5deg);
-            transform: skew(-5deg, -5deg);
+    transform: skew(-5deg, -5deg);
   }
   75% {
     -webkit-transform: skew(5deg, 5deg);
-            transform: skew(5deg, 5deg);
+    transform: skew(5deg, 5deg);
   }
   100% {
     -webkit-transform: skew(0deg 0deg);
-            transform: skew(0deg 0deg);
+    transform: skew(0deg 0deg);
   }
 }
 
-
 .tracking-in-expand {
-	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
-
- @-webkit-keyframes tracking-in-expand {
+@-webkit-keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
     opacity: 0;
@@ -977,4 +976,3 @@ mouse scroll css starts here
     opacity: 1;
   }
 }
-
