@@ -801,6 +801,12 @@ footer .container .my-info a {
   height: 100px;
   margin-left: 10px;
 }
+footer .btn-form {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+}
 
 /* flicker CSS */
 .text-flicker-in-glow {
