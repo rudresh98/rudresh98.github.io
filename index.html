@@ -13,6 +13,12 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
     <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake-slow.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_mmcXS3SIG6smGM1TZplKQ");
+        })();
+    </script>
     <!-- CDN IMPORT ENDS HERR -->
     <link rel="stylesheet" href="./css/index.css">
     <link rel="icon" href="./images/ProfileImages/mynewpic.jpg">
@@ -28,7 +34,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light position-fixed w-100">
             <div class="container-fluid">
-                <a class="navbar-brand " href=""><span class="custom-logo ">RO</span></a>
+                <a class="navbar-brand " href=""><span class="custom-logo">RO</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()">
@@ -39,30 +45,30 @@
                     </div>
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="">Home</a>
+                            <a class="nav-link shake dib" aria-current="page" href="">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-about">About Me</a>
+                            <a class="nav-link shake dib" href="#nav-about">About Me</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-work">Work Experience</a>
+                            <a class="nav-link shake dib" href="#nav-work">Work Experience</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-education">Education</a>
+                            <a class="nav-link shake dib" href="#nav-education">Education</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-tech">Technologies</a>
+                            <a class="nav-link shake dib" href="#nav-tech">Technologies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-projects">Projects</a>
+                            <a class="nav-link shake dib" href="#nav-projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-achievements">Achievements & Certification</a>
+                            <a class="nav-link shake dib" href="#nav-achievements">Achievements & Certification</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#nav-contactme">Contact Me</a>
+                            <a class="nav-link shake dib" href="#nav-contactme">Contact Me</a>
                         </li>
                     </ul>
                     <ul class="custom-icons navbar-nav ">
@@ -81,7 +87,7 @@
                         </li> -->
                         <li class="nav-item ">
                             <a class="nav-link d-flex shake-chunk shake-constant shake-constant--hover dib">
-                                <span>Alt + N</span>
+                                <!-- <span>Alt + N</span> -->
                                 <i class="fas fa-moon " id="moon" onclick="toogleThemeClick()" accesskey="n"
                                     style="margin-left: 10px;"></i>
                             </a>
@@ -358,7 +364,6 @@
                             <p class="card-desc p-2">TypeScript is a superset of the JavaScript language that has a
                                 single
                                 open-source compiler and is developed mainly by a single vendor: Microsoft. </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -368,7 +373,6 @@
                                 Git is the most commonly used version control system. Git tracks the changes you make to
                                 files, so you have a record of what has been done, and you can revert to specific
                                 versions should you ever need to.</p>
-
                         </div>
                     </div>
                 </div>
@@ -380,7 +384,6 @@
                                 codes
                                 inserted into a file intended for display on the Internet. The markup tells web browsers
                                 how to display a web page's words and images.</p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -389,7 +392,6 @@
                             <p class="card-desc p-2">CSS is the language for describing the presentation of Web pages,
                                 including colors, layout, and fonts. It allows one to adapt the presentation to
                                 different types of devices. </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -398,7 +400,6 @@
                             <p class="card-desc p-2">Node. js is primarily used for non-blocking, event-driven servers,
                                 due
                                 to its single-threaded nature. </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -408,7 +409,6 @@
                                 solutions
                                 including Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software
                                 as a Service (SaaS) .</p>
-
                         </div>
                     </div>
                 </div>
@@ -419,7 +419,6 @@
                             <p class="card-desc p-2">
                                 MySQL is a relational database management system based on SQL – Structured Query
                                 Language. </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -429,7 +428,6 @@
                                 MongoDB is an object-oriented, simple, dynamic, and scalable NoSQL database. It is based
                                 on the NoSQL document store model. The data objects are stored as separate documents
                                 inside a collection </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -438,7 +436,6 @@
                             <p class="card-desc p-2">Angular Material is a User Interface (UI) component library that
                                 developers can use in their Angular projects to speed up the development of elegant and
                                 consistent user interfaces.</p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -447,7 +444,6 @@
                             <p class="card-desc p-2">
                                 Bootstrap is a potent front-end framework used to create modern websites and web apps.
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -457,10 +453,8 @@
                         <div class="card">
                             <a href="" class="nav-link"><img src="./images/sass.png" alt="SASS"></a>
                             <p class="card-desc p-2">
-
                                 SCSS : Syntactically Awesome Style Sheet is the superset of CSS. SCSS is the more
                                 advanced version of CSS. </p>
-
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -527,6 +521,7 @@
     </div>
     <footer id="contactme">
         <div class="container">
+
             <div class="row ">
                 <div class="col-sm-12">
                     <span class="custom-span-color"> Let's Connect
@@ -543,6 +538,39 @@
 
                 </div>
             </div>
+            <!-- contact form start📌 -->
+            <div class="row mt-5 ">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text">Name</span>
+                        <input type="text" class="form-control" id="form-name" placeholder="Enter Your Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text">Email</span>
+                        <input type="email" class="form-control" id="form-id" placeholder="Enter Your Email " required>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" id="message"
+                            placeholder="Give a brief about your requirements..." required>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <button class="btn-form" onclick="sendContactForm()">Submit <i
+                            class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <!-- contact form end -->
             <div class="row mt-5 custom-contact-me-row">
                 <div class="col-md-3 text-center">
                     <a href="https://www.linkedin.com/in/rudreshoza98/" target="_blank"><i
@@ -574,7 +602,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
-                    <a href="./assets/Rudresh's Resume.pdf" download="Rudresh's Resume">
+                    <a href="./assets/Rudresh's Resume.pdf" download="Rudresh's Resume" class="shake dib">
                         <i class="fas fa-download custom-contactme-resume"></i>
                     </a>
                 </div>
@@ -585,6 +613,7 @@
 
                 </div>
             </div>
+
             <div class="row mt-5 text-center my-info">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">
                     Made by ♥<a href="#aboutme"
