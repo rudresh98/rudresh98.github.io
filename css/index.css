@@ -31,7 +31,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   cursor: pointer;
 }
 
@@ -59,6 +59,10 @@
 
 .navbar-nav li {
   margin: 0px 0px 0px 0px;
+}
+.navbar-nav li a:hover {
+  transition: 0.5s;
+  transform: rotate(340deg);
 }
 
 .nav-link {
@@ -180,14 +184,12 @@ body {
 
 /* name sections starts here */
 #name-section {
-  background-image: url('../images/mountains.png');
+  background-image: url("../images/mountains.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
   height: 100vh;
 }
-
-
 
 #name-section .container .row p {
   color: var(--blue-color);
@@ -402,7 +404,17 @@ body {
   font-size: 20px;
   text-align: justify;
 }
-
+.about-section #mypic {
+  height: 400px;
+  width: 330px;
+  image-resolution: inherit;
+  filter: grayscale(1);
+}
+.custom-about-span-color {
+  font-size: 35px;
+  font-family: "Righteous", cursive;
+  color: var(--p-color) !important;
+}
 /* about section ends here */
 
 /* education css starts here */
@@ -431,7 +443,7 @@ body {
 /* education ends here */
 /* work css start here */
 .custom-work-line {
-  width: 100px;
+  width: 365px;
   background-color: var(--line-color);
   height: 5px;
   margin-right: 5px;
@@ -455,11 +467,11 @@ body {
   width: 250px;
   height: 200px;
 }
-.company-logo{
+.company-logo {
   width: 100%;
   height: 100%;
 }
-.work-post{
+.work-post {
   font-size: 30px;
   color: var(--blue-color);
 }
@@ -769,33 +781,34 @@ mouse scroll css starts here
 }
 /* foooter css starts here */
 
-.india-logo img:first-child{
+footer .container .my-info a {
+  text-decoration: none;
+  color: var(--blue-color);
+  padding: 0px 5px 0px 5px;
+}
+.india-logo img:first-child {
   width: 70px;
   height: 30px;
   margin-left: 10px;
 }
-.india-logo img:nth-child(2){
+.india-logo img:nth-child(2) {
   width: 90px;
   height: 40px;
   margin-left: 10px;
 }
-.india-logo img:nth-child(3){
+.india-logo img:nth-child(3) {
   width: 100px;
   height: 100px;
   margin-left: 10px;
 }
 
-
-
-
-
 /* flicker CSS */
 .text-flicker-in-glow {
-	-webkit-animation: text-flicker-in-glow 2s linear both;
-	        animation: text-flicker-in-glow 2s linear both;
+  -webkit-animation: text-flicker-in-glow 2s linear both;
+  animation: text-flicker-in-glow 2s linear both;
 }
 
- @-webkit-keyframes text-flicker-in-glow {
+@-webkit-keyframes text-flicker-in-glow {
   0% {
     opacity: 0;
   }
@@ -920,61 +933,3 @@ mouse scroll css starts here
     /* text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1); */
   }
 }
-
-/* SUN AND MOOON CSS */
-.jello-diagonal-1 {
-	-webkit-animation: jello-diagonal-1 0.8s both;
-	        animation: jello-diagonal-1 0.8s both;
-}
-
- @-webkit-keyframes jello-diagonal-1 {
-  0% {
-    -webkit-transform: skew(0deg 0deg);
-            transform: skew(0deg 0deg);
-  }
-  30% {
-    -webkit-transform: skew(25deg 25deg);
-            transform: skew(25deg 25deg);
-  }
-  40% {
-    -webkit-transform: skew(-15deg, -15deg);
-            transform: skew(-15deg, -15deg);
-  }
-  50% {
-    -webkit-transform: skew(15deg, 15deg);
-            transform: skew(15deg, 15deg);
-  }
-  65% {
-    -webkit-transform: skew(-5deg, -5deg);
-            transform: skew(-5deg, -5deg);
-  }
-  75% {
-    -webkit-transform: skew(5deg, 5deg);
-            transform: skew(5deg, 5deg);
-  }
-  100% {
-    -webkit-transform: skew(0deg 0deg);
-            transform: skew(0deg 0deg);
-  }
-}
-
-
-.tracking-in-expand {
-	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-}
-
-
- @-webkit-keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
