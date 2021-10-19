@@ -402,13 +402,17 @@ body {
 
 .about-content {
   font-size: 20px;
-  text-align: justify;
+  text-align: left;
 }
 .about-section #mypic {
-  height: 400px;
-  width: 330px;
-  image-resolution: inherit;
+  height: 100%;
+  width: 79%;
   filter: grayscale(1);
+  transition: 2s;
+}
+.about-section #mypic:hover {
+  transition: 2s;
+  filter: grayscale(0);
 }
 .custom-about-span-color {
   font-size: 35px;

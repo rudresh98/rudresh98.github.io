@@ -45,7 +45,7 @@ loadfun = async () => {
 };
 const sendContactForm = () => {
   const formData = {
-    form_subject: "Contact from Client (portfolio)",
+    form_subject: "Thank You From Rudresh",
     form_name: document.getElementById("form-name").value,
     form_id: document.getElementById("form-id").value,
     to_name: "Rudresh Oza",
@@ -56,13 +56,24 @@ const sendContactForm = () => {
     .send("service_qs0t96g", "template_ibljxpb", formData)
     .then((res) => {
       console.debug("SUCCESS", res);
-      alert("Your Data is Submitted successfully");
+      Snackbar.show({
+        pos: "top-right",
+        text: "Thanks..!! Your query has been submitted will get back soon.😄 ",
+      });
     })
     .catch((err) => {
       console.debug("ERROR", err);
-      alert("Your data is not SUbmitted successfully");
+      Snackbar.show({
+        pos: "top-right",
+        text: "Oops ..!! Something went wrong😢 ",
+      });
     });
   document.getElementById("form-name").value = "";
   document.getElementById("form-id").value = "";
   document.getElementById("message").value = "";
+};
+
+showSnackbar = () => {
+  console.log("snackbar clicked");
+  Snackbar.show({ pos: "top-center", text: "demo" });
 };
