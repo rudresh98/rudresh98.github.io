@@ -45,7 +45,7 @@ loadfun = async () => {
 };
 const sendContactForm = () => {
   const formData = {
-    form_subject: "Contact from Client (portfolio)",
+    form_subject: "Thank You From Rudresh",
     form_name: document.getElementById("form-name").value,
     form_id: document.getElementById("form-id").value,
     to_name: "Rudresh Oza",
