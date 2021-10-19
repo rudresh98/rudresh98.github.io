@@ -56,17 +56,11 @@ const sendContactForm = () => {
     .send("service_qs0t96g", "template_ibljxpb", formData)
     .then((res) => {
       console.debug("SUCCESS", res);
-      Snackbar.show({
-        pos: "top-right",
-        text: "Thanks..!! Your query has been submitted will get back soon.😄 ",
-      });
+      alert("data added successfully");
     })
     .catch((err) => {
       console.debug("ERROR", err);
-      Snackbar.show({
-        pos: "top-right",
-        text: "Oops ..!! Something went wrong😢 ",
-      });
+      alert("Something went wrong");
     });
   document.getElementById("form-name").value = "";
   document.getElementById("form-id").value = "";
