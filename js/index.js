@@ -1,3 +1,5 @@
+tagCanvasColor = "rgb(104, 134, 197)";
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "100%";
 }
@@ -40,9 +42,9 @@ toogleThemeClick = () => {
 };
 
 var load = document.getElementById("loading");
-loadfun = async () => {
-  load.style.display = "none";
-};
+// loadfun = async () => {
+//   load.style.display = "none";
+// };
 const sendContactForm = () => {
   const formData = {
     form_subject: "Thank You From Rudresh",
@@ -67,7 +69,29 @@ const sendContactForm = () => {
   document.getElementById("message").value = "";
 };
 
-showSnackbar = () => {
-  console.log("snackbar clicked");
-  Snackbar.show({ pos: "top-center", text: "demo" });
+// tagacanvas
+
+window.onload = function () {
+  try {
+    TagCanvas.Start("myCanvas", "tags", {
+      textColour: "rgb(200, 130, 63)",
+      outlineThickness: 0.5,
+      outlineColour: "#FE0853",
+      maxSpeed: 0.06,
+      freezeActive: true,
+      shuffleTags: true,
+      shape: "sphere",
+      zoom: 1.2,
+      noSelect: true,
+      textFont: null,
+      pinchZoom: true,
+      freezeDecel: true,
+      fadeIn: 3000,
+      initial: [0.3, -0.1],
+      depth: 1.4,
+    });
+  } catch (e) {
+    // something went wrong, hide the canvas container
+    document.getElementById("myCanvasContainer").style.display = "none";
+  }
 };

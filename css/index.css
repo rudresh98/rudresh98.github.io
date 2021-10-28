@@ -215,6 +215,10 @@ body {
   width: 10px;
   height: 5px;
 }
+.skills-custom-color {
+  color: var(--heading-color);
+  text-transform: uppercase;
+}
 
 .custom-skills-line {
   width: 280px;
@@ -228,11 +232,6 @@ body {
   color: var(--heading-color);
   font-size: 20px;
   line-height: 20px;
-}
-
-#technologies .row img {
-  width: 150px;
-  height: 150px;
 }
 
 .card-desc {
