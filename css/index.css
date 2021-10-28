@@ -68,7 +68,20 @@
 .nav-link {
   color: var(--blue-color) !important;
 }
-
+.nav-link i {
+  display: block;
+  font-size: 22px;
+  margin: 0px 20px 0px 20px;
+}
+.nav-link span {
+  display: none;
+}
+.nav-link:hover i {
+  display: none;
+}
+.nav-link:hover span {
+  display: block;
+}
 .navbar-brand {
   color: var(--blue-color) !important;
 }
