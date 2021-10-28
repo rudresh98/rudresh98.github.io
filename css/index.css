@@ -68,18 +68,18 @@
 .nav-link {
   color: var(--blue-color) !important;
 }
-.nav-link i {
+.custom-nav-link i {
   display: block;
   font-size: 22px;
   margin: 0px 20px 0px 20px;
 }
-.nav-link span {
+.custom-nav-link span {
   display: none;
 }
-.nav-link:hover i {
+.custom-nav-link:hover i {
   display: none;
 }
-.nav-link:hover span {
+.custom-nav-link:hover span {
   display: block;
 }
 .navbar-brand {
