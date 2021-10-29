@@ -1,4 +1,5 @@
 // wish notification
+import "../node_modules/alertifyjs/build/alertify";
 
 let date = new Date();
 
