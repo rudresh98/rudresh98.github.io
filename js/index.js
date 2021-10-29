@@ -1,3 +1,21 @@
+// wish notification
+
+let date = new Date();
+
+if (date.getHours() > 00 && date.getHours() < 5) {
+  alertify.set("notifier", "position", "bottom-right");
+  let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
+  alertMsg.delay(2);
+} else if (date.getHours() > 5 && date.getHours() < 12) {
+  alertify.set("notifier", "position", "bottom-right");
+  let alertMsg = alertify.notify("Good Morning Folk.😄", "custom");
+  alertMsg.delay(2);
+} else {
+  alertify.set("notifier", "position", "bottom-right");
+  let alertMsg = alertify.notify("Good Afernoon Folk.😄", "custom");
+  alertMsg.delay(2);
+}
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "100%";
 }
@@ -16,12 +34,19 @@ enableDarkMode = () => {
   localStorage.setItem("darkMode", "enable");
   icon.classList = "fas fa-sun";
   icon1.classList = icon.classList;
+  // .ajs-message.ajs-custom { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }
+  alertify.set("notifier", "position", "bottom-right");
+  let alertMsg = alertify.notify("Dark Mode Enabled🌑", "custom");
+  alertMsg.delay(2);
 };
 disableDarkMode = () => {
   document.body.classList.remove("dark-theme");
   localStorage.removeItem("darkMode", null);
   icon.classList = "fas fa-moon";
   icon1.classList = icon.classList;
+  alertify.set("notifier", "position", "bottom-right");
+  let alertMsg = alertify.notify("Light Mode Enabled☀️", "custom");
+  alertMsg.delay(2);
 };
 if (darkmode === "enable") {
   enableDarkMode();
@@ -40,9 +65,9 @@ toogleThemeClick = () => {
 };
 
 var load = document.getElementById("loading");
-loadfun = async () => {
-  load.style.display = "none";
-};
+// loadfun = async () => {
+//   load.style.display = "none";
+// };
 const sendContactForm = () => {
   const formData = {
     form_subject: "Thank You From Rudresh",
@@ -67,7 +92,29 @@ const sendContactForm = () => {
   document.getElementById("message").value = "";
 };
 
-showSnackbar = () => {
-  console.log("snackbar clicked");
-  Snackbar.show({ pos: "top-center", text: "demo" });
+// tagacanvas
+
+window.onload = function () {
+  try {
+    TagCanvas.Start("myCanvas", "tags", {
+      textColour: "rgb(200, 130, 63)",
+      outlineThickness: 0.5,
+      outlineColour: "#FE0853",
+      maxSpeed: 0.06,
+      freezeActive: true,
+      shuffleTags: true,
+      shape: "sphere",
+      zoom: 1.2,
+      noSelect: true,
+      textFont: null,
+      pinchZoom: true,
+      freezeDecel: true,
+      fadeIn: 3000,
+      initial: [0.3, -0.1],
+      depth: 1.4,
+    });
+  } catch (e) {
+    // something went wrong, hide the canvas container
+    document.getElementById("myCanvasContainer").style.display = "none";
+  }
 };

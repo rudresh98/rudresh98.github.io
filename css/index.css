@@ -68,7 +68,20 @@
 .nav-link {
   color: var(--blue-color) !important;
 }
-
+.custom-nav-link i {
+  display: block;
+  font-size: 22px;
+  margin: 0px 20px 0px 20px;
+}
+.custom-nav-link span {
+  display: none;
+}
+.custom-nav-link:hover i {
+  display: none;
+}
+.custom-nav-link:hover span {
+  display: block;
+}
 .navbar-brand {
   color: var(--blue-color) !important;
 }
@@ -215,6 +228,10 @@ body {
   width: 10px;
   height: 5px;
 }
+.skills-custom-color {
+  color: var(--heading-color);
+  text-transform: uppercase;
+}
 
 .custom-skills-line {
   width: 280px;
@@ -228,11 +245,6 @@ body {
   color: var(--heading-color);
   font-size: 20px;
   line-height: 20px;
-}
-
-#technologies .row img {
-  width: 150px;
-  height: 150px;
 }
 
 .card-desc {
@@ -942,4 +954,11 @@ footer .btn-form {
     opacity: 1;
     /* text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1); */
   }
+}
+
+/* alert box css */
+.ajs-message.ajs-custom {
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  font-weight: 700;
 }
