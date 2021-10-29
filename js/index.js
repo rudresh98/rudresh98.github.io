@@ -3,17 +3,17 @@
 let date = new Date();
 
 if (date.getHours() > 00 && date.getHours() < 5) {
-  alertify.set("notifier", "position", "bottom-right");
+  alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
-  alertMsg.delay(2);
+  alertMsg.delay(3);
 } else if (date.getHours() > 5 && date.getHours() < 12) {
-  alertify.set("notifier", "position", "bottom-right");
+  alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Morning Folk.😄", "custom");
-  alertMsg.delay(2);
+  alertMsg.delay(3);
 } else {
-  alertify.set("notifier", "position", "bottom-right");
+  alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Afernoon Folk.😄", "custom");
-  alertMsg.delay(2);
+  alertMsg.delay(3);
 }
 
 function openNav() {
@@ -37,7 +37,7 @@ enableDarkMode = () => {
   // .ajs-message.ajs-custom { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }
   alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Dark Mode Enabled🌑", "custom");
-  alertMsg.delay(2);
+  alertMsg.delay(3);
 };
 disableDarkMode = () => {
   document.body.classList.remove("dark-theme");
@@ -46,7 +46,7 @@ disableDarkMode = () => {
   icon1.classList = icon.classList;
   alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Light Mode Enabled☀️", "custom");
-  alertMsg.delay(2);
+  alertMsg.delay(3);
 };
 if (darkmode === "enable") {
   enableDarkMode();
