@@ -3,15 +3,15 @@
 let date = new Date();
 
 if (date.getHours() > 00 && date.getHours() < 5) {
-  alertify.set("notifier", "position", "top-right");
+  alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
   alertMsg.delay(3);
 } else if (date.getHours() > 5 && date.getHours() < 12) {
-  alertify.set("notifier", "position", "top-right");
+  alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Good Morning Folk.😄", "custom");
   alertMsg.delay(3);
 } else {
-  alertify.set("notifier", "position", "top-right");
+  alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Good Afernoon Folk.😄", "custom");
   alertMsg.delay(3);
 }
