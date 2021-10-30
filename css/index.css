@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap");
 * {
   margin: 0px;
   padding: 0px;
@@ -47,7 +48,21 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--blue-color);
 }
-
+/* commmon css */
+.custom-heading::before {
+  content: "<h1>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-bottom: -15px;
+}
+.custom-heading::after {
+  content: "</h1>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
 /* header css starts here */
 
 .bg-light {
@@ -182,14 +197,14 @@ body {
   padding: 30px;
 }
 
-.custom-line {
-  width: 120px;
+.custom-aboutme-line {
+  width: 200px;
   background-color: var(--line-color);
   height: 5px;
   margin-right: 5px;
 }
 
-.custom-dot {
+.custom-aboutme-dot {
   background-color: var(--dot-color);
   width: 10px;
   height: 5px;
@@ -234,7 +249,7 @@ body {
 }
 
 .custom-skills-line {
-  width: 280px;
+  width: 400px;
   background-color: var(--line-color);
   height: 5px;
   margin-right: 5px;
