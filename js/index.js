@@ -7,7 +7,7 @@ if (date.getHours() > 0 && date.getHours() < 7) {
   let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
   alertMsg.delay(3);
 } else if (date.getHours() > 5 && date.getHours() < 12) {
-  alertify.set("notifier", "position", "top-right");
+  alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Good Morning Folk.😄", "custom");
   alertMsg.delay(3);
 } else {
