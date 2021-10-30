@@ -38,7 +38,7 @@ enableDarkMode = () => {
   icon1.classList = icon.classList;
   // .ajs-message.ajs-custom { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }
   alertify.set("notifier", "position", "bottom-right");
-  let alertMsg = alertify.notify("Dark Mode Enabled🌑", "custom");
+  let alertMsg = alertify.notify("Dark Mode🌑", "custom");
   alertMsg.delay(3);
 };
 disableDarkMode = () => {
@@ -47,7 +47,7 @@ disableDarkMode = () => {
   icon.classList = "fas fa-moon";
   icon1.classList = icon.classList;
   alertify.set("notifier", "position", "bottom-right");
-  let alertMsg = alertify.notify("Light Mode Enabled☀️", "custom");
+  let alertMsg = alertify.notify("Light Mode ☀️", "custom");
   alertMsg.delay(3);
 };
 if (darkmode === "enable") {
@@ -83,14 +83,14 @@ const sendContactForm = () => {
     .send("service_e375vqt", "template_ibljxpb", formData)
     .then((res) => {
       alertify.set("notifier", "position", "top-right");
-      let alertMsg = alertify.notify("Success", "custom");
+      let alertMsg = alertify.notify("Success❤️", "custom");
       alertMsg.delay(3);
     })
     .catch((err) => {
       console.debug("ERROR", err);
       alertify.set("notifier", "position", "top-right");
       let alertMsg = alertify.notify(
-        "Oops..!! Something went wrong.😄",
+        "Oops..!! Something went wrong.😢",
         "custom"
       );
       alertMsg.delay(3);
