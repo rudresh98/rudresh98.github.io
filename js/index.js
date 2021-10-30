@@ -2,20 +2,23 @@
 
 let date = new Date();
 
-if (date.getHours() > 0 && date.getHours() < 7) {
+if (date.getHours() >= 0 && date.getHours() <= 5) {
   alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
   alertMsg.delay(3);
-} else if (date.getHours() > 5 && date.getHours() < 12) {
+} else if (date.getHours() > 6 && date.getHours() < 11) {
   alertify.set("notifier", "position", "bottom-right");
   let alertMsg = alertify.notify("Good Morning Folk.😄", "custom");
+  alertMsg.delay(3);
+} else if (date.getHours() > 17 && date.getHours() <= 24) {
+  alertify.set("notifier", "position", "top-right");
+  let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
   alertMsg.delay(3);
 } else {
   alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Afternoon Folk.😄", "custom");
   alertMsg.delay(3);
 }
-
 function openNav() {
   document.getElementById("mySidenav").style.width = "100%";
 }
