@@ -1,7 +1,6 @@
 // wish notification
 
 let date = new Date();
-
 if (date.getHours() >= 0 && date.getHours() <= 5) {
   alertify.set("notifier", "position", "top-right");
   let alertMsg = alertify.notify("Good Evening Folk.😄", "custom");
@@ -73,7 +72,7 @@ var load = document.getElementById("loading");
 // };
 const sendContactForm = () => {
   const formData = {
-    form_subject: "Thank You From Rudresh",
+    form_subject: "Thanks From Rudresh Oza",
     form_name: document.getElementById("form-name").value,
     form_id: document.getElementById("form-id").value,
     to_name: "Rudresh Oza",
@@ -81,14 +80,20 @@ const sendContactForm = () => {
   };
   console.debug(formData);
   emailjs
-    .send("service_qs0t96g", "template_ibljxpb", formData)
+    .send("service_e375vqt", "template_ibljxpb", formData)
     .then((res) => {
-      console.debug("SUCCESS", res);
-      alert("data added successfully");
+      alertify.set("notifier", "position", "top-right");
+      let alertMsg = alertify.notify("Success", "custom");
+      alertMsg.delay(3);
     })
     .catch((err) => {
       console.debug("ERROR", err);
-      alert("Something went wrong");
+      alertify.set("notifier", "position", "top-right");
+      let alertMsg = alertify.notify(
+        "Oops..!! Something went wrong.😄",
+        "custom"
+      );
+      alertMsg.delay(3);
     });
   document.getElementById("form-name").value = "";
   document.getElementById("form-id").value = "";
