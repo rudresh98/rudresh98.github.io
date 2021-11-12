@@ -158,6 +158,10 @@
   color: var(--white-color) !important;
   background-color: var(--blue-color) !important;
 }
+.navbar-toggler i {
+  color: var(--white-color) !important;
+  background-color: var(--blue-color) !important;
+}
 
 .container-fluid {
   padding: 5px 55px 5px 55px;
@@ -976,4 +980,23 @@ footer .btn-form {
   background-color: var(--white-color);
   color: var(--blue-color);
   font-weight: 700;
+}
+
+@media only screen and (max-width: 990px) {
+  .navbar-toggler {
+    position: relative;
+    left: 243px;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .navbar-toggler {
+    position: relative;
+    left: 163px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .navbar-toggler {
+    position: relative;
+    left: 113px;
+  }
 }
