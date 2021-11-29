@@ -126,3 +126,5 @@ window.onload = function () {
     document.getElementById("myCanvasContainer").style.display = "none";
   }
 };
+
+// scroll event
