@@ -172,15 +172,6 @@
   color: var(--white-color) !important;
   background-color: var(--blue-color) !important;
 } */
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-
-  .sidenav a {
-    font-size: 18px;
-  }
-}
 
 /* custom navabar ends here */
 
@@ -571,18 +562,6 @@ body {
 
 .card-title {
   color: var(--p-color);
-}
-
-@media screen and (max-width: 500px) {
-  .custom-top {
-    top: 0px;
-  }
-}
-
-@media screen and (max-width: 540px) {
-  .custom-top {
-    top: 0px;
-  }
 }
 
 /* projects section ends here */
@@ -994,9 +973,22 @@ footer .btn-form {
     left: 163px;
   }
 }
-@media only screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .navbar-toggler {
     position: relative;
     left: 113px;
+  }
+  .custom-top {
+    top: 0px;
+  }
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+  .custom-top {
+    top: 0px;
   }
 }
