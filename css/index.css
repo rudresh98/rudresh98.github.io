@@ -471,6 +471,9 @@ body {
   height: 5px;
   margin-right: 5px;
 }
+.custom-color {
+  color: var(--p-color);
+}
 
 .custom-education-dot {
   background-color: var(--dot-color);
@@ -513,6 +516,10 @@ body {
 .worktitle .img-custom-fluid {
   width: 250px;
   height: 200px;
+}
+.img-custom-fluid {
+  height: 87%;
+  width: 85%;
 }
 .company-logo {
   width: 100%;

@@ -143,7 +143,10 @@ window.onload = function () {
   }
 };
 let linkdln = document.getElementById("linkdln");
-goToProfile = () => {
-  window.open("https://www.linkedin.com/in/rudreshoza98/", "_blank");
+goToLink = (link) => {
+  window.open(link, "_blank");
 };
+document.addEventListener("scroll", (e) => {
+  console.log(window.screenY);
+});
 // scroll event
