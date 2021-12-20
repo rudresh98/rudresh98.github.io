@@ -70,6 +70,8 @@ var load = document.getElementById("loading");
 // loadfun = async () => {
 //   load.style.display = "none";
 // };
+let spinnerEle = document.getElementById("spinner");
+spinnerEle.classList.remove("spinner-border");
 const sendContactForm = () => {
   const formData = {
     form_subject: "Thanks From Rudresh Oza",
@@ -79,14 +81,17 @@ const sendContactForm = () => {
     message: document.getElementById("message").value,
   };
   console.debug(formData);
+  spinnerEle.classList.add("spinner-border");
   emailjs
     .send("service_e375vqt", "template_ibljxpb", formData)
     .then((res) => {
       alertify.set("notifier", "position", "top-right");
+      spinnerEle.classList.remove("spinner-border");
       let alertMsg = alertify.notify("Success❤️", "custom");
       alertMsg.delay(3);
     })
     .catch((err) => {
+      spinnerEle.classList.remove("spinner-border");
       console.debug("ERROR", err);
       alertify.set("notifier", "position", "top-right");
       let alertMsg = alertify.notify(
