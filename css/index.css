@@ -238,6 +238,13 @@ body {
   width: 10px;
   height: 5px;
 }
+.linkdln {
+  color: var(--dot-color);
+  cursor: pointer;
+}
+.linkdln:hover {
+  color: var(--line-color);
+}
 .skills-custom-color {
   color: var(--heading-color);
   text-transform: uppercase;

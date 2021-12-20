@@ -142,5 +142,8 @@ window.onload = function () {
     document.getElementById("myCanvasContainer").style.display = "none";
   }
 };
-
+let linkdln = document.getElementById("linkdln");
+goToProfile = () => {
+  window.open("https://www.linkedin.com/in/rudreshoza98/", "_blank");
+};
 // scroll event
