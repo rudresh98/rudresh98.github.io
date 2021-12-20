@@ -82,27 +82,38 @@ const sendContactForm = () => {
   };
   console.debug(formData);
   spinnerEle.classList.add("spinner-border");
-  emailjs
-    .send("service_e375vqt", "template_ibljxpb", formData)
-    .then((res) => {
-      alertify.set("notifier", "position", "top-right");
-      spinnerEle.classList.remove("spinner-border");
-      let alertMsg = alertify.notify("Success❤️", "custom");
-      alertMsg.delay(3);
-    })
-    .catch((err) => {
-      spinnerEle.classList.remove("spinner-border");
-      console.debug("ERROR", err);
-      alertify.set("notifier", "position", "top-right");
-      let alertMsg = alertify.notify(
-        "Oops..!! Something went wrong.😢",
-        "custom"
-      );
-      alertMsg.delay(3);
-    });
-  document.getElementById("form-name").value = "";
-  document.getElementById("form-id").value = "";
-  document.getElementById("message").value = "";
+  if (
+    formData.form_id == "" ||
+    formData.form_name === "" ||
+    formData.message === ""
+  ) {
+    spinnerEle.classList.remove("spinner-border");
+    alertify.set("notifier", "position", "top-right");
+    let alertMsg = alertify.notify("Please fill all the entries.😢", "custom");
+    alertMsg.delay(3);
+  } else {
+    emailjs
+      .send("service_e375vqt", "template_ibljxpb", formData)
+      .then((res) => {
+        alertify.set("notifier", "position", "top-right");
+        spinnerEle.classList.remove("spinner-border");
+        let alertMsg = alertify.notify("Success❤️", "custom");
+        alertMsg.delay(3);
+      })
+      .catch((err) => {
+        spinnerEle.classList.remove("spinner-border");
+        console.error("ERROR", err);
+        alertify.set("notifier", "position", "top-right");
+        let alertMsg = alertify.notify(
+          "Oops..!! Something went wrong.😢",
+          "custom"
+        );
+        alertMsg.delay(3);
+      });
+    document.getElementById("form-name").value = "";
+    document.getElementById("form-id").value = "";
+    document.getElementById("message").value = "";
+  }
 };
 
 // tagacanvas
@@ -131,5 +142,11 @@ window.onload = function () {
     document.getElementById("myCanvasContainer").style.display = "none";
   }
 };
-
+let linkdln = document.getElementById("linkdln");
+goToLink = (link) => {
+  window.open(link, "_blank");
+};
+document.addEventListener("scroll", (e) => {
+  console.log(window.screenY);
+});
 // scroll event

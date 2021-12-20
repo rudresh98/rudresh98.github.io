@@ -238,6 +238,13 @@ body {
   width: 10px;
   height: 5px;
 }
+.linkdln {
+  color: var(--dot-color);
+  cursor: pointer;
+}
+.linkdln:hover {
+  color: var(--line-color);
+}
 .skills-custom-color {
   color: var(--heading-color);
   text-transform: uppercase;
@@ -426,6 +433,20 @@ body {
   font-size: 20px;
   text-align: left;
 }
+.about-content::before {
+  content: "<article>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
+.about-content::after {
+  content: "</article>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
 .about-section #mypic {
   height: 100%;
   width: 79%;
@@ -449,6 +470,9 @@ body {
   background-color: var(--line-color);
   height: 5px;
   margin-right: 5px;
+}
+.custom-color {
+  color: var(--p-color);
 }
 
 .custom-education-dot {
@@ -492,6 +516,10 @@ body {
 .worktitle .img-custom-fluid {
   width: 250px;
   height: 200px;
+}
+.img-custom-fluid {
+  height: 87%;
+  width: 85%;
 }
 .company-logo {
   width: 100%;
@@ -820,6 +848,23 @@ footer .btn-form {
   color: var(--white-color);
   padding: 5px 20px 5px 20px;
   border-radius: 5px;
+}
+.custom-form {
+  margin-top: 50px;
+}
+.custom-form::after {
+  content: "</form>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
+.custom-form::before {
+  content: "<form>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
 }
 
 /* flicker CSS */
