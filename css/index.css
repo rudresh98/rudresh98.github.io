@@ -245,6 +245,13 @@ body {
 .linkdln:hover {
   color: var(--line-color);
 }
+.github {
+  color: var(--dot-color);
+  cursor: pointer;
+}
+.github:hover {
+  color: var(--line-color);
+}
 .skills-custom-color {
   color: var(--heading-color);
   text-transform: uppercase;
