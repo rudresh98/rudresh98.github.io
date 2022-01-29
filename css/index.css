@@ -873,7 +873,10 @@ footer .btn-form {
   font-family: "La Belle Aurore", cursive;
   margin-top: 10px;
 }
-
+.btn-custom {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
 /* flicker CSS */
 .text-flicker-in-glow {
   -webkit-animation: text-flicker-in-glow 2s linear both;
