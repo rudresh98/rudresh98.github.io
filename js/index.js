@@ -147,6 +147,6 @@ goToLink = (link) => {
   window.open(link, "_blank");
 };
 document.addEventListener("scroll", (e) => {
-  console.log(window.screenY);
+  // console.log(window.screenY);
 });
 // scroll event
