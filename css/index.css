@@ -421,7 +421,10 @@ body {
   color: var(--blue-color);
   border: 0px;
 }
-
+.custom-pill-bg-color {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
 @media screen and (max-width: 500px) {
   .custom-contact-me-row {
     margin-top: 10px 0px 0px 0px;
