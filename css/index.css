@@ -487,6 +487,20 @@ body {
   height: 5px;
   margin-right: 5px;
 }
+aside::after {
+  content: "<aside>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
+aside::before {
+  content: "<aside>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
 .custom-color {
   color: var(--p-color);
 }
@@ -508,6 +522,20 @@ body {
 }
 /* education ends here */
 /* work css start here */
+.custom-msg-img::before {
+  content: "<img>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
+.custom-msg-img::after {
+  content: "</img>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
 .custom-work-line {
   width: 365px;
   background-color: var(--line-color);
@@ -547,7 +575,20 @@ body {
 }
 
 /* projects section starts here */
-
+.card::after {
+  content: "</card>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
+.card::before {
+  content: "<card>";
+  display: block;
+  font-size: 15px;
+  font-family: "La Belle Aurore", cursive;
+  margin-top: 10px;
+}
 .custom-projects-line {
   width: 155px;
   background-color: var(--line-color);
@@ -567,6 +608,10 @@ body {
 
 .custom-span-color {
   font-size: 50px;
+  font-family: "Righteous", cursive;
+  color: var(--p-color) !important;
+}
+.custom-span {
   font-family: "Righteous", cursive;
   color: var(--p-color) !important;
 }
