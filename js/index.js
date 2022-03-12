@@ -150,3 +150,5 @@ document.addEventListener("scroll", (e) => {
   // console.log(window.screenY);
 });
 // scroll event
+const copyrightYear = document.getElementById('copyright-year')
+copyrightYear.innerHTML = `${new Date().getFullYear()-1} - ${new Date().getFullYear()}`
