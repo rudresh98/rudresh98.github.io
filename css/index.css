@@ -49,6 +49,7 @@
   background: var(--blue-color);
 }
 /* commmon css */
+
 .custom-heading::before {
   content: "<h1>";
   display: block;
