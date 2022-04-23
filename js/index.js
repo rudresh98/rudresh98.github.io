@@ -1,5 +1,11 @@
 // wish notification
-
+let mainLoader = document.getElementById('loading');
+let coffeeToggle = document.getElementById('coffee')
+coffeeToggle.style.display = 'none'
+setTimeout(() => {
+  coffeeToggle.style.display = 'block'
+  mainLoader.style.display = 'none'
+}, 3000);
 let date = new Date();
 if (date.getHours() >= 0 && date.getHours() <= 5) {
   alertify.set("notifier", "position", "top-right");
