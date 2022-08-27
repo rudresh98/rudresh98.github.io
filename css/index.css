@@ -942,7 +942,7 @@ footer .btn-form {
   animation: text-flicker-in-glow 2s linear both;
 }
 
-@-webkit-keyframes text-flicker-in-glow {
+@keyframes text-flicker-in-glow {
   0% {
     opacity: 0;
   }
@@ -1106,3 +1106,5 @@ footer .btn-form {
     top: 0px;
   }
 }
+
+/* TIME LINE CSS */
