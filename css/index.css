@@ -10,6 +10,7 @@
   margin: 0px;
   padding: 0px;
   scroll-behavior: smooth;
+  cursor: url("../images/CURSOR/icons8-batman-18\(-ldpi\).png"), auto;
 }
 
 :root {
