@@ -92,7 +92,7 @@ const sendContactForm = () => {
     alertMsg.delay(3);
   } else {
     emailjs
-      .send("service_e375vqt", "template_ibljxpb", formData)
+      .send("service_56x2ned", "template_ibljxpb", formData)
       .then((res) => {
         alertify.set("notifier", "position", "top-right");
         spinnerEle.classList.remove("spinner-border");
@@ -149,5 +149,7 @@ document.addEventListener("scroll", (e) => {
   // console.log(window.screenY);
 });
 // scroll event
-const copyrightYear = document.getElementById('copyright-year')
-copyrightYear.innerHTML = `${new Date().getFullYear()-1} - ${new Date().getFullYear()}`
+const copyrightYear = document.getElementById("copyright-year");
+copyrightYear.innerHTML = `${
+  new Date().getFullYear() - 1
+} - ${new Date().getFullYear()}`;
