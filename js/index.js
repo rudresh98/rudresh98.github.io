@@ -92,7 +92,7 @@ const sendContactForm = () => {
     alertMsg.delay(3);
   } else {
     emailjs
-      .send("service_56x2ned", "template_ibljxpb", formData)
+      .send("service_jfu05ii", "template_ibljxpb", formData)
       .then((res) => {
         alertify.set("notifier", "position", "top-right");
         spinnerEle.classList.remove("spinner-border");
