@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* Dark mode driven by next-themes (class strategy on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ----------------------------------------------------------------
+   Design tokens — OKLCH. One warm amber accent, neutral grays.
+   ---------------------------------------------------------------- */
+:root {
+  --canvas: oklch(0.972 0.008 83);     /* warm paper */
+  --panel: oklch(0.942 0.011 83);      /* double-bezel outer shell */
+  --surface: oklch(0.992 0.004 83);    /* card inner core */
+  --ink: oklch(0.23 0.012 65);         /* primary text */
+  --ink-soft: oklch(0.46 0.012 65);    /* secondary */
+  --ink-faint: oklch(0.63 0.012 65);   /* tertiary */
+  --accent: oklch(0.66 0.125 58);
+  --accent-strong: oklch(0.58 0.135 52);
+  --accent-contrast: oklch(0.99 0.01 83);
+  --hairline: oklch(0.23 0.012 65 / 0.10);
+  --hairline-strong: oklch(0.23 0.012 65 / 0.16);
+  --accent-tint: oklch(0.66 0.125 58 / 0.12);
+  --accent-line: oklch(0.66 0.125 58 / 0.30);
+  --shadow-color: 60 44 28;            /* warm shadow tint (rgb channels) */
+  --glass: oklch(0.99 0.004 83 / 0.62);
+}
+
+.dark {
+  --canvas: oklch(0.165 0.006 265);    /* near-black, faintly cool */
+  --panel: oklch(0.205 0.008 265);
+  --surface: oklch(0.225 0.008 265);
+  --ink: oklch(0.95 0.006 83);
+  --ink-soft: oklch(0.73 0.012 83);
+  --ink-faint: oklch(0.56 0.012 83);
+  --accent: oklch(0.79 0.115 66);
+  --accent-strong: oklch(0.85 0.105 70);
+  --accent-contrast: oklch(0.18 0.01 265);
+  --hairline: oklch(1 0 0 / 0.10);
+  --hairline-strong: oklch(1 0 0 / 0.17);
+  --accent-tint: oklch(0.79 0.115 66 / 0.14);
+  --accent-line: oklch(0.79 0.115 66 / 0.32);
+  --shadow-color: 0 0 0;
+  --glass: oklch(0.205 0.008 265 / 0.55);
+}
+
+/* ----------------------------------------------------------------
+   Tailwind theme mapping → utilities (bg-canvas, text-ink, …)
+   ---------------------------------------------------------------- */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-line: var(--accent-line);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-tint);
+  color: var(--accent-strong);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border: 3px solid var(--canvas);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ----------------------------------------------------------------
+   Reusable pieces
+   ---------------------------------------------------------------- */
+
+/* Double-bezel: outer shell + concentric inner core */
+.bezel {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 1.7rem;
+  padding: 0.5rem;
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-color) / 0.05),
+    0 16px 40px rgb(var(--shadow-color) / 0.08);
+}
+.bezel-core {
+  background: var(--surface);
+  border-radius: 1.25rem;
+  box-shadow: inset 0 1px 1px oklch(1 0 0 / 0.10);
+  height: 100%;
+}
+
+/* Fixed film-grain overlay (texture without flat sterility) */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .grain { opacity: 0.055; }
+
+/* Section shell */
+.section {
+  position: relative;
+  padding-block: clamp(5rem, 12vw, 9rem);
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
