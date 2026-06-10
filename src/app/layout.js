@@ -10,6 +10,8 @@ import "./globals.css";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Grain from "@/components/ui/Grain";
+import Ambient from "@/components/ui/Ambient";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -58,8 +60,8 @@ export const metadata = {
 export const viewport = {
   colorScheme: "dark light",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf7f1" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0b0d" },
+    { media: "(prefers-color-scheme: light)", color: "#f3f4f9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0e18" },
   ],
 };
 
@@ -80,7 +82,9 @@ export default function RootLayout({ children }) {
           >
             Skip to content
           </a>
+          <Ambient />
           <Grain />
+          <ScrollProgress />
           <SmoothScroll />
           {children}
           <Toaster

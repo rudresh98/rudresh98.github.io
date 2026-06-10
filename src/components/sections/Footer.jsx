@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div>
-            <p className="font-display text-2xl font-bold tracking-tight text-ink">
+            <p className="bg-gradient-to-r from-ink via-ink to-accent bg-clip-text font-display text-2xl font-bold tracking-tight text-transparent">
               {profile.name}
             </p>
             <p className="mt-1 text-sm text-ink-soft">{profile.role}</p>

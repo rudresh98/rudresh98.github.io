@@ -3,43 +3,59 @@
 /* Dark mode driven by next-themes (class strategy on <html>) */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ----------------------------------------------------------------
-   Design tokens — OKLCH. One warm amber accent, neutral grays.
-   ---------------------------------------------------------------- */
+/* ================================================================
+   CINEMATIC THEME — deep-space dark canvas, glass surfaces, an
+   electric-cyan key light and a violet rim light. Dark is the
+   star; light mode is a clean daytime counterpart.
+   ================================================================ */
 :root {
-  --canvas: oklch(0.972 0.008 83);     /* warm paper */
-  --panel: oklch(0.942 0.011 83);      /* double-bezel outer shell */
-  --surface: oklch(0.992 0.004 83);    /* card inner core */
-  --ink: oklch(0.23 0.012 65);         /* primary text */
-  --ink-soft: oklch(0.46 0.012 65);    /* secondary */
-  --ink-faint: oklch(0.63 0.012 65);   /* tertiary */
-  --accent: oklch(0.66 0.125 58);
-  --accent-strong: oklch(0.58 0.135 52);
-  --accent-contrast: oklch(0.99 0.01 83);
-  --hairline: oklch(0.23 0.012 65 / 0.10);
-  --hairline-strong: oklch(0.23 0.012 65 / 0.16);
-  --accent-tint: oklch(0.66 0.125 58 / 0.12);
-  --accent-line: oklch(0.66 0.125 58 / 0.30);
-  --shadow-color: 60 44 28;            /* warm shadow tint (rgb channels) */
-  --glass: oklch(0.99 0.004 83 / 0.62);
+  /* light mode — cool daylight */
+  --canvas: oklch(0.975 0.006 240);
+  --panel: oklch(0.99 0.004 240 / 0.7);
+  --surface: oklch(0.995 0.003 240 / 0.85);
+  --ink: oklch(0.24 0.02 260);
+  --ink-soft: oklch(0.46 0.02 258);
+  --ink-faint: oklch(0.6 0.018 256);
+  --accent: oklch(0.6 0.15 224);
+  --accent-strong: oklch(0.52 0.16 230);
+  --accent-2: oklch(0.55 0.2 295);
+  --accent-contrast: oklch(0.99 0.01 240);
+  --hairline: oklch(0.24 0.02 260 / 0.1);
+  --hairline-strong: oklch(0.24 0.02 260 / 0.16);
+  --accent-tint: oklch(0.6 0.15 224 / 0.12);
+  --accent-line: oklch(0.6 0.15 224 / 0.32);
+  --shadow-color: 30 41 80;
+  --glass: oklch(1 0 0 / 0.6);
+  --glass-edge: oklch(1 0 0 / 0.7);
+  --glow: oklch(0.6 0.15 224 / 0.35);
+  --aurora-1: oklch(0.7 0.16 224 / 0.25);
+  --aurora-2: oklch(0.6 0.2 295 / 0.2);
+  --aurora-3: oklch(0.78 0.13 190 / 0.18);
 }
 
 .dark {
-  --canvas: oklch(0.165 0.006 265);    /* near-black, faintly cool */
-  --panel: oklch(0.205 0.008 265);
-  --surface: oklch(0.225 0.008 265);
-  --ink: oklch(0.95 0.006 83);
-  --ink-soft: oklch(0.73 0.012 83);
-  --ink-faint: oklch(0.56 0.012 83);
-  --accent: oklch(0.79 0.115 66);
-  --accent-strong: oklch(0.85 0.105 70);
-  --accent-contrast: oklch(0.18 0.01 265);
-  --hairline: oklch(1 0 0 / 0.10);
-  --hairline-strong: oklch(1 0 0 / 0.17);
-  --accent-tint: oklch(0.79 0.115 66 / 0.14);
-  --accent-line: oklch(0.79 0.115 66 / 0.32);
+  /* deep space — near-black navy */
+  --canvas: oklch(0.145 0.022 264);
+  --panel: oklch(0.22 0.022 264 / 0.55);
+  --surface: oklch(0.25 0.022 264 / 0.6);
+  --ink: oklch(0.96 0.006 250);
+  --ink-soft: oklch(0.75 0.016 256);
+  --ink-faint: oklch(0.57 0.02 258);
+  --accent: oklch(0.83 0.14 196);
+  --accent-strong: oklch(0.89 0.13 198);
+  --accent-2: oklch(0.7 0.19 296);
+  --accent-contrast: oklch(0.16 0.02 264);
+  --hairline: oklch(1 0 0 / 0.09);
+  --hairline-strong: oklch(1 0 0 / 0.16);
+  --accent-tint: oklch(0.83 0.14 196 / 0.14);
+  --accent-line: oklch(0.83 0.14 196 / 0.34);
   --shadow-color: 0 0 0;
-  --glass: oklch(0.205 0.008 265 / 0.55);
+  --glass: oklch(0.24 0.022 264 / 0.45);
+  --glass-edge: oklch(1 0 0 / 0.12);
+  --glow: oklch(0.83 0.14 196 / 0.5);
+  --aurora-1: oklch(0.7 0.17 200 / 0.22);
+  --aurora-2: oklch(0.55 0.22 296 / 0.22);
+  --aurora-3: oklch(0.6 0.18 250 / 0.18);
 }
 
 /* ----------------------------------------------------------------
@@ -54,6 +70,7 @@
   --color-ink-faint: var(--ink-faint);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-accent-2: var(--accent-2);
   --color-accent-contrast: var(--accent-contrast);
   --color-hairline: var(--hairline);
   --color-hairline-strong: var(--hairline-strong);
@@ -112,38 +129,129 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ----------------------------------------------------------------
-   Reusable pieces
+   Aurora — slow-drifting ambient light field behind everything.
    ---------------------------------------------------------------- */
+.aurora {
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  pointer-events: none;
+  filter: blur(60px) saturate(1.2);
+  opacity: 0.9;
+  background:
+    radial-gradient(38% 42% at 18% 18%, var(--aurora-1), transparent 70%),
+    radial-gradient(34% 40% at 85% 22%, var(--aurora-2), transparent 70%),
+    radial-gradient(45% 48% at 65% 88%, var(--aurora-3), transparent 72%);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2%, -3%, 0) scale(1.08); }
+  100% { transform: translate3d(-2%, 2%, 0) scale(1.04); }
+}
 
-/* Double-bezel: outer shell + concentric inner core */
+/* faint dotted grid for depth, masked to fade at edges */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(var(--hairline-strong) 1px, transparent 1px);
+  background-size: 38px 38px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 80%);
+          mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 80%);
+}
+
+/* ----------------------------------------------------------------
+   Glass card system — the old `.bezel` names are reused so every
+   section inherits the new frosted-glass look automatically.
+   ---------------------------------------------------------------- */
 .bezel {
-  background: var(--panel);
-  border: 1px solid var(--hairline);
-  border-radius: 1.7rem;
-  padding: 0.5rem;
+  position: relative;
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  border-radius: 1.5rem;
+  padding: 0.45rem;
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   box-shadow:
-    0 1px 2px rgb(var(--shadow-color) / 0.05),
-    0 16px 40px rgb(var(--shadow-color) / 0.08);
+    0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+    0 1px 2px rgb(var(--shadow-color) / 0.1),
+    0 22px 50px -18px rgb(var(--shadow-color) / 0.45);
+  transition: border-color 0.4s var(--ease-out-expo),
+              box-shadow 0.4s var(--ease-out-expo),
+              transform 0.4s var(--ease-out-expo);
 }
+/* gradient hairline that lights up on hover */
+.bezel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-line), transparent 40%, transparent 60%, var(--accent-2));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out-expo);
+  pointer-events: none;
+}
+.group:hover > .bezel,
+a.bezel:hover,
+.bezel:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.08) inset,
+    0 1px 2px rgb(var(--shadow-color) / 0.1),
+    0 28px 60px -16px rgb(var(--shadow-color) / 0.55),
+    0 0 40px -12px var(--glow);
+}
+.bezel:hover::before { opacity: 1; }
+
 .bezel-core {
+  position: relative;
   background: var(--surface);
-  border-radius: 1.25rem;
-  box-shadow: inset 0 1px 1px oklch(1 0 0 / 0.10);
+  border-radius: 1.1rem;
+  box-shadow: inset 0 1px 1px oklch(1 0 0 / 0.06);
   height: 100%;
+  overflow: hidden;
 }
 
-/* Fixed film-grain overlay (texture without flat sterility) */
+/* a soft glowing chip/eyebrow */
+.glow-text {
+  text-shadow: 0 0 22px var(--glow);
+}
+
+/* ----------------------------------------------------------------
+   Fixed film-grain overlay (texture without flat sterility)
+   ---------------------------------------------------------------- */
 .grain {
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.dark .grain { opacity: 0.055; }
+.dark .grain { opacity: 0.06; }
 
-/* Section shell */
+/* scroll-progress beam pinned to the top edge */
+.scroll-beam {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 70;
+  transform-origin: 0% 50%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 12px var(--glow);
+}
+
+/* ----------------------------------------------------------------
+   Section shell
+   ---------------------------------------------------------------- */
 .section {
   position: relative;
   padding-block: clamp(5rem, 12vw, 9rem);
@@ -152,6 +260,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .aurora { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;

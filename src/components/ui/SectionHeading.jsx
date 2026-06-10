@@ -21,7 +21,9 @@ export default function SectionHeading({ eyebrow, title, align = "left" }) {
       </Reveal>
       <Reveal
         delay={0.12}
-        className="mt-5 h-px w-24 origin-left bg-gradient-to-r from-accent to-transparent"
+        className={`mt-5 h-px w-28 origin-left bg-gradient-to-r from-accent via-accent-2 to-transparent ${
+          align === "center" ? "mx-auto" : ""
+        }`}
       />
     </div>
   );

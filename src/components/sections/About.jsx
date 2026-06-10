@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import Parallax from "@/components/ui/Parallax";
 import { profile } from "@/data/profile";
 
 export default function About() {
@@ -25,19 +26,30 @@ export default function About() {
         </div>
 
         <Reveal delay={0.1} y={28} className="lg:col-span-5">
-          <div className="bezel mx-auto max-w-sm">
-            <div className="bezel-core overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/profile.jpeg"
-                alt="Portrait of Rudresh Oza"
-                width={520}
-                height={620}
-                loading="lazy"
-                className="h-full w-full object-cover grayscale transition-[filter,transform] duration-700 ease-out hover:scale-[1.02] hover:grayscale-0"
+          <Parallax speed={36} className="mx-auto max-w-sm">
+            <div className="bezel group">
+              {/* glow halo behind the portrait */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] opacity-50 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 30%, var(--accent-tint), transparent 70%)",
+                }}
               />
+              <div className="bezel-core overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/profile.jpeg"
+                  alt="Portrait of Rudresh Oza"
+                  width={520}
+                  height={620}
+                  loading="lazy"
+                  className="h-full w-full object-cover grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0"
+                />
+              </div>
             </div>
-          </div>
+          </Parallax>
         </Reveal>
       </div>
     </section>

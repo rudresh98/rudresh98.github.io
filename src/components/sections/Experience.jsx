@@ -8,10 +8,10 @@ export default function Experience() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading eyebrow="Experience" title="Six years, end to end." />
 
-        <ol className="relative mt-14 ml-3 border-l border-hairline">
+        <ol className="relative mt-14 ml-3 border-l border-transparent [background:linear-gradient(var(--accent-line),transparent)_left/1px_100%_no-repeat]">
           {experience.map((job, i) => (
             <li key={job.role + i} className="relative pl-8 pb-10 last:pb-0">
-              <span className="absolute -left-[7px] top-1.5 size-3.5 rounded-full border-2 border-accent bg-canvas" />
+              <span className="absolute -left-[7px] top-1.5 size-3.5 rounded-full border-2 border-accent bg-canvas shadow-[0_0_14px_var(--glow)]" />
               <Reveal delay={i * 0.05}>
                 <div className="bezel">
                   <div className="bezel-core flex flex-col gap-3 p-6">

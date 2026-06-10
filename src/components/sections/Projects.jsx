@@ -34,7 +34,12 @@ export default function Projects() {
                         p.size === "wide" ? "h-64" : "h-48"
                       }`}
                     />
-                    <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-canvas/80 text-ink opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5">
+                    {/* scrim ties the screenshot into the dark surface */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40"
+                    />
+                    <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-canvas/80 text-accent opacity-0 shadow-[0_0_18px_var(--glow)] backdrop-blur-md transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5">
                       <ArrowUpRight size={16} weight="bold" />
                     </span>
                   </div>
