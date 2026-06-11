@@ -13,7 +13,10 @@ import Grain from "@/components/ui/Grain";
 import Ambient from "@/components/ui/Ambient";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Sidebar from "@/components/nav/Sidebar";
+import SectionPager from "@/components/nav/SectionPager";
 import Footer from "@/components/sections/Footer";
+import SidebarProvider from "@/components/providers/SidebarProvider";
+import AppMain from "@/components/nav/AppMain";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const spaceGrotesk = Space_Grotesk({
@@ -80,24 +83,24 @@ export default function RootLayout({ children }) {
       <body className="font-sans antialiased">
         <ThemeProvider>
           <TooltipProvider delayDuration={200}>
-            <a
-              href="#main"
-              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
-            >
-              Skip to content
-            </a>
-            <Ambient />
-            <Grain />
-            <ScrollProgress />
-            <SmoothScroll />
-            <Sidebar />
-            <main
-              id="main"
-              className="relative flex min-h-[100dvh] flex-col pt-16 md:pl-72 md:pt-0"
-            >
-              {children}
-              <Footer />
-            </main>
+            <SidebarProvider>
+              <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
+              >
+                Skip to content
+              </a>
+              <Ambient />
+              <Grain />
+              <ScrollProgress />
+              <SmoothScroll />
+              <Sidebar />
+              <AppMain>
+                {children}
+                <SectionPager />
+                <Footer />
+              </AppMain>
+            </SidebarProvider>
             <Toaster
             position="bottom-right"
             toastOptions={{

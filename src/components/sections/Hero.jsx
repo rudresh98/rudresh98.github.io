@@ -119,7 +119,7 @@ export default function Hero() {
           >
             Download résumé
           </MagneticButton>
-          <MagneticButton href="#contact" variant="ghost" Icon={ArrowRight}>
+          <MagneticButton href="/contact" variant="ghost" Icon={ArrowRight}>
             Get in touch
           </MagneticButton>
         </motion.div>
