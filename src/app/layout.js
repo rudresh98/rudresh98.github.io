@@ -12,6 +12,9 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Grain from "@/components/ui/Grain";
 import Ambient from "@/components/ui/Ambient";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import Sidebar from "@/components/nav/Sidebar";
+import Footer from "@/components/sections/Footer";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -76,18 +79,26 @@ export default function RootLayout({ children }) {
     >
       <body className="font-sans antialiased">
         <ThemeProvider>
-          <a
-            href="#about"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
-          >
-            Skip to content
-          </a>
-          <Ambient />
-          <Grain />
-          <ScrollProgress />
-          <SmoothScroll />
-          {children}
-          <Toaster
+          <TooltipProvider delayDuration={200}>
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
+            >
+              Skip to content
+            </a>
+            <Ambient />
+            <Grain />
+            <ScrollProgress />
+            <SmoothScroll />
+            <Sidebar />
+            <main
+              id="main"
+              className="relative flex min-h-[100dvh] flex-col pt-16 md:pl-72 md:pt-0"
+            >
+              {children}
+              <Footer />
+            </main>
+            <Toaster
             position="bottom-right"
             toastOptions={{
               style: {
@@ -96,7 +107,8 @@ export default function RootLayout({ children }) {
                 border: "1px solid var(--hairline)",
               },
             }}
-          />
+            />
+          </TooltipProvider>
         </ThemeProvider>
 
         {/* Google Analytics */}

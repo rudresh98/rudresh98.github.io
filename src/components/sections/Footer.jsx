@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUp } from "@phosphor-icons/react/dist/ssr";
 import { profile } from "@/data/profile";
 
@@ -16,9 +17,9 @@ export default function Footer() {
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
-            <a href="#about" className="transition-colors hover:text-accent">About</a>
-            <a href="#projects" className="transition-colors hover:text-accent">Projects</a>
-            <a href="#contact" className="transition-colors hover:text-accent">Contact</a>
+            <Link href="/about" className="transition-colors hover:text-accent">About</Link>
+            <Link href="/projects" className="transition-colors hover:text-accent">Projects</Link>
+            <Link href="/contact" className="transition-colors hover:text-accent">Contact</Link>
             <a href={`mailto:${profile.email}`} className="transition-colors hover:text-accent">Email</a>
           </nav>
         </div>
@@ -38,7 +39,7 @@ export default function Footer() {
               className="h-8 w-auto opacity-80"
             />
             <a
-              href="#top"
+              href="#main"
               className="inline-flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-sm text-ink-soft transition-colors hover:border-accent-line hover:text-accent"
             >
               Back to top

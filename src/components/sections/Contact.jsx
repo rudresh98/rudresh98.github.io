@@ -16,6 +16,9 @@ import {
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import { profile } from "@/data/profile";
 import { socials } from "@/data/socials";
 
@@ -81,8 +84,7 @@ export default function Contact() {
     }
   };
 
-  const field =
-    "w-full rounded-xl border border-hairline bg-panel px-4 py-3 text-ink placeholder:text-ink-faint outline-none transition-all duration-300 focus:border-accent-line focus:ring-4 focus:ring-accent-tint";
+  const field = "bg-panel h-12 rounded-xl";
 
   return (
     <section id="contact" className="section">
@@ -138,28 +140,29 @@ export default function Contact() {
                 <label htmlFor="name" className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-ink-faint">
                   Name
                 </label>
-                <input id="name" type="text" value={form.name} onChange={set("name")} placeholder="Your name" autoComplete="name" className={field} />
-                {errors.name && <p className="mt-1.5 text-sm text-red-500">{errors.name}</p>}
+                <Input id="name" type="text" value={form.name} onChange={set("name")} placeholder="Your name" autoComplete="name" className={field} />
+                {errors.name && <p className="mt-1.5 text-sm text-destructive">{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-ink-faint">
                   Email
                 </label>
-                <input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" autoComplete="email" className={field} />
-                {errors.email && <p className="mt-1.5 text-sm text-red-500">{errors.email}</p>}
+                <Input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" autoComplete="email" className={field} />
+                {errors.email && <p className="mt-1.5 text-sm text-destructive">{errors.email}</p>}
               </div>
               <div>
                 <label htmlFor="message" className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-ink-faint">
                   Message
                 </label>
-                <textarea id="message" rows={4} value={form.message} onChange={set("message")} placeholder="A brief about what you need..." className={`${field} resize-none`} />
-                {errors.message && <p className="mt-1.5 text-sm text-red-500">{errors.message}</p>}
+                <Textarea id="message" rows={4} value={form.message} onChange={set("message")} placeholder="A brief about what you need..." className="bg-panel resize-none rounded-xl" />
+                {errors.message && <p className="mt-1.5 text-sm text-destructive">{errors.message}</p>}
               </div>
 
-              <button
+              <Button
                 type="submit"
+                size="lg"
                 disabled={sending}
-                className="group mt-1 inline-flex items-center justify-center gap-2.5 rounded-full bg-ink py-3.5 font-display font-semibold text-canvas transition-all duration-300 hover:bg-accent hover:text-accent-contrast active:scale-[0.98] disabled:opacity-70"
+                className="group mt-1 h-12 rounded-full font-display font-semibold"
               >
                 {sending ? (
                   <>
@@ -172,7 +175,7 @@ export default function Contact() {
                     <PaperPlaneTilt size={18} weight="bold" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </>
                 )}
-              </button>
+              </Button>
             </div>
           </form>
         </Reveal>
