@@ -1,0 +1,21 @@
+import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { categories, filterProjects, projects, profile, type Category } from '@/lib/portfolio';
+import { projectVisuals } from '@/lib/portfolio-visuals';
+import { Architecture } from './visuals';
+import { Reveal } from './motion';
+export { Architecture } from './visuals';
+
+export function ProjectGrid({preview=false}:{preview?:boolean}) {
+ const [category,setCategory]=useState<Category>('All');const reduced=useReducedMotion();
+ const shown=preview?projects.slice(0,4):filterProjects(category);const Heading=preview?'h2':'h1';
+ return <><Reveal className="gallery-heading"><div><p className="eyebrow">Selected work & engineering case studies</p><Heading className="section-heading">Complex challenges.<br/><span className="text-muted-foreground">Thoughtful solutions.</span></Heading><p className="section-description">Real projects. Considered architecture. Measurable impact.</p></div>{preview&&<Button asChild variant="link" className="self-end px-0 text-sm"><Link to="/projects">View all projects <ArrowUpRight/></Link></Button>}</Reveal>
+ {!preview&&<div className="project-filters" aria-label="Project categories">{categories.map(c=><Button key={c} variant="ghost" className="category-filter" onClick={()=>setCategory(c)} aria-pressed={category===c}>{c}{category===c&&<motion.span layoutId="filter-underline" className="filter-underline" transition={{duration:reduced?0:.25}}/>}</Button>)}</div>}
+ <div className="sr-only" role="status">{shown.length} projects{!preview&&` in ${category}`}</div><motion.div layout={!reduced} className="project-grid"><AnimatePresence mode="popLayout">{shown.map(p=><motion.article layout={!reduced} initial={false} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:reduced?1:.97}} transition={{duration:reduced?0:.3}} className="project-card" key={p.id}><Reveal><Architecture project={p}/><div className="project-body"><div className="project-meta"><span>{p.category==='GenAI'?'Generative AI':p.category==='Cloud'?'Cloud & Engineering':p.category}</span><span>{String(projects.findIndex(x=>x.id===p.id)+1).padStart(2,'0')}</span></div><h3>{p.title}</h3><p className="project-summary">{p.description}</p>{projectVisuals[p.id]?.impact&&<div className="card-impact">{projectVisuals[p.id]?.impact?.map(metric=><span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>)}</div>}<div className="project-tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div><Button asChild variant="link" className="case-study-button"><Link to="/projects/$projectId" params={{projectId:p.id}} aria-label={`Explore case study: ${p.title}`}>Explore case study <ArrowUpRight/></Link></Button></div></Reveal></motion.article>)}</AnimatePresence></motion.div>
+ {shown.length===0&&<p className="py-12 text-muted-foreground">No projects in this category.</p>}
+ </>;
+}
+export function Collaboration(){return <section className="collaboration-band"><Reveal className="container-shell collaboration-inner"><div><p className="eyebrow">Across borders. Beyond code.</p><h2>Great engineering<br/>has no borders.</h2><p>I'm interested in collaborating with international teams to build scalable software, cloud platforms, and intelligent products.</p><div className="collaboration-focus"><span>Full Stack Engineering</span><span>Cloud & AI</span><span>Intelligent Platforms</span></div></div><div className="collaboration-actions"><Button asChild className="h-12 px-6 shadow-none"><Link to="/contact">Discuss an Opportunity <ArrowRight/></Link></Button><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">Connect on LinkedIn <ArrowUpRight className="ml-1 inline" size={14}/></a></div></Reveal></section>}
