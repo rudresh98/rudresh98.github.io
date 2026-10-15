@@ -4,7 +4,7 @@ attaching my resume and profile pic
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://rudreshportfolio.lovable.app
+**Live site**: https://rudresh98.github.io (deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `master`)
 
 ## Build with Lovable
 

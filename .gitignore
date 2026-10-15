@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+dist/
+# vite / tanstack start build output
+/dist
+/.output
+/.nitro
+/.tanstack

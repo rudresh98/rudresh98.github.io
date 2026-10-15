@@ -7,9 +7,22 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // GitHub Pages only serves static files, so skip the Cloudflare server bundle.
+  nitro: false,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Prerender every route to static HTML (crawling finds each /projects/<id> page).
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      autoSubfolderIndex: true,
+      failOnError: true,
+    },
+    pages: [{ path: "/" }],
+    // Route-agnostic shell written to 404.html; GitHub Pages serves it for unknown URLs
+    // and the client router renders the matching route or the not-found page.
+    spa: { enabled: true, maskPath: "/?shell", prerender: { outputPath: "/404" } },
   },
 });
