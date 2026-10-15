@@ -5,8 +5,21 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import type { Plugin } from "vite";
+import { sitemapXml } from "./src/lib/seo";
+
+// Emits sitemap.xml from portfolio data so every case study is listed with its canonical URL.
+const sitemap: Plugin = {
+  name: "portfolio-sitemap",
+  apply: "build",
+  applyToEnvironment: (environment) => environment.name === "client",
+  generateBundle() {
+    this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml() });
+  },
+};
 
 export default defineConfig({
+  plugins: [sitemap],
   // GitHub Pages only serves static files, so skip the Cloudflare server bundle.
   nitro: false,
   tanstackStart: {

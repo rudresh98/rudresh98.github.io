@@ -16,6 +16,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/portfolio/shell";
 import { Testimonials } from "@/components/portfolio/testimonials";
+import { defaultMeta, siteJsonLd } from "@/lib/seo";
+import portrait from "@/assets/rudresh-oza.png";
 
 function NotFoundComponent() {
   return (
@@ -82,18 +84,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rudresh Oza | Senior Software Engineer — Cloud & GenAI" },
-      { name: "description", content: "Software, cloud platforms, and intelligent systems by Rudresh Oza." },
-      { name: "author", content: "Rudresh Oza" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...defaultMeta(),
+      { "script:ld+json": siteJsonLd(portrait) },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", href: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;800&display=swap" },
