@@ -43,3 +43,17 @@ export const architectureLayers = [
  {id:'data',label:'Data',icon:'database',description:'Data models, SQL queries, simulations, and analytical interfaces support product decisions.'},
  {id:'observe',label:'Observability',icon:'activity',description:'Tracing, evaluation, and prompt monitoring make agent execution easier to inspect and improve.'},
 ] as const;
+export type Point = { x: number; y: number };
+export type HeroPanel = { id: string; index: string; title: string; icon: 'code' | 'cloud' | 'bot' | 'activity'; detail: 'request' | 'queue' | 'steps' | 'trace'; stack: string[]; description: string; x: number; y: number; width: number; anchor: Point; hubAnchor: Point; float?: boolean };
+export type HeroSystem = { width: number; height: number; hub: { label: string; detail: string; x: number; y: number; width: number; height: number }; panels: [HeroPanel, ...HeroPanel[]] };
+// Hero system map shares one 560×520 coordinate space between the SVG edges and HTML panels.
+export const heroSystem: HeroSystem = {
+ width: 560, height: 520,
+ hub: { label: 'Product system', detail: 'Build · ship · observe', x: 196, y: 226, width: 168, height: 64 },
+ panels: [
+  { id:'full-stack', index:'01', title:'Full Stack Engineering', icon:'code', detail:'request', stack:['React','Node.js','FastAPI'], description:'Customer-facing React and Angular applications backed by Node.js and FastAPI services, from booking flows to modular dashboards.', x:8, y:14, width:220, anchor:{x:228,y:52}, hubAnchor:{x:272,y:226} },
+  { id:'cloud', index:'02', title:'Cloud Infrastructure', icon:'cloud', detail:'queue', stack:['Azure','AWS','SQS'], description:'Azure and AWS services, including Lambda, S3, SQS, DynamoDB, and Cosmos DB, connecting applications, persistence, and asynchronous workflows.', x:332, y:50, width:220, anchor:{x:332,y:88}, hubAnchor:{x:288,y:226}, float:true },
+  { id:'ai', index:'03', title:'AI Agents & RAG', icon:'bot', detail:'steps', stack:['LangGraph','Azure AI Foundry','Vector DBs'], description:'LangGraph agents coordinating Azure AI models, tools, memory, and checkpointing, with structured outputs, retries, and validation.', x:0, y:330, width:228, anchor:{x:228,y:368}, hubAnchor:{x:272,y:290}, float:true },
+  { id:'data', index:'04', title:'Data & Observability', icon:'activity', detail:'trace', stack:['PostgreSQL','LangSmith','Langfuse'], description:'Data models, analytical dashboards, and LangSmith and Langfuse tracing that keep products measurable and agent execution easy to inspect.', x:324, y:350, width:228, anchor:{x:324,y:388}, hubAnchor:{x:288,y:290} },
+ ],
+};

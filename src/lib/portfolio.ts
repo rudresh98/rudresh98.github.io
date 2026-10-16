@@ -1,5 +1,13 @@
-export const profile = { name: 'Rudresh Oza', role: 'Senior Software Engineer', email: 'ozarudresh18@gmail.com', location: 'Jaipur, India', experience: '6+', linkedin: 'https://www.linkedin.com/in/rudreshoza/', github: 'https://github.com/rudresh98' };
+export const profile = { name: 'Rudresh Oza', role: 'Forward Deployed Engineer (FDE)', email: 'ozarudresh18@gmail.com', location: 'Jaipur, India', experience: '6+', availability: 'Open to international remote opportunities', timezone: 'IST (UTC+5:30)', linkedin: 'https://www.linkedin.com/in/rudreshoza/', github: 'https://github.com/rudresh98' };
 export const achievements = { transactions: 1500, clients: 2000, transactionSpeedPercent: 40, issuesResolved: 15, transactionMonths: 6, issueMonths: 1, codeLines: 1000000000 };
+export type Credential = { value: number; suffix: string; label: string; context: string };
+// Hero credibility strip: every value is a verified achievement above, never a new figure.
+export const heroCredentials: Credential[] = [
+ { value:Number.parseInt(profile.experience), suffix:'+', label:'Years of professional engineering', context:'Since 2020' },
+ { value:achievements.clients, suffix:'+', label:'Clients served by transfer & split', context:'Full stack · Anchor' },
+ { value:achievements.transactions, suffix:'+', label:'Redemption transactions in six months', context:'Product impact' },
+ { value:achievements.transactionSpeedPercent, suffix:'%', label:'Faster transfer & split transactions', context:'Performance' },
+];
 export const categories = ['All', 'Full Stack', 'Cloud', 'GenAI', 'Data Engineering'] as const;
 export type Category = typeof categories[number];
 export type Project = { id: string; title: string; category: Category; tags: string[]; description: string; context: string; contributions: string[]; outcome: string; nodes: string[]; };
@@ -24,7 +32,7 @@ export const skills = [
  { title:'Engineering & Architecture', icon:'architecture', items:['System design','Clean architecture','Microfrontends','API design','RBAC / JWT / SSO','Performance optimization','Alembic migrations','GitHub / GitLab','Debugging / Code quality'] },
 ];
 export const experience = [
- { role:'Senior Software Engineer', company:'Celebal Technologies', date:'Feb 2026 — Present', location:'Jaipur, India', items:['Building AI-based supply chain solutions with LangChain, LangGraph, and FastAPI.','Developing LLM workflows and APIs to automate supply chain processes.','Designed a scalable AI-powered travel agent with Azure Cosmos DB, Azure AI Foundry, LangSmith, and Langfuse.'] },
+ { role:'Forward Deployed Engineer (FDE)', company:'Celebal Technologies', date:'Feb 2026 — Present', location:'Jaipur, India', items:['Building AI-based supply chain solutions with LangChain, LangGraph, and FastAPI.','Developing LLM workflows and APIs to automate supply chain processes.','Designed a scalable AI-powered travel agent with Azure Cosmos DB, Azure AI Foundry, LangSmith, and Langfuse.'] },
  { role:'Software Engineer', company:'HornBlower Encore Studio', date:'May 2023 — Feb 2026', location:'Jaipur, India', items:['Contributed to Anchor, an operations and reservations technology platform.','Implemented SDK caching for a smoother checkout experience and delivered transfer and split capabilities.','Developed a scalable Travel AI Agent using LangChain, LangGraph, and Azure AI services.'] },
  { role:'Software Engineer', company:'RevDau Industries', date:'Dec 2022 — May 2023', location:'Pune, India', items:['Delivered full-stack features for a telecommunications product.','Managed client communications and collaborated on user stories.','Coordinated delivery and tracked tasks using JIRA.'] },
  { role:'Full Stack Developer', company:'Celebal Technologies', date:'Nov 2020 — Dec 2022', location:'Jaipur, India', items:['Collaborated with engineers and product managers to develop software solutions.','Created a web application providing real-time updates on nearby client sites based on user input.'] },

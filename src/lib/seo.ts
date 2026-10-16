@@ -5,11 +5,11 @@ export const site = {
  url: 'https://rudresh98.github.io',
  name: 'Rudresh Oza',
  titleSuffix: 'Rudresh Oza — Cloud & GenAI',
- description: 'Rudresh Oza is a Senior Software Engineer in Jaipur, India building full-stack applications, cloud platforms on Azure and AWS, and Generative AI agent systems.',
+ description: 'Rudresh Oza is a Forward Deployed Engineer (FDE) in Jaipur, India building full-stack apps, Azure and AWS cloud platforms, and Generative AI agent systems.',
  locale: 'en_US',
  // Google Search Console HTML-tag token for the https://rudresh98.github.io/ URL-prefix property.
  googleSiteVerification: 'z7GuwcmWSdVMNpiep72s-ULyfDYwrv4nQ3cQdHLqnBQ',
- image: { path: '/og-image.png', width: 1200, height: 630, alt: 'Rudresh Oza — Senior Software Engineer, Cloud & GenAI' },
+ image: { path: '/og-image.png', width: 1200, height: 630, alt: 'Rudresh Oza — Forward Deployed Engineer (FDE), Cloud & GenAI' },
 };
 
 // GitHub Pages serves prerendered routes as folder/index.html and 301-redirects /about to /about/,
@@ -59,7 +59,7 @@ export function pageHead(title: string, description: string, path: string, optio
 export function defaultMeta(): Meta[] {
  const image = absoluteUrl(site.image.path);
  return [
-  { title: `${site.name} | Senior Software Engineer — Cloud & GenAI` },
+  { title: `${site.name} | Forward Deployed Engineer (FDE) — Cloud & GenAI` },
   { name: 'description', content: site.description },
   { name: 'author', content: profile.name },
   { name: 'google-site-verification', content: site.googleSiteVerification },
