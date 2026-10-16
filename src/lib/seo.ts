@@ -7,6 +7,8 @@ export const site = {
  titleSuffix: 'Rudresh Oza — Cloud & GenAI',
  description: 'Rudresh Oza is a Senior Software Engineer in Jaipur, India building full-stack applications, cloud platforms on Azure and AWS, and Generative AI agent systems.',
  locale: 'en_US',
+ // Google Search Console HTML-tag token for the https://rudresh98.github.io/ URL-prefix property.
+ googleSiteVerification: 'z7GuwcmWSdVMNpiep72s-ULyfDYwrv4nQ3cQdHLqnBQ',
  image: { path: '/og-image.png', width: 1200, height: 630, alt: 'Rudresh Oza — Senior Software Engineer, Cloud & GenAI' },
 };
 
@@ -60,6 +62,7 @@ export function defaultMeta(): Meta[] {
   { title: `${site.name} | Senior Software Engineer — Cloud & GenAI` },
   { name: 'description', content: site.description },
   { name: 'author', content: profile.name },
+  { name: 'google-site-verification', content: site.googleSiteVerification },
   { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1' },
   // Head meta is de-duplicated by name, so only one theme-color can be emitted.
   { name: 'theme-color', content: '#fafaf8' },
