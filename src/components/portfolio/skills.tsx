@@ -33,7 +33,7 @@ export function SkillsHub() {
  return <>
   <SkillsIntro/>
   <FeaturedAreas onExplore={explore}/>
-  <SkillsExplorer filter={filter} onFilter={setFilter} headingRef={explorerHeading}/>
+  <SkillsExplorer filter={filter} onFilter={setFilter} onExplore={explore} headingRef={explorerHeading}/>
   <Capabilities/>
   <Ecosystem/>
   <SkillProof/>
@@ -93,11 +93,11 @@ type ExplorerItem = { kind: 'group'; group: SkillGroup; total: number; hidden: n
 // In two-column layouts the last card of an odd-sized run spans the row instead of leaving a gap.
 const toItems = (list: Skill[]) => list.map((skill, i) => ({ kind: 'skill' as const, skill, tail: list.length % 2 === 1 && i === list.length - 1 }));
 
-function SkillsExplorer({ filter, onFilter, headingRef }: { filter: SkillFilter; onFilter: (filter: SkillFilter) => void; headingRef: RefObject<HTMLHeadingElement | null> }) {
+function SkillsExplorer({ filter, onFilter, onExplore, headingRef }: { filter: SkillFilter; onFilter: (filter: SkillFilter) => void; onExplore: (filter: SkillFilter) => void; headingRef: RefObject<HTMLHeadingElement | null> }) {
  const reduced = useReducedMotion();
  const [info, setInfo] = useState<string | null>(null);
  const [expanded, setExpanded] = useState(false);
- const filters = useRef<HTMLDivElement>(null);
+ const filters = useRef<HTMLDivElement>(null), more = useRef<HTMLButtonElement>(null);
  const items: ExplorerItem[] = filter === 'all'
   ? skillGroups.flatMap(({ id }) => {
    const all = filterSkills(id), visible = expanded ? all : all.slice(0, overviewSize);
@@ -112,8 +112,13 @@ function SkillsExplorer({ filter, onFilter, headingRef }: { filter: SkillFilter;
   if (!tray || !chip || tray.scrollWidth <= tray.clientWidth) return;
   tray.scrollTo?.({ left: Math.max(0, chip.offsetLeft - (tray.clientWidth - chip.offsetWidth) / 2), behavior: reduced ? 'auto' : 'smooth' });
  }, [filter, reduced]);
- return <section className="section skills-block" aria-labelledby="explorer-title">
-  <Reveal><p className="eyebrow">Skills explorer</p><h2 id="explorer-title" ref={headingRef} tabIndex={-1} className="section-heading explorer-heading">Every tool, <span className="text-muted-foreground">in context.</span></h2><p className="section-description">Filter by category. Each entry explains how I use the technology and, where it applies, links to the case studies where it shipped.</p></Reveal>
+ // Collapsing removes thousands of pixels above the toggle; keep it where the reader is.
+ const toggle = () => {
+  setExpanded(!expanded);
+  if (expanded) requestAnimationFrame(() => more.current?.scrollIntoView?.({ block: 'center', behavior: reduced ? 'auto' : 'smooth' }));
+ };
+ return <section className="section skills-block skills-explorer" aria-labelledby="explorer-title">
+  <Reveal><p className="eyebrow">Skills explorer</p><h2 id="explorer-title" ref={headingRef} tabIndex={-1} className="section-heading explorer-heading">The full toolkit, <span className="text-muted-foreground">in one place.</span></h2><p className="section-description">Filter by category. Each entry describes the technology’s role in my work and, where it shipped in a featured case study, links straight to it.</p></Reveal>
   <div ref={filters} className="skill-filters" role="group" aria-label="Skill categories">
    {skillFilters.map(item => <Button key={item.id} variant="ghost" className="skill-filter" aria-pressed={filter === item.id} onClick={() => onFilter(item.id)}>
     {filter === item.id && <motion.span layoutId="skill-filter-pill" className="skill-filter-pill" transition={{ duration: reduced ? 0 : .3, ease }} aria-hidden="true"/>}
@@ -126,13 +131,13 @@ function SkillsExplorer({ filter, onFilter, headingRef }: { filter: SkillFilter;
     <AnimatePresence initial={false} mode="popLayout">
      {items.map(item => <motion.li key={item.kind === 'group' ? `group-${item.group}` : item.skill.id} className={item.kind === 'group' ? 'explorer-group' : 'explorer-item'} data-tail={item.kind === 'skill' && item.tail || undefined} layout={!reduced} initial={reduced ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: reduced ? 1 : .97 }} transition={{ duration: reduced ? 0 : .3, ease }}>
       {item.kind === 'group'
-       ? <><h3>{groupLabel(item.group)}<span>{pad(item.total)}</span></h3>{item.hidden > 0 && <Button variant="ghost" className="explorer-group-link" onClick={() => onFilter(item.group)}>View all {item.total}<ArrowRight aria-hidden="true"/></Button>}</>
+       ? <><h3>{groupLabel(item.group)}<span>{pad(item.total)}</span></h3>{item.hidden > 0 && <Button variant="ghost" className="explorer-group-link" onClick={() => onExplore(item.group)}>View all {item.total}<ArrowRight aria-hidden="true"/></Button>}</>
        : <SkillCard skill={item.skill} nested={filter === 'all'} infoOpen={info === item.skill.id} onInfo={open => setInfo(current => open ? item.skill.id : current === item.skill.id ? null : current)}/>}
      </motion.li>)}
     </AnimatePresence>
    </ul>
   </TooltipProvider>
-  {filter === 'all' && <div className="explorer-more"><Button variant="outline" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{expanded ? 'Show the overview' : `Show all ${skills.length} skills`}</Button></div>}
+  {filter === 'all' && <div className="explorer-more"><Button ref={more} variant="outline" aria-expanded={expanded} onClick={toggle}>{expanded ? 'Show the overview' : `Show all ${skills.length} skills`}</Button></div>}
  </section>;
 }
 
@@ -159,8 +164,8 @@ function SkillCard({ skill, nested, infoOpen, onInfo }: { skill: Skill; nested: 
    <span className="skill-card-icon" aria-hidden="true"><Icon size={18} strokeWidth={1.8}/></span>
    <div className="min-w-0"><Heading id={`skill-${skill.id}`}>{skill.name}</Heading></div>
    <Tooltip open={infoOpen} onOpenChange={change}>
-    {/* Taps toggle: pointerdown records the state before Radix's own close runs. */}
-    <TooltipTrigger asChild><Button ref={trigger} variant="ghost" size="icon" className="skill-info" aria-label={`What is ${skill.name}?`} onPointerDown={() => { wasOpen.current = infoOpen; }} onClick={event => { event.preventDefault(); onInfo(!wasOpen.current); wasOpen.current = false; }}><Info aria-hidden="true"/></Button></TooltipTrigger>
+    {/* Taps and Enter/Space toggle; pointerdown records the state before Radix's own close runs. */}
+    <TooltipTrigger asChild><Button ref={trigger} variant="ghost" size="icon" className="skill-info" aria-label={`What is ${skill.name}?`} onPointerDown={() => { wasOpen.current = infoOpen; }} onClick={event => { event.preventDefault(); onInfo(event.detail === 0 ? !infoOpen : !wasOpen.current); wasOpen.current = false; }}><Info aria-hidden="true"/></Button></TooltipTrigger>
     <TooltipContent side="top" sideOffset={10} collisionPadding={20} className="skill-tooltip"><p className="mb-2 font-bold">{skill.name}</p><p>{skillInformation[skill.id]}</p></TooltipContent>
    </Tooltip>
   </div>
@@ -219,7 +224,7 @@ function FlowDiagram({ flow }: { flow: EcosystemFlow }) {
    </Button>
    {i < flow.nodes.length - 1 && <span className="eco-connector" data-lit={i < active} style={{ '--i': i } as CSSProperties} aria-hidden="true"><i/></span>}
   </li>)}</ol>
-  <div className="eco-detail" role="tabpanel" id={panelId} aria-labelledby={tabId(active)}>
+  <div className="eco-detail" role="tabpanel" tabIndex={0} id={panelId} aria-labelledby={tabId(active)}>
    <AnimatePresence initial={false} mode="wait">
     <motion.div key={node.id} className="eco-detail-body" initial={reduced ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -4 }} transition={{ duration: reduced ? 0 : .22, ease }}>
      <p><strong>{node.label}</strong>{node.description}</p>

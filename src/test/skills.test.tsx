@@ -14,7 +14,7 @@ async function renderHub() {
   render(<RouterProvider router={router} />);
   return screen.findByRole('heading', { level: 1 });
 }
-const explorerCards = () => within(screen.getByRole('heading', { name: /Every tool/ }).closest('section') as HTMLElement).getAllByRole('article');
+const explorerCards = () => within(screen.getByRole('heading', { name: /The full toolkit/ }).closest('section') as HTMLElement).getAllByRole('article');
 
 describe('Verified skills data', () => {
   it('keeps unique skills, each with an icon, a general description, and a usage line', () => {
@@ -107,7 +107,7 @@ describe('Skills hub', () => {
     fireEvent.click(screen.getByRole('button', { name: /Explore Cloud & DevOps/ }));
     const group = screen.getByRole('group', { name: 'Skill categories' });
     expect(within(group).getByRole('button', { name: /^Cloud & DevOps/ })).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('heading', { name: /Every tool/ })).toHaveFocus();
+    expect(screen.getByRole('heading', { name: /The full toolkit/ })).toHaveFocus();
   });
 
   it('links skills and capabilities to their case studies', async () => {
