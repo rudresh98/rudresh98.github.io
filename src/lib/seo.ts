@@ -1,5 +1,6 @@
 // Browser-safe and asset-free so vite.config.ts can import it to generate sitemap.xml.
-import { profile, projects, experience, skills, type Project } from './portfolio';
+import { profile, projects, experience, type Project } from './portfolio';
+import { featuredAreas, skills } from './skills';
 
 export const site = {
  url: 'https://rudresh98.github.io',
@@ -95,7 +96,7 @@ export function siteJsonLd(portraitUrl?: string) {
     address: { '@type': 'PostalAddress', addressLocality: 'Jaipur', addressRegion: 'Rajasthan', addressCountry: 'IN' },
     sameAs: [profile.linkedin, profile.github],
     ...(current ? { worksFor: { '@type': 'Organization', name: current.company } } : {}),
-    knowsAbout: skills.flatMap(group => [group.title, ...group.items]),
+    knowsAbout: [...featuredAreas.map(area => area.title), ...skills.map(skill => skill.name)],
    },
   ],
  };

@@ -24,13 +24,6 @@ export function getNextProject(projectId: string) {
  const index = projects.findIndex(project => project.id === projectId);
  return index < 0 ? undefined : projects[(index + 1) % projects.length];
 }
-export const skills = [
- { title:'Full Stack Development', icon:'code', items:['React / Next.js','Angular','TypeScript / JavaScript','React Native','Node.js / Express','Python / FastAPI','REST APIs / GraphQL','Tailwind CSS / shadcn','TanStack Query','MongoDB / DynamoDB','MySQL / PostgreSQL'] },
- { title:'Cloud & DevOps', icon:'cloud', items:['Microsoft Azure','Azure AI Foundry','Azure Cosmos DB','AWS / Lambda','Amazon S3 / SQS / SES','CloudWatch / DataDog','Cloud integrations','Runtime modernization','Application caching'] },
- { title:'Generative AI & Agents', icon:'ai', items:['LangChain / LangGraph','LLM applications','Tool orchestration','Memory / Checkpointing','LangSmith / Langfuse','Vector databases','Structured outputs','Agent evaluation','Prompt monitoring'] },
- { title:'Data & Analytics', icon:'data', items:['Highcharts','Interactive dashboards','SQL / Query optimization','Amazon Redshift','Elasticsearch / Algolia','Simulation engines','KPI calculation','Data modeling'] },
- { title:'Engineering & Architecture', icon:'architecture', items:['System design','Clean architecture','Microfrontends','API design','RBAC / JWT / SSO','Performance optimization','Alembic migrations','GitHub / GitLab','Debugging / Code quality'] },
-];
 export const experience = [
  { role:'Forward Deployed Engineer (FDE)', company:'Celebal Technologies', date:'Feb 2026 — Present', location:'Jaipur, India', items:['Building AI-based supply chain solutions with LangChain, LangGraph, and FastAPI.','Developing LLM workflows and APIs to automate supply chain processes.','Designed a scalable AI-powered travel agent with Azure Cosmos DB, Azure AI Foundry, LangSmith, and Langfuse.'] },
  { role:'Software Engineer', company:'HornBlower Encore Studio', date:'May 2023 — Feb 2026', location:'Jaipur, India', items:['Contributed to Anchor, an operations and reservations technology platform.','Implemented SDK caching for a smoother checkout experience and delivered transfer and split capabilities.','Developed a scalable Travel AI Agent using LangChain, LangGraph, and Azure AI services.'] },
