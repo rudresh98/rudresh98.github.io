@@ -41,6 +41,13 @@ describe('Verified skills data', () => {
     for (const project of projects) expect(skillsForProject(project.id).length, project.id).toBeGreaterThan(0);
   });
 
+  it('credits case studies only with the technology a project actually used', () => {
+    const anchor = skillsForProject('anchor').map(skill => skill.name).join(' ');
+    for (const unlinked of ['SES', 'Elasticsearch', 'Next.js', 'Express']) expect(anchor).not.toContain(unlinked);
+    const supplyChain = skillsForProject('supply-chain').map(skill => skill.name).join(' ');
+    for (const unlinked of ['GraphQL', 'MySQL', 'Supabase']) expect(supplyChain).not.toContain(unlinked);
+  });
+
   it('leaves out technologies the resume does not support', () => {
     const names = skills.map(skill => `${skill.name} ${skill.usage}`).join(' ');
     for (const unverified of ['Bootstrap', 'Docker', 'Kubernetes', 'ClickHouse', 'MCP', 'Azure Functions', 'App Service', 'GitHub Actions', 'CI/CD']) expect(names).not.toContain(unverified);
@@ -61,16 +68,37 @@ describe('Skills hub', () => {
     expect(stats).toHaveTextContent(String(projects.length));
   });
 
+  it('previews every category in the overview and expands to the full list', async () => {
+    await renderHub();
+    const preview = skillGroups.reduce((total, group) => total + Math.min(3, filterSkills(group.id).length), 0);
+    expect(explorerCards()).toHaveLength(preview);
+    expect(screen.getByRole('status')).toHaveTextContent(`${preview} of ${skills.length} skills shown in All Skills`);
+    const toggle = screen.getByRole('button', { name: `Show all ${skills.length} skills` });
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(explorerCards()).toHaveLength(skills.length);
+  });
+
+  it('opens a full category from its overview heading', async () => {
+    await renderHub();
+    const total = filterSkills('genai').length;
+    const header = screen.getByRole('heading', { name: /^GenAI/, level: 3 }).closest('li') as HTMLElement;
+    fireEvent.click(within(header).getByRole('button', { name: `View all ${total}` }));
+    const group = screen.getByRole('group', { name: 'Skill categories' });
+    expect(within(group).getByRole('button', { name: /^GenAI/ })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('status')).toHaveTextContent(`${total} of ${total} skills shown in GenAI`);
+  });
+
   it('filters the explorer in place and announces the result', async () => {
     await renderHub();
-    expect(explorerCards()).toHaveLength(skills.length);
     const group = screen.getByRole('group', { name: 'Skill categories' });
     expect(within(group).getAllByRole('button')).toHaveLength(skillFilters.length);
     const genai = within(group).getByRole('button', { name: /^GenAI/ });
     fireEvent.click(genai);
     expect(genai).toHaveAttribute('aria-pressed', 'true');
     expect(within(group).getByRole('button', { name: /^All Skills/ })).toHaveAttribute('aria-pressed', 'false');
-    expect(screen.getByRole('status')).toHaveTextContent(`${filterSkills('genai').length} skills shown in GenAI`);
+    const total = filterSkills('genai').length;
+    expect(screen.getByRole('status')).toHaveTextContent(`${total} of ${total} skills shown in GenAI`);
     expect(await screen.findByRole('heading', { name: 'LangChain / LangGraph', level: 3 })).toBeInTheDocument();
   });
 
@@ -90,12 +118,17 @@ describe('Skills hub', () => {
     for (const project of projects) expect(screen.getByRole('link', { name: `Read case study: ${project.title}` })).toHaveAttribute('href', `/projects/${project.id}`);
   });
 
-  it('reveals the tools behind each ecosystem stage', async () => {
+  it('reveals the tools behind each ecosystem stage as tabs', async () => {
     await renderHub();
-    const stage = screen.getByRole('button', { name: /Agent Orchestration/ });
-    expect(stage).toHaveAttribute('aria-pressed', 'false');
+    const stage = screen.getByRole('tab', { name: /Agent Orchestration/ });
+    expect(stage).toHaveAttribute('aria-selected', 'false');
+    expect(stage).toHaveAttribute('tabindex', '-1');
     fireEvent.click(stage);
-    expect(stage).toHaveAttribute('aria-pressed', 'true');
+    expect(stage).toHaveAttribute('aria-selected', 'true');
     expect(await screen.findByRole('list', { name: 'Agent Orchestration technologies' })).toHaveTextContent('Memory & Checkpointing');
+    fireEvent.keyDown(stage, { key: 'ArrowRight' });
+    const next = screen.getByRole('tab', { name: /Evaluation & Observability/ });
+    expect(next).toHaveAttribute('aria-selected', 'true');
+    expect(next).toHaveFocus();
   });
 });
