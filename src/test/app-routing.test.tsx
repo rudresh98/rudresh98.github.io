@@ -14,6 +14,11 @@ describe("App routing", () => {
     }
     expect(router.matchRoutes('/projects').at(-1)?.routeId).toBe('/projects/');
   });
+  it("matches the certifications and training pages", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes('/certifications').at(-1)?.routeId).toBe('/certifications');
+    expect(router.matchRoutes('/training').at(-1)?.routeId).toBe('/training');
+  });
   it("matches a page for / instead of falling back to not found", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
 

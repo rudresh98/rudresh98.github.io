@@ -38,3 +38,16 @@
 - [x] Add a realistic, interactive Earth near the bottom of Home with the seven confirmed client countries.
 - [x] Preserve quick navigation, both themes, reduced motion, offscreen pausing, and a static fallback.
 - [x] Test country data and verify the rendered globe and interactions on desktop and mobile.
+
+## Certifications page
+- [x] Add a `/certifications` page with issuer badge cards, issuer filter, status, and verification links.
+- [x] Add Certifications to the header and mobile menu, sitemap, and structured data.
+- [x] Verify tests, build, header fit at 1024px, light/dark themes, and mobile layout.
+- [ ] Add Rudresh's verified certifications exactly as issued.
+
+## Training page
+- [x] Add a `/training` page with stats, Full Stack and GenAI course cards, expandable syllabi, delivery formats, and enquiry links.
+- [x] Add Training to navigation (desktop leaves Home to the logo), sitemap, and Course structured data.
+- [x] Slim the Experience training section to a teaser linking to `/training`.
+- [x] Verify tests, build, header fit, themes, and mobile layout.
+- [ ] Rudresh reviews the drafted course outlines, audiences, and format descriptions.

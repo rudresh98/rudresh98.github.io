@@ -1,6 +1,8 @@
 // Browser-safe and asset-free so vite.config.ts can import it to generate sitemap.xml.
 import { profile, projects, experience, type Project } from './portfolio';
 import { featuredAreas, skills } from './skills';
+import { certifications, sortCertifications } from './certifications';
+import { courses } from './training';
 
 export const site = {
  url: 'https://rudresh98.github.io',
@@ -26,6 +28,8 @@ export const sitePages: { path: string; priority: number; changefreq: 'monthly' 
  { path: '/experience', priority: 0.8, changefreq: 'monthly' },
  { path: '/projects', priority: 0.9, changefreq: 'monthly' },
  ...projects.map(project => ({ path: `/projects/${project.id}`, priority: 0.7, changefreq: 'yearly' as const })),
+ { path: '/certifications', priority: 0.7, changefreq: 'monthly' },
+ { path: '/training', priority: 0.7, changefreq: 'monthly' },
  { path: '/contact', priority: 0.6, changefreq: 'yearly' },
 ];
 
@@ -123,5 +127,31 @@ export function projectJsonLd(project: Project) {
   name: project.title, headline: project.title, description: project.description, url: canonicalUrl(`/projects/${project.id}`),
   genre: project.category, keywords: project.tags.join(', '), inLanguage: 'en', image: absoluteUrl(site.image.path),
   author: { '@id': personId }, creator: { '@id': personId }, isPartOf: { '@id': websiteId },
+ };
+}
+
+export function certificationListJsonLd() {
+ return {
+  '@context': 'https://schema.org', '@type': 'CollectionPage', url: canonicalUrl('/certifications'), name: 'Certifications', isPartOf: { '@id': websiteId },
+  mainEntity: {
+   '@type': 'ItemList',
+   itemListElement: sortCertifications(certifications).map((cert, index) => ({
+    '@type': 'ListItem', position: index + 1,
+    item: { '@type': 'EducationalOccupationalCredential', name: cert.name, credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: cert.issuer }, dateCreated: cert.issued, ...(cert.expires ? { expires: cert.expires } : {}), ...(cert.verifyUrl ? { url: cert.verifyUrl } : {}) },
+   })),
+  },
+ };
+}
+
+export function courseListJsonLd() {
+ return {
+  '@context': 'https://schema.org', '@type': 'CollectionPage', url: canonicalUrl('/training'), name: 'Training & Courses', isPartOf: { '@id': websiteId },
+  mainEntity: {
+   '@type': 'ItemList',
+   itemListElement: courses.map((course, index) => ({
+    '@type': 'ListItem', position: index + 1,
+    item: { '@type': 'Course', '@id': `${canonicalUrl('/training')}#${course.id}`, name: course.title, description: course.summary, url: `${canonicalUrl('/training')}#${course.id}`, teaches: course.tools, inLanguage: 'en', provider: { '@id': personId } },
+   })),
+  },
  };
 }

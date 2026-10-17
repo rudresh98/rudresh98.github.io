@@ -24,7 +24,7 @@ describe('Canonical URLs',()=>{
 describe('Sitemap',()=>{
  it('lists every named page and case study once',()=>{
   const xml=sitemapXml();
-  for(const path of ['/','/about/','/expertise/','/experience/','/projects/','/contact/',...projects.map(p=>`/projects/${p.id}/`)])
+  for(const path of ['/','/about/','/expertise/','/experience/','/projects/','/certifications/','/training/','/contact/',...projects.map(p=>`/projects/${p.id}/`)])
    expect(xml).toContain(`<loc>https://rudresh98.github.io${path}</loc>`);
   expect(new Set(sitePages.map(p=>p.path)).size).toBe(sitePages.length);
  });

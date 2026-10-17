@@ -35,6 +35,8 @@ async function renderHeader(path = "/") {
     "experience",
     "projects",
     "projects/$projectId",
+    "certifications",
+    "training",
     "contact",
   ].map((p) =>
     createRoute({ getParentRoute: () => root, path: p, component: () => null }),
@@ -64,21 +66,25 @@ const setScrollY = (value: number) =>
   Object.defineProperty(window, "scrollY", { value, configurable: true });
 
 const labels = [
-  "Home",
   "About",
   "Expertise",
   "Experience",
   "Projects",
+  "Certifications",
+  "Training",
   "Contact",
 ];
 const hrefs = [
-  "/",
   "/about",
   "/expertise",
   "/experience",
   "/projects",
+  "/certifications",
+  "/training",
   "/contact",
 ];
+// The logo links home on desktop, so only the mobile menu lists Home.
+const mobileHrefs = ["/", ...hrefs];
 
 afterEach(() => {
   localStorage.clear();
@@ -94,13 +100,26 @@ describe("Header", () => {
     expect(links.map((l) => l.getAttribute("href"))).toEqual(hrefs);
   });
 
+  it("leaves Home to the logo on desktop, so no bar link is active there", async () => {
+    await renderHeader("/");
+    expect(
+      mainNav()
+        .getAllByRole("link")
+        .filter((l) => l.getAttribute("aria-current") === "page"),
+    ).toHaveLength(0);
+    expect(
+      screen.getByRole("link", { name: "Rudresh Oza home" }),
+    ).toHaveAttribute("href", "/");
+  });
+
   it.each([
-    ["/", "Home"],
     ["/about", "About"],
     ["/expertise", "Expertise"],
     ["/experience", "Experience"],
     ["/projects", "Projects"],
     ["/projects/music-ai", "Projects"],
+    ["/certifications", "Certifications"],
+    ["/training", "Training"],
     ["/contact", "Contact"],
   ])("marks only the matching page active on %s", async (path, label) => {
     await renderHeader(path);
@@ -166,7 +185,7 @@ describe("Header mobile menu", () => {
     const links = within(
       within(dialog).getByRole("navigation", { name: "Mobile navigation" }),
     ).getAllByRole("link");
-    expect(links.map((l) => l.getAttribute("href"))).toEqual(hrefs);
+    expect(links.map((l) => l.getAttribute("href"))).toEqual(mobileHrefs);
     expect(
       within(dialog).getByRole("link", { name: "Let's Talk" }),
     ).toHaveAttribute("href", "/contact");

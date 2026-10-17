@@ -23,9 +23,13 @@ const navigation = [
   { label: "Expertise", to: "/expertise" },
   { label: "Experience", to: "/experience" },
   { label: "Projects", to: "/projects" },
+  { label: "Certifications", to: "/certifications" },
+  { label: "Training", to: "/training" },
   { label: "Contact", to: "/contact" },
 ] as const;
 const RESUME_FILENAME = "Rudresh-Oza-Resume.pdf";
+// The logo already links home, so the desktop bar leaves Home out to fit every page; the mobile menu keeps it.
+const desktopNavigation = navigation.filter((n) => n.to !== "/");
 // Home matches exactly; every other link stays active on nested routes such as /projects/$projectId.
 const activeOptions = (to: string) => ({ exact: to === "/" });
 
@@ -100,7 +104,7 @@ export function Header() {
             aria-label="Main navigation"
             className="hidden items-center gap-0.5 lg:flex"
           >
-            {navigation.map((n) => (
+            {desktopNavigation.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}

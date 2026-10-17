@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { achievements, filterProjects, emailDraft, getProject, getNextProject } from '@/lib/portfolio';
+import { achievements, training, filterProjects, emailDraft, getProject, getNextProject } from '@/lib/portfolio';
 import { testimonials } from '@/lib/testimonials';
 describe('Confirmed professional achievements',()=>{
  it('keeps 1500 transactions over six months',()=>{expect(achievements.transactions).toBe(1500);expect(achievements.transactionMonths).toBe(6)});
@@ -7,6 +7,8 @@ describe('Confirmed professional achievements',()=>{
  it('keeps 40 percent transaction speed improvement',()=>expect(achievements.transactionSpeedPercent).toBe(40));
  it('keeps 15 resolved issues within one month',()=>{expect(achievements.issuesResolved).toBe(15);expect(achievements.issueMonths).toBe(1)});
  it('keeps 1 billion lines of code written',()=>expect(achievements.codeLines).toBe(1000000000));
+ it('keeps 5000 students trained over five years',()=>{expect(achievements.studentsTrained).toBe(5000);expect(achievements.trainingYears).toBe(5)});
+ it('keeps only the confirmed training formats and topics',()=>{expect(training.formats).toEqual(['Corporate training','College & university sessions','Own institute & online courses','Mentoring & internships']);expect(training.topics).toEqual(['Full-stack web development','Generative AI & LLMs'])});
 });
 describe('Portfolio interactions',()=>{
  it('resolves all seven case studies by stable ID',()=>{for(const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health']) expect(getProject(id)?.id).toBe(id)});

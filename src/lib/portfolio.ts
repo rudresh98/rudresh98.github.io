@@ -1,5 +1,5 @@
 export const profile = { name: 'Rudresh Oza', role: 'Forward Deployed Engineer (FDE)', email: 'ozarudresh18@gmail.com', location: 'Jaipur, India', experience: '6+', availability: 'Open to international remote opportunities', timezone: 'IST (UTC+5:30)', linkedin: 'https://www.linkedin.com/in/rudreshoza/', github: 'https://github.com/rudresh98' };
-export const achievements = { transactions: 1500, clients: 2000, transactionSpeedPercent: 40, issuesResolved: 15, transactionMonths: 6, issueMonths: 1, codeLines: 1000000000 };
+export const achievements = { transactions: 1500, clients: 2000, transactionSpeedPercent: 40, issuesResolved: 15, transactionMonths: 6, issueMonths: 1, codeLines: 1000000000, studentsTrained: 5000, trainingYears: 5 };
 export type Credential = { value: number; suffix: string; label: string; context: string };
 // Hero credibility strip: every value is a verified achievement above, never a new figure.
 export const heroCredentials: Credential[] = [
@@ -7,6 +7,7 @@ export const heroCredentials: Credential[] = [
  { value:achievements.clients, suffix:'+', label:'Clients served by transfer & split', context:'Full stack · Anchor' },
  { value:achievements.transactions, suffix:'+', label:'Redemption transactions in six months', context:'Product impact' },
  { value:achievements.transactionSpeedPercent, suffix:'%', label:'Faster transfer & split transactions', context:'Performance' },
+ { value:achievements.studentsTrained, suffix:'+', label:'Students trained in full-stack & GenAI', context:'Training · 5 years' },
 ];
 export const categories = ['All', 'Full Stack', 'Mobile', 'Cloud', 'GenAI', 'Data Engineering'] as const;
 export type Category = typeof categories[number];
@@ -33,4 +34,13 @@ export const experience = [
  { role:'Full Stack Developer', company:'Celebal Technologies', date:'Nov 2020 — Dec 2022', location:'Jaipur, India', items:['Collaborated with engineers and product managers to develop software solutions.','Created a web application providing real-time updates on nearby client sites based on user input.'] },
  { role:'Freelance Front-end Developer', company:'Qualitech Chart & Craft', date:'Apr 2020 — Nov 2020', location:'Jaipur, India', items:['Developed the company website and an administration dashboard.','Implemented feedback collection and dynamic page management.'] },
 ];
+// Training ran alongside engineering roles; formats and topics are user-confirmed, with no invented institutions or dates.
+export type Training = { role: string; span: string; summary: string; formats: string[]; topics: string[] };
+export const training: Training = {
+ role:'Technical Trainer & Mentor',
+ span:`${achievements.trainingYears} years · alongside engineering roles`,
+ summary:`Trained ${achievements.studentsTrained.toLocaleString('en-US')}+ students and professionals in full-stack web development and Generative AI.`,
+ formats:['Corporate training','College & university sessions','Own institute & online courses','Mentoring & internships'],
+ topics:['Full-stack web development','Generative AI & LLMs'],
+};
 export function emailDraft(name: string, email: string, subject: string, message: string) { return `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`; }

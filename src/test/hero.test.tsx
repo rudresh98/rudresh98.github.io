@@ -28,7 +28,7 @@ describe('Home hero', () => {
     await renderHero();
     const strip = screen.getByRole('list', { name: 'Professional highlights' });
     expect(within(strip).getAllByRole('listitem')).toHaveLength(heroCredentials.length);
-    expect(heroCredentials.map(fact => fact.value)).toEqual([6, achievements.clients, achievements.transactions, achievements.transactionSpeedPercent]);
+    expect(heroCredentials.map(fact => fact.value)).toEqual([6, achievements.clients, achievements.transactions, achievements.transactionSpeedPercent, achievements.studentsTrained]);
   });
 
   it('describes each engineering domain when its panel is focused', async () => {
