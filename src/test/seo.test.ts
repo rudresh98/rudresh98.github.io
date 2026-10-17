@@ -32,6 +32,10 @@ describe('Sitemap',()=>{
 });
 
 describe('Structured data',()=>{
+ it('names the site for Google site names rather than the github.io host',()=>{
+  const website=siteJsonLd()['@graph'].find(node=>node['@type']==='WebSite');
+  expect(website).toMatchObject({name:'Rudresh Oza',alternateName:['Rudresh Oza Portfolio','rudresh98.github.io'],url:'https://rudresh98.github.io/'});
+ });
  it('points linked case studies at their live pages',()=>{expect(projectJsonLd(getProject('mealboy')!)).toMatchObject({sameAs:['https://mealboy.nl/']});expect(projectJsonLd(getProject('anchor')!)).not.toHaveProperty('sameAs')});
  it('describes the person with verified profile links',()=>{
   const person=siteJsonLd('/assets/portrait.png')['@graph'].find(node=>node['@type']==='Person');

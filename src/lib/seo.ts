@@ -134,7 +134,8 @@ export function siteJsonLd(portraitUrl?: string) {
  return {
   '@context': 'https://schema.org',
   '@graph': [
-   { '@type': 'WebSite', '@id': websiteId, url: canonicalUrl('/'), name: site.name, description: site.description, inLanguage: 'en', publisher: { '@id': personId } },
+   // Google's site-name system reads name and alternateName from the homepage WebSite node.
+   { '@type': 'WebSite', '@id': websiteId, url: canonicalUrl('/'), name: site.name, alternateName: ['Rudresh Oza Portfolio', 'rudresh98.github.io'], description: site.description, inLanguage: 'en', publisher: { '@id': personId } },
    {
     '@type': 'Person', '@id': personId, name: profile.name, url: canonicalUrl('/'), jobTitle: profile.role, description: site.description,
     ...(portraitUrl ? { image: absoluteUrl(portraitUrl) } : {}),
