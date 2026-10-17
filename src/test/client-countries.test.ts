@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { clientCountries, countryPosition } from '@/lib/client-countries';
 describe('Confirmed client geography', () => {
- it('contains exactly the seven countries supplied by Rudresh', () => {
-  expect(clientCountries.map(c => c.name)).toEqual(['United States', 'United Kingdom', 'Australia', 'Germany', 'Switzerland', 'Sweden', 'China']);
+ it('contains exactly the countries and Indian cities supplied by Rudresh', () => {
+  expect(clientCountries.map(c => c.name)).toEqual(['United States', 'United Kingdom', 'Australia', 'Germany', 'Switzerland', 'Sweden', 'China', 'Jodhpur, India', 'Ahmedabad, India', 'Jaipur, India', 'Mumbai, India', 'Gurgaon, India', 'Delhi, India', 'Bangalore, India', 'Hyderabad, India', 'Indore, India']);
+  expect(new Set(clientCountries.map(c => c.code)).size).toBe(clientCountries.length);
  });
  it('places representative country markers on the globe', () => {
   for (const c of clientCountries) {

@@ -41,7 +41,7 @@ export function ClientGlobe() {
   return () => { observer.disconnect(); document.removeEventListener('visibilitychange', visibility); media.removeEventListener('change', motionPreference); };
  }, []);
  return <section ref={ref} className="client-globe-section container-shell" aria-labelledby="client-globe-heading">
-  <Reveal className="client-globe-intro"><p className="eyebrow">International collaboration</p><h2 id="client-globe-heading" className="section-heading">Clients across<br/><span className="text-muted-foreground">the globe.</span></h2><p className="section-description mt-5">Working with clients across seven countries.</p>
+  <Reveal className="client-globe-intro"><p className="eyebrow">International collaboration</p><h2 id="client-globe-heading" className="section-heading">Clients across<br/><span className="text-muted-foreground">the globe.</span></h2><p className="section-description mt-5">Working with clients across eight countries, including nine cities in India.</p>
    <div className="client-countries" aria-label="Client countries">{clientCountries.map(country => <Button key={country.code} variant="ghost" aria-pressed={selected.code === country.code} onClick={() => setSelected(country)} className="client-country"><MapPin size={15} aria-hidden="true"/><span>{country.name}</span><ArrowUpRight size={14} aria-hidden="true"/></Button>)}</div>
   </Reveal>
   <div className="client-globe-display">
