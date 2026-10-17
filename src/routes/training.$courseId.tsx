@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Page } from '@/components/portfolio/content';
 import { CourseDetail } from '@/components/portfolio/training';
 import { getCourse } from '@/lib/training';
-import { pageHead, courseJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { pageHead, courseJsonLd, courseSeo, breadcrumbJsonLd } from '@/lib/seo';
 
 export const Route = createFileRoute('/training/$courseId')({
  loader: ({params}) => {
@@ -13,7 +13,7 @@ export const Route = createFileRoute('/training/$courseId')({
   return course;
  },
  head: ({loaderData, params}) => loaderData
-  ? pageHead(`${loaderData.title} Course | Rudresh Oza`,`${loaderData.summary} A ${loaderData.modules.length}-module course by Rudresh Oza.`,`/training/${loaderData.id}`,{fullTitle:true,jsonLd:[courseJsonLd(loaderData),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Training',path:'/training'},{name:loaderData.title,path:`/training/${loaderData.id}`}])]})
+  ? pageHead(courseSeo(loaderData).title,courseSeo(loaderData).description,`/training/${loaderData.id}`,{fullTitle:true,jsonLd:[courseJsonLd(loaderData),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Training',path:'/training'},{name:loaderData.title,path:`/training/${loaderData.id}`}])]})
   : pageHead('Course unavailable','The requested training course is unavailable.',`/training/${params.courseId}`,{noindex:true}),
  component: CoursePage,
  notFoundComponent: () => <CourseUnavailable missing/>,

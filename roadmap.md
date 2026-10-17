@@ -64,3 +64,10 @@
 - [x] Replace the top nav with a floating, magnifying bottom dock (compact dock + bottom sheet on phones).
 - [x] Add a ⌘K / Ctrl+K palette across pages, projects, courses, certifications, and quick actions.
 - [x] Verify keyboard access, active states, reduced motion, themes, and mobile layout.
+
+## Commercial SEO
+- [x] Install the reviewed aevans-eng/seo-skill (MIT) as a project skill.
+- [x] Training is the selling page; the Services page was removed at Rudresh's request, and hero and CTA links point to Training.
+- [x] Keyword-targeted titles (≤60) and descriptions (≤160) on every page, plus Service, Offer, credential, and course-mode structured data.
+- [x] Sitemap lastmod, descriptive portrait alt text, and a generated llms.txt for AI answer engines.
+- [ ] After deploy: submit the sitemap in Search Console, share-test OG cards, and check `site:rudresh98.github.io`.

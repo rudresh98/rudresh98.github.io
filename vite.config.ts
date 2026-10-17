@@ -6,15 +6,16 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import type { Plugin } from "vite";
-import { sitemapXml } from "./src/lib/seo";
+import { llmsTxt, sitemapXml } from "./src/lib/seo";
 
-// Emits sitemap.xml from portfolio data so every case study is listed with its canonical URL.
+// Emits sitemap.xml and llms.txt from portfolio data so every page is listed with its canonical URL.
 const sitemap: Plugin = {
   name: "portfolio-sitemap",
   apply: "build",
   applyToEnvironment: (environment) => environment.name === "client",
   generateBundle() {
     this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml() });
+    this.emitFile({ type: "asset", fileName: "llms.txt", source: llmsTxt() });
   },
 };
 

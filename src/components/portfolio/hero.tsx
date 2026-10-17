@@ -27,8 +27,9 @@ export function Hero() {
      <Button asChild className="hero-x-cta h-12 px-6 shadow-none"><Link to="/projects">Explore My Work <ArrowUpRight className="hero-x-up"/></Link></Button>
      <Button asChild variant="outline" className="hero-x-cta h-12 px-6 shadow-none"><a href={resume} download="Rudresh-Oza-Resume.pdf">Download Resume <ArrowDown className="hero-x-down"/></a></Button>
     </div>
+    <p className="hero-x-hire hero-x-fade">Need team training? <Link to="/training">Explore GenAI, full-stack &amp; Databricks courses <ArrowUpRight aria-hidden="true"/></Link></p>
     <div className="hero-x-status hero-x-fade">
-     <img src={portrait} alt="" width={34} height={34} decoding="async"/>
+     <img src={portrait} alt="Rudresh Oza" width={34} height={34} decoding="async"/>
      <div className="hero-x-status-text"><p className="hero-x-available"><span className="hero-x-pulse" aria-hidden="true"/>{profile.availability}</p><p className="hero-x-location"><MapPin size={11} aria-hidden="true"/>{profile.location} · {profile.timezone}</p></div>
      <SocialLinks/>
     </div>

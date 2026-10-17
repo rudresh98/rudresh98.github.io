@@ -5,7 +5,7 @@ import { Page } from '@/components/portfolio/content';
 import { Reveal } from '@/components/portfolio/motion';
 import { Architecture } from '@/components/portfolio/visuals';
 import { getProject, getNextProject } from '@/lib/portfolio';
-import { pageHead, projectJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { pageHead, projectJsonLd, projectSeo, breadcrumbJsonLd } from '@/lib/seo';
 import { projectVisuals } from '@/lib/portfolio-visuals';
 
 export const Route = createFileRoute('/projects/$projectId')({
@@ -15,7 +15,7 @@ export const Route = createFileRoute('/projects/$projectId')({
   return project;
  },
  head: ({loaderData, params}) => loaderData
-  ? pageHead(`${loaderData.title} Case Study | Rudresh Oza`,`${loaderData.description} An engineering case study by Rudresh Oza.`,`/projects/${loaderData.id}`,{fullTitle:true,type:'article',jsonLd:[projectJsonLd(loaderData),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Projects',path:'/projects'},{name:loaderData.title,path:`/projects/${loaderData.id}`}])]})
+  ? pageHead(projectSeo(loaderData).title,projectSeo(loaderData).description,`/projects/${loaderData.id}`,{fullTitle:true,type:'article',jsonLd:[projectJsonLd(loaderData),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Projects',path:'/projects'},{name:loaderData.title,path:`/projects/${loaderData.id}`}])]})
   : pageHead('Project unavailable','The requested engineering case study is unavailable.',`/projects/${params.projectId}`,{noindex:true}),
  component: ProjectPage,
  notFoundComponent: () => <ProjectUnavailable missing/>,

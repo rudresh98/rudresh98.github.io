@@ -388,7 +388,7 @@
 .hero-x-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
 .hero-x-status { display:flex; align-items:center; gap:14px; max-width:470px; margin-top:30px; padding-top:18px; border-top:1px solid var(--border); }
 .hero-x-fade { animation:hero-rise .8s cubic-bezier(.22,1,.36,1) both; }
-.hero-x-description.hero-x-fade { animation-delay:.52s; } .hero-x-actions.hero-x-fade { animation-delay:.62s; } .hero-x-status.hero-x-fade { animation-delay:.72s; }
+.hero-x-description.hero-x-fade { animation-delay:.52s; } .hero-x-actions.hero-x-fade { animation-delay:.62s; } .hero-x-hire.hero-x-fade { animation-delay:.67s; } .hero-x-status.hero-x-fade { animation-delay:.72s; }
 .hero-x-cta { transition:transform .35s cubic-bezier(.22,1,.36,1),background-color .25s,color .25s,border-color .25s; }
 .hero-x-cta svg { transition:transform .35s cubic-bezier(.22,1,.36,1); }
 @media(hover:hover) { .hero-x-cta:hover { transform:translateY(-2px); } .hero-x-cta:hover .hero-x-up { transform:translate(2px,-2px); } .hero-x-cta:hover .hero-x-down { transform:translateY(2px); } }
@@ -883,3 +883,9 @@ html[data-preview] {scrollbar-width:none;}
 html[data-preview]::-webkit-scrollbar {display:none;}
 html[data-preview] body {padding-bottom:0;}
 html[data-preview] .page-transition {animation:none;}
+
+/* Home hero: a quiet link to the training courses. */
+.hero-x-hire {margin-top:16px;font-size:13px;color:var(--muted-foreground);}
+.hero-x-hire a {display:inline-flex;align-items:center;gap:4px;margin-left:4px;font-weight:600;color:var(--primary);}
+.hero-x-hire a svg {width:14px;height:14px;}
+.hero-x-hire a:hover {text-decoration:underline;text-underline-offset:3px;}

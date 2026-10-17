@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { pageHead, profilePageJsonLd } from '@/lib/seo';
+import { pageHead, pageSeo, profilePageJsonLd } from '@/lib/seo';
 import { ProjectGrid, Collaboration } from '@/components/portfolio/work';
 import { AboutContent } from '@/components/portfolio/content';
 import { ArchitectureFlow } from '@/components/portfolio/visuals';
 import { ClientGlobe } from '@/components/portfolio/client-globe';
 import { Hero } from '@/components/portfolio/hero';
 export const Route = createFileRoute('/')({
- head:()=>pageHead('Rudresh Oza | Forward Deployed Engineer (FDE) — Cloud & GenAI','Rudresh Oza is a Forward Deployed Engineer (FDE) building full-stack apps, Azure and AWS platforms, and LangGraph AI agents. Explore case studies and impact.','/',{fullTitle:true,type:'profile',jsonLd:[profilePageJsonLd('/','Rudresh Oza — Forward Deployed Engineer (FDE) portfolio')]}),component:Index,
+ head:()=>pageHead(pageSeo['/'].title,pageSeo['/'].description,'/',{fullTitle:true,type:'profile',jsonLd:[profilePageJsonLd('/','Rudresh Oza — Forward Deployed Engineer (FDE) portfolio')]}),component:Index,
 });
 function Index(){return <main><div className="container-shell"><Hero/><section className="section"><ProjectGrid preview/></section><div className="border-t border-border"><ArchitectureFlow/></div><div className="border-t border-border"><AboutContent compact/></div></div><ClientGlobe/><Collaboration/></main>}

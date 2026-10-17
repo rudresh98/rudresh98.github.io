@@ -14,8 +14,9 @@ describe("App routing", () => {
     }
     expect(router.matchRoutes('/projects').at(-1)?.routeId).toBe('/projects/');
   });
-  it("matches the certifications and training pages", () => {
+  it("matches the certifications and training pages, with no services page", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes('/services').at(-1)?.routeId).not.toBe('/services');
     expect(router.matchRoutes('/certifications').at(-1)?.routeId).toBe('/certifications');
     expect(router.matchRoutes('/training').at(-1)?.routeId).toBe('/training/');
     for (const id of ['full-stack', 'backend', 'database', 'infra', 'databricks', 'genai', 'fde']) {

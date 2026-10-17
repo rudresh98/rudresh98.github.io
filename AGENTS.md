@@ -24,3 +24,4 @@
 - Keep decorative skill-icon mappings in a browser-safe module separate from presentation so every skill uses a consistent theme-aware symbol.
 - Keep client-country geography in a typed browser-safe data module and lazy-load the home globe behind a client-only boundary, so realistic 3D never blocks navigation or changes the rest of Home's server rendering.
 - Keep site URL, trailing-slash canonical paths, head metadata, JSON-LD, and sitemap pages in the browser-safe, asset-free SEO module; the root route sets shared social and structured-data defaults and each leaf route sets its own canonical link, so prerendered HTML, social previews, and the build-generated sitemap stay in sync with portfolio data.
+- Keep every page's search title and description in the SEO module's `pageSeo` map (titles ≤60, descriptions ≤160 characters) so heads, sitemap, and llms.txt stay in sync; Training is the selling page, so there is no separate services page.
