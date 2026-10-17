@@ -14,7 +14,11 @@ const sitemap: Plugin = {
   apply: "build",
   applyToEnvironment: (environment) => environment.name === "client",
   generateBundle() {
-    this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml() });
+    this.emitFile({
+      type: "asset",
+      fileName: "sitemap.xml",
+      source: sitemapXml(),
+    });
     this.emitFile({ type: "asset", fileName: "llms.txt", source: llmsTxt() });
   },
 };
@@ -37,6 +41,10 @@ export default defineConfig({
     pages: [{ path: "/" }],
     // Route-agnostic shell written to 404.html; GitHub Pages serves it for unknown URLs
     // and the client router renders the matching route or the not-found page.
-    spa: { enabled: true, maskPath: "/?shell", prerender: { outputPath: "/404" } },
+    spa: {
+      enabled: true,
+      maskPath: "/?shell",
+      prerender: { outputPath: "/404" },
+    },
   },
 });

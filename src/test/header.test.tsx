@@ -131,7 +131,12 @@ describe("Bottom dock", () => {
       .getAllByRole("listitem")
       .filter((li) => li.hasAttribute("data-secondary"))
       .map((li) => within(li).getByRole("link").getAttribute("aria-label"));
-    expect(secondary).toEqual(["About", "Expertise", "Experience", "Certifications"]);
+    expect(secondary).toEqual([
+      "About",
+      "Expertise",
+      "Experience",
+      "Certifications",
+    ]);
   });
 
   it("opens the command palette from its search button", async () => {
@@ -164,10 +169,15 @@ describe("Dock page previews", () => {
     await waitFor(() => expect(previews()).toHaveLength(1));
     const card = previews()[0] as HTMLElement;
     expect(card).toHaveAttribute("aria-hidden", "true");
-    expect(card.querySelector(".dock-preview-title")).toHaveTextContent("Training");
+    expect(card.querySelector(".dock-preview-title")).toHaveTextContent(
+      "Training",
+    );
     expect(card).toHaveTextContent("Courses I teach");
     expect(card.querySelector(".dock-preview-count")).toHaveTextContent("7");
-    expect(card.querySelector("iframe")).toHaveAttribute("src", "/training/?preview=1");
+    expect(card.querySelector("iframe")).toHaveAttribute(
+      "src",
+      "/training/?preview=1",
+    );
     expect(card.querySelector("iframe")).toHaveAttribute("tabindex", "-1");
   });
 
@@ -179,7 +189,10 @@ describe("Dock page previews", () => {
     expect(previews()[0]).toHaveTextContent("You are here");
     act(() => dock().getByRole("link", { name: "Contact" }).focus());
     await waitFor(() =>
-      expect(document.querySelector(".dock-preview iframe")).toHaveAttribute("src", "/contact/?preview=1"),
+      expect(document.querySelector(".dock-preview iframe")).toHaveAttribute(
+        "src",
+        "/contact/?preview=1",
+      ),
     );
     expect(previews()).toHaveLength(1);
   });

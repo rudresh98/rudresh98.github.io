@@ -8,23 +8,62 @@ import { routeTree } from "@/routeTree.gen";
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
 describe("App routing", () => {
   it("matches individual project pages independently from the gallery", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    for (const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health','mealboy','tareek','maitrii-infotech','fundflick','ai2go','qualitech']) {
-      expect(router.matchRoutes(`/projects/${id}`).at(-1)?.routeId).toBe('/projects/$projectId');
+    const router = createRouter({
+      routeTree,
+      context: { queryClient: new QueryClient() },
+    });
+    for (const id of [
+      "music-ai",
+      "supply-chain",
+      "anchor",
+      "izo-sdwan",
+      "reporting",
+      "death-portal",
+      "plant-health",
+      "mealboy",
+      "tareek",
+      "maitrii-infotech",
+      "fundflick",
+      "ai2go",
+      "qualitech",
+    ]) {
+      expect(router.matchRoutes(`/projects/${id}`).at(-1)?.routeId).toBe(
+        "/projects/$projectId",
+      );
     }
-    expect(router.matchRoutes('/projects').at(-1)?.routeId).toBe('/projects/');
+    expect(router.matchRoutes("/projects").at(-1)?.routeId).toBe("/projects/");
   });
   it("matches the certifications and training pages, with no services page", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    expect(router.matchRoutes('/services').at(-1)?.routeId).not.toBe('/services');
-    expect(router.matchRoutes('/certifications').at(-1)?.routeId).toBe('/certifications');
-    expect(router.matchRoutes('/training').at(-1)?.routeId).toBe('/training/');
-    for (const id of ['full-stack', 'backend', 'database', 'infra', 'databricks', 'genai', 'fde']) {
-      expect(router.matchRoutes(`/training/${id}`).at(-1)?.routeId).toBe('/training/$courseId');
+    const router = createRouter({
+      routeTree,
+      context: { queryClient: new QueryClient() },
+    });
+    expect(router.matchRoutes("/services").at(-1)?.routeId).not.toBe(
+      "/services",
+    );
+    expect(router.matchRoutes("/certifications").at(-1)?.routeId).toBe(
+      "/certifications",
+    );
+    expect(router.matchRoutes("/training").at(-1)?.routeId).toBe("/training/");
+    for (const id of [
+      "full-stack",
+      "backend",
+      "database",
+      "infra",
+      "databricks",
+      "genai",
+      "fde",
+    ]) {
+      expect(router.matchRoutes(`/training/${id}`).at(-1)?.routeId).toBe(
+        "/training/$courseId",
+      );
     }
   });
   it("matches a page for / instead of falling back to not found", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    const router = createRouter({
+      routeTree,
+      context: { queryClient: new QueryClient() },
+    });
 
     const matches = router.matchRoutes("/");
 

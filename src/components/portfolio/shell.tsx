@@ -1,6 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, ArrowUp, Download, Github, Linkedin, Mail, Search } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowUp,
+  Download,
+  Github,
+  Linkedin,
+  Mail,
+  Search,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import resume from "@/assets/rudresh-oza-resume.pdf";
 import { profile } from "@/lib/portfolio";
@@ -104,5 +112,78 @@ export function Header() {
   );
 }
 
-export function SocialLinks(){return <div className="flex items-center gap-4"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary"><Linkedin size={17}/></a><a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary"><Github size={17}/></a><a href={`mailto:${profile.email}`} aria-label="Email Rudresh" className="text-muted-foreground hover:text-primary"><Mail size={17}/></a></div>}
-export function Footer(){return <footer className="border-t border-border py-9"><div className="container-shell"><div className="flex flex-wrap items-center justify-between gap-6"><Link to="/" className="flex items-center gap-3"><span className="monogram">RO.</span><div><p className="text-xs font-bold">Rudresh Oza</p><p className="mt-1 text-[10px] text-muted-foreground">Forward Deployed Engineer (FDE) | Cloud & GenAI</p></div></Link><SocialLinks/><Button variant="ghost" size="icon" aria-label="Back to top" title="Back to top" onClick={()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}><ArrowUp/></Button></div><div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-[10px] text-muted-foreground"><p>© {new Date().getFullYear()} Rudresh Oza</p><p>Building thoughtful software, intelligent systems, and scalable digital products.</p></div></div></footer>}
+export function SocialLinks() {
+  return (
+    <div className="flex items-center gap-4">
+      <a
+        href={profile.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        className="text-muted-foreground hover:text-primary"
+      >
+        <Linkedin size={17} />
+      </a>
+      <a
+        href={profile.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        className="text-muted-foreground hover:text-primary"
+      >
+        <Github size={17} />
+      </a>
+      <a
+        href={`mailto:${profile.email}`}
+        aria-label="Email Rudresh"
+        className="text-muted-foreground hover:text-primary"
+      >
+        <Mail size={17} />
+      </a>
+    </div>
+  );
+}
+export function Footer() {
+  return (
+    <footer className="border-t border-border py-9">
+      <div className="container-shell">
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <Link to="/" className="flex items-center gap-3">
+            <span className="monogram">RO.</span>
+            <div>
+              <p className="text-xs font-bold">Rudresh Oza</p>
+              <p className="mt-1 text-[10px] text-muted-foreground">
+                Forward Deployed Engineer (FDE) | Cloud & GenAI
+              </p>
+            </div>
+          </Link>
+          <SocialLinks />
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Back to top"
+            title="Back to top"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "instant"
+                  : "smooth",
+              })
+            }
+          >
+            <ArrowUp />
+          </Button>
+        </div>
+        <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-[10px] text-muted-foreground">
+          <p>© {new Date().getFullYear()} Rudresh Oza</p>
+          <p>
+            Building thoughtful software, intelligent systems, and scalable
+            digital products.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
