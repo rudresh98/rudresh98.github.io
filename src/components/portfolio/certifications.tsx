@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { certifications, certificationIssuers, certificationStatus, filterCertifications, formatMonth, type Certification } from '@/lib/certifications';
+import { certifications, certificationGroup, certificationIssuers, certificationStatus, filterCertifications, formatMonth, type Certification } from '@/lib/certifications';
 import { certificationIcon } from '@/lib/certification-icons';
 import { Reveal } from './motion';
 
 export function CertificationCard({cert}:{cert:Certification}) {
- const Icon=certificationIcon(cert.issuer);const status=certificationStatus(cert);
+ const Icon=certificationIcon(certificationGroup(cert));const status=certificationStatus(cert);
  return <Reveal className="cert-card-inner">
   <div className="cert-top"><span className="cert-icon" aria-hidden="true"><Icon/></span><span className="cert-status" data-status={status}>{status==='active'?'Active':'Expired'}</span></div>
   <p className="cert-issuer">{cert.issuer}</p>

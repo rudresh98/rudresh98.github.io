@@ -214,6 +214,43 @@ export const projectVisuals: Record<string, ProjectVisual> = {
    {id:'recommend',label:'Recommend',detail:'Recommended products return to the gardener in the app.',nodes:['db','api','results'],edges:['api>db','results>api'],reverse:['api>db','results>api']},
   ],
   architecture:'Plant Health Advisor is an Android app built in React Native. Gardeners upload a photo of a plant, and a TensorFlow CNN, trained offline on images of 10 plant species and exported to TensorFlow Lite, runs on the device to detect the plant’s deficiency. The app then sends the detected deficiency to a Python API, which looks up recommended products in its database and returns them to the results screen.'},
+ 'mealboy': {type:'graph',title:'Online ordering platform',nodes:[
+  {id:'web',label:'Next.js',detail:'Storefront · shadcn',x:30,y:100},
+  {id:'api',label:'Node.js API',detail:'Orders & accounts',x:210,y:100,kind:'primary'},
+  {id:'db',label:'MongoDB',detail:'Menu · orders · users',x:390,y:40},
+  {id:'auth',label:'Auth',detail:'Accounts · addresses',x:390,y:190},
+  {id:'orders',label:'Orders',detail:'Delivery · pickup',x:210,y:235},
+ ],edges:[{from:'web',to:'api'},{from:'api',to:'db'},{from:'api',to:'auth'},{from:'orders',to:'api'}],architecture:'Illustrative view: a Next.js storefront styled with Tailwind CSS and shadcn calls a Node.js API that stores menus, orders, and users in MongoDB and handles customer authentication for delivery, pickup, and catering orders.'},
+ 'tareek': {type:'graph',title:'Dating app on mobile and web',nodes:[
+  {id:'mobile',label:'Mobile app',detail:'iOS & Android',x:30,y:40},
+  {id:'web',label:'Web app',detail:'Browser access',x:30,y:190},
+  {id:'api',label:'Backend API',detail:'Shared services',x:210,y:115,kind:'primary'},
+  {id:'profiles',label:'Profiles',detail:'Matching',x:390,y:115},
+ ],edges:[{from:'mobile',to:'api'},{from:'web',to:'api'},{from:'api',to:'profiles'}],architecture:'Illustrative view: mobile and web clients share one backend API that serves member profiles and matching for the Canadian dating app.'},
+ 'maitrii-infotech': {type:'graph',title:'Maitrii Infotech website',nodes:[
+  {id:'pages',label:'Next.js pages',detail:'Static marketing site',x:30,y:100},
+  {id:'gsap',label:'GSAP',detail:'Scroll & entrance motion',x:210,y:100,kind:'primary'},
+  {id:'sections',label:'Sections',detail:'Responsive layouts',x:390,y:40},
+  {id:'live',label:'Live site',detail:'Public website',x:390,y:190},
+ ],edges:[{from:'pages',to:'gsap'},{from:'gsap',to:'sections'},{from:'gsap',to:'live'}],architecture:'Illustrative view: static Next.js pages are brought to life with GSAP scroll and entrance animations, laid out responsively, and published as the live marketing site.'},
+ 'fundflick': {type:'graph',title:'Fundflick website',nodes:[
+  {id:'pages',label:'Next.js pages',detail:'Static marketing site',x:30,y:100},
+  {id:'gsap',label:'GSAP',detail:'Scroll & entrance motion',x:210,y:100,kind:'primary'},
+  {id:'sections',label:'Sections',detail:'Responsive layouts',x:390,y:40},
+  {id:'live',label:'Live site',detail:'Public website',x:390,y:190},
+ ],edges:[{from:'pages',to:'gsap'},{from:'gsap',to:'sections'},{from:'gsap',to:'live'}],architecture:'Illustrative view: static Next.js pages are brought to life with GSAP scroll and entrance animations, laid out responsively, and published as the live marketing site.'},
+ 'ai2go': {type:'graph',title:'AI2Go Solutions website',nodes:[
+  {id:'pages',label:'Next.js pages',detail:'Static marketing site',x:30,y:100},
+  {id:'gsap',label:'GSAP',detail:'Scroll & entrance motion',x:210,y:100,kind:'primary'},
+  {id:'sections',label:'Sections',detail:'Responsive layouts',x:390,y:40},
+  {id:'live',label:'Live site',detail:'Public website',x:390,y:190},
+ ],edges:[{from:'pages',to:'gsap'},{from:'gsap',to:'sections'},{from:'gsap',to:'live'}],architecture:'Illustrative view: static Next.js pages are brought to life with GSAP scroll and entrance animations, laid out responsively, and published as the live marketing site.'},
+ 'qualitech': {type:'graph',title:'Qualitech Group website',nodes:[
+  {id:'pages',label:'Next.js pages',detail:'Static marketing site',x:30,y:100},
+  {id:'gsap',label:'GSAP',detail:'Scroll & entrance motion',x:210,y:100,kind:'primary'},
+  {id:'sections',label:'Sections',detail:'Responsive layouts',x:390,y:40},
+  {id:'live',label:'Live site',detail:'Public website',x:390,y:190},
+ ],edges:[{from:'pages',to:'gsap'},{from:'gsap',to:'sections'},{from:'gsap',to:'live'}],architecture:'Illustrative view: static Next.js pages are brought to life with GSAP scroll and entrance animations, laid out responsively, and published as the live marketing site.'},
 };
 
 export const architectureLayers = [

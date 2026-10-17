@@ -37,6 +37,7 @@ async function renderHeader(path = "/") {
     "projects/$projectId",
     "certifications",
     "training",
+    "training/$courseId",
     "contact",
   ].map((p) =>
     createRoute({ getParentRoute: () => root, path: p, component: () => null }),
@@ -120,6 +121,7 @@ describe("Header", () => {
     ["/projects/music-ai", "Projects"],
     ["/certifications", "Certifications"],
     ["/training", "Training"],
+    ["/training/fde", "Training"],
     ["/contact", "Contact"],
   ])("marks only the matching page active on %s", async (path, label) => {
     await renderHeader(path);

@@ -2,7 +2,7 @@
 import { profile, projects, experience, type Project } from './portfolio';
 import { featuredAreas, skills } from './skills';
 import { certifications, sortCertifications } from './certifications';
-import { courses } from './training';
+import { courses, coursePath, type Course } from './training';
 
 export const site = {
  url: 'https://rudresh98.github.io',
@@ -30,6 +30,7 @@ export const sitePages: { path: string; priority: number; changefreq: 'monthly' 
  ...projects.map(project => ({ path: `/projects/${project.id}`, priority: 0.7, changefreq: 'yearly' as const })),
  { path: '/certifications', priority: 0.7, changefreq: 'monthly' },
  { path: '/training', priority: 0.7, changefreq: 'monthly' },
+ ...courses.map(course => ({ path: coursePath(course.id), priority: 0.6, changefreq: 'yearly' as const })),
  { path: '/contact', priority: 0.6, changefreq: 'yearly' },
 ];
 
@@ -127,6 +128,7 @@ export function projectJsonLd(project: Project) {
   name: project.title, headline: project.title, description: project.description, url: canonicalUrl(`/projects/${project.id}`),
   genre: project.category, keywords: project.tags.join(', '), inLanguage: 'en', image: absoluteUrl(site.image.path),
   author: { '@id': personId }, creator: { '@id': personId }, isPartOf: { '@id': websiteId },
+  ...(project.links?.length ? { sameAs: project.links.map(link => link.url) } : {}),
  };
 }
 
@@ -150,8 +152,13 @@ export function courseListJsonLd() {
    '@type': 'ItemList',
    itemListElement: courses.map((course, index) => ({
     '@type': 'ListItem', position: index + 1,
-    item: { '@type': 'Course', '@id': `${canonicalUrl('/training')}#${course.id}`, name: course.title, description: course.summary, url: `${canonicalUrl('/training')}#${course.id}`, teaches: course.tools, inLanguage: 'en', provider: { '@id': personId } },
+    item: courseJsonLd(course),
    })),
   },
  };
+}
+
+export function courseJsonLd(course: Course) {
+ const url = canonicalUrl(coursePath(course.id));
+ return { '@context': 'https://schema.org', '@type': 'Course', '@id': `${url}#course`, name: course.title, description: course.summary, url, teaches: course.tools, inLanguage: 'en', provider: { '@id': personId }, isPartOf: { '@id': websiteId } };
 }

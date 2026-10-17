@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { projects, profile } from '@/lib/portfolio';
+import { getProject, projects, profile } from '@/lib/portfolio';
 import { canonicalUrl, pageHead, sitemapXml, sitePages, siteJsonLd, projectJsonLd } from '@/lib/seo';
 
 describe('Canonical URLs',()=>{
@@ -24,7 +24,7 @@ describe('Canonical URLs',()=>{
 describe('Sitemap',()=>{
  it('lists every named page and case study once',()=>{
   const xml=sitemapXml();
-  for(const path of ['/','/about/','/expertise/','/experience/','/projects/','/certifications/','/training/','/contact/',...projects.map(p=>`/projects/${p.id}/`)])
+  for(const path of ['/','/about/','/expertise/','/experience/','/projects/','/certifications/','/training/','/training/full-stack/','/training/backend/','/training/database/','/training/infra/','/training/databricks/','/training/genai/','/training/fde/','/contact/',...projects.map(p=>`/projects/${p.id}/`)])
    expect(xml).toContain(`<loc>https://rudresh98.github.io${path}</loc>`);
   expect(new Set(sitePages.map(p=>p.path)).size).toBe(sitePages.length);
  });
@@ -32,6 +32,7 @@ describe('Sitemap',()=>{
 });
 
 describe('Structured data',()=>{
+ it('points linked case studies at their live pages',()=>{expect(projectJsonLd(getProject('mealboy')!)).toMatchObject({sameAs:['https://mealboy.nl/']});expect(projectJsonLd(getProject('anchor')!)).not.toHaveProperty('sameAs')});
  it('describes the person with verified profile links',()=>{
   const person=siteJsonLd('/assets/portrait.png')['@graph'].find(node=>node['@type']==='Person');
   expect(person).toMatchObject({name:profile.name,jobTitle:profile.role,image:'https://rudresh98.github.io/assets/portrait.png',sameAs:[profile.linkedin,profile.github]});

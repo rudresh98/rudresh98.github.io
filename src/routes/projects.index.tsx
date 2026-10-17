@@ -3,5 +3,5 @@ import { pageHead, projectListJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { Page } from '@/components/portfolio/content';
 import { ProjectGrid, Collaboration } from '@/components/portfolio/work';
 
-export const Route=createFileRoute('/projects/')({head:()=>pageHead('Selected Projects','Case studies in agentic AI, supply chain simulation, booking and redemption, telecommunications, automated reporting, and mobile apps with on-device machine learning by Rudresh Oza.','/projects',{jsonLd:[projectListJsonLd(),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Projects',path:'/projects'}])]}),component:Projects});
+export const Route=createFileRoute('/projects/')({head:()=>pageHead('Selected Projects','Case studies in agentic AI, supply chain simulation, booking and redemption, telecommunications, automated reporting, mobile apps with on-device machine learning, online ordering, and animated Next.js websites by Rudresh Oza.','/projects',{jsonLd:[projectListJsonLd(),breadcrumbJsonLd([{name:'Home',path:'/'},{name:'Projects',path:'/projects'}])]}),component:Projects});
 function Projects(){return <><Page><section className="section"><ProjectGrid/></section></Page><Collaboration/></>}

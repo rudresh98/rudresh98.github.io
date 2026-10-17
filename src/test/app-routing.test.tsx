@@ -9,7 +9,7 @@ import { routeTree } from "@/routeTree.gen";
 describe("App routing", () => {
   it("matches individual project pages independently from the gallery", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    for (const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health']) {
+    for (const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health','mealboy','tareek','maitrii-infotech','fundflick','ai2go','qualitech']) {
       expect(router.matchRoutes(`/projects/${id}`).at(-1)?.routeId).toBe('/projects/$projectId');
     }
     expect(router.matchRoutes('/projects').at(-1)?.routeId).toBe('/projects/');
@@ -17,7 +17,10 @@ describe("App routing", () => {
   it("matches the certifications and training pages", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(router.matchRoutes('/certifications').at(-1)?.routeId).toBe('/certifications');
-    expect(router.matchRoutes('/training').at(-1)?.routeId).toBe('/training');
+    expect(router.matchRoutes('/training').at(-1)?.routeId).toBe('/training/');
+    for (const id of ['full-stack', 'backend', 'database', 'infra', 'databricks', 'genai', 'fde']) {
+      expect(router.matchRoutes(`/training/${id}`).at(-1)?.routeId).toBe('/training/$courseId');
+    }
   });
   it("matches a page for / instead of falling back to not found", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });

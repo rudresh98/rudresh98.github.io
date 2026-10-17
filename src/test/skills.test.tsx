@@ -38,7 +38,10 @@ describe('Verified skills data', () => {
   });
 
   it('backs every case study with at least one skill', () => {
-    for (const project of projects) expect(skillsForProject(project.id).length, project.id).toBeGreaterThan(0);
+    // Tareek's stack is not yet confirmed by Rudresh, so no skill claims it until he does.
+    const awaitingStack = ['tareek'];
+    for (const project of projects) if (!awaitingStack.includes(project.id)) expect(skillsForProject(project.id).length, project.id).toBeGreaterThan(0);
+    for (const id of awaitingStack) expect(skillsForProject(id)).toEqual([]);
   });
 
   it('credits case studies only with the technology a project actually used', () => {

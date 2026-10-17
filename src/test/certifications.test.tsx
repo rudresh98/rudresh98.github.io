@@ -4,7 +4,7 @@ import { BadgeCheck } from 'lucide-react';
 
 import { CertificationGrid } from '@/components/portfolio/certifications';
 import { certificationIcon } from '@/lib/certification-icons';
-import { certifications, certificationIssuers, certificationStatus, filterCertifications, formatMonth, type Certification } from '@/lib/certifications';
+import { certifications, certificationGroup, certificationIssuers, certificationStatus, filterCertifications, formatMonth, type Certification } from '@/lib/certifications';
 import { certificationListJsonLd } from '@/lib/seo';
 
 // Test-only fixtures exercising the renderer; they never reach the site.
@@ -22,8 +22,24 @@ describe('Verified certifications data', () => {
    expect(cert.issued).toMatch(month);
    if (cert.expires) { expect(cert.expires).toMatch(month); expect(cert.expires > cert.issued).toBe(true); }
    if (cert.verifyUrl) expect(new URL(cert.verifyUrl).protocol).toBe('https:');
-   expect(certificationIcon(cert.issuer)).toBeTruthy();
+   expect(certificationIcon(certificationGroup(cert))).not.toBe(BadgeCheck);
   }
+ });
+ it('keeps the five confirmed credentials exactly as issued, newest first', () => {
+  expect(filterCertifications('All').map(c => c.name)).toEqual([
+   'Claude Certified Developer - Foundations',
+   'Databricks Certified Data Engineer Professional',
+   'Databricks Certified Data Engineer Associate',
+   'Claude 101',
+   'Microsoft Certified: Azure Fundamentals',
+  ]);
+  for (const cert of certifications) expect(['www.credly.com', 'credentials.databricks.com', 'verify.skilljar.com']).toContain(new URL(cert.verifyUrl!).host);
+ });
+ it('groups sub-brand issuers for filtering while keeping the exact issuer name', () => {
+  expect(certificationIssuers()).toEqual(['All', 'Anthropic', 'Databricks', 'Microsoft']);
+  const anthropic = filterCertifications('Anthropic');
+  expect(anthropic.map(c => c.id)).toEqual(['claude-developer-foundations', 'claude-101']);
+  expect(anthropic.map(c => c.issuer)).toEqual(['Anthropic', 'Anthropic Education']);
  });
  it('lists every certification in structured data', () => {
   expect(certificationListJsonLd().mainEntity.itemListElement).toHaveLength(certifications.length);

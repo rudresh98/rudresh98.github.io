@@ -19,6 +19,8 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as TrainingRouteImport } from './routes/training'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
+import { Route as TrainingIndexRouteImport } from './routes/training.index'
+import { Route as TrainingCourseIdRouteImport } from './routes/training.$courseId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +72,16 @@ const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
   path: '/$projectId',
   getParentRoute: () => ProjectsRoute,
 } as any)
+const TrainingIndexRoute = TrainingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TrainingRoute,
+} as any)
+const TrainingCourseIdRoute = TrainingCourseIdRouteImport.update({
+  id: '/$courseId',
+  path: '/$courseId',
+  getParentRoute: () => TrainingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -79,9 +91,11 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
-  '/training': typeof TrainingRoute
+  '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/training/$courseId': typeof TrainingCourseIdRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/training/': typeof TrainingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -90,9 +104,10 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
-  '/training': typeof TrainingRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/training/$courseId': typeof TrainingCourseIdRoute
   '/projects': typeof ProjectsIndexRoute
+  '/training': typeof TrainingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -103,9 +118,11 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
-  '/training': typeof TrainingRoute
+  '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/training/$courseId': typeof TrainingCourseIdRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/training/': typeof TrainingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,7 +136,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/training'
     | '/projects/$projectId'
+    | '/training/$courseId'
     | '/projects/'
+    | '/training/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,9 +147,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/expertise'
-    | '/training'
     | '/projects/$projectId'
+    | '/training/$courseId'
     | '/projects'
+    | '/training'
   id:
     | '__root__'
     | '/'
@@ -142,7 +162,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/training'
     | '/projects/$projectId'
+    | '/training/$courseId'
     | '/projects/'
+    | '/training/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,7 +175,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   ExpertiseRoute: typeof ExpertiseRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
-  TrainingRoute: typeof TrainingRoute
+  TrainingRoute: typeof TrainingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -228,6 +250,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsProjectIdRouteImport
       parentRoute: typeof ProjectsRoute
     }
+    '/training/': {
+      id: '/training/'
+      path: '/'
+      fullPath: '/training/'
+      preLoaderRoute: typeof TrainingIndexRouteImport
+      parentRoute: typeof TrainingRoute
+    }
+    '/training/$courseId': {
+      id: '/training/$courseId'
+      path: '/$courseId'
+      fullPath: '/training/$courseId'
+      preLoaderRoute: typeof TrainingCourseIdRouteImport
+      parentRoute: typeof TrainingRoute
+    }
   }
 }
 
@@ -245,6 +281,20 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
   ProjectsRouteChildren,
 )
 
+interface TrainingRouteChildren {
+  TrainingCourseIdRoute: typeof TrainingCourseIdRoute
+  TrainingIndexRoute: typeof TrainingIndexRoute
+}
+
+const TrainingRouteChildren: TrainingRouteChildren = {
+  TrainingCourseIdRoute: TrainingCourseIdRoute,
+  TrainingIndexRoute: TrainingIndexRoute,
+}
+
+const TrainingRouteWithChildren = TrainingRoute._addFileChildren(
+  TrainingRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -253,7 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   ExpertiseRoute: ExpertiseRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
-  TrainingRoute: TrainingRoute,
+  TrainingRoute: TrainingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
