@@ -44,3 +44,8 @@ if (!("ResizeObserver" in globalThis)) {
     value: ObserverStub,
   });
 }
+
+// cmdk keeps the selected palette item in view; jsdom has no layout, so scrolling is a no-op.
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}

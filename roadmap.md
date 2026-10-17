@@ -59,3 +59,8 @@
 - [x] Link Pollstar to the AI Agent Platform and Genie AI (Google Play) to Plant Health Advisor.
 - [x] Add MealBoy, Tareek, and the Maitrii Infotech, Fundflick, AI2Go Solutions, and Qualitech Group websites with illustrative diagrams and live links.
 - [ ] Rudresh confirms Tareek's stack and a working link.
+
+## Dock navigation and command palette
+- [x] Replace the top nav with a floating, magnifying bottom dock (compact dock + bottom sheet on phones).
+- [x] Add a ⌘K / Ctrl+K palette across pages, projects, courses, certifications, and quick actions.
+- [x] Verify keyboard access, active states, reduced motion, themes, and mobile layout.

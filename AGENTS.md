@@ -11,6 +11,7 @@
 
 - Keep portfolio content and verified achievements in typed browser-safe data modules, separate from presentation, so every view uses the same source of truth.
 - Use TanStack file routes for named portfolio pages and the root route for the shared header and footer, preserving type-safe navigation.
+- Keep primary navigation in a root-mounted bottom dock plus a ⌘K command palette, both built from the browser-safe navigation module, so every page, project, course, and certification stays one step away; the top bar holds only identity, search, and quick actions.
 - Keep Projects as an Outlet layout with a gallery index and a dynamic case-study leaf resolved from portfolio data, so direct URLs and gallery links share the same content.
 - Mount testimonials once in the root shell before the footer and keep their typed content separate from presentation, so every page renders the same user-supplied quotes; rotate them through a swipeable carousel so all remain reachable without stacking cards, and never invent or reword endorsements.
 - Use Lovable Assets pointers for uploaded portrait and resume media so binary files stay outside the source repository.

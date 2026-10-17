@@ -53,18 +53,13 @@
 /* Floating header: the sticky band keeps its 88px/72px flow height (the hero, scroll-padding-top and explorer scroll-margin depend on it) while the pill inside floats.
    Never set `display` here on elements that also use Tailwind visibility utilities: unlayered CSS beats the utilities layer. */
 .header-bar {pointer-events:auto;height:60px;padding-inline:10px 8px;border:1px solid color-mix(in oklab,var(--border) 70%,transparent);border-radius:999px;background:color-mix(in oklab,var(--card) 62%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);transition:background-color .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1);}
-.header-scrolled .header-bar {background:color-mix(in oklab,var(--card) 84%,transparent);border-color:var(--border);box-shadow:var(--shadow-header);}
+.header-scrolled .header-bar {background:color-mix(in oklab,var(--card) 88%,transparent);-webkit-backdrop-filter:blur(28px) saturate(1.6);backdrop-filter:blur(28px) saturate(1.6);border-color:var(--border);box-shadow:var(--shadow-header);}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {.header-bar {background:var(--card);}}
 .header-brand {display:inline-flex;align-items:center;gap:10px;min-width:0;justify-self:start;border-radius:999px;font-size:14px;font-weight:700;color:var(--foreground);}
 .header-brand .monogram {transition:transform .3s cubic-bezier(.22,1,.36,1);}
 .header-brand:hover .monogram {transform:rotate(-6deg);}
 .header-brand-name {white-space:nowrap;transition:color .2s cubic-bezier(.22,1,.36,1);}
 .header-brand:hover .header-brand-name {color:var(--primary);}
-.header-link {position:relative;display:inline-flex;align-items:center;height:36px;padding-inline:12px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap;color:var(--muted-foreground);transition:color .2s cubic-bezier(.22,1,.36,1),background-color .2s cubic-bezier(.22,1,.36,1);}
-.header-link:hover {color:var(--foreground);background:var(--secondary);}
-.header-link:active {color:var(--primary);}
-.header-link[data-status='active'] {color:var(--primary);background:transparent;}
-.header-link-indicator {position:absolute;inset:0;background:var(--accent);}
 .header-actions {display:flex;align-items:center;justify-content:flex-end;gap:6px;justify-self:end;}
 .header-cta {align-items:center;gap:10px;height:40px;padding:0 5px 0 16px;border-radius:999px;background:var(--foreground);color:var(--background);font-size:13px;font-weight:700;white-space:nowrap;transition:background-color .25s cubic-bezier(.22,1,.36,1),box-shadow .25s cubic-bezier(.22,1,.36,1),transform .2s cubic-bezier(.22,1,.36,1);}
 .header-cta:hover {background:color-mix(in oklab,var(--foreground) 86%,var(--primary));box-shadow:0 6px 18px color-mix(in oklab,var(--primary) 22%,transparent);}
@@ -74,9 +69,6 @@
 .header-cta:hover .header-cta-icon svg,.header-cta:focus-visible .header-cta-icon svg {transform:translate(2px,-2px);}
 .header-bar .theme-toggle {border-radius:999px;}
 .header-bar :focus-visible,.mobile-menu :focus-visible {outline:2px solid var(--primary);outline-offset:2px;box-shadow:none;}
-/* Seven links share the bar at lg, so tighten them until xl leaves room. */
-@media(min-width:1024px) and (max-width:1279px) {.header-link {padding-inline:9px;}}
-@media(min-width:1280px) {.header-link {padding-inline:14px;}}
 @media(max-width:767px) {.header-bar {height:52px;padding-inline:8px 4px;}.header-cta {height:36px;padding-left:14px;font-size:12.5px;}.header-cta-icon {width:26px;height:26px;}}
 .hero-system {position:relative;padding:28px 0 8px;min-width:0;}
 .hero-system .architecture-intro h2 {font-size:29px;line-height:1.35;margin-top:15px;}
@@ -796,3 +788,98 @@
  .course-detail-module { font-size:16px; }
  .course-detail-enquiry { padding:22px 20px; }
 }
+
+/* Top bar search trigger: opens the ⌘K command palette. */
+.header-search {display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 6px 0 12px;border:1px solid var(--border);border-radius:999px;background:color-mix(in oklab,var(--card) 70%,transparent);color:var(--muted-foreground);font-size:12.5px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background-color .2s;}
+.header-search svg {width:15px;height:15px;}
+.header-search kbd {display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:999px;background:var(--secondary);font:inherit;font-size:10.5px;font-weight:700;color:var(--foreground);}
+.header-search:hover {border-color:color-mix(in oklab,var(--primary) 40%,var(--border));color:var(--foreground);}
+.header-search:focus-visible {outline:2px solid var(--primary);outline-offset:2px;}
+@media(max-width:639px) {.header-search {width:38px;justify-content:center;padding:0;}.header-search-label,.header-search kbd {display:none;}}
+
+/* Bottom dock: the site's primary navigation, a floating glass pill in the thumb zone. */
+body {padding-bottom:calc(88px + env(safe-area-inset-bottom));}
+.dock {position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;transform:translateX(-50%);transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s;}
+.dock-hidden {transform:translate(-50%,calc(100% + 32px));opacity:0;pointer-events:none;}
+.dock-list {display:flex;align-items:flex-end;gap:6px;height:62px;padding:8px 10px;border:1px solid color-mix(in oklab,var(--foreground) 10%,var(--border));border-radius:22px;background:color-mix(in oklab,var(--card) 88%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:0 18px 50px oklch(0.2 0 0 / 14%),inset 0 1px 0 color-mix(in oklab,white 35%,transparent);}
+/* Without backdrop blur, translucency would leave text legible behind the dock, so go solid. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {.dock-list,.header-scrolled .header-bar {background:var(--card);}}
+.dark .dock-list {box-shadow:0 18px 50px oklch(0 0 0 / 45%),inset 0 1px 0 color-mix(in oklab,white 8%,transparent);}
+.dock-item {position:relative;display:flex;align-items:flex-end;}
+.dock-link,.dock-button {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border:0;background:none;padding:0;color:var(--muted-foreground);cursor:pointer;}
+.dock-icon {display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:color-mix(in oklab,var(--secondary) 92%,var(--foreground));transition:background-color .25s,color .25s,box-shadow .25s;}
+.dock-icon svg {width:46%;height:46%;min-width:18px;min-height:18px;}
+.dock-link:hover .dock-icon,.dock-button:hover .dock-icon {background:var(--accent);color:var(--primary);}
+.dock-link[data-status='active'] .dock-icon {background:var(--accent);color:var(--primary);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--primary) 35%,transparent);}
+.dock-link:focus-visible,.dock-button:focus-visible {outline:none;}
+.dock-link:focus-visible .dock-icon,.dock-button:focus-visible .dock-icon {outline:2px solid var(--primary);outline-offset:2px;}
+.dock-indicator {position:absolute;bottom:-6px;width:5px;height:5px;border-radius:999px;background:var(--primary);box-shadow:0 0 10px 2px color-mix(in oklab,var(--primary) 65%,transparent);}
+.dock-divider {align-self:center;width:1px;height:30px;margin-inline:4px;background:var(--border);}
+.dock-more-item {display:none;}
+.dock-tooltip {padding:5px 10px;border-radius:8px;background:var(--foreground);color:var(--background);font-size:11.5px;font-weight:600;}
+.dock-tooltip kbd {margin-left:6px;font:inherit;opacity:.7;}
+@media(max-width:639px) {
+ .dock-item[data-secondary] {display:none;}
+ .dock-more-item {display:flex;}
+ .dock-list {gap:4px;height:58px;padding:7px 8px;}
+ .dock-icon {width:42px;height:42px;}
+}
+@media(prefers-reduced-motion:reduce) {.dock,.dock-hidden {transition:opacity .2s;}.dock-hidden {transform:translateX(-50%);}}
+
+/* The More menu becomes a bottom sheet rising from the dock. */
+.mobile-menu {top:auto;bottom:calc(10px + env(safe-area-inset-bottom));padding:6px 10px 14px;border-radius:28px;transform-origin:bottom center;}
+.mobile-menu-handle {display:block;width:38px;height:4px;margin:4px auto 0;border-radius:999px;background:var(--border);}
+.mobile-menu-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.mobile-menu-link {justify-content:flex-start;gap:10px;min-height:54px;font-size:15px;border:1px solid var(--border);}
+.mobile-menu-link svg {width:18px;height:18px;}
+.mobile-menu[data-state='open'] {animation:sheet-in .38s cubic-bezier(.22,1,.36,1) both;}
+.mobile-menu[data-state='closed'] {animation:sheet-out .2s ease-in both;}
+@keyframes sheet-in {from {opacity:0;transform:translateY(24px) scale(.98);}}
+@keyframes sheet-out {to {opacity:0;transform:translateY(18px) scale(.98);}}
+
+/* ⌘K command palette. */
+.palette-overlay {position:fixed;inset:0;z-index:60;background:var(--overlay);backdrop-filter:blur(4px);}
+.palette-overlay[data-state='open'] {animation:header-fade-in .2s ease-out both;}
+.palette {position:fixed;z-index:61;left:50%;top:14vh;width:min(640px,calc(100% - 32px));transform:translateX(-50%);border:1px solid var(--border);border-radius:18px;background:var(--card);box-shadow:0 30px 80px oklch(0.15 0 0 / 30%);overflow:hidden;}
+.palette[data-state='open'] {animation:palette-in .28s cubic-bezier(.22,1,.36,1) both;}
+@keyframes palette-in {from {opacity:0;transform:translate(-50%,-8px) scale(.98);}}
+.palette-command {background:transparent;}
+.palette [cmdk-input-wrapper] {padding-inline:18px;border-color:var(--border);}
+.palette-input {height:56px;font-size:15px;}
+.palette-list {max-height:min(420px,60vh);padding:8px;scroll-padding-block:8px;}
+.palette-empty {padding:28px 12px;text-align:center;font-size:13px;color:var(--muted-foreground);}
+.palette-group [cmdk-group-heading] {padding:10px 10px 6px;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);}
+.palette-item {display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 10px;border-radius:10px;cursor:pointer;font-size:13.5px;color:var(--foreground);}
+.palette-item[data-selected='true'] {background:var(--accent);}
+.palette-item-icon {display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:8px;background:var(--secondary);color:var(--muted-foreground);}
+.palette-item[data-selected='true'] .palette-item-icon {background:var(--primary);color:var(--primary-foreground);}
+.palette-item-icon svg {width:15px;height:15px;}
+.palette-item-label {flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.palette-item-meta {flex:none;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;color:var(--muted-foreground);}
+.palette-item-external {flex:none;width:14px;height:14px;color:var(--muted-foreground);}
+.palette-footer {display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:40px;padding:8px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--muted-foreground);}
+.palette-status {color:var(--primary);font-weight:600;}
+.palette-hints kbd {display:inline-grid;place-items:center;min-width:20px;height:20px;margin:0 2px;padding:0 5px;border:1px solid var(--border);border-radius:5px;font:inherit;font-size:10px;}
+@media(max-width:639px) {.palette {top:10px;}.palette-hints {display:none;}}
+@media(prefers-reduced-motion:reduce) {.palette[data-state='open'],.palette-overlay[data-state='open'] {animation:none;}}
+
+/* Dock hover previews: a live, scaled render of the destination page with its title. */
+.dock-preview-card {width:304px;padding:8px;border:1px solid color-mix(in oklab,var(--foreground) 10%,var(--border));border-radius:18px;background:color-mix(in oklab,var(--card) 92%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:0 24px 60px oklch(0.15 0 0 / 22%);}
+.dark .dock-preview-card {box-shadow:0 24px 60px oklch(0 0 0 / 55%);}
+.dock-preview-frame {position:relative;width:288px;height:180px;overflow:hidden;border-radius:12px;border:1px solid var(--border);background:var(--background);}
+/* 1280×800 scaled by .225 fills the 288×180 frame exactly. */
+.dock-preview-iframe {position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform:scale(.225);transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .35s ease;}
+.dock-preview-iframe.is-loaded {opacity:1;}
+.dock-preview-skeleton {position:absolute;inset:0;background:linear-gradient(100deg,var(--secondary) 30%,color-mix(in oklab,var(--secondary) 60%,var(--card)) 50%,var(--secondary) 70%);background-size:200% 100%;animation:preview-shimmer 1.2s linear infinite;}
+@keyframes preview-shimmer {from {background-position:100% 0;} to {background-position:-100% 0;}}
+.dock-preview-meta {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 6px 4px;}
+.dock-preview-title {display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--foreground);}
+.dock-preview-here {padding:2px 7px;border-radius:999px;background:var(--accent);font-size:9px;font-weight:700;text-transform:uppercase;color:var(--primary);}
+.dock-preview-summary {margin-top:2px;font-size:11.5px;color:var(--muted-foreground);}
+.dock-preview-count {display:grid;place-items:center;min-width:34px;height:28px;padding:0 8px;border-radius:999px;background:var(--accent);font-size:12px;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums;}
+@media(prefers-reduced-motion:reduce) {.dock-preview-card[data-state] {animation:none;}.dock-preview-skeleton {animation:none;}}
+/* Inside a preview frame the page renders alone: no scrollbars, no entrance transition. */
+html[data-preview] {scrollbar-width:none;}
+html[data-preview]::-webkit-scrollbar {display:none;}
+html[data-preview] body {padding-bottom:0;}
+html[data-preview] .page-transition {animation:none;}

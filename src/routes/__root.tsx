@@ -15,8 +15,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/portfolio/shell";
+import { Dock } from "@/components/portfolio/dock";
+import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { Testimonials } from "@/components/portfolio/testimonials";
 import { defaultMeta, siteJsonLd } from "@/lib/seo";
+import { isPreviewSearch } from "@/lib/navigation";
 import portrait from "@/assets/rudresh-oza.png";
 
 function NotFoundComponent() {
@@ -124,6 +127,11 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => (s.resolvedLocation ?? s.location).pathname });
+  // Dock hover previews frame pages with ?preview=1: render the page alone, without dock or palette.
+  const preview = useRouterState({ select: (s) => isPreviewSearch(s.location.search) });
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-preview", preview);
+  }, [preview]);
   const [animate, setAnimate] = useState(false);
   const previous = useRef<string | null>(null);
 
@@ -137,12 +145,15 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Header />
-      <div key={pathname} className={animate ? "page-transition" : undefined}>
-        <Outlet />
-      </div>
-      <Testimonials />
-      <Footer />
+      <CommandPaletteProvider disabled={preview}>
+        <Header />
+        <div key={pathname} className={animate ? "page-transition" : undefined}>
+          <Outlet />
+        </div>
+        <Testimonials />
+        <Footer />
+        {!preview && <Dock />}
+      </CommandPaletteProvider>
     </QueryClientProvider>
   );
 }
