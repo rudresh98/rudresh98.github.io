@@ -9,10 +9,11 @@ describe('Confirmed professional achievements',()=>{
  it('keeps 1 billion lines of code written',()=>expect(achievements.codeLines).toBe(1000000000));
 });
 describe('Portfolio interactions',()=>{
- it('resolves all five case studies by stable ID',()=>{for(const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting']) expect(getProject(id)?.id).toBe(id)});
+ it('resolves all seven case studies by stable ID',()=>{for(const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health']) expect(getProject(id)?.id).toBe(id)});
  it('does not resolve unknown case studies',()=>{expect(getProject('unknown')).toBeUndefined();expect(getNextProject('unknown')).toBeUndefined()});
- it('advances case studies and wraps the final project',()=>{expect(getNextProject('music-ai')?.id).toBe('supply-chain');expect(getNextProject('reporting')?.id).toBe('music-ai')});
+ it('advances case studies and wraps the final project',()=>{expect(getNextProject('music-ai')?.id).toBe('supply-chain');expect(getNextProject('reporting')?.id).toBe('death-portal');expect(getNextProject('death-portal')?.id).toBe('plant-health');expect(getNextProject('plant-health')?.id).toBe('music-ai')});
  it('filters GenAI projects without other categories',()=>{expect(filterProjects('GenAI').map(p=>p.id)).toEqual(['music-ai'])});
+ it('filters mobile work',()=>expect(filterProjects('Mobile').map(p=>p.id)).toEqual(['death-portal','plant-health']));
  it('filters cloud work',()=>expect(filterProjects('Cloud').map(p=>p.id)).toEqual(['supply-chain','reporting']));
  it('builds an email draft with actual recipient and encoded user input',()=>{const url=emailDraft('Ada','ada@example.com','AI & cloud','Hello\nWorld');expect(url).toContain('mailto:ozarudresh18@gmail.com?');expect(url).toContain('subject=AI%20%26%20cloud');expect(decodeURIComponent(url)).toContain('From: Ada\nEmail: ada@example.com\n\nHello\nWorld')});
 });

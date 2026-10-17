@@ -9,7 +9,7 @@ const systems = Object.entries(projectVisuals).flatMap(([id, v]) => v.type === '
 const system = (id: string) => systems.find(([key]) => key === id)?.[1];
 
 describe('System map data', () => {
- it('draws the booking and agent platforms as lane-based systems', () => expect(systems.map(([id]) => id).sort()).toEqual(['anchor', 'music-ai']));
+ it('draws the booking, telecom, agent, and mobile platforms, including on-device ML as lane-based systems', () => expect(systems.map(([id]) => id).sort()).toEqual(['anchor', 'death-portal', 'izo-sdwan', 'music-ai', 'plant-health']));
  it.each(systems)('%s references only declared nodes, lanes, and edges', (_id, visual) => {
   const nodes = new Set(visual.nodes.map(n => n.id)), lanes = new Set(visual.lanes.map(l => l.id)), edges = new Set(visual.edges.map(edgeKey));
   expect(edges.size).toBe(visual.edges.length);
@@ -23,6 +23,9 @@ describe('System map data', () => {
  });
  it.each([
   ['anchor', ['Booking SDK', 'Dashboard', 'WordPress', 'Android', 'GraphQL', 'λ', 'DynamoDB', 'SQS', 'SNS', 'S3', 'CloudWatch', 'CloudFormation']],
+  ['izo-sdwan', ['Angular', 'Dashboard', 'Admin', 'MFE', 'Highcharts', 'Socket.IO', 'REST API', 'Collector', 'ArangoDB', 'Controller', 'Edge devices', 'EC2', 'Docker']],
+  ['death-portal', ['React Native', 'iOS', 'Android', 'Death Portal', 'GraphQL', 'Node.js λ', 'MongoDB', 'S3', 'CloudWatch', 'CloudFormation', 'Datadog']],
+  ['plant-health', ['React Native', 'Android', 'TFLite', 'TensorFlow', '10 plants', 'Python API', 'Product DB', 'Results', 'Plant images']],
   ['music-ai', ['React', 'FastAPI', 'LangGraph', 'RAG', 'GPT-5.4', 'GPT-5.4 mini', 'Function App', 'Music APIs', '.NET', 'Cosmos DB', 'FAISS', 'LangSmith', 'Langfuse']],
  ])('%s includes every service in the described stack', (id, services) => {
   const text = system(id)?.nodes.map(n => `${n.label} ${n.detail ?? ''}`).join(' ') ?? '';
@@ -30,8 +33,17 @@ describe('System map data', () => {
  });
 });
 
+describe('Telecom system map', () => {
+ it('stays free of AI services', () => {
+  const visual = system('izo-sdwan');
+  const text = [visual?.architecture, ...(visual?.nodes ?? []).map(n => `${n.label} ${n.detail ?? ''}`), ...(visual?.steps ?? []).map(s => s.detail)].join(' ');
+  expect(text).not.toMatch(/GPT|LangGraph|LangChain|\bAI\b|agent|RAG\b/i);
+  expect(getProject('izo-sdwan')?.tags).not.toContain('React');
+ });
+});
+
 describe('System map rendering', () => {
- it.each([['anchor', 'Illustrative booking journey'], ['music-ai', 'Illustrative agent request']])('renders the %s step journey on the case-study page', (id, journeyLabel) => {
+ it.each([['anchor', 'Illustrative booking journey'], ['music-ai', 'Illustrative agent request'], ['izo-sdwan', 'Illustrative live update'], ['death-portal', 'Illustrative family request'], ['plant-health', 'Illustrative plant diagnosis']])('renders the %s step journey on the case-study page', (id, journeyLabel) => {
   const project = getProject(id);
   if (!project) throw new Error('missing project');
   render(<Architecture project={project} detail/>);

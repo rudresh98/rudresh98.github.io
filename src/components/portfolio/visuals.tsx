@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { Activity, ArrowUpRight, Bot, Cloud, Code2, Database, Workflow, Layers } from 'lucide-react';
+import { Activity, Bot, Cloud, Code2, Database, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { architectureLayers, projectVisuals, type GraphVisual } from '@/lib/portfolio-visuals';
 import type { Project } from '@/lib/portfolio';
@@ -17,15 +17,11 @@ function Graph({visual}:{visual:GraphVisual}) {
  </svg>;
 }
 
-function Analytics() {
- return <div className="analytics-preview" role="img" aria-label="Illustrative telecommunications analytics workspace, without production data"><div className="analytics-sidebar"><Layers size={17}/><span/><span/><span/><span/></div><div className="analytics-main"><div className="analytics-top"><span>Network overview</span><span className="analytics-status">Highcharts <ArrowUpRight size={10}/></span></div><div className="analytics-key"><div><span>Traffic</span><strong>Network activity</strong></div><div><span>Workspace</span><strong>Microfrontends</strong></div></div><div className="analytics-chart"><div className="chart-caption">Illustrative activity profile <Activity size={13}/></div><svg viewBox="0 0 420 108" preserveAspectRatio="none" aria-hidden="true"><path className="chart-grid" d="M0 25H420 M0 55H420 M0 85H420"/><path className="chart-area" d="M0 88L30 72L60 78L90 48L120 62L150 29L180 38L210 21L240 45L270 33L300 48L330 18L360 30L390 11L420 19V108H0Z"/><path className="chart-line" d="M0 88L30 72L60 78L90 48L120 62L150 29L180 38L210 21L240 45L270 33L300 48L330 18L360 30L390 11L420 19"/></svg></div><div className="analytics-bottom"><span>Data APIs</span><span>Personalization</span><span>Modular UI</span></div></div></div>;
-}
-
 export function Architecture({project,detail=false}:{project:Project;detail?:boolean}) {
  const visual=projectVisuals[project.id];if(!visual)return null;
- const frame=(canvas:ReactNode)=><div className={`project-visual visual-${project.id}${visual.type==='system'?' is-system':''}`}><div className="visual-caption"><span>Illustrative {visual.type==='analytics'?'interface':'architecture'}</span><span aria-hidden="true">{visual.type==='analytics'?'UI / 04':'SYSTEM MAP'}</span></div><div className="preview-canvas">{canvas}</div><div className="visual-footer"><span>{visual.title}</span><span className="visual-live" aria-hidden="true"><span/>ENGINEERING STUDY</span></div></div>;
+ const frame=(canvas:ReactNode)=><div className={`project-visual visual-${project.id}${visual.type==='system'?' is-system':''}`}><div className="visual-caption"><span>Illustrative architecture</span><span aria-hidden="true">SYSTEM MAP</span></div><div className="preview-canvas">{canvas}</div><div className="visual-footer"><span>{visual.title}</span><span className="visual-live" aria-hidden="true"><span/>ENGINEERING STUDY</span></div></div>;
  if(visual.type==='system')return <SystemMap visual={visual} detail={detail} frame={frame}/>;
- return frame(visual.type==='analytics'?<Analytics/>:<Graph visual={visual}/>);
+ return frame(<Graph visual={visual}/>);
 }
 
 const icons={code:Code2,workflow:Workflow,cloud:Cloud,bot:Bot,database:Database,activity:Activity};

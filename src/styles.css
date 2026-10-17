@@ -198,22 +198,6 @@
 .case-impact {display:flex;gap:25px;margin:15px 0 20px;}
 .case-impact strong {display:block;font-size:28px;font-weight:650;color:var(--foreground);}
 .case-impact span {display:block;font-size:10px;color:var(--muted-foreground);line-height:1.6;}
-.analytics-preview {display:grid;grid-template-columns:36px minmax(0,1fr);height:86%;width:88%;margin:4% auto 0;background:var(--card);border:1px solid var(--border);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-soft);}
-.analytics-sidebar {display:flex;flex-direction:column;align-items:center;gap:19px;padding-top:15px;background:var(--secondary);border-right:1px solid var(--border);color:var(--primary);}
-.analytics-sidebar span {width:12px;height:3px;background:var(--border);border-radius:1px;}
-.analytics-main {padding:13px 15px;display:flex;flex-direction:column;gap:12px;min-height:0;}
-.analytics-top {display:flex;justify-content:space-between;font-size:10px;font-weight:700;gap:7px;}
-.analytics-status {display:flex;align-items:center;gap:3px;font-size:7px;color:var(--muted-foreground);}
-.analytics-key {display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.analytics-key>div {border-bottom:1px solid var(--border);padding-bottom:10px;}
-.analytics-key span {display:block;font-size:7px;color:var(--muted-foreground);}
-.analytics-key strong {display:block;font-size:10px;font-weight:600;margin-top:5px;}
-.analytics-chart {min-height:0;flex:1;}
-.chart-caption {display:flex;align-items:center;justify-content:space-between;font-size:7px;color:var(--muted-foreground);margin-bottom:4px;}
-.analytics-chart>svg {width:100%;height:calc(100% - 15px);min-height:28px;}
-.chart-grid {stroke:var(--border);fill:none;stroke-width:1;stroke-dasharray:3 4;}
-.chart-area {fill:var(--chart-fill);}.chart-line {stroke:var(--primary);fill:none;stroke-width:2;}
-.analytics-bottom {display:flex;justify-content:space-between;font-size:7px;color:var(--muted-foreground);border-top:1px solid var(--border);padding-top:8px;gap:8px;}
 .career-timeline {position:relative;padding-left:25px;}
 .career-timeline:before {content:'';position:absolute;top:40px;bottom:65px;left:0;width:1px;background:var(--border);}
 .timeline-row {position:relative;}
@@ -227,7 +211,7 @@
 .reveal {animation:none;}
 @media(max-width:1100px) {.project-body {padding:22px;}.project-body h3 {font-size:19px;}.layer-description {grid-template-columns:110px 1fr;}.collaboration-inner {gap:30px;}}
 @media(max-width:767px) {.hero-system {padding-top:15px;}.hero-system .architecture-intro {display:none;}.layer-flow-compact {margin-top:0;gap:16px 12px;}.hero-system .layer-description {min-height:89px;}.system-caption {display:none;}.gallery-heading {grid-template-columns:1fr;gap:15px;}.gallery-heading>a {justify-self:start;}.section-heading {font-size:30px;}.project-grid {grid-template-columns:1fr;gap:25px;}.project-body {padding:22px;}.project-body h3 {font-size:21px;}.project-summary {min-height:0;}.layer-flow:not(.layer-flow-compact) {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px;}.flow-node {height:90px!important;}.flow-item:nth-child(3)>.flow-connector {display:none;}.layer-description {grid-template-columns:1fr;gap:8px;min-height:130px;}.case-study-header {padding:28px 22px 22px;}.case-study-section {padding:22px 20px;gap:10px;grid-template-columns:20px 1fr;}.case-study-dialog .project-visual {aspect-ratio:1.66;}.case-impact {gap:15px;flex-wrap:wrap;}.case-impact strong {font-size:23px;}.case-impact span {font-size:9px;}.project-filters {gap:3px;}.category-filter {padding-inline:10px;font-size:11px;}.collaboration-inner {grid-template-columns:1fr;gap:30px;padding-block:45px;}.collaboration-inner h2 {font-size:30px;}.visual-caption,.visual-footer {left:16px;right:16px;}.career-timeline {padding-left:20px;}.timeline-marker {left:-24px;}}
-@media(max-width:380px) {.visual-live {display:none;}.analytics-preview {width:95%;}.analytics-main {padding:10px;gap:8px;}}
+@media(max-width:380px) {.visual-live {display:none;}}
 @media(prefers-reduced-motion:reduce) {.flow-connector:after {display:none;}.flow-node:hover,.flow-node:focus-visible {transform:none;}.project-card:hover,.project-card:focus-within,.project-card:hover .preview-canvas {transform:none;} }
 .timeline-progress {position:absolute;top:40px;bottom:65px;left:0;width:1px;background:var(--primary);transform-origin:top;}
 .visual-caption {font-size:9px;color:var(--foreground);}

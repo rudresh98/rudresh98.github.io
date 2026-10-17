@@ -9,7 +9,7 @@ import { routeTree } from "@/routeTree.gen";
 describe("App routing", () => {
   it("matches individual project pages independently from the gallery", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    for (const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting']) {
+    for (const id of ['music-ai','supply-chain','anchor','izo-sdwan','reporting','death-portal','plant-health']) {
       expect(router.matchRoutes(`/projects/${id}`).at(-1)?.routeId).toBe('/projects/$projectId');
     }
     expect(router.matchRoutes('/projects').at(-1)?.routeId).toBe('/projects/');

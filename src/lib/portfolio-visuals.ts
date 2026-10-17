@@ -2,7 +2,6 @@ export type VisualNode = { id: string; label: string; detail?: string; x: number
 export type VisualEdge = { from: string; to: string };
 type VisualBase = { title: string; architecture: string; impact?: { value: string; label: string }[] };
 export type GraphVisual = VisualBase & { type: 'graph'; nodes: VisualNode[]; edges: VisualEdge[] };
-export type AnalyticsVisual = VisualBase & { type: 'analytics' };
 export type NodeSide = 'l' | 'r' | 't' | 'b';
 export type SystemLane = { id: string; label: string; x: number; width: number };
 // Detail lines split on \n; `short` replaces the label in compact gallery cards.
@@ -11,7 +10,7 @@ export type SystemEdge = VisualEdge & { id?: string; kind?: 'request' | 'async' 
 // `reverse` lists step edges whose packets travel from `to` back to `from`, e.g. a response.
 export type SystemStep = { id: string; label: string; detail: string; nodes: string[]; edges: string[]; reverse?: string[] };
 export type SystemVisual = VisualBase & { type: 'system'; journey: string; width: number; height: number; lanes: SystemLane[]; boundary: { label: string; x: number; y: number; width: number; height: number; railY: number; railLabel: string }; nodes: SystemNode[]; edges: SystemEdge[]; steps: SystemStep[] };
-export type ProjectVisual = GraphVisual | AnalyticsVisual | SystemVisual;
+export type ProjectVisual = GraphVisual | SystemVisual;
 export const edgeKey = (edge: SystemEdge) => edge.id ?? `${edge.from}>${edge.to}`;
 
 // Coordinates describe illustrative topology, never a production screenshot.
@@ -103,13 +102,118 @@ export const projectVisuals: Record<string, ProjectVisual> = {
   ],
   architecture:'The React booking SDK is the core engine for bookings, gift cards, passes, transfer, and split, embedded in host channels such as WordPress sites, Android apps, and other websites; a React dashboard serves operators. Both call a GraphQL API resolved by AWS Lambda functions over DynamoDB. Booking requests are queued in Amazon SQS and processed by a worker Lambda, Amazon SNS publishes confirmations, and the SDK polls booking status until tickets are confirmed. Amazon S3 serves the SDK bundle and assets, CloudFormation provisions the stack, and CloudWatch captures logs, metrics, and alarms. Frontend and SDK caching support a smoother checkout experience.',
   impact:[{value:'1,500+',label:'Transactions / six months'},{value:'2,000+',label:'Clients served'},{value:'40%',label:'Faster transactions'}]},
- 'izo-sdwan': {type:'analytics',title:'Modular analytics workspace',architecture:'Microfrontends organize the telecommunications interface into modular features. Highcharts powers the interactive dashboard, alongside personalization, dark mode, and administration workflows.'},
+ 'izo-sdwan': {type:'system',title:'Live network operations on AWS',journey:'Illustrative live update',width:760,height:400,
+  lanes:[{id:'frontend',label:'Frontend · Angular',x:0,width:136},{id:'realtime',label:'Realtime · Node.js',x:140,width:148},{id:'services',label:'Services · Node.js',x:296,width:148},{id:'data',label:'Data · ArangoDB',x:448,width:148},{id:'network',label:'SD-WAN network',x:604,width:156}],
+  boundary:{label:'AWS EC2',x:142,y:30,width:456,height:362,railY:316,railLabel:'RUNTIME'},
+  nodes:[
+   {id:'shell',lane:'frontend',label:'Angular shell',short:'Shell',detail:'Microfrontend host',x:12,y:48,width:118},
+   {id:'dash',lane:'frontend',label:'Dashboard',detail:'MFE · Highcharts',x:12,y:136,width:118,kind:'primary'},
+   {id:'admin',lane:'frontend',label:'Admin',detail:'MFE · preferences',x:12,y:224,width:118},
+   {id:'socket',lane:'realtime',label:'Socket.IO',detail:'Live push · Node.js',x:152,y:96,width:124,kind:'primary'},
+   {id:'rest',lane:'realtime',label:'REST API',detail:'Node.js · admin',x:152,y:200,width:124},
+   {id:'collector',lane:'services',label:'Collector',detail:'Node.js · telemetry',x:304,y:96,width:128},
+   {id:'arango',lane:'data',label:'ArangoDB',detail:'Network state\nTelemetry · config',x:458,y:150,width:128,height:60},
+   {id:'controller',lane:'network',label:'Controller',detail:'SD-WAN orchestration',x:618,y:96,width:128},
+   {id:'edges',lane:'network',label:'Edge devices',detail:'Branch sites',x:618,y:200,width:128},
+   {id:'ec2',lane:'realtime',label:'Amazon EC2',short:'EC2',detail:'Docker host',x:152,y:330,width:140},
+   {id:'docker',lane:'services',label:'Docker',detail:'Service containers',x:318,y:330,width:150},
+  ],
+  edges:[
+   {from:'shell',to:'dash',kind:'asset',fromSide:'b',toSide:'t'},
+   {from:'shell',to:'admin',kind:'asset',d:'M 12 70 C 0 70, 0 246, 12 246'},
+   {from:'dash',to:'socket',kind:'async',duplex:true},
+   {from:'dash',to:'rest'},{from:'admin',to:'rest'},{from:'rest',to:'arango'},
+   {from:'collector',to:'controller',duplex:true,label:'telemetry',labelAt:{x:525,y:112}},
+   {from:'edges',to:'controller',fromSide:'t',toSide:'b'},
+   {from:'collector',to:'arango'},{from:'collector',to:'socket'},
+   {from:'ec2',to:'docker',kind:'ops'},
+   {from:'docker',to:'collector',kind:'ops',label:'containers',fromSide:'t',toSide:'b'},
+  ],
+  steps:[
+   {id:'load',label:'Load',detail:'The Angular shell loads the dashboard and admin microfrontends.',nodes:['shell','dash','admin'],edges:['shell>dash','shell>admin']},
+   {id:'collect',label:'Collect',detail:'The Node.js collector gathers status and telemetry from the SD-WAN controller and edge devices.',nodes:['edges','controller','collector'],edges:['edges>controller','collector>controller'],reverse:['collector>controller']},
+   {id:'store',label:'Store',detail:'Network state and telemetry are written to ArangoDB.',nodes:['collector','arango'],edges:['collector>arango']},
+   {id:'publish',label:'Publish',detail:'The collector publishes each change to the Socket.IO gateway.',nodes:['collector','socket'],edges:['collector>socket']},
+   {id:'push',label:'Push',detail:'Socket.IO pushes live updates over WebSockets and Highcharts redraws the dashboard.',nodes:['socket','dash'],edges:['dash>socket'],reverse:['dash>socket']},
+   {id:'query',label:'Query',detail:'The dashboard loads initial state and history from ArangoDB through the REST API.',nodes:['dash','rest','arango'],edges:['dash>rest','rest>arango']},
+   {id:'administer',label:'Administer',detail:'Administration, personalization, and preference changes are saved through the REST API.',nodes:['admin','rest','arango'],edges:['admin>rest','rest>arango']},
+   {id:'run',label:'Run',detail:'Node.js services and ArangoDB run as Docker containers on Amazon EC2.',nodes:['ec2','docker','collector','socket','rest','arango'],edges:['ec2>docker','docker>collector']},
+  ],
+  architecture:'An Angular shell hosts microfrontends for the live Highcharts dashboard and for administration, including personalization and dark mode. A Node.js collector gathers status and telemetry from the SD-WAN controller and edge devices, stores network state in ArangoDB, and publishes changes to a Socket.IO gateway that pushes live updates to the dashboard over WebSockets. A Node.js REST API serves initial state, history, configuration, and preferences. The Node.js services and ArangoDB run as Docker containers on Amazon EC2.'},
  'reporting': {type:'graph',title:'Automated reporting pipeline',nodes:[
   {id:'ui',label:'Angular 12',detail:'Reporting interface',x:30,y:100},
   {id:'report',label:'Reports',detail:'Automated generation',x:210,y:100,kind:'primary'},
   {id:'cloud',label:'Amazon S3',detail:'Cloud uploads',x:390,y:100},
   {id:'quality',label:'Debugging',detail:'Application stability',x:210,y:225},
  ],edges:[{from:'ui',to:'report'},{from:'report',to:'cloud'},{from:'quality',to:'report'}],architecture:'The modernized Angular 12 interface supports automated report generation and Amazon S3 uploads. Targeted debugging and architectural improvements address application stability.',impact:[{value:'15',label:'Issues resolved / one month'}]},
+ 'death-portal': {type:'system',title:'Mobile platform on AWS',journey:'Illustrative family request',width:760,height:400,
+  lanes:[{id:'devices',label:'Devices',x:0,width:136},{id:'app',label:'App · React Native',x:140,width:148},{id:'api',label:'API · GraphQL',x:296,width:148},{id:'compute',label:'Compute & storage',x:448,width:148},{id:'data',label:'Data & monitoring',x:604,width:156}],
+  boundary:{label:'AWS',x:292,y:30,width:306,height:362,railY:316,railLabel:''},
+  nodes:[
+   {id:'ios',lane:'devices',label:'iOS app',detail:'React Native build',x:8,y:80,width:118},
+   {id:'android',lane:'devices',label:'Android app',detail:'React Native build',x:8,y:176,width:118},
+   {id:'app',lane:'app',label:'Death Portal',detail:'Family after-death\nadmin workflows',x:148,y:120,width:124,height:60,kind:'primary'},
+   {id:'gql',lane:'api',label:'GraphQL API',detail:'Queries · mutations',x:306,y:128,width:128,kind:'primary'},
+   {id:'lambda',lane:'compute',label:'Node.js λ',detail:'Resolvers · logic',x:458,y:128,width:128},
+   {id:'s3',lane:'compute',label:'Amazon S3',short:'S3',detail:'Documents · uploads',x:458,y:232,width:128},
+   {id:'mongo',lane:'data',label:'MongoDB',detail:'Application data',x:618,y:60,width:128},
+   {id:'datadog',lane:'data',label:'Datadog',detail:'Monitoring · APM',x:618,y:330,width:128},
+   {id:'cw',lane:'api',label:'CloudWatch',detail:'Logs · metrics',x:306,y:330,width:128},
+   {id:'cfn',lane:'compute',label:'CloudFormation',detail:'Infrastructure as code',x:452,y:330,width:140},
+  ],
+  edges:[
+   {from:'ios',to:'app'},{from:'android',to:'app'},
+   {from:'app',to:'gql',duplex:true},{from:'gql',to:'lambda'},
+   {from:'lambda',to:'mongo',duplex:true},{from:'lambda',to:'s3',fromSide:'b',toSide:'t'},
+   {from:'gql',to:'cw',kind:'ops',label:'logs',fromSide:'b',toSide:'t'},
+   {from:'lambda',to:'datadog',kind:'ops',label:'APM',d:'M 586 162 C 650 162, 682 250, 682 330',labelAt:{x:694,y:262}},
+   {from:'cfn',to:'s3',kind:'ops',label:'deploys',fromSide:'t',toSide:'b'},
+  ],
+  steps:[
+   {id:'open',label:'Open',detail:'A family opens Death Portal on iOS or Android.',nodes:['ios','android','app'],edges:['ios>app','android>app']},
+   {id:'request',label:'Request',detail:'The app sends a GraphQL query or mutation.',nodes:['app','gql'],edges:['app>gql']},
+   {id:'resolve',label:'Resolve',detail:'GraphQL resolvers run as Node.js functions on AWS Lambda.',nodes:['gql','lambda'],edges:['gql>lambda']},
+   {id:'persist',label:'Persist',detail:'Application data is read from and written to MongoDB.',nodes:['lambda','mongo'],edges:['lambda>mongo']},
+   {id:'documents',label:'Documents',detail:'Family documents are stored in and served from Amazon S3.',nodes:['lambda','s3'],edges:['lambda>s3']},
+   {id:'respond',label:'Respond',detail:'The response returns through GraphQL to the app.',nodes:['lambda','gql','app'],edges:['gql>lambda','app>gql'],reverse:['gql>lambda','app>gql']},
+   {id:'observe',label:'Observe',detail:'CloudWatch captures logs and metrics while Datadog tracks application performance.',nodes:['gql','cw','lambda','datadog'],edges:['gql>cw','lambda>datadog']},
+   {id:'provision',label:'Provision',detail:'CloudFormation provisions the AWS stack.',nodes:['cfn','s3','lambda','gql'],edges:['cfn>s3']},
+  ],
+  architecture:'Death Portal is a React Native app shipped to iOS and Android that guides families through after-death administration. The app calls a GraphQL API whose resolvers run as Node.js functions on AWS Lambda, reading and writing application data in MongoDB and storing family documents in Amazon S3. CloudFormation provisions the AWS stack, CloudWatch captures logs and metrics, and Datadog provides application performance monitoring.'},
+ 'plant-health': {type:'system',title:'On-device plant diagnosis',journey:'Illustrative plant diagnosis',width:760,height:400,
+  lanes:[{id:'user',label:'Gardener',x:0,width:136},{id:'app',label:'App · React Native',x:140,width:148},{id:'device',label:'On-device · TFLite',x:296,width:148},{id:'api',label:'API · Python',x:448,width:148},{id:'data',label:'Data',x:604,width:156}],
+  boundary:{label:'ON DEVICE',x:142,y:30,width:300,height:270,railY:316,railLabel:''},
+  nodes:[
+   {id:'user',lane:'user',label:'Gardener',detail:'Uploads a photo',x:8,y:94,width:118},
+   {id:'app',lane:'app',label:'Android app',detail:'React Native\nPhoto upload',x:152,y:86,width:124,height:60,kind:'primary'},
+   {id:'results',lane:'app',label:'Results',detail:'Deficiency · products',x:152,y:200,width:124},
+   {id:'model',lane:'device',label:'TFLite model',detail:'CNN · 10 plants\nDeficiency detection',x:304,y:86,width:128,height:60,kind:'primary'},
+   {id:'api',lane:'api',label:'Python API',detail:'Recommendations',x:458,y:94,width:128},
+   {id:'db',lane:'data',label:'Product DB',detail:'Deficiency → products',x:618,y:94,width:128},
+   {id:'dataset',lane:'user',label:'Plant images',detail:'10 species dataset',x:8,y:330,width:118},
+   {id:'tf',lane:'app',label:'TensorFlow',detail:'CNN training',x:152,y:330,width:124},
+   {id:'tflite',lane:'device',label:'TFLite export',detail:'Bundled in app',x:304,y:330,width:128},
+  ],
+  edges:[
+   {from:'user',to:'app'},
+   {from:'app',to:'model',duplex:true},
+   {from:'app',to:'results',fromSide:'b',toSide:'t'},
+   {from:'results',to:'api',duplex:true,label:'deficiency',d:'M 276 222 L 430 222 C 446 222, 446 116, 458 116',labelAt:{x:360,y:216}},
+   {from:'api',to:'db',duplex:true},
+   {from:'dataset',to:'tf',kind:'ops'},{from:'tf',to:'tflite',kind:'ops'},
+   {from:'tflite',to:'model',kind:'asset',label:'bundled',fromSide:'t',toSide:'b',labelAt:{x:392,y:270}},
+  ],
+  steps:[
+   {id:'train',label:'Train',detail:'A TensorFlow CNN is trained offline on images of 10 plant species.',nodes:['dataset','tf'],edges:['dataset>tf']},
+   {id:'package',label:'Package',detail:'The trained model is exported to TensorFlow Lite and bundled into the Android app.',nodes:['tf','tflite','model'],edges:['tf>tflite','tflite>model']},
+   {id:'capture',label:'Capture',detail:'The gardener uploads a photo of a plant in the React Native app.',nodes:['user','app'],edges:['user>app']},
+   {id:'detect',label:'Detect',detail:'The on-device TFLite model identifies the plant and its deficiency.',nodes:['app','model'],edges:['app>model']},
+   {id:'show',label:'Show',detail:'The detected deficiency appears on the results screen.',nodes:['model','app','results'],edges:['app>model','app>results'],reverse:['app>model']},
+   {id:'request',label:'Request',detail:'The app sends the deficiency to the Python API for recommendations.',nodes:['results','api'],edges:['results>api']},
+   {id:'match',label:'Match',detail:'The API looks up products that treat the deficiency in the product database.',nodes:['api','db'],edges:['api>db']},
+   {id:'recommend',label:'Recommend',detail:'Recommended products return to the gardener in the app.',nodes:['db','api','results'],edges:['api>db','results>api'],reverse:['api>db','results>api']},
+  ],
+  architecture:'Plant Health Advisor is an Android app built in React Native. Gardeners upload a photo of a plant, and a TensorFlow CNN, trained offline on images of 10 plant species and exported to TensorFlow Lite, runs on the device to detect the plant’s deficiency. The app then sends the detected deficiency to a Python API, which looks up recommended products in its database and returns them to the results screen.'},
 };
 
 export const architectureLayers = [
