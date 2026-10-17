@@ -72,3 +72,7 @@
 - [x] Keyword-targeted titles (≤60) and descriptions (≤160) on every page, plus Service, Offer, credential, and course-mode structured data.
 - [x] Sitemap lastmod, descriptive portrait alt text, and a generated llms.txt for AI answer engines.
 - [ ] After deploy: submit the sitemap in Search Console, share-test OG cards, and check `site:rudresh98.github.io`.
+
+## Experience route
+- [x] Replace the vertical timeline with a scroll-linked road and car (after the Maitrii fleet-logistics "Route"), cards alternating sides.
+- [x] Mobile lane with the car driving down, reduced-motion parking, and light/dark verification.

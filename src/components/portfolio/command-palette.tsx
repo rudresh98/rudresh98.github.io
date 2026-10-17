@@ -6,7 +6,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import resume from '@/assets/rudresh-oza-resume.pdf';
 import { commandGroups, commandIndex, socialLinks, type CommandEntry, type NavPath } from '@/lib/navigation';
 import { navigationIcons } from '@/lib/navigation-icons';
-import { toggleTheme } from '@/lib/theme';
+import { toggleThemeWithReveal } from './theme-reveal';
 
 type PaletteState = { open: boolean; setOpen: (open: boolean) => void };
 const PaletteContext = createContext<PaletteState>({ open: false, setOpen: () => {} });
@@ -80,7 +80,7 @@ export function CommandPalette() {
       </CommandGroup>)}
       <CommandGroup heading="Actions" className="palette-group">
        <CommandItem value="action:resume" keywords={['download', 'resume', 'cv', 'pdf']} onSelect={runAndClose(downloadResume)} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><Download /></span><span className="palette-item-label">Download resume</span><span className="palette-item-meta">PDF</span></CommandItem>
-       <CommandItem value="action:theme" keywords={['toggle', 'theme', 'dark', 'light', 'mode', 'appearance']} onSelect={runAndClose(toggleTheme)} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><SunMoon /></span><span className="palette-item-label">Toggle theme</span></CommandItem>
+       <CommandItem value="action:theme" keywords={['toggle', 'theme', 'dark', 'light', 'mode', 'appearance']} onSelect={runAndClose(toggleThemeWithReveal)} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><SunMoon /></span><span className="palette-item-label">Toggle theme</span></CommandItem>
        <CommandItem value="action:email" keywords={['copy', 'email', 'mail', 'contact']} onSelect={copyEmail} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><Copy /></span><span className="palette-item-label">Copy email</span><span className="palette-item-meta">{socialLinks.email}</span></CommandItem>
        <CommandItem value="action:linkedin" keywords={['linkedin', 'social', 'profile']} onSelect={runAndClose(() => window.open(socialLinks.linkedin, '_blank', 'noopener,noreferrer'))} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><Linkedin /></span><span className="palette-item-label">LinkedIn</span><ArrowUpRight className="palette-item-external" aria-label="opens in a new tab" /></CommandItem>
        <CommandItem value="action:github" keywords={['github', 'code', 'social']} onSelect={runAndClose(() => window.open(socialLinks.github, '_blank', 'noopener,noreferrer'))} className="palette-item"><span className="palette-item-icon" aria-hidden="true"><Github /></span><span className="palette-item-label">GitHub</span><ArrowUpRight className="palette-item-external" aria-label="opens in a new tab" /></CommandItem>
