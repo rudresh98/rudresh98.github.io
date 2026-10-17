@@ -4,17 +4,19 @@ import { profile, training } from './portfolio';
 export const courseCategories = ['All', 'Web & Backend', 'Data', 'Cloud & Infra', 'AI'] as const;
 export type CourseCategory = Exclude<typeof courseCategories[number], 'All'>;
 export type CourseModule = { title: string; topics: string[] };
-export type Course = { id: 'full-stack' | 'backend' | 'database' | 'infra' | 'databricks' | 'genai' | 'fde'; title: string; category: CourseCategory; tagline: string; audience: string; summary: string; modules: CourseModule[]; tools: string[]; trending?: boolean };
+export type Course = { id: 'full-stack' | 'backend' | 'database' | 'infra' | 'databricks' | 'genai' | 'fde'; title: string; category: CourseCategory; tagline: string; audience: string; summary: string; hours: number; modules: CourseModule[]; tools: string[]; trending?: boolean };
 export type TrainingFormat = { id: string; title: string; description: string };
 
 // Course outlines drafted for Rudresh's review. Most draw on technologies verified on this site; the
 // infrastructure and Databricks tracks cover tools he teaches that are not yet listed in his skills.
-// Fees, durations, batch dates, and institution names are deliberately omitted until he confirms them.
+// Total hours per course are confirmed; fees, batch dates, and institution names are deliberately
+// omitted until he confirms them.
 export const courses: Course[] = [
  {
   id: 'full-stack',
   title: 'Full Stack Web Development',
   category: 'Web & Backend',
+  hours: 180,
   tagline: 'From first component to deployed product.',
   audience: 'Students, graduates, and developers moving into full-stack roles',
   summary: 'A hands-on path through modern front-end, back-end, data, and cloud delivery, built around the same practices used on production client platforms.',
@@ -33,6 +35,7 @@ export const courses: Course[] = [
   id: 'backend',
   title: 'Backend Design with Node.js & Python',
   category: 'Web & Backend',
+  hours: 80,
   tagline: 'Design APIs and services that scale with the business.',
   audience: 'Developers who want to design and own production-grade backend services',
   summary: 'Designing backend services in Node.js and Python—API contracts, architecture, security, asynchronous work, and performance—using patterns from production platforms.',
@@ -52,6 +55,7 @@ export const courses: Course[] = [
   id: 'database',
   title: 'Database Design: SQL & NoSQL',
   category: 'Data',
+  hours: 60,
   tagline: 'Model data right the first time.',
   audience: 'Developers and analysts who design or own application databases',
   summary: 'Relational and NoSQL data modeling, querying, and performance—choosing the right store and designing schemas that hold up as products grow.',
@@ -71,6 +75,7 @@ export const courses: Course[] = [
   id: 'infra',
   title: 'Cloud Infrastructure Setup',
   category: 'Cloud & Infra',
+  hours: 60,
   tagline: 'From a laptop to a production-ready cloud environment.',
   audience: 'Developers and teams setting up or modernizing cloud infrastructure',
   summary: 'Setting up the infrastructure applications run on—cloud accounts, networking, compute, containers, CI/CD, and monitoring—on AWS and Azure.',
@@ -91,6 +96,7 @@ export const courses: Course[] = [
   id: 'databricks',
   title: 'Data Engineering with Databricks',
   category: 'Data',
+  hours: 80,
   tagline: 'Build reliable data pipelines on the lakehouse.',
   audience: 'Data engineers, analysts, and developers moving into data platforms',
   summary: 'Lakehouse fundamentals on Databricks—Spark, Delta Lake, pipelines, governance, and preparing data for analytics and AI.',
@@ -111,6 +117,7 @@ export const courses: Course[] = [
   id: 'genai',
   title: 'Generative AI & LLM Engineering',
   category: 'AI',
+  hours: 80,
   tagline: 'Build AI features that hold up in production.',
   audience: 'Developers and engineering teams adding LLMs and agents to real products',
   summary: 'A practical course on language models, retrieval, and agent workflows, focused on structured outputs, observability, and cost—not demos.',
@@ -130,6 +137,7 @@ export const courses: Course[] = [
   id: 'fde',
   title: 'Forward Deployed Engineering',
   category: 'AI',
+  hours: 60,
   tagline: 'Ship AI solutions inside real customer environments.',
   audience: 'Engineers moving into customer-facing, solutions, or forward deployed roles',
   summary: 'Working embedded with customers to turn business problems into deployed AI systems—discovery, rapid prototyping, integration, and production hand-off.',

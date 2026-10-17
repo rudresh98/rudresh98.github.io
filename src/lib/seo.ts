@@ -53,7 +53,7 @@ export function projectSeo(project: Project) {
 export function courseSeo(course: Course) {
  return {
   title: fitTitle(`${course.title} Course & Training | Rudresh Oza`, `${course.title} Course | Rudresh Oza`, `${course.title} | Rudresh Oza`),
-  description: metaDescription(`${course.modules.length}-module course by Rudresh Oza, online or on-site: ${course.summary}`),
+  description: metaDescription(`${course.hours}-hour, ${course.modules.length}-module course by Rudresh Oza, online or on-site: ${course.summary}`),
  };
 }
 
@@ -212,8 +212,9 @@ export function courseJsonLd(course: Course) {
  return {
   '@context': 'https://schema.org', '@type': 'Course', '@id': `${url}#course`, name: course.title, description: course.summary, url, teaches: course.tools, inLanguage: 'en',
   provider: { '@id': personId }, isPartOf: { '@id': websiteId },
-  // Delivery modes come from the confirmed training formats; no price, dates, or workload are stated.
-  hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['Online', 'Onsite'], instructor: { '@id': personId } },
+  // Delivery modes come from the confirmed training formats and workload from the confirmed course hours;
+  // no price or dates are stated.
+  hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['Online', 'Onsite'], courseWorkload: `PT${course.hours}H`, instructor: { '@id': personId } },
   offers: { '@type': 'Offer', category: 'Paid', url },
  };
 }
@@ -227,7 +228,7 @@ export function llmsTxt() {
   `> ${site.description} Available for remote work worldwide and on-site in Jaipur, India.`,
   '',
   '## Training courses',
-  ...courses.map(course => line(course.title, coursePath(course.id), course.summary)),
+  ...courses.map(course => line(course.title, coursePath(course.id), `${course.hours} hours. ${course.summary}`)),
   `Formats: ${trainingFormats.map(format => format.title).join('; ')}. ${achievements.studentsTrained.toLocaleString('en-US')}+ students trained.`,
   '',
   '## Case studies',

@@ -70,6 +70,7 @@ describe('Training page sections', () => {
    expect(within(card).getByRole('link', { name: `View full course: ${course.title}` })).toHaveAttribute('href', `/training/${course.id}`);
    expect(within(card).getByRole('link', { name: `Enquire about ${course.title} by email` })).toHaveAttribute('href', courseEnquiryHref(course));
    expect(within(card).queryByText('Trending') !== null).toBe(Boolean(course.trending));
+   expect(within(card).getByText(`${course.hours} hours · ${course.modules.length} modules`)).toBeInTheDocument();
    expect(within(card).queryByRole('button')).not.toBeInTheDocument();
   }
  });
@@ -90,6 +91,7 @@ describe('Training page sections', () => {
   await renderInRouter(<CourseDetail course={fde} />);
   expect(await screen.findByRole('heading', { level: 1, name: fde.title })).toBeInTheDocument();
   expect(screen.getByText('Trending')).toBeInTheDocument();
+  expect(screen.getByText('Duration').nextElementSibling).toHaveTextContent('60 hours');
   for (const module of fde.modules) expect(screen.getByRole('heading', { level: 3, name: module.title })).toBeInTheDocument();
   for (const topic of fde.modules[0]!.topics) expect(screen.getByText(topic)).toBeVisible();
   expect(screen.getByRole('link', { name: /Enquire by email/ })).toHaveAttribute('href', courseEnquiryHref(fde));

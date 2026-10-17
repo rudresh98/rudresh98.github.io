@@ -19,7 +19,7 @@ function CourseCard({course}:{course:Course}) {
  const Icon=courseIcons[course.id];
  return <Reveal className="course-card-reveal"><article id={course.id} className="course-card" aria-labelledby={`${course.id}-title`}>
   <div className="course-top"><span className="course-icon" aria-hidden="true">{Icon&&<Icon/>}</span>{course.trending&&<TrendingPill/>}</div>
-  <p className="course-meta"><span>{course.category}</span><span>{course.modules.length} modules</span></p>
+  <p className="course-meta"><span>{course.category}</span><span>{course.hours} hours · {course.modules.length} modules</span></p>
   <h3 id={`${course.id}-title`} className="course-title"><Link to="/training/$courseId" params={{courseId:course.id}}>{course.title}</Link></h3>
   <p className="course-tagline">{course.tagline}</p>
   <p className="course-summary">{course.summary}</p>
@@ -49,8 +49,8 @@ export function TrainingCta() {
 export function CourseDetail({course}:{course:Course}) {
  const index=courses.findIndex(c=>c.id===course.id);const next=getNextCourse(course.id);
  return <article className="project-detail course-detail">
-  <Reveal className="project-detail-intro"><Button asChild variant="link" className="mb-8 px-0"><Link to="/training"><ArrowLeft/>Back to training</Link></Button><div className="course-detail-eyebrow"><p className="eyebrow">{course.category} · Course {String(index+1).padStart(2,'0')} · {course.modules.length} modules</p>{course.trending&&<TrendingPill/>}</div><h1>{course.title}</h1><p className="course-tagline course-detail-tagline">{course.tagline}</p><p className="section-description">{course.summary}</p><div className="project-tags" aria-label={`${course.title} tools`}>{course.tools.map(t=><span key={t}>{t}</span>)}</div></Reveal>
-  <Reveal className="course-facts"><dl><div><dt>Who it's for</dt><dd>{course.audience}</dd></div><div><dt>Modules</dt><dd>{course.modules.length} modules, ending in a capstone project</dd></div><div><dt>Formats</dt><dd>{trainingFormats.map(f=>f.title).join(' · ')}</dd></div></dl></Reveal>
+  <Reveal className="project-detail-intro"><Button asChild variant="link" className="mb-8 px-0"><Link to="/training"><ArrowLeft/>Back to training</Link></Button><div className="course-detail-eyebrow"><p className="eyebrow">{course.category} · Course {String(index+1).padStart(2,'0')} · {course.hours} hours · {course.modules.length} modules</p>{course.trending&&<TrendingPill/>}</div><h1>{course.title}</h1><p className="course-tagline course-detail-tagline">{course.tagline}</p><p className="section-description">{course.summary}</p><div className="project-tags" aria-label={`${course.title} tools`}>{course.tools.map(t=><span key={t}>{t}</span>)}</div></Reveal>
+  <Reveal className="course-facts"><dl><div><dt>Who it's for</dt><dd>{course.audience}</dd></div><div><dt>Duration</dt><dd>{course.hours} hours</dd></div><div><dt>Modules</dt><dd>{course.modules.length} modules, ending in a capstone project</dd></div><div><dt>Formats</dt><dd>{trainingFormats.map(f=>f.title).join(' · ')}</dd></div></dl></Reveal>
   <section className="project-detail-body" aria-labelledby="syllabus-heading"><Reveal><p className="eyebrow">Syllabus</p><h2 id="syllabus-heading" className="course-syllabus-heading">What the course covers</h2></Reveal>
    {course.modules.map((m,i)=><Reveal key={m.title} className="case-study-section"><span className="case-number">{String(i+1).padStart(2,'0')}</span><div><h3 className="course-detail-module">{m.title}</h3><ul>{m.topics.map(t=><li key={t}>{t}</li>)}</ul></div></Reveal>)}
   </section>

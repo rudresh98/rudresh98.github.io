@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { achievements, training, filterProjects, emailDraft, getProject, getNextProject, projects } from '@/lib/portfolio';
+import { achievements, training, filterProjects, emailDraft, getProject, getNextProject, projectCategories, projects } from '@/lib/portfolio';
 import { projectVisuals } from '@/lib/portfolio-visuals';
 import { testimonials } from '@/lib/testimonials';
 describe('Confirmed professional achievements',()=>{
@@ -17,9 +17,11 @@ describe('Portfolio interactions',()=>{
  it('links client work to its confirmed public pages',()=>{expect(getProject('music-ai')).toMatchObject({client:'Pollstar',links:[{url:'https://pollstar.com/'}]});expect(getProject('plant-health')?.links?.[0]?.url).toBe('https://play.google.com/store/apps/details?id=com.hydrofarmtech.Genie_AI');expect(getProject('tareek')?.links).toBeUndefined()});
  it('does not resolve unknown case studies',()=>{expect(getProject('unknown')).toBeUndefined();expect(getNextProject('unknown')).toBeUndefined()});
  it('advances case studies and wraps the final project',()=>{expect(getNextProject('music-ai')?.id).toBe('supply-chain');expect(getNextProject('reporting')?.id).toBe('death-portal');expect(getNextProject('death-portal')?.id).toBe('plant-health');expect(getNextProject('plant-health')?.id).toBe('mealboy');expect(getNextProject('qualitech')?.id).toBe('music-ai')});
- it('filters GenAI projects without other categories',()=>{expect(filterProjects('GenAI').map(p=>p.id)).toEqual(['music-ai'])});
+ it('filters GenAI projects, including platforms with a GenAI layer',()=>{expect(filterProjects('GenAI').map(p=>p.id)).toEqual(['music-ai','fundflick'])});
+ it('lists Fund Flick under both Full Stack and GenAI as one case study',()=>{expect(getProject('fundflick-hrms')).toBeUndefined();expect(projectCategories(getProject('fundflick')!)).toEqual(['Full Stack','GenAI']);expect(filterProjects('Full Stack').map(p=>p.id)).toContain('fundflick');expect(getNextProject('fundflick')?.id).toBe('ai2go')});
  it('filters mobile work',()=>expect(filterProjects('Mobile').map(p=>p.id)).toEqual(['death-portal','plant-health','tareek']));
- it('filters web work',()=>expect(filterProjects('Web').map(p=>p.id)).toEqual(['maitrii-infotech','fundflick','ai2go','qualitech']));
+ it('filters web work',()=>expect(filterProjects('Web').map(p=>p.id)).toEqual(['maitrii-infotech','ai2go','qualitech']));
+ it('links Fund Flick to its Play Store app and website',()=>{const p=getProject('fundflick')!;expect(p.category).toBe('Full Stack');expect(p.links?.map(l=>l.url)).toEqual(['https://play.google.com/store/apps/details?id=com.maitrii.losapp','https://www.fundflick.in/'])});
  it('filters cloud work',()=>expect(filterProjects('Cloud').map(p=>p.id)).toEqual(['supply-chain','reporting']));
  it('builds an email draft with actual recipient and encoded user input',()=>{const url=emailDraft('Ada','ada@example.com','AI & cloud','Hello\nWorld');expect(url).toContain('mailto:ozarudresh18@gmail.com?');expect(url).toContain('subject=AI%20%26%20cloud');expect(decodeURIComponent(url)).toContain('From: Ada\nEmail: ada@example.com\n\nHello\nWorld')});
 });

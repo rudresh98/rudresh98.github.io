@@ -2,6 +2,7 @@
 import { profile, projects } from './portfolio';
 import { courses, coursePath } from './training';
 import { certifications, sortCertifications } from './certifications';
+import { canonicalPath } from './seo';
 
 export const navigation = [
  { label: 'Home', to: '/', primary: true, summary: 'Forward Deployed Engineer · Cloud & GenAI' },
@@ -23,7 +24,8 @@ export function navCount(path: string) {
  return undefined;
 }
 // Dock hover previews frame the real page with ?preview=1, which hides the dock and palette inside it.
-export function previewHref(path: string) { return `${path}?preview=1`; }
+// The trailing-slash path loads the prerendered page directly instead of through a GitHub Pages redirect.
+export function previewHref(path: string) { return `${canonicalPath(path)}?preview=1`; }
 export function isPreviewSearch(search: unknown) {
  const value = typeof search === 'object' && search !== null ? (search as Record<string, unknown>)['preview'] : undefined;
  return value === 1 || value === '1' || value === true;

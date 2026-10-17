@@ -45,7 +45,8 @@ describe('Navigation previews', () => {
   expect(navCount('/about')).toBeUndefined();
  });
  it('frames pages in preview mode only when asked', () => {
-  expect(previewHref('/projects')).toBe('/projects?preview=1');
+  expect(previewHref('/projects')).toBe('/projects/?preview=1');
+  expect(previewHref('/')).toBe('/?preview=1');
   expect(isPreviewSearch({ preview: 1 })).toBe(true);
   expect(isPreviewSearch({ preview: '1' })).toBe(true);
   expect(isPreviewSearch({})).toBe(false);

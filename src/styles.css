@@ -168,7 +168,7 @@
 .project-body {padding:25px 26px 22px;}
 .project-meta {display:flex;justify-content:space-between;gap:12px;font-size:9px;font-weight:700;color:var(--primary);text-transform:uppercase;}
 .project-meta>span:last-child {color:var(--muted-foreground);font-weight:400;}
-.project-body h3 {font-size:21px;line-height:1.4;font-weight:700;margin-top:13px;}
+.project-body :is(h2,h3) {font-size:21px;line-height:1.4;font-weight:700;margin-top:13px;}
 .project-summary {font-size:13px;line-height:1.9;color:var(--muted-foreground);margin-top:12px;min-height:74px;}
 .project-tags {display:flex;flex-wrap:wrap;gap:6px;margin-top:19px;}
 .project-tags span {border:1px solid var(--border);border-radius:3px;font-size:10px;line-height:1.5;padding:4px 8px;color:var(--muted-foreground);}
@@ -213,8 +213,8 @@
 .collaboration-focus {display:flex;flex-wrap:wrap;gap:18px;margin-top:24px;font-size:10px;color:var(--muted-foreground);}
 .collaboration-actions {display:flex;flex-direction:column;align-items:flex-start;gap:22px;}
 .reveal {animation:none;}
-@media(max-width:1100px) {.project-body {padding:22px;}.project-body h3 {font-size:19px;}.layer-description {grid-template-columns:110px 1fr;}.collaboration-inner {gap:30px;}}
-@media(max-width:767px) {.hero-system {padding-top:15px;}.hero-system .architecture-intro {display:none;}.layer-flow-compact {margin-top:0;gap:16px 12px;}.hero-system .layer-description {min-height:89px;}.system-caption {display:none;}.gallery-heading {grid-template-columns:1fr;gap:15px;}.gallery-heading>a {justify-self:start;}.section-heading {font-size:30px;}.project-grid {grid-template-columns:1fr;gap:25px;}.project-body {padding:22px;}.project-body h3 {font-size:21px;}.project-summary {min-height:0;}.layer-flow:not(.layer-flow-compact) {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px;}.flow-node {height:90px!important;}.flow-item:nth-child(3)>.flow-connector {display:none;}.layer-description {grid-template-columns:1fr;gap:8px;min-height:130px;}.case-study-header {padding:28px 22px 22px;}.case-study-section {padding:22px 20px;gap:10px;grid-template-columns:20px 1fr;}.case-study-dialog .project-visual {aspect-ratio:1.66;}.case-impact {gap:15px;flex-wrap:wrap;}.case-impact strong {font-size:23px;}.case-impact span {font-size:9px;}.project-filters {gap:3px;}.category-filter {padding-inline:10px;font-size:11px;}.collaboration-inner {grid-template-columns:1fr;gap:30px;padding-block:45px;}.collaboration-inner h2 {font-size:30px;}.visual-caption,.visual-footer {left:16px;right:16px;}.career-timeline {padding-left:20px;}.timeline-marker {left:-24px;}}
+@media(max-width:1100px) {.project-body {padding:22px;}.project-body :is(h2,h3) {font-size:19px;}.layer-description {grid-template-columns:110px 1fr;}.collaboration-inner {gap:30px;}}
+@media(max-width:767px) {.hero-system {padding-top:15px;}.hero-system .architecture-intro {display:none;}.layer-flow-compact {margin-top:0;gap:16px 12px;}.hero-system .layer-description {min-height:89px;}.system-caption {display:none;}.gallery-heading {grid-template-columns:1fr;gap:15px;}.gallery-heading>a {justify-self:start;}.section-heading {font-size:30px;}.project-grid {grid-template-columns:1fr;gap:25px;}.project-body {padding:22px;}.project-body :is(h2,h3) {font-size:21px;}.project-summary {min-height:0;}.layer-flow:not(.layer-flow-compact) {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px;}.flow-node {height:90px!important;}.flow-item:nth-child(3)>.flow-connector {display:none;}.layer-description {grid-template-columns:1fr;gap:8px;min-height:130px;}.case-study-header {padding:28px 22px 22px;}.case-study-section {padding:22px 20px;gap:10px;grid-template-columns:20px 1fr;}.case-study-dialog .project-visual {aspect-ratio:1.66;}.case-impact {gap:15px;flex-wrap:wrap;}.case-impact strong {font-size:23px;}.case-impact span {font-size:9px;}.project-filters {gap:3px;}.category-filter {padding-inline:10px;font-size:11px;}.collaboration-inner {grid-template-columns:1fr;gap:30px;padding-block:45px;}.collaboration-inner h2 {font-size:30px;}.visual-caption,.visual-footer {left:16px;right:16px;}.career-timeline {padding-left:20px;}.timeline-marker {left:-24px;}}
 @media(max-width:380px) {.visual-live {display:none;}}
 @media(prefers-reduced-motion:reduce) {.flow-connector:after {display:none;}.flow-node:hover,.flow-node:focus-visible {transform:none;}.project-card:hover,.project-card:focus-within,.project-card:hover .preview-canvas {transform:none;} }
 .timeline-progress {position:absolute;top:40px;bottom:65px;left:0;width:1px;background:var(--primary);transform-origin:top;}
@@ -889,3 +889,7 @@ html[data-preview] .page-transition {animation:none;}
 .hero-x-hire a {display:inline-flex;align-items:center;gap:4px;margin-left:4px;font-weight:600;color:var(--primary);}
 .hero-x-hire a svg {width:14px;height:14px;}
 .hero-x-hire a:hover {text-decoration:underline;text-underline-offset:3px;}
+
+/* A second architecture on a case study (e.g. a platform's AI agent layer). */
+.project-detail-extra { margin-top:12px; }
+.project-detail-extra > .project-detail-visual { margin-top:8px; }

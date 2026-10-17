@@ -58,6 +58,7 @@
 ## Client projects and live links
 - [x] Link Pollstar to the AI Agent Platform and Genie AI (Google Play) to Plant Health Advisor.
 - [x] Add MealBoy, Tareek, and the Maitrii Infotech, Fundflick, AI2Go Solutions, and Qualitech Group websites with illustrative diagrams and live links.
+- [x] Merge the Fund Flick Android app into the Fund Flick case study and add the Fund Flick HRMS with a full AWS + LangGraph system map.
 - [ ] Rudresh confirms Tareek's stack and a working link.
 
 ## Dock navigation and command palette

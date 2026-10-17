@@ -2,7 +2,7 @@ import { useRef, useState, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import { Activity, Bot, Cloud, Code2, Database, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { architectureLayers, projectVisuals, type GraphVisual } from '@/lib/portfolio-visuals';
+import { architectureLayers, projectVisuals, type GraphVisual, type ProjectVisual } from '@/lib/portfolio-visuals';
 import type { Project } from '@/lib/portfolio';
 import { Reveal } from './motion';
 import { SystemMap } from './system-map';
@@ -17,8 +17,8 @@ function Graph({visual}:{visual:GraphVisual}) {
  </svg>;
 }
 
-export function Architecture({project,detail=false}:{project:Project;detail?:boolean}) {
- const visual=projectVisuals[project.id];if(!visual)return null;
+export function Architecture({project,detail=false,visual:override}:{project:Project;detail?:boolean;visual?:ProjectVisual}) {
+ const visual=override??projectVisuals[project.id];if(!visual)return null;
  const frame=(canvas:ReactNode)=><div className={`project-visual visual-${project.id}${visual.type==='system'?' is-system':''}`}><div className="visual-caption"><span>Illustrative architecture</span><span aria-hidden="true">SYSTEM MAP</span></div><div className="preview-canvas">{canvas}</div><div className="visual-footer"><span>{visual.title}</span><span className="visual-live" aria-hidden="true"><span/>ENGINEERING STUDY</span></div></div>;
  if(visual.type==='system')return <SystemMap visual={visual} detail={detail} frame={frame}/>;
  return frame(<Graph visual={visual}/>);

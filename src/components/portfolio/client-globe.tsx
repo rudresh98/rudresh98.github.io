@@ -4,10 +4,10 @@ import { useInView } from 'motion/react';
 import { ArrowUpRight, MapPin, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { clientCountries } from '@/lib/client-countries';
-import fallback from '@/assets/earth-fallback.png';
+import fallback from '@/assets/earth-fallback.webp';
 import { Reveal } from './motion';
 const Scene = lazy(() => import('./client-globe-scene'));
-function StaticEarth() { return <img className="globe-fallback" src={fallback} alt="Earth showing the continents"/>; }
+function StaticEarth() { return <img className="globe-fallback" src={fallback} alt="Earth showing the continents" width={640} height={640} loading="lazy" decoding="async"/>; }
 class GlobeBoundary extends Component<{children: ReactNode; onError: () => void}, {failed: boolean}> {
  override state = { failed: false };
  static getDerivedStateFromError() { return { failed: true }; }

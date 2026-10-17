@@ -47,7 +47,8 @@ describe('Commercial structured data', () => {
  it('describes course delivery without invented prices', () => {
   for (const course of courses) {
    const data = courseJsonLd(course);
-   expect(data.hasCourseInstance).toMatchObject({ '@type': 'CourseInstance', courseMode: ['Online', 'Onsite'] });
+   expect(course.hours).toBeGreaterThan(0);
+   expect(data.hasCourseInstance).toMatchObject({ '@type': 'CourseInstance', courseMode: ['Online', 'Onsite'], courseWorkload: `PT${course.hours}H` });
    expect(data.offers).not.toHaveProperty('price');
   }
  });
