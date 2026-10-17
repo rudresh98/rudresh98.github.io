@@ -20,16 +20,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Yarn 4 is pinned in package.json's "packageManager" and provided by Corepack.
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Test
-        run: bun run test
+        run: yarn test
 
       - name: Build (prerendered static site)
-        run: bun run build
+        run: yarn build
 
       - uses: actions/configure-pages@v5
 

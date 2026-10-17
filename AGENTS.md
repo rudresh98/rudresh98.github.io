@@ -27,3 +27,4 @@
 - Keep every page's search title and description in the SEO module's `pageSeo` map (titles ≤60, descriptions ≤160 characters) so heads, sitemap, and llms.txt stay in sync; Training is the selling page, so there is no separate services page.
 - Keep the Experience journey a decorative, scroll-linked road and car built from the existing experience data, with road geometry in the pure route-path module; it stays parked and fully drawn under reduced motion.
 - Keep the Home page's Skiper19 scroll-drawn stroke decorative: aria-hidden, behind all Home content in the primary token, stretched to the page's full height by the pure stroke-path module, and fully drawn under reduced motion.
+- Use Yarn 4 through Corepack (pinned by `packageManager`; `.yarnrc.yml` keeps the 24h release-age gate and its Lovable exemptions), and run `yarn format` before committing so `yarn lint` stays free of Prettier errors.
