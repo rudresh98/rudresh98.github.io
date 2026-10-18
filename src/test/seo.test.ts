@@ -27,7 +27,7 @@ describe("Canonical URLs", () => {
       content: "https://rudresh98.github.io/about/",
     });
     expect(head.meta).toContainEqual({
-      title: "About | Rudresh Oza — Cloud & GenAI",
+      title: "About | Rudresh Oza — Forward Deployed Engineer (FDE)",
     });
   });
   it("keeps unavailable pages out of the index", () => {
