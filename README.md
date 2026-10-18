@@ -1,27 +1,86 @@
-# Rudreshportfolio
+# Rudresh Oza — Portfolio
 
-attaching my resume and profile pic
+Personal portfolio of Rudresh Oza, Forward Deployed Engineer (FDE) in Jaipur, India, covering full-stack apps, Azure and AWS cloud platforms, and Generative AI agent systems.
 
-This project was built with [Lovable](https://lovable.dev).
+**Live site**: https://rudresh98.github.io. Every push to `master` is tested, prerendered, and deployed to GitHub Pages by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
-**Live site**: https://rudresh98.github.io (deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `master`)
+## Pages
 
-## Build with Lovable
+| Path                 | What it shows                                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------------------------- |
+| `/`                  | Introduction, headline metrics, featured projects, architecture flow, and an interactive client globe |
+| `/about`             | Background, portrait, education, and training and mentoring                                           |
+| `/expertise`         | Skills with icons and descriptive tooltips                                                            |
+| `/experience`        | Career timeline drawn as a scroll-linked road                                                         |
+| `/projects`          | Filterable project gallery                                                                            |
+| `/projects/<id>`     | Case study for each project, with an illustrative architecture diagram                                |
+| `/certifications`    | Verified credentials with issuer filter and verification links                                        |
+| `/training`          | Courses and delivery formats for corporate and individual training                                    |
+| `/training/<course>` | Full syllabus for each course                                                                         |
+| `/contact`           | Contact form that opens a pre-filled email draft in your mail app                                     |
+| `/accessibility`     | Reading preferences (text size, contrast, motion, font, links) and statement                          |
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/0799a830-c12c-4656-993a-39c0d57d9740).
+Every page shares a bottom navigation dock, a ⌘K / Ctrl+K command palette, a light/dark theme toggle, a share launcher, and the testimonials carousel.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Tech stack
+
+- [TanStack Start](https://tanstack.com/start) and TanStack Router (file-based, type-safe routes) on React 19
+- Vite 8, TypeScript, Tailwind CSS 4, and Radix UI primitives
+- Motion for animation, with reduced-motion support throughout
+- Three.js with React Three Fiber for the client globe
+- Vitest and Testing Library for tests, ESLint and Prettier for linting
+
+## Project structure
+
+```text
+src/
+  routes/               File-based routes; __root.tsx is the shared shell
+  components/portfolio/ Page sections (hero, dock, command palette, globe, …)
+  components/ui/        Reusable UI primitives
+  lib/                  Typed content and logic: portfolio data, SEO, navigation, theme, accessibility
+  assets/               Portrait, resume PDF, and globe textures
+  test/                 Vitest suites
+public/                 Favicons, Open Graph image, robots.txt, web manifest
+```
+
+## Updating content
+
+All content lives in typed data modules under [`src/lib/`](src/lib/), separate from the components that display it, so every page reads from the same source.
+
+| To change                                  | Edit                                                                                                     |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| Profile, metrics, projects, experience     | [`src/lib/portfolio.ts`](src/lib/portfolio.ts)                                                           |
+| Skills and their descriptions              | [`src/lib/skills.ts`](src/lib/skills.ts), [`src/lib/skill-information.ts`](src/lib/skill-information.ts) |
+| Certifications                             | [`src/lib/certifications.ts`](src/lib/certifications.ts)                                                 |
+| Training courses and formats               | [`src/lib/training.ts`](src/lib/training.ts)                                                             |
+| Testimonials                               | [`src/lib/testimonials.ts`](src/lib/testimonials.ts)                                                     |
+| Client countries on the globe              | [`src/lib/client-countries.ts`](src/lib/client-countries.ts)                                             |
+| Page titles, descriptions, structured data | [`src/lib/seo.ts`](src/lib/seo.ts)                                                                       |
+| Portrait and resume                        | Replace `src/assets/rudresh-oza.png` and `src/assets/rudresh-oza-resume.pdf`                             |
+
+`sitemap.xml` and `llms.txt` are generated at build time from these modules, so new projects, courses, and certifications are listed automatically.
 
 ## Development
 
-Prefer working locally? You need Node.js — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating). Yarn 4 is pinned in `package.json` and provided by Corepack.
+You need Node.js 24 ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)). Yarn 4 is pinned in `package.json` and provided by Corepack.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone git@github.com:rudresh98/rudresh98.github.io.git
+cd rudresh98.github.io
 corepack enable
 yarn install
 yarn dev
 ```
+
+| Command        | Purpose                                                        |
+| -------------- | -------------------------------------------------------------- |
+| `yarn dev`     | Start the dev server                                           |
+| `yarn build`   | Prerender every route to static HTML in `dist/client`          |
+| `yarn preview` | Serve the production build locally                             |
+| `yarn test`    | Run the test suite once (`yarn test:watch` to keep it running) |
+| `yarn lint`    | Run ESLint, including Prettier checks                          |
+| `yarn format`  | Format the codebase with Prettier; run before committing       |
+
+## Deployment
+
+The site is fully static. `yarn build` prerenders every route, including each project and course page, and writes a `404.html` shell so GitHub Pages can serve unknown URLs through the client router. The deploy workflow runs `yarn install --immutable`, `yarn test`, and `yarn build`, then publishes `dist/client` to GitHub Pages.
