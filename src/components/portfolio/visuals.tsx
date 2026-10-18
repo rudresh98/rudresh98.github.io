@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotionConfig } from "motion/react";
 import { Activity, Bot, Cloud, Code2, Database, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,7 @@ import { SystemMap } from "./system-map";
 function Graph({ visual }: { visual: GraphVisual }) {
   const ref = useRef<SVGSVGElement>(null);
   const visible = useInView(ref, { amount: 0.3 });
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   return (
     <svg
       ref={ref}
@@ -156,7 +156,7 @@ const icons = {
 export function ArchitectureFlow({ compact = false }: { compact?: boolean }) {
   const [active, setActive] = useState(0);
   const layer = architectureLayers[active] ?? architectureLayers[0];
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   return (
     <Reveal
       className={compact ? "hero-system" : "section architecture-section"}

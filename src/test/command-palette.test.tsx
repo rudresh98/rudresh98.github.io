@@ -24,6 +24,7 @@ import {
   navCount,
   navigation,
   previewHref,
+  utilityPages,
 } from "@/lib/navigation";
 import { projects } from "@/lib/portfolio";
 import { courses } from "@/lib/training";
@@ -66,7 +67,9 @@ describe("Command index", () => {
   it("covers every page, project, course, and certification with the right destination", () => {
     const entries = commandIndex();
     const by = (group: string) => entries.filter((e) => e.group === group);
-    expect(by("Pages").map((e) => e.href)).toEqual(navigation.map((n) => n.to));
+    expect(by("Pages").map((e) => e.href)).toEqual(
+      [...navigation, ...utilityPages].map((n) => n.to),
+    );
     expect(by("Projects").map((e) => e.href)).toEqual(
       projects.map((p) => `/projects/${p.id}`),
     );
@@ -154,6 +157,17 @@ describe("Command palette", () => {
       await within(dialog).findByRole("option", {
         name: /Databricks Certified Data Engineer Professional/,
       }),
+    ).toBeInTheDocument();
+  });
+
+  it("finds the Accessibility page by the setting a visitor needs", async () => {
+    await renderPalette();
+    const dialog = await openWithShortcut();
+    fireEvent.change(within(dialog).getByRole("combobox"), {
+      target: { value: "text size" },
+    });
+    expect(
+      await within(dialog).findByRole("option", { name: /Accessibility/ }),
     ).toBeInTheDocument();
   });
 

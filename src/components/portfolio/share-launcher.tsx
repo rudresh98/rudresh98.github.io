@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotionConfig } from "motion/react";
 import { Share2, X } from "lucide-react";
 import {
   Tooltip,
@@ -24,7 +24,7 @@ const spring = { type: "spring", stiffness: 200, damping: 15 } as const;
 export function ShareLauncher() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const listId = useId();

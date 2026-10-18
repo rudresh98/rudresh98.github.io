@@ -11,7 +11,7 @@ import {
   motion,
   useInView,
   useMotionValue,
-  useReducedMotion,
+  useReducedMotionConfig,
   useSpring,
   useTransform,
 } from "motion/react";
@@ -191,7 +191,7 @@ export function HeroSystem() {
   const active = panels.find((panel) => panel.id === activeId) ?? panels[0];
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.25 });
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   // Ambient float, parallax, and the edge pulse stay off for touch, small screens, and reduced motion.
   const [ambient, setAmbient] = useState(false);
   useEffect(() => {

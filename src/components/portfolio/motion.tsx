@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotionConfig } from "motion/react";
 
 export function Reveal({
   children,
@@ -10,7 +10,7 @@ export function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   return (
     <motion.div
       className={className}
@@ -38,7 +38,7 @@ export function Counter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const visible = useInView(ref, { once: true });
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const [display, setDisplay] = useState(value);
   useEffect(() => {
     if (!visible || reduced) return;

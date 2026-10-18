@@ -1,3 +1,5 @@
+import { prefersReducedMotion } from "./accessibility";
+
 // Appearance is a device preference, not account data: it lives on <html> and in localStorage.
 export const THEME_STORAGE_KEY = "portfolio-theme";
 // Fired whenever the theme changes so every control (header toggle, palette action) stays in sync.
@@ -27,7 +29,7 @@ export function setTheme(dark: boolean, revealCss?: string) {
   const root = document.documentElement;
   if (transitionTimer) clearTimeout(transitionTimer);
   root.classList.remove("theme-changing");
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (prefersReducedMotion()) {
     applyTheme(dark);
     return;
   }

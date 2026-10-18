@@ -3,7 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import {
   motion,
   useMotionValue,
-  useReducedMotion,
+  useReducedMotionConfig,
   useSpring,
   useTransform,
   type MotionValue,
@@ -238,7 +238,7 @@ function MoreMenu({
 
 export function Dock() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const mouseX = useMotionValue(Infinity);
   const [fine, setFine] = useState(false);
   const [hidden, setHidden] = useState(false);

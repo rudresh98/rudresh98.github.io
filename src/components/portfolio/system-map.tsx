@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotionConfig } from "motion/react";
 import {
   edgeKey,
   type NodeSide,
@@ -63,7 +63,7 @@ export function SystemMap({
 }) {
   const ref = useRef<SVGSVGElement>(null);
   const visible = useInView(ref, { amount: 0.3 });
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const uid = `sys${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const [step, setStep] = useState(0);
   const [hold, setHold] = useState<"hover" | "click" | null>(null);

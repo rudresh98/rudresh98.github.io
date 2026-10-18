@@ -1,25 +1,80 @@
 import { type ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import portrait from "@/assets/rudresh-oza.png";
 import { Counter, Reveal } from "./motion";
 import { ExperienceRoute } from "./experience-route";
-import { achievements, training } from "@/lib/portfolio";
+import { achievements, profile, training } from "@/lib/portfolio";
 export function PageIntro({
   eyebrow,
   title,
   description,
+  aside,
 }: {
   eyebrow: string;
   title: string;
   description: string;
+  aside?: ReactNode;
 }) {
-  return (
-    <Reveal className="page-intro">
+  const copy = (
+    <>
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p className="section-description">{description}</p>
+    </>
+  );
+  if (!aside) return <Reveal className="page-intro">{copy}</Reveal>;
+  return (
+    <Reveal className="page-intro page-intro-split">
+      <div>{copy}</div>
+      {aside}
     </Reveal>
+  );
+}
+// Mirrors the Home hero's figure chrome; the frame crops the square upload to the illustration panel.
+export function AboutPortrait() {
+  return (
+    <figure className="about-portrait">
+      <div className="hero-map-head">
+        <span>Fig. 01 — Portrait</span>
+        <span className="hero-map-live">
+          <i aria-hidden="true" />
+          Illustrated
+        </span>
+      </div>
+      <div className="about-portrait-stage">
+        <span className="about-portrait-grid" aria-hidden="true" />
+        <span className="about-portrait-axis" aria-hidden="true" />
+        <div className="about-portrait-frame">
+          <span className="about-portrait-marks" aria-hidden="true" />
+          <div className="about-portrait-photo">
+            <img
+              src={portrait}
+              alt="Illustrated portrait of Rudresh Oza"
+              width={1024}
+              height={1024}
+              decoding="async"
+            />
+          </div>
+        </div>
+        <p className="about-portrait-hub">
+          <strong>
+            <i aria-hidden="true" />
+            {profile.experience} years
+          </strong>
+          <span>Cloud &amp; GenAI</span>
+        </p>
+      </div>
+      <figcaption className="about-portrait-caption">
+        <strong>{profile.name}</strong>
+        <span>{profile.role}</span>
+        <span className="about-portrait-location">
+          <MapPin size={11} aria-hidden="true" />
+          {profile.location} · {profile.timezone}
+        </span>
+      </figcaption>
+    </figure>
   );
 }
 export function Page({ children }: { children: ReactNode }) {
@@ -83,7 +138,7 @@ export function AboutContent({ compact = false }: { compact?: boolean }) {
       <div>
         {principles.map(([title, text], i) => (
           <Reveal key={title} delay={i * 0.06} className="principle flex gap-5">
-            <span className="pt-1 text-[10px] text-primary">0{i + 1}</span>
+            <span className="pt-1 text-[0.625rem] text-primary">0{i + 1}</span>
             <div>
               <h3 className="text-sm font-bold">{title}</h3>
               <p className="mt-2 text-xs leading-6 text-muted-foreground">

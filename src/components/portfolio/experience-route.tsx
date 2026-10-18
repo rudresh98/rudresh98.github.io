@@ -3,7 +3,7 @@ import {
   motion,
   useInView,
   useMotionValueEvent,
-  useReducedMotion,
+  useReducedMotionConfig,
   useScroll,
   useSpring,
 } from "motion/react";
@@ -11,7 +11,8 @@ import { experience } from "@/lib/portfolio";
 import { experienceIcons } from "@/lib/experience-icons";
 import { ROUTE_WIDTH, routePath } from "@/lib/route-path";
 
-// Decorative side-view car facing right, so a 0° heading means driving right along the road.
+// Decorative side-view Mustang-style fastback facing right (long hood leading), so a 0° heading
+// means driving right along the road.
 function CarArt() {
   return (
     <svg
@@ -22,30 +23,49 @@ function CarArt() {
     >
       <ellipse cx="62" cy="50" rx="50" ry="4" className="exp-car-shadow" />
       <path
-        d="M8 36 C8 28 14 24 22 23 L38 21 L52 10 C55 8 59 7 63 7 L84 7 C89 7 93 9 96 12 L106 22 C112 23 116 27 116 33 L116 38 C116 41 114 43 111 43 L11 43 C9 43 8 41 8 38 Z"
+        d="M6 38 L6 31 C6 27 6 24 5 21.5 L14 21.5 L44 10.6 C45.5 10 47 9.6 49 9.6 L62 9.6 C64 9.6 65.5 10.4 67 12 L76 21 L87 21.4 C89 20.2 95 20.2 97 21.7 L108 23 C112 23.4 115 25 116 27.5 L117 30 L116.5 38.5 C116.5 40.8 115 42 112.5 42 L104.5 42 A10.5 10.5 0 0 0 83.5 42 L38.5 42 A10.5 10.5 0 0 0 17.5 42 L9 42 C7 42 6 40.5 6 38 Z"
         className="exp-car-body"
       />
       <path
-        d="M44 21 L55 12 C57 11 59 10 62 10 L70 10 L70 21 Z M74 10 L84 10 C88 10 91 12 93 14 L101 21 L74 21 Z"
+        d="M56 12.4 L64 12.4 C65 12.4 65.8 12.9 66.5 13.6 L73 20.3 L56 20.3 Z M53 12 L53 20.3 L33 20.3 L46.5 13 C48.4 12.2 50.5 12 53 12 Z M41 33 L50 29.5 L50 34 Z"
         className="exp-car-glass"
       />
-      <path
-        d="M72 23 L72 40 M40 30 L48 30 M76 30 L84 30"
-        className="exp-car-line"
-      />
-      <ellipse cx="113" cy="31" rx="3" ry="2.4" className="exp-car-headlight" />
+      <path d="M54.5 22.5 V35.5 M18 27 L108 25.8" className="exp-car-line" />
       <rect
-        x="8"
-        y="29"
-        width="4"
-        height="5"
-        rx="1.5"
-        className="exp-car-taillight"
+        x="40"
+        y="36.4"
+        width="42"
+        height="1.8"
+        className="exp-car-stripe"
       />
-      {[30, 92].map((cx) => (
+      <rect x="40" y="39" width="42" height="1.1" className="exp-car-stripe" />
+      <path
+        d="M115.6 29.4 L117 30 L116.7 35.5 L115 35.5 Z"
+        className="exp-car-grille"
+      />
+      <ellipse
+        cx="114.3"
+        cy="27.6"
+        rx="2.2"
+        ry="1.8"
+        className="exp-car-headlight"
+      />
+      {[24.4, 26.6, 28.8].map((y) => (
+        <rect
+          key={y}
+          x="5.2"
+          y={y}
+          width="3"
+          height="1.5"
+          rx="0.6"
+          className="exp-car-taillight"
+        />
+      ))}
+      {[28, 94].map((cx) => (
         <g key={cx}>
           <circle cx={cx} cy="43" r="8.5" className="exp-car-tyre" />
-          <circle cx={cx} cy="43" r="3.6" className="exp-car-hub" />
+          <circle cx={cx} cy="43" r="5.2" className="exp-car-hub" />
+          <circle cx={cx} cy="43" r="1.8" className="exp-car-tyre" />
         </g>
       ))}
     </svg>
@@ -59,7 +79,7 @@ export function ExperienceRoute() {
   const pathRef = useRef<SVGPathElement>(null);
   const laneRef = useRef<HTMLDivElement>(null);
   const carRef = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const [compact, setCompact] = useState(false);
   const { d, viewBoxHeight } = routePath(experience.length);
   const { scrollYProgress } = useScroll({

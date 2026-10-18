@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { clientCountries } from "@/lib/client-countries";
 import fallback from "@/assets/earth-fallback.webp";
 import { Reveal } from "./motion";
+import { useReducedMotionSetting } from "./accessibility";
 const Scene = lazy(() => import("./client-globe-scene"));
 function StaticEarth() {
   return (
@@ -47,7 +48,8 @@ export function ClientGlobe() {
   const ref = useRef<HTMLElement>(null);
   const near = useInView(ref, { margin: "200px", once: true });
   const inView = useInView(ref, { amount: 0.1 });
-  const [reduced, setReduced] = useState(false);
+  // The OS setting or the Accessibility page's override.
+  const reduced = useReducedMotionSetting();
   const [selected, setSelected] = useState<(typeof clientCountries)[number]>(
     clientCountries[3],
   );
@@ -60,10 +62,6 @@ export function ClientGlobe() {
   const drag = useRef(0);
   const pointer = useRef<{ id: number; x: number } | null>(null);
   useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const motionPreference = () => setReduced(media.matches);
-    motionPreference();
-    media.addEventListener("change", motionPreference);
     const canvas = document.createElement("canvas");
     setSupported(
       Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl")),
@@ -88,7 +86,6 @@ export function ClientGlobe() {
     return () => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", visibility);
-      media.removeEventListener("change", motionPreference);
     };
   }, []);
   return (

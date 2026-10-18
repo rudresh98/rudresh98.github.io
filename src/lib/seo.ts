@@ -86,6 +86,11 @@ export const pageSeo = {
     description:
       "Contact Rudresh Oza to hire a remote GenAI, full-stack, or cloud developer, book corporate training, or discuss Forward Deployed Engineer roles.",
   },
+  "/accessibility": {
+    title: "Accessibility Settings & Statement | Rudresh Oza",
+    description:
+      "Adjust text size, contrast, motion, font, and link underlines on Rudresh Oza’s portfolio, and see how the site supports keyboard and screen reader visitors.",
+  },
 } as const;
 export type SeoPath = keyof typeof pageSeo;
 
@@ -148,6 +153,7 @@ export const sitePages: {
     changefreq: "yearly" as const,
   })),
   { path: "/contact", priority: 0.6, changefreq: "yearly" },
+  { path: "/accessibility", priority: 0.3, changefreq: "yearly" },
 ];
 
 // The date site content last changed. Bump it whenever pages, projects, courses, or credentials

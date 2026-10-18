@@ -56,6 +56,24 @@ export const navigation = [
 ] as const;
 export type NavItem = (typeof navigation)[number];
 export type NavPath = NavItem["to"];
+// Pages kept out of the dock and mobile menu, reached from the footer and the ⌘K palette instead.
+export const utilityPages = [
+  {
+    label: "Accessibility",
+    to: "/accessibility",
+    keywords: [
+      "a11y",
+      "text size",
+      "font size",
+      "contrast",
+      "reduce motion",
+      "readable font",
+      "dyslexia",
+      "underline links",
+    ],
+  },
+] as const;
+export type PagePath = NavPath | (typeof utilityPages)[number]["to"];
 // Live counts shown on dock previews, read from the same data the pages render.
 export function navCount(path: string) {
   if (path === "/projects") return projects.length;
@@ -98,6 +116,13 @@ export function commandIndex(): CommandEntry[] {
       label: item.label,
       keywords: [item.label],
       href: item.to,
+    })),
+    ...utilityPages.map((page) => ({
+      id: `page:${page.to}`,
+      group: "Pages" as const,
+      label: page.label,
+      keywords: [page.label, ...page.keywords],
+      href: page.to,
     })),
     ...projects.map((project) => ({
       id: `project:${project.id}`,

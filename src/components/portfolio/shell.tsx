@@ -5,6 +5,7 @@ import {
   ArrowUp,
   Download,
   Github,
+  Heart,
   Linkedin,
   Mail,
   Search,
@@ -12,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import resume from "@/assets/rudresh-oza-resume.pdf";
 import { profile } from "@/lib/portfolio";
+import { prefersReducedMotion } from "@/lib/accessibility";
+import { utilityPages } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 import { useCommandPalette, useShortcutLabel } from "./command-palette";
@@ -152,7 +155,7 @@ export function Footer() {
             <span className="monogram">RO.</span>
             <div>
               <p className="text-xs font-bold">Rudresh Oza</p>
-              <p className="mt-1 text-[10px] text-muted-foreground">
+              <p className="mt-1 text-[0.625rem] text-muted-foreground">
                 Forward Deployed Engineer (FDE) | Cloud & GenAI
               </p>
             </div>
@@ -166,18 +169,29 @@ export function Footer() {
             onClick={() =>
               window.scrollTo({
                 top: 0,
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-                  .matches
-                  ? "instant"
-                  : "smooth",
+                behavior: prefersReducedMotion() ? "instant" : "smooth",
               })
             }
           >
             <ArrowUp />
           </Button>
         </div>
-        <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-[10px] text-muted-foreground">
+        <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-[0.625rem] text-muted-foreground">
           <p>© {new Date().getFullYear()} Rudresh Oza</p>
+          {utilityPages.map((page) => (
+            <p key={page.to}>
+              <Link to={page.to}>{page.label}</Link>
+            </p>
+          ))}
+          <p className="flex items-center gap-1">
+            Made with
+            <Heart
+              size={11}
+              className="fill-primary text-primary"
+              aria-hidden="true"
+            />
+            <span className="sr-only">love</span> in India
+          </p>
           <p>
             Building thoughtful software, intelligent systems, and scalable
             digital products.

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotionConfig } from "motion/react";
 import { GripHorizontal, RefreshCcw } from "lucide-react";
 import React, { type ButtonHTMLAttributes, useId, useState } from "react";
 
@@ -210,7 +210,7 @@ export const ThemeToggleButton2 = ({
   const clipId = `skiper-btn-2-${useId().replace(/:/g, "")}`;
   const transition = {
     ease: "easeInOut",
-    duration: useReducedMotion() ? 0 : 0.35,
+    duration: useReducedMotionConfig() ? 0 : 0.35,
   } as const;
   return (
     <button

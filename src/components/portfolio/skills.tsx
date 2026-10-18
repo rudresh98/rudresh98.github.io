@@ -8,7 +8,7 @@ import {
   type RefObject,
 } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotionConfig } from "motion/react";
 import {
   Activity,
   ArrowDown,
@@ -74,7 +74,7 @@ const overviewSize = 3;
 export function SkillsHub() {
   const [filter, setFilter] = useState<SkillFilter>("all");
   const explorerHeading = useRef<HTMLHeadingElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const explore = (next: SkillFilter) => {
     setFilter(next);
     const heading = explorerHeading.current;
@@ -269,7 +269,7 @@ function SkillsExplorer({
   onExplore: (filter: SkillFilter) => void;
   headingRef: RefObject<HTMLHeadingElement | null>;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const [info, setInfo] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const filters = useRef<HTMLDivElement>(null),
@@ -627,7 +627,7 @@ function Ecosystem() {
 function FlowDiagram({ flow }: { flow: EcosystemFlow }) {
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const node = flow.nodes[active] ?? flow.nodes[0];
   const tabId = (i: number) => `eco-tab-${flow.id}-${i}`,
     panelId = `eco-panel-${flow.id}`;

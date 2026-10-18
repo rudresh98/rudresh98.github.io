@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useReducedMotionConfig } from "motion/react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +18,7 @@ export { Architecture } from "./visuals";
 
 export function ProjectGrid({ preview = false }: { preview?: boolean }) {
   const [category, setCategory] = useState<Category>("All");
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const shown = preview ? projects.slice(0, 4) : filterProjects(category);
   const Heading = preview ? "h2" : "h1";
   const CardHeading = preview ? "h3" : "h2";

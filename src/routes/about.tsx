@@ -5,7 +5,12 @@ import {
   profilePageJsonLd,
   breadcrumbJsonLd,
 } from "@/lib/seo";
-import { Page, PageIntro, AboutContent } from "@/components/portfolio/content";
+import {
+  Page,
+  PageIntro,
+  AboutContent,
+  AboutPortrait,
+} from "@/components/portfolio/content";
 import { Collaboration } from "@/components/portfolio/work";
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -30,6 +35,7 @@ function About() {
           eyebrow="The person behind the code"
           title="Engineering with a Product Mindset."
           description="Thoughtful architecture, practical AI, and ownership from the first idea to production."
+          aside={<AboutPortrait />}
         />
         <AboutContent />
         <section className="border-t border-border pb-16 pt-10">

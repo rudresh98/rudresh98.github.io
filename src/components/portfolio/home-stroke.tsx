@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useReducedMotion, useScroll } from "motion/react";
+import { useReducedMotionConfig, useScroll } from "motion/react";
 import {
   LINE_PATH_D,
   LINE_PATH_HEIGHT,
@@ -16,7 +16,7 @@ const END = 2668.89;
 // stretches to the bottom of the page, and scrolling draws it down to the end.
 export function HomeStroke() {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],

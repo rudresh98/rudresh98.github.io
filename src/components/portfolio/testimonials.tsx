@@ -1,6 +1,6 @@
 import { useEffect, useState, type KeyboardEvent } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotionConfig } from "motion/react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials } from "@/lib/testimonials";
 import { Reveal } from "./motion";
@@ -8,7 +8,7 @@ import { Reveal } from "./motion";
 // Quotes rotate through a swipeable carousel so every approved endorsement stays
 // reachable without stacking seven full-height cards down the page.
 export function Testimonials() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const [emblaRef, embla] = useEmblaCarousel({
     loop: true,
     align: "start",

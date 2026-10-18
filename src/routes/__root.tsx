@@ -8,6 +8,7 @@ import {
   useLocation,
   HeadContent,
   Scripts,
+  ScriptOnce,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -19,6 +20,8 @@ import { Dock } from "@/components/portfolio/dock";
 import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { Testimonials } from "@/components/portfolio/testimonials";
 import { ShareLauncher } from "@/components/portfolio/share-launcher";
+import { AccessibilityProvider } from "@/components/portfolio/accessibility";
+import { accessibilityBootScript } from "@/lib/accessibility";
 import { defaultMeta, site, siteJsonLd } from "@/lib/seo";
 import { isPreviewSearch } from "@/lib/navigation";
 import portrait from "@/assets/rudresh-oza.png";
@@ -117,7 +120,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;800&display=swap",
+          // Atkinson Hyperlegible Next backs the Accessibility page's readable font; its files only download when used.
+          href: "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&family=Manrope:wght@400;500;600;650;700;800&display=swap",
         },
       ],
     }),
@@ -130,9 +134,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    // The boot script sets accessibility attributes on <html> before React hydrates.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <ScriptOnce>{accessibilityBootScript}</ScriptOnce>
         {/* Head meta keeps one tag per name, so Search Console tokens render here to keep every owner verified. */}
         {site.googleSiteVerifications.map((token) => (
           <meta key={token} name="google-site-verification" content={token} />
@@ -171,16 +177,21 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <CommandPaletteProvider disabled={preview}>
-        <Header />
-        <div key={pathname} className={animate ? "page-transition" : undefined}>
-          <Outlet />
-        </div>
-        <Testimonials />
-        <Footer />
-        {!preview && <Dock />}
-        {!preview && <ShareLauncher />}
-      </CommandPaletteProvider>
+      <AccessibilityProvider>
+        <CommandPaletteProvider disabled={preview}>
+          <Header />
+          <div
+            key={pathname}
+            className={animate ? "page-transition" : undefined}
+          >
+            <Outlet />
+          </div>
+          <Testimonials />
+          <Footer />
+          {!preview && <Dock />}
+          {!preview && <ShareLauncher />}
+        </CommandPaletteProvider>
+      </AccessibilityProvider>
     </QueryClientProvider>
   );
 }

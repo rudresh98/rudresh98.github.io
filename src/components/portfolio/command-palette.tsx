@@ -35,7 +35,7 @@ import {
   commandIndex,
   socialLinks,
   type CommandEntry,
-  type NavPath,
+  type PagePath,
 } from "@/lib/navigation";
 import { navigationIcons } from "@/lib/navigation-icons";
 import { toggleThemeWithReveal } from "./theme-reveal";
@@ -158,7 +158,7 @@ export function CommandPalette() {
                     .map((entry) => {
                       const Icon =
                         entry.group === "Pages"
-                          ? navigationIcons[entry.href as NavPath]
+                          ? navigationIcons[entry.href as PagePath]
                           : groupIcons[entry.group];
                       return (
                         <CommandItem

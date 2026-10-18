@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useReducedMotionConfig } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Flame, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { achievements } from "@/lib/portfolio";
@@ -114,7 +114,7 @@ function CourseCard({ course }: { course: Course }) {
 export function CourseCards() {
   const [category, setCategory] =
     useState<(typeof courseCategories)[number]>("All");
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const shown = filterCourses(category);
   return (
     <section className="section" aria-labelledby="courses-heading">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useReducedMotionConfig } from "motion/react";
 import { ArrowUpRight, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -72,7 +72,7 @@ export function CertificationGrid({
   items?: Certification[];
 }) {
   const [issuer, setIssuer] = useState("All");
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionConfig();
   const issuers = certificationIssuers(items);
   const shown = filterCertifications(issuer, items);
   if (items.length === 0)

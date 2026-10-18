@@ -1,4 +1,5 @@
 import {
+  Accessibility,
   Award,
   BriefcaseBusiness,
   FolderKanban,
@@ -9,10 +10,10 @@ import {
   UserRound,
   type LucideIcon,
 } from "lucide-react";
-import type { NavPath } from "./navigation";
+import type { PagePath } from "./navigation";
 
 // Decorative, monochrome symbols keyed by page path; page labels remain the accessible names.
-export const navigationIcons: Record<NavPath, LucideIcon> = {
+export const navigationIcons: Record<PagePath, LucideIcon> = {
   "/": House,
   "/about": UserRound,
   "/expertise": Sparkles,
@@ -21,4 +22,5 @@ export const navigationIcons: Record<NavPath, LucideIcon> = {
   "/certifications": Award,
   "/training": GraduationCap,
   "/contact": Mail,
+  "/accessibility": Accessibility,
 };
