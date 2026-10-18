@@ -10,8 +10,8 @@ export const profile = {
   github: "https://github.com/rudresh98",
 };
 export const achievements = {
-  transactions: 1500,
-  clients: 2000,
+  transactions: 15000,
+  clients: 200000,
   transactionSpeedPercent: 40,
   issuesResolved: 15,
   transactionMonths: 6,
@@ -25,6 +25,8 @@ export type Credential = {
   suffix: string;
   label: string;
   context: string;
+  // "compact" shows the verified number abbreviated (2000 → 2K); screen readers still hear the full figure.
+  format?: "full" | "compact";
 };
 // Hero credibility strip: every value is a verified achievement above, never a new figure.
 export const heroCredentials: Credential[] = [
@@ -39,12 +41,14 @@ export const heroCredentials: Credential[] = [
     suffix: "+",
     label: "Clients served by transfer & split",
     context: "Full stack · Anchor",
+    format: "compact",
   },
   {
     value: achievements.transactions,
     suffix: "+",
     label: "Redemption transactions in six months",
     context: "Product impact",
+    format: "compact",
   },
   {
     value: achievements.transactionSpeedPercent,
@@ -57,6 +61,7 @@ export const heroCredentials: Credential[] = [
     suffix: "+",
     label: "Students trained in full-stack & GenAI",
     context: "Training · 5 years",
+    format: "compact",
   },
 ];
 export const categories = [

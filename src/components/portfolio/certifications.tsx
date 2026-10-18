@@ -93,7 +93,11 @@ export function CertificationGrid({
   return (
     <section className="cert-section">
       {issuers.length > 2 && (
-        <div className="project-filters" aria-label="Certification issuers">
+        <div
+          className="project-filters"
+          role="group"
+          aria-label="Certification issuers"
+        >
           {issuers.map((i) => (
             <Button
               key={i}
@@ -105,8 +109,8 @@ export function CertificationGrid({
               {i}
               {issuer === i && (
                 <motion.span
-                  layoutId="cert-filter-underline"
-                  className="filter-underline"
+                  layoutId="cert-filter-indicator"
+                  className="filter-indicator"
                   transition={{ duration: reduced ? 0 : 0.25 }}
                 />
               )}

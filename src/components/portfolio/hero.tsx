@@ -121,7 +121,11 @@ export function Hero() {
           <li className="hero-x-fact" key={fact.label}>
             <p className="hero-x-fact-context">{fact.context}</p>
             <p className="hero-x-fact-value">
-              <Counter value={fact.value} suffix={fact.suffix} />
+              <Counter
+                value={fact.value}
+                suffix={fact.suffix}
+                format={fact.format ?? "full"}
+              />
             </p>
             <p className="hero-x-fact-label">{fact.label}</p>
           </li>

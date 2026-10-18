@@ -134,6 +134,7 @@ export function CourseCards() {
       </Reveal>
       <div
         className="project-filters course-filters"
+        role="group"
         aria-label="Course categories"
       >
         {courseCategories.map((c) => (
@@ -147,8 +148,8 @@ export function CourseCards() {
             {c}
             {category === c && (
               <motion.span
-                layoutId="course-filter-underline"
-                className="filter-underline"
+                layoutId="course-filter-indicator"
+                className="filter-indicator"
                 transition={{ duration: reduced ? 0 : 0.25 }}
               />
             )}
