@@ -17,8 +17,12 @@ export const site = {
   description:
     "Rudresh Oza is a Forward Deployed Engineer (FDE) in Jaipur, India building full-stack apps, Azure and AWS cloud platforms, and Generative AI agent systems.",
   locale: "en_US",
-  // Google Search Console HTML-tag token for the https://rudresh98.github.io/ URL-prefix property.
-  googleSiteVerification: "z7GuwcmWSdVMNpiep72s-ULyfDYwrv4nQ3cQdHLqnBQ",
+  // Google Search Console HTML-tag tokens for the https://rudresh98.github.io/ URL-prefix property;
+  // each verified owner keeps its own token, so remove one only when that owner is dropped.
+  googleSiteVerifications: [
+    "z7GuwcmWSdVMNpiep72s-ULyfDYwrv4nQ3cQdHLqnBQ",
+    "q-iQTVic2hMCEw7MJubIRgmtgNvWUBi4WEI3A8Yv38o",
+  ],
   image: {
     path: "/og-image.png",
     width: 1200,
@@ -206,7 +210,6 @@ export function defaultMeta(): Meta[] {
     { title: pageSeo["/"].title },
     { name: "description", content: site.description },
     { name: "author", content: profile.name },
-    { name: "google-site-verification", content: site.googleSiteVerification },
     {
       name: "robots",
       content: "index, follow, max-image-preview:large, max-snippet:-1",

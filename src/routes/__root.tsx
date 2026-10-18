@@ -19,7 +19,7 @@ import { Dock } from "@/components/portfolio/dock";
 import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { Testimonials } from "@/components/portfolio/testimonials";
 import { ShareLauncher } from "@/components/portfolio/share-launcher";
-import { defaultMeta, siteJsonLd } from "@/lib/seo";
+import { defaultMeta, site, siteJsonLd } from "@/lib/seo";
 import { isPreviewSearch } from "@/lib/navigation";
 import portrait from "@/assets/rudresh-oza.png";
 
@@ -133,6 +133,10 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Head meta keeps one tag per name, so Search Console tokens render here to keep every owner verified. */}
+        {site.googleSiteVerifications.map((token) => (
+          <meta key={token} name="google-site-verification" content={token} />
+        ))}
       </head>
       <body>
         {children}
