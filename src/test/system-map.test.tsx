@@ -28,7 +28,7 @@ const systems = [
 const system = (id: string) => systems.find(([key]) => key === id)?.[1];
 
 describe("System map data", () => {
-  it("draws the booking, telecom, agent, and mobile platforms, including on-device ML as lane-based systems", () =>
+  it("draws the booking, telecom, agent, mobile, and supply chain platforms, including on-device ML as lane-based systems", () =>
     expect(systems.map(([id]) => id).sort()).toEqual([
       "anchor",
       "death-portal",
@@ -37,6 +37,7 @@ describe("System map data", () => {
       "izo-sdwan",
       "music-ai",
       "plant-health",
+      "supply-chain",
     ]));
   it.each(systems)(
     "%s references only declared nodes, lanes, and edges",
@@ -180,6 +181,28 @@ describe("System map data", () => {
         "LangSmith",
       ],
     ],
+    [
+      "supply-chain",
+      [
+        "Next.js",
+        "Monorepo",
+        "Docker",
+        "S3",
+        "Documents",
+        "FastAPI",
+        "ECS",
+        "Networks",
+        "Route agent",
+        "SQS",
+        "λ",
+        "Cost models",
+        "Supabase",
+        "PostgREST",
+        "PostgreSQL",
+        "Alembic",
+        "CloudWatch",
+      ],
+    ],
   ])("%s includes every service in the described stack", (id, services) => {
     const text =
       system(id)
@@ -210,6 +233,7 @@ describe("System map rendering", () => {
     ["death-portal", "Illustrative family request"],
     ["plant-health", "Illustrative plant diagnosis"],
     ["fundflick", "Illustrative lending & HR workflow"],
+    ["supply-chain", "Illustrative what-if simulation"],
   ])(
     "renders the %s step journey on the case-study page",
     (id, journeyLabel) => {

@@ -5,7 +5,7 @@ import {
   type CSSProperties,
   type PointerEvent,
 } from "react";
-import { Link } from "@tanstack/react-router";
+import { createLink, Link } from "@tanstack/react-router";
 import {
   AnimatePresence,
   motion,
@@ -25,12 +25,16 @@ import {
   MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LineHoverLink } from "@/components/ui/line-hover-link";
 import portrait from "@/assets/rudresh-oza.png";
 import resume from "@/assets/rudresh-oza-resume.pdf";
 import { heroCredentials, profile } from "@/lib/portfolio";
 import { heroSystem, type HeroPanel } from "@/lib/portfolio-visuals";
 import { Counter } from "./motion";
 import { SocialLinks } from "./shell";
+
+// Router-aware LineHoverLink keeps type-safe navigation and preloading for the scribble CTA.
+const ScribbleLink = createLink(LineHoverLink);
 
 // Entrance motion lives in CSS so it runs from the first prerendered paint; Motion only drives interaction.
 export function Hero() {
@@ -68,9 +72,9 @@ export function Hero() {
           </p>
           <div className="hero-x-actions hero-x-fade">
             <Button asChild className="hero-x-cta h-12 px-6 shadow-none">
-              <Link to="/projects">
+              <ScribbleLink to="/projects" variant="scribble">
                 Explore My Work <ArrowUpRight className="hero-x-up" />
-              </Link>
+              </ScribbleLink>
             </Button>
             <Button
               asChild

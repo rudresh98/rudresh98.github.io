@@ -93,8 +93,16 @@ describe("Verified skills data", () => {
     const supplyChain = skillsForProject("supply-chain")
       .map((skill) => skill.name)
       .join(" ");
-    for (const unlinked of ["GraphQL", "MySQL", "Supabase"])
+    for (const unlinked of ["GraphQL", "MySQL"])
       expect(supplyChain).not.toContain(unlinked);
+    for (const linked of [
+      "Next.js",
+      "AWS Lambda",
+      "Amazon SQS",
+      "Amazon S3",
+      "CloudWatch",
+    ])
+      expect(supplyChain).toContain(linked);
   });
 
   it("leaves out technologies the resume does not support", () => {

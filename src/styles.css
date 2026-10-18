@@ -68,6 +68,36 @@
   a {
     text-decoration: none;
   }
+  /* Every link draws a scribble on hover/focus. The mask path mirrors ScribbleGraphic in line-hover-link.tsx, which opts out via .link-hover and draws its own stroke. It uses the primary token because filled links' text color would vanish against the page below them. */
+  a:not(.link-hover) {
+    position: relative;
+  }
+  a:not(.link-hover)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    width: 100%;
+    height: 9px;
+    background-color: var(--primary);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 101 9' preserveAspectRatio='none'%3E%3Cpath d='M.426 1.973C4.144 1.567 17.77-.514 21.443 1.48 24.296 3.026 24.844 4.627 27.5 7c3.075 2.748 6.642-4.141 10.066-4.688 7.517-1.2 13.237 5.425 17.59 2.745C58.5 3 60.464-1.786 66 2c1.996 1.365 3.174 3.737 5.286 4.41 5.423 1.727 25.34-7.981 29.14-1.294' fill='none' stroke='%23000' stroke-width='1.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E")
+      no-repeat 0 0 / 100% 100%;
+    clip-path: inset(0 100% 0 0);
+    pointer-events: none;
+    transition: clip-path 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+  a:not(.link-hover):focus-visible::after {
+    clip-path: inset(0);
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+  }
+  @media (hover: hover) {
+    a:not(.link-hover):hover::after {
+      clip-path: inset(0);
+      transition-duration: 0.3s;
+      transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+    }
+  }
   ::selection {
     background: var(--accent);
     color: var(--primary);
@@ -75,6 +105,375 @@
   :focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 5px;
+  }
+}
+/* LineHoverLink variants live in the components layer so Tailwind utilities and page CSS can still restyle the anchor. */
+@layer components {
+  .link-hover {
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    white-space: nowrap;
+    color: currentColor;
+    text-decoration: none;
+    outline: none;
+  }
+
+  .link-hover::before,
+  .link-hover::after {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    pointer-events: none;
+  }
+
+  .link-hover::before {
+    content: "";
+  }
+
+  .link-hover:focus-visible {
+    border-radius: 0.25rem;
+    outline: 2px solid color-mix(in srgb, currentColor 45%, transparent);
+    outline-offset: 0.25rem;
+  }
+
+  .link-hover--slide::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .link-hover--slide:hover::before,
+  .link-hover--slide:focus-visible::before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 0% 50%;
+  }
+
+  .link-hover--double::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  .link-hover--double:hover::before,
+  .link-hover--double:focus-visible::before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 0% 50%;
+    transition-timing-function: cubic-bezier(0.4, 1, 0.8, 1);
+  }
+
+  .link-hover--double::after {
+    content: "";
+    top: calc(100% + 4px);
+    transform: scale3d(0, 1, 1);
+    transform-origin: 0% 50%;
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  .link-hover--double:hover::after,
+  .link-hover--double:focus-visible::after {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 100% 50%;
+    transition-timing-function: cubic-bezier(0.4, 1, 0.8, 1);
+  }
+
+  .link-hover--grow::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+  }
+
+  .link-hover--grow:hover::before,
+  .link-hover--grow:focus-visible::before {
+    transform: scale3d(1, 2, 1);
+    transform-origin: 0% 50%;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  .link-hover--grow::after {
+    content: "";
+    top: calc(100% + 4px);
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 0.4s 0.1s cubic-bezier(0.2, 1, 0.8, 1);
+  }
+
+  .link-hover--grow:hover::after,
+  .link-hover--grow:focus-visible::after {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 0% 50%;
+  }
+
+  .link-hover--strike {
+    padding-inline: 0.625rem;
+  }
+
+  .link-hover--strike::before {
+    top: 50%;
+    height: 2px;
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 1, 0.8, 1);
+  }
+
+  .link-hover--strike:hover::before,
+  .link-hover--strike:focus-visible::before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 0% 50%;
+  }
+
+  .link-hover--strike span {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.4, 1, 0.8, 1);
+  }
+
+  .link-hover--strike:hover span,
+  .link-hover--strike:focus-visible span {
+    transform: scale3d(1.08, 1.08, 1);
+  }
+
+  .link-hover--fade::before,
+  .link-hover--fade::after {
+    opacity: 0;
+    transform: translate3d(0, 3px, 0);
+    transform-origin: 50% 0%;
+    transition:
+      transform 0.3s cubic-bezier(0.2, 1, 0.8, 1),
+      opacity 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+  }
+
+  .link-hover--fade::after {
+    content: "";
+    left: 15%;
+    top: calc(100% + 4px);
+    width: 70%;
+  }
+
+  .link-hover--fade:hover::before,
+  .link-hover--fade:hover::after,
+  .link-hover--fade:focus-visible::before,
+  .link-hover--fade:focus-visible::after {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .link-hover--fade::before,
+  .link-hover--fade:hover::after,
+  .link-hover--fade:focus-visible::after {
+    transition-delay: 0.1s;
+  }
+
+  .link-hover--pulse::before {
+    top: 100%;
+    height: 10px;
+    opacity: 0;
+  }
+
+  .link-hover--pulse:hover::before,
+  .link-hover--pulse:focus-visible::before {
+    opacity: 1;
+    animation: line-hover-line-up 0.3s ease forwards;
+  }
+
+  .link-hover--pulse::after {
+    content: "";
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .link-hover--pulse:hover::after,
+  .link-hover--pulse:focus-visible::after {
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+
+  .link-hover--swap::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 0% 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .link-hover--swap:hover::before,
+  .link-hover--swap:focus-visible::before {
+    transform: scale3d(1, 1, 1);
+  }
+
+  .link-hover--swap::after {
+    content: "";
+    top: calc(100% + 4px);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .link-hover--swap:hover::after,
+  .link-hover--swap:focus-visible::after {
+    transform: scale3d(0, 1, 1);
+  }
+
+  .link-hover--sweep {
+    padding-inline: 0.25rem;
+  }
+
+  .link-hover--sweep::before {
+    top: 0;
+    height: 100%;
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    opacity: 0;
+  }
+
+  .link-hover--sweep:hover::before,
+  .link-hover--sweep:focus-visible::before {
+    opacity: 1;
+    animation: line-hover-cover-up 0.3s ease forwards;
+  }
+
+  .link-hover--sweep::after {
+    content: "";
+    transition: opacity 0.3s ease;
+  }
+
+  .link-hover--sweep:hover::after,
+  .link-hover--sweep:focus-visible::after {
+    opacity: 0;
+  }
+
+  .link-hover--bounce::before {
+    height: 7px;
+    border-radius: 999px;
+    transform: scale3d(1, 1, 1);
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
+    transition-timing-function: cubic-bezier(0.2, 0.57, 0.67, 1.53);
+  }
+
+  .link-hover--bounce:hover::before,
+  .link-hover--bounce:focus-visible::before {
+    opacity: 1;
+    transform: scale3d(1.18, 0.1, 1);
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.8, 0, 0.1, 1);
+  }
+
+  .link-hover--bounce span {
+    display: inline-block;
+    transform: translate3d(0, -4px, 0);
+    transition: transform 0.2s 0.05s cubic-bezier(0.2, 0.57, 0.67, 1.53);
+  }
+
+  .link-hover--bounce:hover span,
+  .link-hover--bounce:focus-visible span {
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.8, 0, 0.1, 1);
+  }
+
+  .link-hover__graphic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+    pointer-events: none;
+  }
+
+  /* A gap longer than the path keeps Chrome from painting a stray dot at the path's end while hidden. */
+  .link-hover__graphic--stroke path {
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: 1;
+  }
+
+  .link-hover:hover .link-hover__graphic--stroke path,
+  .link-hover:focus-visible .link-hover__graphic--stroke path {
+    stroke-dashoffset: 0;
+  }
+
+  .link-hover--arc::before,
+  .link-hover--scribble::before {
+    display: none;
+  }
+
+  .link-hover__graphic--arc {
+    left: -23%;
+    top: 73%;
+  }
+
+  .link-hover__graphic--arc path {
+    transition: stroke-dashoffset 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+
+  .link-hover:hover .link-hover__graphic--arc path,
+  .link-hover:focus-visible .link-hover__graphic--arc path {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+  }
+
+  .link-hover__graphic--scribble {
+    top: 100%;
+  }
+
+  .link-hover__graphic--scribble path {
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+
+  .link-hover:hover .link-hover__graphic--scribble path,
+  .link-hover:focus-visible .link-hover__graphic--scribble path {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+  }
+
+  @keyframes line-hover-line-up {
+    0% {
+      transform: scale3d(1, 0.045, 1);
+      transform-origin: 50% 100%;
+    }
+    50% {
+      transform: scale3d(1, 1, 1);
+      transform-origin: 50% 100%;
+    }
+    51% {
+      transform: scale3d(1, 1, 1);
+      transform-origin: 50% 0%;
+    }
+    100% {
+      transform: scale3d(1, 0.045, 1);
+      transform-origin: 50% 0%;
+    }
+  }
+
+  @keyframes line-hover-cover-up {
+    0% {
+      transform: scale3d(1, 0.045, 1);
+      transform-origin: 50% 100%;
+    }
+    50% {
+      transform: scale3d(1, 1, 1);
+      transform-origin: 50% 100%;
+    }
+    51% {
+      transform: scale3d(1, 1, 1);
+      transform-origin: 50% 0%;
+    }
+    100% {
+      transform: scale3d(1, 0.045, 1);
+      transform-origin: 50% 0%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-hover,
+    .link-hover *,
+    .link-hover::before,
+    .link-hover::after {
+      animation: none !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 .container-shell {
@@ -2210,6 +2609,18 @@
 }
 .hero-x-cta svg {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* LineHoverLink's scribble sits under the filled CTA in the primary token; overrides Button's 16px svg sizing. */
+.hero-x-cta.link-hover > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-x-cta .link-hover__graphic {
+  top: calc(100% + 4px);
+  width: 100%;
+  height: 9px;
+  stroke: var(--primary);
 }
 @media (hover: hover) {
   .hero-x-cta:hover {
@@ -4594,6 +5005,22 @@ body {
   background: var(--primary);
   box-shadow: 0 0 10px 2px color-mix(in oklab, var(--primary) 65%, transparent);
 }
+/* The dock's link scribble fits inside the list padding, so it stands in for the active dot while shown. Motion owns the dot's inline transform and opacity, so it hides via the independent scale property. */
+.dock-link::after {
+  top: calc(100% + 1px);
+  height: 6px;
+}
+.dock-indicator {
+  transition: scale 0.2s;
+}
+.dock-link:focus-visible .dock-indicator {
+  scale: 0;
+}
+@media (hover: hover) {
+  .dock-link:hover .dock-indicator {
+    scale: 0;
+  }
+}
 .dock-divider {
   align-self: center;
   width: 1px;
@@ -4641,6 +5068,176 @@ body {
   }
   .dock-hidden {
     transform: translateX(-50%);
+  }
+}
+
+/* Share launcher: a glass corner button, level with the dock, whose app bubbles fan up and left. */
+.share-launcher {
+  position: fixed;
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(21px + env(safe-area-inset-bottom));
+  z-index: 40;
+  width: 52px;
+  height: 52px;
+}
+.share-trigger {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  box-shadow:
+    0 18px 50px oklch(0.2 0 0 / 14%),
+    inset 0 1px 0 color-mix(in oklab, white 35%, transparent);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+.dark .share-trigger {
+  box-shadow:
+    0 18px 50px oklch(0 0 0 / 45%),
+    inset 0 1px 0 color-mix(in oklab, white 8%, transparent);
+}
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .share-trigger {
+    background: var(--card);
+  }
+}
+.share-trigger:hover,
+.share-trigger[aria-expanded="true"] {
+  background: var(--accent);
+}
+.share-trigger:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.share-trigger-icon {
+  display: grid;
+}
+.share-trigger-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.share-targets {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+/* Each bubble starts centred on the trigger; Motion translates it out along the arc. */
+.share-target {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 44px;
+  height: 44px;
+  pointer-events: auto;
+}
+.share-bubble {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--share-bg);
+  color: var(--share-fg, white);
+  box-shadow: 0 10px 24px oklch(0.2 0 0 / 22%);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.share-bubble:hover {
+  transform: scale(1.08);
+}
+.share-bubble:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.share-bubble svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+/* Brand colours identify each app, so they stay fixed across light and dark themes. */
+.share-bubble[data-target="whatsapp"] {
+  --share-bg: #25d366;
+}
+.share-bubble[data-target="instagram"] {
+  --share-bg: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+.share-bubble[data-target="linkedin"] {
+  --share-bg: #0a66c2;
+}
+.share-bubble[data-target="telegram"] {
+  --share-bg: #26a5e4;
+}
+.share-bubble[data-target="snapchat"] {
+  --share-bg: #fffc00;
+  --share-fg: #000;
+}
+.share-bubble[data-target="sms"] {
+  --share-bg: #34c759;
+}
+.share-status {
+  position: absolute;
+  right: calc(100% + 12px);
+  bottom: 50%;
+  width: max-content;
+  max-width: min(260px, calc(100vw - 110px));
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: var(--shadow-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  transform: translateY(50%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s;
+}
+.share-status[data-visible] {
+  opacity: 1;
+  visibility: visible;
+}
+/* Below this width the open arc would reach the centred dock, so sit above it instead. */
+@media (max-width: 1099px) {
+  .share-launcher {
+    bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 639px) {
+  .share-launcher {
+    right: calc(16px + env(safe-area-inset-right));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-bubble,
+  .share-status {
+    transition: none;
+  }
+  .share-bubble:hover {
+    transform: none;
   }
 }
 
@@ -4995,10 +5592,6 @@ html[data-preview] .page-transition {
 .hero-x-hire a svg {
   width: 14px;
   height: 14px;
-}
-.hero-x-hire a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* A second architecture on a case study (e.g. a platform's AI agent layer). */

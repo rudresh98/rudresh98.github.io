@@ -13,7 +13,7 @@ import { courses, coursePath, trainingFormats, type Course } from "./training";
 export const site = {
   url: "https://rudresh98.github.io",
   name: "Rudresh Oza",
-  titleSuffix: "Rudresh Oza — Cloud & GenAI",
+  titleSuffix: "Rudresh Oza — Forward Deployed Engineer (FDE)",
   description:
     "Rudresh Oza is a Forward Deployed Engineer (FDE) in Jaipur, India building full-stack apps, Azure and AWS cloud platforms, and Generative AI agent systems.",
   locale: "en_US",

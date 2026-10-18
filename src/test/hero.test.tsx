@@ -27,9 +27,9 @@ describe("Home hero", () => {
     expect(heading).toHaveTextContent(
       "Engineering the future. Building what matters.",
     );
-    expect(
-      screen.getByRole("link", { name: /Explore My Work/ }),
-    ).toHaveAttribute("href", "/projects");
+    const work = screen.getByRole("link", { name: /Explore My Work/ });
+    expect(work).toHaveAttribute("href", "/projects");
+    expect(work).toHaveClass("link-hover--scribble");
     const resume = screen.getByRole("link", { name: /Download Resume/ });
     expect(resume).toHaveAttribute("download", "Rudresh-Oza-Resume.pdf");
     expect(resume.getAttribute("href")).toMatch(/rudresh-oza-resume.*\.pdf/);

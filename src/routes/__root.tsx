@@ -18,6 +18,7 @@ import { Header, Footer } from "@/components/portfolio/shell";
 import { Dock } from "@/components/portfolio/dock";
 import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { Testimonials } from "@/components/portfolio/testimonials";
+import { ShareLauncher } from "@/components/portfolio/share-launcher";
 import { defaultMeta, siteJsonLd } from "@/lib/seo";
 import { isPreviewSearch } from "@/lib/navigation";
 import portrait from "@/assets/rudresh-oza.png";
@@ -174,6 +175,7 @@ function RootComponent() {
         <Testimonials />
         <Footer />
         {!preview && <Dock />}
+        {!preview && <ShareLauncher />}
       </CommandPaletteProvider>
     </QueryClientProvider>
   );

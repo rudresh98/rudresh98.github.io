@@ -126,20 +126,29 @@ export const projects: Project[] = [
     id: "supply-chain",
     title: "Supply Chain Digital Twin",
     category: "Cloud",
-    tags: ["Python", "FastAPI", "PostgreSQL"],
+    tags: ["Next.js", "FastAPI", "Supabase", "AWS"],
     description:
       "AI-assisted route recommendations and asynchronous what-if simulations for complex supply chain networks.",
     context:
-      "A digital twin platform for evaluating supply chain routes, network scenarios, and operational KPIs.",
+      "A digital twin platform for evaluating supply chain routes, network scenarios, and operational KPIs, built as a Next.js monorepo, a FastAPI backend, and Supabase on AWS.",
     contributions: [
-      "Architected a modular FastAPI backend with routes, services, schemas, and models.",
-      "Built an AI route-recommendation agent and asynchronous simulation engine.",
+      "Architected a modular FastAPI backend with routes, services, schemas, and models, deployed on Amazon ECS.",
+      "Built the Next.js monorepo frontend for networks, scenarios, and simulation results, deployed as a Docker container on Amazon ECS.",
+      "Built an AI route-recommendation agent and an asynchronous simulation engine on AWS Lambda workers fed by Amazon SQS.",
       "Developed cost models for freight, expedite penalties, SLA violations, and capacity utilization.",
-      "Implemented RBAC, JWT authentication, refresh-token rotation, replay detection, Azure AD SSO, and Alembic migrations.",
+      "Persisted networks, scenarios, and simulation results in Supabase PostgreSQL through its PostgREST API, with Alembic schema migrations, and stored documents in Amazon S3.",
+      "Implemented RBAC, JWT authentication, refresh-token rotation, replay detection, and Azure AD SSO.",
+      "Monitored the FastAPI service on ECS and the Lambda workers with CloudWatch logs and metrics.",
     ],
     outcome:
       "Enabled route recommendations, what-if analysis, and permission-controlled network and simulation workflows.",
-    nodes: ["Simulation engine", "Networks", "Cost models", "Route agent"],
+    nodes: [
+      "Next.js on ECS",
+      "FastAPI on ECS",
+      "SQS + Lambda simulations",
+      "Supabase",
+      "S3 documents",
+    ],
   },
   {
     id: "anchor",

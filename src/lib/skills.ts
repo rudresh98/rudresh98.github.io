@@ -44,6 +44,7 @@ export const skills: Skill[] = [
       "fundflick",
       "ai2go",
       "qualitech",
+      "supply-chain",
     ],
   },
   {
@@ -163,14 +164,21 @@ export const skills: Skill[] = [
     group: "cloud",
     usage:
       "Cloud services behind Anchor messaging and data access, IZO-SDWAN’s EC2-hosted services, Death Portal’s serverless backend, and the reporting tool’s uploads.",
-    projects: ["anchor", "izo-sdwan", "reporting", "death-portal", "fundflick"],
+    projects: [
+      "anchor",
+      "izo-sdwan",
+      "reporting",
+      "death-portal",
+      "fundflick",
+      "supply-chain",
+    ],
   },
   {
     id: "lambda",
     name: "AWS Lambda",
     group: "cloud",
     usage: "Serverless Node.js GraphQL resolvers for the Death Portal backend.",
-    projects: ["death-portal", "fundflick"],
+    projects: ["death-portal", "fundflick", "supply-chain"],
   },
   {
     id: "s3",
@@ -178,14 +186,14 @@ export const skills: Skill[] = [
     group: "cloud",
     usage:
       "Automated report generation with seamless uploads to S3, and family document storage for Death Portal.",
-    projects: ["reporting", "death-portal", "fundflick"],
+    projects: ["reporting", "death-portal", "fundflick", "supply-chain"],
   },
   {
     id: "sqs",
     name: "Amazon SQS",
     group: "cloud",
     usage: "Integrated SQS to make Anchor’s system messaging more reliable.",
-    projects: ["anchor"],
+    projects: ["anchor", "supply-chain"],
   },
   {
     id: "ses",
@@ -200,7 +208,7 @@ export const skills: Skill[] = [
     group: "cloud",
     usage:
       "CloudWatch logs and metrics with Datadog application performance monitoring for Death Portal.",
-    projects: ["death-portal", "fundflick"],
+    projects: ["death-portal", "fundflick", "supply-chain"],
   },
   {
     id: "langgraph",
@@ -285,7 +293,7 @@ export const skills: Skill[] = [
     name: "PostgreSQL",
     group: "data",
     usage:
-      "Relational persistence for supply chain networks, simulations, and role-based permissions.",
+      "Supabase-hosted PostgreSQL, accessed through its PostgREST API, for supply chain networks, simulations, and role-based permissions.",
     projects: ["supply-chain"],
   },
   {

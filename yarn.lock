@@ -4545,7 +4545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:14.3.0":
+"framer-motion@npm:14.3.0, framer-motion@npm:^14.3.0":
   version: 14.3.0
   resolution: "framer-motion@npm:14.3.0"
   dependencies:
@@ -6563,6 +6563,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.2.6"
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-react-refresh: "npm:^0.4.20"
+    framer-motion: "npm:^14.3.0"
     globals: "npm:^15.15.0"
     input-otp: "npm:^1.4.2"
     jsdom: "npm:^20.0.3"

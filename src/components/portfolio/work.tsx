@@ -189,10 +189,7 @@ export function Collaboration() {
               Discuss an Opportunity <ArrowRight />
             </Link>
           </Button>
-          <Link
-            to="/training"
-            className="text-sm font-semibold text-primary hover:underline"
-          >
+          <Link to="/training" className="text-sm font-semibold text-primary">
             Explore training courses{" "}
             <ArrowUpRight className="ml-1 inline" size={14} />
           </Link>
