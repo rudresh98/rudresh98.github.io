@@ -11,17 +11,20 @@ export function PageIntro({
   title,
   description,
   aside,
+  actions,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   aside?: ReactNode;
+  actions?: ReactNode;
 }) {
   const copy = (
     <>
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p className="section-description">{description}</p>
+      {actions}
     </>
   );
   if (!aside) return <Reveal className="page-intro">{copy}</Reveal>;

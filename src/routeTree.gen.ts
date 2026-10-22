@@ -17,6 +17,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ExpertiseRouteImport } from './routes/expertise'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as StowlyRouteImport } from './routes/stowly'
 import { Route as TrainingRouteImport } from './routes/training'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
@@ -63,6 +64,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StowlyRoute = StowlyRouteImport.update({
+  id: '/stowly',
+  path: '/stowly',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrainingRoute = TrainingRouteImport.update({
   id: '/training',
   path: '/training',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/stowly': typeof StowlyRoute
   '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
+  '/stowly': typeof StowlyRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
   '/projects': typeof ProjectsIndexRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/stowly': typeof StowlyRoute
   '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/expertise'
     | '/projects'
+    | '/stowly'
     | '/training'
     | '/projects/$projectId'
     | '/training/$courseId'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/expertise'
+    | '/stowly'
     | '/projects/$projectId'
     | '/training/$courseId'
     | '/projects'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/expertise'
     | '/projects'
+    | '/stowly'
     | '/training'
     | '/projects/$projectId'
     | '/training/$courseId'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   ExpertiseRoute: typeof ExpertiseRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  StowlyRoute: typeof StowlyRoute
   TrainingRoute: typeof TrainingRouteWithChildren
 }
 
@@ -247,6 +260,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stowly': {
+      id: '/stowly'
+      path: '/stowly'
+      fullPath: '/stowly'
+      preLoaderRoute: typeof StowlyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/training': {
@@ -324,6 +344,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   ExpertiseRoute: ExpertiseRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  StowlyRoute: StowlyRoute,
   TrainingRoute: TrainingRouteWithChildren,
 }
 export const routeTree = rootRouteImport

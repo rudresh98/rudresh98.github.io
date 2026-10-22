@@ -9,6 +9,7 @@ import {
 import { featuredAreas, skills } from "./skills";
 import { certifications, sortCertifications } from "./certifications";
 import { courses, coursePath, trainingFormats, type Course } from "./training";
+import { stowly } from "./stowly";
 
 export const site = {
   url: "https://rudresh98.github.io",
@@ -70,6 +71,11 @@ export const pageSeo = {
     title: "Projects & Case Studies — GenAI, Cloud, Web | Rudresh Oza",
     description:
       "Case studies by Rudresh Oza: AI agents for Pollstar, a supply chain digital twin, booking platforms, mobile apps with on-device ML, and Next.js websites.",
+  },
+  "/stowly": {
+    title: "Stowly — Android Link Saving App | Rudresh Oza",
+    description:
+      "Stowly is an Android app by Rudresh Oza for saving links from any app into collections, with automatic previews, notes, tags, and a Focus mode.",
   },
   "/certifications": {
     title: "Certifications — Claude, Databricks, Azure | Rudresh Oza",
@@ -144,6 +150,7 @@ export const sitePages: {
     priority: 0.7,
     changefreq: "yearly" as const,
   })),
+  { path: "/stowly", priority: 0.7, changefreq: "monthly" },
   { path: "/certifications", priority: 0.7, changefreq: "monthly" },
   // Training is the primary selling page.
   { path: "/training", priority: 0.9, changefreq: "monthly" },
@@ -158,7 +165,7 @@ export const sitePages: {
 
 // The date site content last changed. Bump it whenever pages, projects, courses, or credentials
 // change, so sitemap lastmod stays truthful instead of moving with every deploy.
-export const contentUpdated = "2026-10-18";
+export const contentUpdated = "2026-10-23";
 
 export function sitemapXml() {
   const urls = sitePages.map(
@@ -362,6 +369,26 @@ export function projectJsonLd(project: Project) {
   };
 }
 
+// No offers or ratings are stated; the download URL appears only once the APK is published.
+export function softwareApplicationJsonLd() {
+  const url = canonicalUrl("/stowly");
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${url}#app`,
+    name: stowly.name,
+    description: stowly.description,
+    url,
+    operatingSystem: stowly.platform,
+    applicationCategory: "UtilitiesApplication",
+    inLanguage: "en",
+    author: { "@id": personId },
+    creator: { "@id": personId },
+    isPartOf: { "@id": websiteId },
+    ...(stowly.apkUrl ? { downloadUrl: absoluteUrl(stowly.apkUrl) } : {}),
+  };
+}
+
 function credentialJsonLd(cert: (typeof certifications)[number]) {
   return {
     "@type": "EducationalOccupationalCredential",
@@ -460,6 +487,9 @@ export function llmsTxt() {
     ...projects.map((project) =>
       line(project.title, `/projects/${project.id}`, project.description),
     ),
+    "",
+    "## Apps",
+    line(stowly.name, "/stowly", stowly.description),
     "",
     "## Certifications",
     ...sortCertifications(certifications).map(

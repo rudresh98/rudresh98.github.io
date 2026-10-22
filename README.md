@@ -57,6 +57,8 @@ All content lives in typed data modules under [`src/lib/`](src/lib/), separate f
 | Client countries on the globe              | [`src/lib/client-countries.ts`](src/lib/client-countries.ts)                                             |
 | Page titles, descriptions, structured data | [`src/lib/seo.ts`](src/lib/seo.ts)                                                                       |
 | Portrait and resume                        | Replace `src/assets/rudresh-oza.png` and `src/assets/rudresh-oza-resume.pdf`                             |
+| Stowly app page, features, and screenshots | [`src/lib/stowly.ts`](src/lib/stowly.ts) and the images in `src/assets/stowly/` |
+| Stowly APK download | Set `apkUrl` in [`src/lib/stowly.ts`](src/lib/stowly.ts) to a GitHub Release asset URL, or to `/downloads/stowly.apk` after adding the file to `public/downloads/` |
 
 `sitemap.xml` and `llms.txt` are generated at build time from these modules, so new projects, courses, and certifications are listed automatically.
 

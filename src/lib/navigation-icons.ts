@@ -1,6 +1,7 @@
 import {
   Accessibility,
   Award,
+  Bookmark,
   BriefcaseBusiness,
   FolderKanban,
   GraduationCap,
@@ -19,6 +20,7 @@ export const navigationIcons: Record<PagePath, LucideIcon> = {
   "/expertise": Sparkles,
   "/experience": BriefcaseBusiness,
   "/projects": FolderKanban,
+  "/stowly": Bookmark,
   "/certifications": Award,
   "/training": GraduationCap,
   "/contact": Mail,
