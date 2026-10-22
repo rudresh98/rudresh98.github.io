@@ -48,7 +48,20 @@ describe("Stowly download", () => {
     const link = screen.getByRole("link", { name: /Download APK/ });
     expect(link).toHaveAttribute("href", "/downloads/stowly.apk");
     expect(link).toHaveAttribute("download", "Stowly.apk");
+    expect(link).not.toHaveAttribute("target");
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("opens an external file host in a new tab and says so", () => {
+    const url = "https://drive.google.com/drive/folders/example";
+    render(<StowlyDownload apkUrl={url} />);
+    const link = screen.getByRole("link", {
+      name: /Download APK.*opens .+ in a new tab/,
+    });
+    expect(link).toHaveAttribute("href", url);
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    expect(link).not.toHaveAttribute("download");
   });
 });
 

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import saveLink from "@/assets/stowly/stowly-save-link.png";
 import homeDark from "@/assets/stowly/stowly-home-dark.png";
@@ -19,7 +19,10 @@ const screenImages: Record<StowlyScreenId, string> = {
   "saved-item": savedItem,
 };
 
+const isExternal = (url: string) => /^https?:\/\//.test(url);
+
 // Until an APK URL is configured the button stays disabled and says so, rather than linking nowhere.
+// A file host such as Google Drive opens in a new tab, since browsers ignore `download` across origins.
 export function StowlyDownload({
   apkUrl,
   className,
@@ -27,14 +30,37 @@ export function StowlyDownload({
   apkUrl: string | undefined;
   className?: string;
 }) {
+  const external = apkUrl ? isExternal(apkUrl) : false;
+  const host =
+    apkUrl && external
+      ? (stowly.apkHost ?? new URL(apkUrl).hostname)
+      : undefined;
+  const note = apkUrl
+    ? [
+        `${stowly.platform} APK`,
+        stowly.apkSize,
+        host ? `hosted on ${host}` : undefined,
+      ]
+        .filter(Boolean)
+        .join(" · ")
+    : `The ${stowly.platform} APK will be available here soon.`;
   return (
     <div className={cn("stowly-download", className)}>
       {apkUrl ? (
         <Button asChild className="h-12 px-6 shadow-none">
-          <a href={apkUrl} download={`${stowly.name}.apk`}>
-            <Download />
-            Download APK
-          </a>
+          {external ? (
+            <a href={apkUrl} target="_blank" rel="noopener noreferrer">
+              <Download />
+              Download APK
+              <ArrowUpRight />
+              <span className="sr-only"> (opens {host} in a new tab)</span>
+            </a>
+          ) : (
+            <a href={apkUrl} download={`${stowly.name}.apk`}>
+              <Download />
+              Download APK
+            </a>
+          )}
         </Button>
       ) : (
         <Button disabled className="h-12 px-6 shadow-none">
@@ -43,11 +69,7 @@ export function StowlyDownload({
           <span className="stowly-soon">Coming soon</span>
         </Button>
       )}
-      <p className="stowly-download-note">
-        {apkUrl
-          ? `${stowly.platform} · APK`
-          : `The ${stowly.platform} APK will be available here soon.`}
-      </p>
+      <p className="stowly-download-note">{note}</p>
     </div>
   );
 }
@@ -195,7 +217,7 @@ export function StowlyCta() {
           <p>
             {stowly.name} is built for {stowly.platform}.{" "}
             {stowly.apkUrl
-              ? "Download the APK and install it on your phone."
+              ? `Download the APK${stowly.apkHost ? ` from ${stowly.apkHost}` : ""} and open it on your phone to install. Android may ask you to allow installing apps from that source first.`
               : "The APK download will appear here as soon as it is published."}
           </p>
         </div>

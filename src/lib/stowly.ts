@@ -15,7 +15,12 @@ export type StowlyApp = {
   platform: "Android";
   category: string;
   // Unset until the APK is published; the download stays a disabled "coming soon" button until then.
+  // An external URL (a file host) opens in a new tab; a same-site path downloads directly.
   apkUrl?: string;
+  // Named in the button's new-tab notice and the note beneath it.
+  apkHost?: string;
+  // Shown beside the button so visitors know the download size; update it with each release.
+  apkSize?: string;
   features: { title: string; body: string; icon: StowlyFeatureIcon }[];
   steps: { title: string; body: string }[];
   screens: {
@@ -33,6 +38,10 @@ export const stowly: StowlyApp = {
     "Stowly is an Android app for saving links from any app into collections, with automatic previews, notes, and a Focus mode for working through what you saved.",
   platform: "Android",
   category: "Link saving & bookmarks",
+  apkUrl:
+    "https://drive.google.com/drive/folders/1YWUaGAvaBv_zWBO6hBk3zk6g34BgRMi2?usp=drive_link",
+  apkHost: "Google Drive",
+  apkSize: "66.4 MB",
   features: [
     {
       title: "Save from anywhere",

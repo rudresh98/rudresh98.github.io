@@ -386,6 +386,7 @@ export function softwareApplicationJsonLd() {
     creator: { "@id": personId },
     isPartOf: { "@id": websiteId },
     ...(stowly.apkUrl ? { downloadUrl: absoluteUrl(stowly.apkUrl) } : {}),
+    ...(stowly.apkSize ? { fileSize: stowly.apkSize } : {}),
   };
 }
 
