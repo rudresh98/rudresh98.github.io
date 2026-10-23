@@ -74,14 +74,17 @@ yarn install
 yarn dev
 ```
 
-| Command        | Purpose                                                        |
-| -------------- | -------------------------------------------------------------- |
-| `yarn dev`     | Start the dev server                                           |
-| `yarn build`   | Prerender every route to static HTML in `dist/client`          |
-| `yarn preview` | Serve the production build locally                             |
-| `yarn test`    | Run the test suite once (`yarn test:watch` to keep it running) |
-| `yarn lint`    | Run ESLint, including Prettier checks                          |
-| `yarn format`  | Format the codebase with Prettier; run before committing       |
+| Command        | Purpose                                                               |
+| -------------- | --------------------------------------------------------------------- |
+| `yarn dev`     | Start the dev server                                                  |
+| `yarn build`   | Prerender every route to static HTML in `dist/client`                 |
+| `yarn preview` | Serve the production build locally                                    |
+| `yarn test`    | Run the test suite once (`yarn test:watch` to keep it running)        |
+| `yarn lint`    | Run ESLint, including Prettier checks                                 |
+| `yarn format`  | Format the codebase with Prettier; run before committing              |
+| `yarn verify`  | Run the Prettier check, lint, and tests (what the pre-push hook runs) |
+
+Installing dependencies enables a [husky](https://typicode.github.io/husky/) pre-push hook that runs `yarn verify`, so a push that would fail the deploy workflow's tests is stopped locally. Skip it in an emergency with `git push --no-verify`. If a Git GUI reports `yarn: command not found`, add your nvm or Corepack `PATH` setup to `~/.config/husky/init.sh`.
 
 ## Deployment
 

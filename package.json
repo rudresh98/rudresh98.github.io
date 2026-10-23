@@ -13,7 +13,9 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "verify": "yarn format:check && yarn lint && yarn test",
+    "postinstall": "husky"
   },
   "overrides": {
     "rolldown": "1.2.1"
@@ -97,6 +99,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
+    "husky": "^9.1.7",
     "jsdom": "^20.0.3",
     "nitro": "3.0.260603-beta",
     "prettier": "^3.7.3",
