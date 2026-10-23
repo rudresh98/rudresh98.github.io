@@ -57,8 +57,8 @@ All content lives in typed data modules under [`src/lib/`](src/lib/), separate f
 | Client countries on the globe              | [`src/lib/client-countries.ts`](src/lib/client-countries.ts)                                             |
 | Page titles, descriptions, structured data | [`src/lib/seo.ts`](src/lib/seo.ts)                                                                       |
 | Portrait and resume                        | Replace `src/assets/rudresh-oza.png` and `src/assets/rudresh-oza-resume.pdf`                             |
-| Stowly app page, features, and screenshots | [`src/lib/stowly.ts`](src/lib/stowly.ts) and the images in `src/assets/stowly/` |
-| Stowly APK download | Set `apkUrl`, `apkHost`, and `apkSize` in [`src/lib/stowly.ts`](src/lib/stowly.ts); it currently points to the Google Drive folder. A file host opens in a new tab, and a `/downloads/stowly.apk` path in `public/` downloads directly |
+| Snugbox app page, features, and screenshots | [`src/lib/snugbox.ts`](src/lib/snugbox.ts) and the images in `src/assets/snugbox/` |
+| Snugbox APK download | Set `apkUrl`, `apkHost`, and `apkSize` in [`src/lib/snugbox.ts`](src/lib/snugbox.ts); it currently points to the APK file on Google Drive. A file host opens in a new tab, and a `/downloads/snugbox.apk` path in `public/` downloads directly |
 
 `sitemap.xml` and `llms.txt` are generated at build time from these modules, so new projects, courses, and certifications are listed automatically.
 

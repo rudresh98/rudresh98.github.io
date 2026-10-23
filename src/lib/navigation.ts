@@ -36,8 +36,8 @@ export const navigation = [
     summary: "Case studies & live client work",
   },
   {
-    label: "Stowly",
-    to: "/stowly",
+    label: "Snugbox",
+    to: "/snugbox",
     primary: false,
     summary: "My Android link-saving app",
   },

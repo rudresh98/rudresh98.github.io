@@ -32,7 +32,7 @@ describe("Canonical URLs", () => {
     });
   });
   it("lets a page replace the site preview image with all of its tags", () => {
-    const head = pageHead("App", "Description", "/stowly", {
+    const head = pageHead("App", "Description", "/snugbox", {
       image: { path: "/app.jpg", width: 1200, height: 630, alt: "App card" },
     });
     const image = "https://rudresh98.github.io/app.jpg";

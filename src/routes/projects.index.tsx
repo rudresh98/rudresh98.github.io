@@ -7,7 +7,7 @@ import {
 } from "@/lib/seo";
 import { Page } from "@/components/portfolio/content";
 import { ProjectGrid, Collaboration } from "@/components/portfolio/work";
-import { StowlyFeature } from "@/components/portfolio/stowly";
+import { SnugboxFeature } from "@/components/portfolio/snugbox";
 
 export const Route = createFileRoute("/projects/")({
   head: () =>
@@ -34,7 +34,7 @@ function Projects() {
       <Page>
         <section className="section">
           <ProjectGrid />
-          <StowlyFeature />
+          <SnugboxFeature />
         </section>
       </Page>
       <Collaboration />

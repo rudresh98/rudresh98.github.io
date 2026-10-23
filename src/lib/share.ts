@@ -1,6 +1,6 @@
 // Browser-safe and asset-free: every target is a plain link, so the launcher works in prerendered HTML.
 import { canonicalPath, canonicalUrl, site } from "./seo";
-import { stowly } from "./stowly";
+import { snugbox } from "./snugbox";
 
 export interface ShareLink {
   url: string;
@@ -14,16 +14,16 @@ export const homeShare: ShareLink = {
   text: site.titleSuffix,
   label: "Share this site",
 };
-const stowlyShare: ShareLink = {
-  url: canonicalUrl("/stowly"),
-  text: `${stowly.name} — ${stowly.tagline}`,
-  label: `Share ${stowly.name}`,
+const snugboxShare: ShareLink = {
+  url: canonicalUrl("/snugbox"),
+  text: `${snugbox.name} — ${snugbox.tagline}`,
+  label: `Share ${snugbox.name}`,
 };
 
-// The Stowly page shares itself so its app preview card shows; every other page shares the homepage.
+// The Snugbox page shares itself so its app preview card shows; every other page shares the homepage.
 export function shareLinkFor(pathname: string): ShareLink {
-  return canonicalPath(pathname) === canonicalPath("/stowly")
-    ? stowlyShare
+  return canonicalPath(pathname) === canonicalPath("/snugbox")
+    ? snugboxShare
     : homeShare;
 }
 

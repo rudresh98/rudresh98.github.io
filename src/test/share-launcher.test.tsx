@@ -70,16 +70,16 @@ describe("Share launcher", () => {
     ).toHaveAttribute("aria-expanded", "false");
   });
 
-  it("shares the Stowly page, not the homepage, while on Stowly", () => {
-    render(<ShareLauncher pathname="/stowly/" />);
-    fireEvent.click(screen.getByRole("button", { name: "Share Stowly" }));
+  it("shares the Snugbox page, not the homepage, while on Snugbox", () => {
+    render(<ShareLauncher pathname="/snugbox/" />);
+    fireEvent.click(screen.getByRole("button", { name: "Share Snugbox" }));
     const list = screen.getByRole("list", { name: "Share on" });
-    for (const target of shareTargets(shareLinkFor("/stowly")))
+    for (const target of shareTargets(shareLinkFor("/snugbox")))
       expect(
         within(list).getByRole("link", { name: target.label }),
       ).toHaveAttribute("href", target.href);
     expect(
       within(list).getByRole("link", { name: "WhatsApp" }).getAttribute("href"),
-    ).toContain(encodeURIComponent("https://rudresh98.github.io/stowly/"));
+    ).toContain(encodeURIComponent("https://rudresh98.github.io/snugbox/"));
   });
 });

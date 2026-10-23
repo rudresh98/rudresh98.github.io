@@ -48,11 +48,11 @@ describe("Share targets", () => {
     expect(homeTargets.filter((t) => t.copyFirst)).toHaveLength(1);
   });
 
-  it("share the Stowly page from Stowly so its app preview shows", () => {
-    for (const pathname of ["/stowly", "/stowly/"]) {
+  it("share the Snugbox page from Snugbox so its app preview shows", () => {
+    for (const pathname of ["/snugbox", "/snugbox/"]) {
       const link = shareLinkFor(pathname);
-      expect(link.url).toBe("https://rudresh98.github.io/stowly/");
-      expect(link.label).toBe("Share Stowly");
+      expect(link.url).toBe("https://rudresh98.github.io/snugbox/");
+      expect(link.label).toBe("Share Snugbox");
       const encoded = encodeURIComponent(link.url);
       for (const target of shareTargets(link).filter((t) => !t.copyFirst))
         expect(target.href).toContain(encoded);

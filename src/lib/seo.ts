@@ -9,7 +9,7 @@ import {
 import { featuredAreas, skills } from "./skills";
 import { certifications, sortCertifications } from "./certifications";
 import { courses, coursePath, trainingFormats, type Course } from "./training";
-import { stowly } from "./stowly";
+import { snugbox } from "./snugbox";
 
 // A link-preview image served from public/; previews crop to 1.91:1, so cards are 1200×630.
 export type SocialImage = {
@@ -80,10 +80,10 @@ export const pageSeo = {
     description:
       "Case studies by Rudresh Oza: AI agents for Pollstar, a supply chain digital twin, booking platforms, mobile apps with on-device ML, and Next.js websites.",
   },
-  "/stowly": {
-    title: "Stowly — Android Link Saving App | Rudresh Oza",
+  "/snugbox": {
+    title: "Snugbox — Android Link Saving App | Rudresh Oza",
     description:
-      "Stowly is an Android app by Rudresh Oza for saving links from any app into collections, with automatic previews, notes, tags, and a Focus mode.",
+      "Snugbox is an Android app by Rudresh Oza for saving links from any app into collections, with automatic previews, a Focus mode, and five color themes.",
   },
   "/certifications": {
     title: "Certifications — Claude, Databricks, Azure | Rudresh Oza",
@@ -158,7 +158,7 @@ export const sitePages: {
     priority: 0.7,
     changefreq: "yearly" as const,
   })),
-  { path: "/stowly", priority: 0.7, changefreq: "monthly" },
+  { path: "/snugbox", priority: 0.7, changefreq: "monthly" },
   { path: "/certifications", priority: 0.7, changefreq: "monthly" },
   // Training is the primary selling page.
   { path: "/training", priority: 0.9, changefreq: "monthly" },
@@ -390,17 +390,17 @@ export function projectJsonLd(project: Project) {
 // No offers or ratings are stated; the download URL appears only once the APK is published.
 // Screenshot URLs come from the route, which imports the image assets this module cannot.
 export function softwareApplicationJsonLd(screenshotUrls: string[] = []) {
-  const url = canonicalUrl("/stowly");
+  const url = canonicalUrl("/snugbox");
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": `${url}#app`,
-    name: stowly.name,
-    description: stowly.description,
+    name: snugbox.name,
+    description: snugbox.description,
     url,
-    operatingSystem: stowly.platform,
+    operatingSystem: snugbox.platform,
     applicationCategory: "UtilitiesApplication",
-    image: absoluteUrl(stowly.shareImage.path),
+    image: absoluteUrl(snugbox.shareImage.path),
     ...(screenshotUrls.length
       ? { screenshot: screenshotUrls.map(absoluteUrl) }
       : {}),
@@ -408,8 +408,8 @@ export function softwareApplicationJsonLd(screenshotUrls: string[] = []) {
     author: { "@id": personId },
     creator: { "@id": personId },
     isPartOf: { "@id": websiteId },
-    ...(stowly.apkUrl ? { downloadUrl: absoluteUrl(stowly.apkUrl) } : {}),
-    ...(stowly.apkSize ? { fileSize: stowly.apkSize } : {}),
+    ...(snugbox.apkUrl ? { downloadUrl: absoluteUrl(snugbox.apkUrl) } : {}),
+    ...(snugbox.apkSize ? { fileSize: snugbox.apkSize } : {}),
   };
 }
 
@@ -513,7 +513,7 @@ export function llmsTxt() {
     ),
     "",
     "## Apps",
-    line(stowly.name, "/stowly", stowly.description),
+    line(snugbox.name, "/snugbox", snugbox.description),
     "",
     "## Certifications",
     ...sortCertifications(certifications).map(

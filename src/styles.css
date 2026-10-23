@@ -2146,18 +2146,18 @@
   animation: none;
 }
 
-/* Stowly app page: phone captures sit in rounded device frames. The hero fans both themes on the
-   portrait's dotted plate, with the phone matching the active theme in front. */
-.stowly-intro-download {
+/* Snugbox app page: phone captures sit in rounded device frames and the wide theme sheet in a
+   card frame. The hero fans settings behind home on the portrait's dotted plate. */
+.snugbox-intro-download {
   margin-top: 28px;
 }
-.stowly-download {
+.snugbox-download {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
 }
-.stowly-soon {
+.snugbox-soon {
   margin-left: 4px;
   padding: 2px 8px;
   border: 1px solid currentColor;
@@ -2167,12 +2167,13 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.stowly-download-note {
+.snugbox-download-note {
   font-size: 0.75rem;
   line-height: 1.6;
   color: var(--muted-foreground);
 }
-.stowly-phone {
+.snugbox-phone,
+.snugbox-frame {
   display: block;
   overflow: hidden;
   padding: 4px;
@@ -2181,17 +2182,24 @@
   background: var(--card);
   box-shadow: var(--shadow-soft);
 }
-.stowly-phone img {
+.snugbox-phone img,
+.snugbox-frame img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 18px;
 }
-.stowly-phones {
+.snugbox-frame {
+  border-radius: 16px;
+}
+.snugbox-frame img {
+  border-radius: 12px;
+}
+.snugbox-phones {
   min-width: 0;
   margin: 0;
 }
-.stowly-phones-stage {
+.snugbox-phones-stage {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -2199,47 +2207,44 @@
   border-radius: 8px;
   background: color-mix(in oklab, var(--card) 55%, var(--background));
 }
-.stowly-phones .stowly-phone {
+.snugbox-phones .snugbox-phone {
   position: absolute;
   width: 56%;
 }
-.stowly-phone-dark {
+.snugbox-phone-back {
   top: 7%;
   left: 7%;
   rotate: -6deg;
   z-index: 1;
 }
-.stowly-phone-light {
+.snugbox-phone-front {
   top: 13%;
   right: 7%;
   rotate: 5deg;
   z-index: 2;
 }
-.dark .stowly-phone-dark {
-  z-index: 3;
-}
-.stowly-section {
+.snugbox-section {
   padding-block: 56px;
 }
-.stowly-section + .stowly-section {
+.snugbox-section + .snugbox-section {
   border-top: 1px solid var(--border);
 }
-.stowly-section:last-child {
+.snugbox-section:last-child {
   padding-bottom: 24px;
 }
-.stowly-features {
+.snugbox-features {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 32px;
 }
-.stowly-features li {
+.snugbox-features li {
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--card);
 }
-.stowly-feature-icon {
+.snugbox-feature-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2249,63 +2254,74 @@
   background: var(--accent);
   color: var(--primary);
 }
-.stowly-feature-icon svg {
+.snugbox-feature-icon svg {
   width: 18px;
   height: 18px;
 }
-.stowly-features h3,
-.stowly-steps h3 {
+.snugbox-features h3,
+.snugbox-steps h3 {
   margin-top: 16px;
   font-size: 0.9375rem;
   font-weight: 700;
 }
-.stowly-features p,
-.stowly-steps p {
+.snugbox-features p,
+.snugbox-steps p {
   margin-top: 8px;
   font-size: 0.8125rem;
   line-height: 1.75;
   color: var(--muted-foreground);
 }
-.stowly-screens {
+/* Phones sit in pairs with their captions beside them; the wide theme sheet spans the row beneath. */
+.snugbox-screens {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 24px;
   margin-top: 32px;
 }
-.stowly-screens figure {
+.snugbox-screens figure {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: 20px;
   margin: 0;
 }
-.stowly-screens figcaption {
+.snugbox-screen-wide {
+  grid-column: 1 / -1;
+}
+.snugbox-screen-wide figure {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+.snugbox-screens figcaption {
   display: grid;
   gap: 4px;
-  margin-top: 14px;
 }
-.stowly-screens figcaption strong {
+.snugbox-screens figcaption strong {
   font-size: 0.8125rem;
   font-weight: 700;
 }
-.stowly-screens figcaption span {
+.snugbox-screens figcaption span {
   font-size: 0.75rem;
   line-height: 1.6;
   color: var(--muted-foreground);
 }
-.stowly-steps {
+.snugbox-steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
   margin-top: 32px;
 }
-.stowly-steps li {
+.snugbox-steps li {
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
-.stowly-step-number {
+.snugbox-step-number {
   color: var(--primary);
   font-size: 0.625rem;
   font-weight: 800;
 }
 /* Projects page band linking to the app. */
-.stowly-band {
+.snugbox-band {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr) auto;
   align-items: center;
@@ -2316,23 +2332,23 @@
   border-radius: 16px;
   background: var(--card);
 }
-.stowly-band-shot {
+.snugbox-band-shot {
   aspect-ratio: 4 / 5;
   padding: 3px;
   border-radius: 14px;
 }
-.stowly-band-shot img {
+.snugbox-band-shot img {
   height: 100%;
   object-fit: cover;
   object-position: top;
   border-radius: 11px;
 }
-.stowly-band-title {
+.snugbox-band-title {
   margin-top: 10px;
   font-size: 1.375rem;
   font-weight: 700;
 }
-.stowly-band-copy {
+.snugbox-band-copy {
   max-width: 620px;
   margin-top: 6px;
   font-size: 0.8125rem;
@@ -2340,43 +2356,46 @@
   color: var(--muted-foreground);
 }
 @media (max-width: 1100px) {
-  .stowly-features {
+  .snugbox-features {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 767px) {
-  .stowly-phones-stage {
+  .snugbox-phones-stage {
     aspect-ratio: 4 / 3;
   }
-  .stowly-phones .stowly-phone {
+  .snugbox-phones .snugbox-phone {
     width: 42%;
   }
-  .stowly-phone-dark {
+  .snugbox-phone-back {
     left: 10%;
   }
-  .stowly-phone-light {
+  .snugbox-phone-front {
     right: 10%;
   }
-  .stowly-section {
+  .snugbox-section {
     padding-block: 40px;
   }
-  .stowly-features,
-  .stowly-steps {
+  .snugbox-features,
+  .snugbox-steps {
     grid-template-columns: minmax(0, 1fr);
   }
-  .stowly-steps {
+  .snugbox-steps {
     gap: 20px;
   }
-  .stowly-screens {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px 16px;
+  .snugbox-screens {
+    gap: 28px 16px;
   }
-  .stowly-band {
+  .snugbox-screens figure {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .snugbox-band {
     grid-template-columns: 72px minmax(0, 1fr);
     gap: 18px;
     padding: 20px;
   }
-  .stowly-band > :last-child {
+  .snugbox-band > :last-child {
     grid-column: 1 / -1;
   }
 }
