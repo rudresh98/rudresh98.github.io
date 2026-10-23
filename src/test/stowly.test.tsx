@@ -6,6 +6,8 @@ import {
   createRouter,
   RouterProvider,
 } from "@tanstack/react-router";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 
@@ -128,6 +130,36 @@ describe("Stowly navigation and search", () => {
     else expect(app).not.toHaveProperty("downloadUrl");
     expect(app).not.toHaveProperty("offers");
     expect(app).not.toHaveProperty("aggregateRating");
+  });
+
+  it("shows the app card, not the site card, when the page is shared", async () => {
+    const head = await Route.options.head!({} as never);
+    const image = "https://rudresh98.github.io/stowly-og.jpg";
+    for (const tag of [
+      { property: "og:image", content: image },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: stowly.shareImage.alt },
+      { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: stowly.shareImage.alt },
+    ])
+      expect(head?.meta).toContainEqual(tag);
+    expect(existsSync(join("public", stowly.shareImage.path))).toBe(true);
+  });
+
+  it("gives search engines the app card and every screenshot", () => {
+    const app = softwareApplicationJsonLd([
+      "/assets/save-link.png",
+      "https://cdn.example.com/home.png",
+    ]);
+    expect(app).toMatchObject({
+      image: "https://rudresh98.github.io/stowly-og.jpg",
+      screenshot: [
+        "https://rudresh98.github.io/assets/save-link.png",
+        "https://cdn.example.com/home.png",
+      ],
+    });
+    expect(softwareApplicationJsonLd()).not.toHaveProperty("screenshot");
   });
 
   it("is in the sitemap and llms.txt", () => {

@@ -6,6 +6,7 @@ import {
   breadcrumbJsonLd,
 } from "@/lib/seo";
 import { stowly } from "@/lib/stowly";
+import { stowlyScreenImages } from "@/lib/stowly-screens";
 import { Page, PageIntro } from "@/components/portfolio/content";
 import {
   StowlyCta,
@@ -23,8 +24,11 @@ export const Route = createFileRoute("/stowly")({
       "/stowly",
       {
         fullTitle: true,
+        image: stowly.shareImage,
         jsonLd: [
-          softwareApplicationJsonLd(),
+          softwareApplicationJsonLd(
+            stowly.screens.map((screen) => stowlyScreenImages[screen.id]),
+          ),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
             { name: stowly.name, path: "/stowly" },

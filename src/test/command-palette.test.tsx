@@ -16,6 +16,7 @@ import {
 } from "@tanstack/react-router";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { AuthProvider } from "@/components/portfolio/auth";
 import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { certifications } from "@/lib/certifications";
 import {
@@ -28,13 +29,16 @@ import {
 } from "@/lib/navigation";
 import { projects } from "@/lib/portfolio";
 import { courses } from "@/lib/training";
+import { enableFirebase } from "./firebase-env";
 
 async function renderPalette() {
   const root = createRootRoute({
     component: () => (
-      <CommandPaletteProvider>
-        <Outlet />
-      </CommandPaletteProvider>
+      <AuthProvider>
+        <CommandPaletteProvider>
+          <Outlet />
+        </CommandPaletteProvider>
+      </AuthProvider>
     ),
   });
   const leaves = [
@@ -179,5 +183,30 @@ describe("Command palette", () => {
     );
     expect(document.documentElement).toHaveClass("dark");
     expect(localStorage.getItem("portfolio-theme")).toBe("dark");
+  });
+
+  it("leaves out sign-in when Firebase isn't configured", async () => {
+    await renderPalette();
+    const dialog = await openWithShortcut();
+    expect(
+      within(dialog).getByRole("option", { name: /Toggle theme/ }),
+    ).toBeInTheDocument();
+    expect(
+      within(dialog).queryByRole("option", { name: /Sign in with Google/ }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("finds Google sign-in by the word a visitor types", async () => {
+    enableFirebase();
+    await renderPalette();
+    const dialog = await openWithShortcut();
+    fireEvent.change(within(dialog).getByRole("combobox"), {
+      target: { value: "login" },
+    });
+    expect(
+      await within(dialog).findByRole("option", {
+        name: /Sign in with Google/,
+      }),
+    ).toBeInTheDocument();
   });
 });

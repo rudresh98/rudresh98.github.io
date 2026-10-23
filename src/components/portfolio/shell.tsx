@@ -17,6 +17,7 @@ import { prefersReducedMotion } from "@/lib/accessibility";
 import { utilityPages } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
+import { AccountMenu } from "./account-menu";
 import { useCommandPalette, useShortcutLabel } from "./command-palette";
 const RESUME_FILENAME = "Rudresh-Oza-Resume.pdf";
 
@@ -108,6 +109,7 @@ export function Header() {
             </a>
           </Button>
           <ThemeToggle />
+          <AccountMenu />
           <TalkLink className="hidden sm:inline-flex" />
         </div>
       </div>

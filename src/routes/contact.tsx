@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight, Mail, MapPin, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/components/portfolio/auth";
 import { Page, PageIntro } from "@/components/portfolio/content";
 import { SocialLinks } from "@/components/portfolio/shell";
+import { authCopy } from "@/lib/auth";
 import { profile, emailDraft } from "@/lib/portfolio";
 import { pageHead, pageSeo, breadcrumbJsonLd } from "@/lib/seo";
 import resume from "@/assets/rudresh-oza-resume.pdf";
@@ -29,6 +31,21 @@ function Contact() {
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
+  const auth = useAuth();
+  const form = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    const fields = form.current?.elements;
+    if (!auth.user || !fields) return;
+    // Fill only empty fields, so nothing the visitor already typed is overwritten.
+    for (const [name, value] of [
+      ["name", auth.user.name],
+      ["email", auth.user.email],
+    ] as const) {
+      const input = fields.namedItem(name);
+      if (input instanceof HTMLInputElement && !input.value && value)
+        input.value = value;
+    }
+  }, [auth.user]);
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -93,7 +110,7 @@ function Contact() {
             </a>
           </Button>
         </div>
-        <form onSubmit={submit} noValidate className="space-y-5">
+        <form ref={form} onSubmit={submit} noValidate className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
             {field("name", "Name", "Your name")}
             {field("email", "Work email", "you@company.com", "email")}
@@ -120,6 +137,21 @@ function Contact() {
               </p>
             )}
           </div>
+          {auth.status === "signed-out" && (
+            <p className="text-xs leading-6 text-muted-foreground">
+              <button
+                type="button"
+                className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:underline disabled:opacity-60"
+                disabled={auth.pending}
+                onPointerEnter={auth.warm}
+                onFocus={auth.warm}
+                onClick={auth.signIn}
+              >
+                {authCopy.signIn}
+              </button>{" "}
+              {authCopy.contactPrompt}
+            </p>
+          )}
           <p className="text-xs leading-6 text-muted-foreground">
             Opens a draft in your email app. Your message is sent only when you
             send the email.

@@ -1,9 +1,31 @@
 // Browser-safe and asset-free: every target is a plain link, so the launcher works in prerendered HTML.
-import { canonicalUrl, site } from "./seo";
+import { canonicalPath, canonicalUrl, site } from "./seo";
+import { stowly } from "./stowly";
 
-// The launcher always shares the homepage, whatever page the visitor is on.
-export const shareUrl = canonicalUrl("/");
-export const shareText = site.titleSuffix;
+export interface ShareLink {
+  url: string;
+  text: string;
+  // The launcher's accessible name, saying what it shares.
+  label: string;
+}
+
+export const homeShare: ShareLink = {
+  url: canonicalUrl("/"),
+  text: site.titleSuffix,
+  label: "Share this site",
+};
+const stowlyShare: ShareLink = {
+  url: canonicalUrl("/stowly"),
+  text: `${stowly.name} — ${stowly.tagline}`,
+  label: `Share ${stowly.name}`,
+};
+
+// The Stowly page shares itself so its app preview card shows; every other page shares the homepage.
+export function shareLinkFor(pathname: string): ShareLink {
+  return canonicalPath(pathname) === canonicalPath("/stowly")
+    ? stowlyShare
+    : homeShare;
+}
 
 export type ShareTargetId =
   "whatsapp" | "instagram" | "linkedin" | "telegram" | "snapchat" | "sms";
@@ -18,50 +40,51 @@ export interface ShareTarget {
   copyFirst?: boolean;
 }
 
-const message = encodeURIComponent(`${shareText} ${shareUrl}`);
-const url = encodeURIComponent(shareUrl);
-
 // Official share links: phones route these https URLs straight into the installed app.
-export const shareTargets: readonly ShareTarget[] = [
-  {
-    id: "whatsapp",
-    label: "WhatsApp",
-    href: `https://wa.me/?text=${message}`,
-    external: true,
-  },
-  {
-    id: "instagram",
-    label: "Instagram",
-    href: "https://www.instagram.com/direct/inbox/",
-    external: true,
-    copyFirst: true,
-  },
-  {
-    id: "linkedin",
-    label: "LinkedIn",
-    href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    external: true,
-  },
-  {
-    id: "telegram",
-    label: "Telegram",
-    href: `https://t.me/share/url?url=${url}&text=${encodeURIComponent(shareText)}`,
-    external: true,
-  },
-  {
-    id: "snapchat",
-    label: "Snapchat",
-    href: `https://www.snapchat.com/share?link=${url}`,
-    external: true,
-  },
-  {
-    id: "sms",
-    label: "Messages",
-    // `?&body=` is the form both iOS and Android accept.
-    href: `sms:?&body=${message}`,
-    external: false,
-  },
-];
+export function shareTargets(link: ShareLink): readonly ShareTarget[] {
+  const message = encodeURIComponent(`${link.text} ${link.url}`);
+  const url = encodeURIComponent(link.url);
+  return [
+    {
+      id: "whatsapp",
+      label: "WhatsApp",
+      href: `https://wa.me/?text=${message}`,
+      external: true,
+    },
+    {
+      id: "instagram",
+      label: "Instagram",
+      href: "https://www.instagram.com/direct/inbox/",
+      external: true,
+      copyFirst: true,
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      external: true,
+    },
+    {
+      id: "telegram",
+      label: "Telegram",
+      href: `https://t.me/share/url?url=${url}&text=${encodeURIComponent(link.text)}`,
+      external: true,
+    },
+    {
+      id: "snapchat",
+      label: "Snapchat",
+      href: `https://www.snapchat.com/share?link=${url}`,
+      external: true,
+    },
+    {
+      id: "sms",
+      label: "Messages",
+      // `?&body=` is the form both iOS and Android accept.
+      href: `sms:?&body=${message}`,
+      external: false,
+    },
+  ];
+}
 
 // Corner variant of folder-preview's circular fan: endpoints-inclusive, from straight up to
 // straight left, so a bottom-right launcher never pushes a bubble off-screen.

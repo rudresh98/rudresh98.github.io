@@ -8,7 +8,7 @@ import {
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ShareLauncher } from "@/components/portfolio/share-launcher";
-import { shareTargets, shareUrl } from "@/lib/share";
+import { homeShare, shareLinkFor, shareTargets } from "@/lib/share";
 
 // jsdom cannot navigate, so cancel the links' default action once React has handled the click.
 const blockNavigation = (event: Event) => event.preventDefault();
@@ -25,7 +25,7 @@ describe("Share launcher", () => {
     expect(trigger).toHaveAttribute("aria-expanded", "true");
     const list = screen.getByRole("list", { name: "Share on" });
     expect(trigger).toHaveAttribute("aria-controls", list.id);
-    for (const target of shareTargets) {
+    for (const target of shareTargets(homeShare)) {
       const link = within(list).getByRole("link", { name: target.label });
       expect(link).toHaveAttribute("href", target.href);
       if (target.external) expect(link).toHaveAttribute("target", "_blank");
@@ -59,7 +59,7 @@ describe("Share launcher", () => {
     fireEvent.click(screen.getByRole("button", { name: "Share this site" }));
     fireEvent.click(screen.getByRole("link", { name: "Instagram" }));
 
-    expect(writeText).toHaveBeenCalledWith(shareUrl);
+    expect(writeText).toHaveBeenCalledWith(homeShare.url);
     await waitFor(() =>
       expect(screen.getByRole("status")).toHaveTextContent(
         "Link copied. Paste it in an Instagram chat.",
@@ -68,5 +68,18 @@ describe("Share launcher", () => {
     expect(
       screen.getByRole("button", { name: "Share this site" }),
     ).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("shares the Stowly page, not the homepage, while on Stowly", () => {
+    render(<ShareLauncher pathname="/stowly/" />);
+    fireEvent.click(screen.getByRole("button", { name: "Share Stowly" }));
+    const list = screen.getByRole("list", { name: "Share on" });
+    for (const target of shareTargets(shareLinkFor("/stowly")))
+      expect(
+        within(list).getByRole("link", { name: target.label }),
+      ).toHaveAttribute("href", target.href);
+    expect(
+      within(list).getByRole("link", { name: "WhatsApp" }).getAttribute("href"),
+    ).toContain(encodeURIComponent("https://rudresh98.github.io/stowly/"));
   });
 });

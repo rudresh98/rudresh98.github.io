@@ -21,6 +21,8 @@ import { CommandPaletteProvider } from "@/components/portfolio/command-palette";
 import { Testimonials } from "@/components/portfolio/testimonials";
 import { ShareLauncher } from "@/components/portfolio/share-launcher";
 import { AccessibilityProvider } from "@/components/portfolio/accessibility";
+import { AuthProvider } from "@/components/portfolio/auth";
+import { Toaster } from "@/components/ui/sonner";
 import { accessibilityBootScript } from "@/lib/accessibility";
 import { defaultMeta, site, siteJsonLd } from "@/lib/seo";
 import { isPreviewSearch } from "@/lib/navigation";
@@ -178,19 +180,24 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <AccessibilityProvider>
-        <CommandPaletteProvider disabled={preview}>
-          <Header />
-          <div
-            key={pathname}
-            className={animate ? "page-transition" : undefined}
-          >
-            <Outlet />
-          </div>
-          <Testimonials />
-          <Footer />
-          {!preview && <Dock />}
-          {!preview && <ShareLauncher />}
-        </CommandPaletteProvider>
+        {/* Dock previews never load Firebase: sign-in is off inside them. */}
+        <AuthProvider disabled={preview}>
+          <CommandPaletteProvider disabled={preview}>
+            <Header />
+            <div
+              key={pathname}
+              className={animate ? "page-transition" : undefined}
+            >
+              <Outlet />
+            </div>
+            <Testimonials />
+            <Footer />
+            {!preview && <Dock />}
+            {!preview && <ShareLauncher pathname={pathname} />}
+            {/* Top center keeps sign-in messages clear of the bottom dock. */}
+            {!preview && <Toaster position="top-center" />}
+          </CommandPaletteProvider>
+        </AuthProvider>
       </AccessibilityProvider>
     </QueryClientProvider>
   );

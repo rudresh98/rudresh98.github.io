@@ -2,22 +2,24 @@ import { describe, expect, it } from "vitest";
 
 import {
   fanPositions,
+  homeShare,
+  shareLinkFor,
   shareTargets,
-  shareUrl,
   type ShareTarget,
   type ShareTargetId,
 } from "@/lib/share";
 import { shareIcons } from "@/lib/share-icons";
 
-const byId = Object.fromEntries(shareTargets.map((t) => [t.id, t])) as Record<
+const homeTargets = shareTargets(homeShare);
+const byId = Object.fromEntries(homeTargets.map((t) => [t.id, t])) as Record<
   ShareTargetId,
   ShareTarget
 >;
 
 describe("Share targets", () => {
   it("share the homepage canonical URL through each app's official link", () => {
-    expect(shareUrl).toBe("https://rudresh98.github.io/");
-    expect(shareTargets.map((t) => t.id)).toEqual([
+    expect(homeShare.url).toBe("https://rudresh98.github.io/");
+    expect(homeTargets.map((t) => t.id)).toEqual([
       "whatsapp",
       "instagram",
       "linkedin",
@@ -25,8 +27,8 @@ describe("Share targets", () => {
       "snapchat",
       "sms",
     ]);
-    const encoded = encodeURIComponent(shareUrl);
-    for (const target of shareTargets.filter((t) => !t.copyFirst))
+    const encoded = encodeURIComponent(homeShare.url);
+    for (const target of homeTargets.filter((t) => !t.copyFirst))
       expect(target.href).toContain(encoded);
     expect(byId.whatsapp.href).toMatch(/^https:\/\/wa\.me\/\?text=/);
     expect(byId.telegram.href).toMatch(/^https:\/\/t\.me\/share\/url\?url=/);
@@ -43,11 +45,24 @@ describe("Share targets", () => {
   it("copy the link for Instagram, which has no share URL", () => {
     expect(byId.instagram.copyFirst).toBe(true);
     expect(byId.instagram.href).toBe("https://www.instagram.com/direct/inbox/");
-    expect(shareTargets.filter((t) => t.copyFirst)).toHaveLength(1);
+    expect(homeTargets.filter((t) => t.copyFirst)).toHaveLength(1);
+  });
+
+  it("share the Stowly page from Stowly so its app preview shows", () => {
+    for (const pathname of ["/stowly", "/stowly/"]) {
+      const link = shareLinkFor(pathname);
+      expect(link.url).toBe("https://rudresh98.github.io/stowly/");
+      expect(link.label).toBe("Share Stowly");
+      const encoded = encodeURIComponent(link.url);
+      for (const target of shareTargets(link).filter((t) => !t.copyFirst))
+        expect(target.href).toContain(encoded);
+    }
+    for (const pathname of ["/", "/about/", "/projects/anchor/"])
+      expect(shareLinkFor(pathname)).toBe(homeShare);
   });
 
   it("each have a glyph", () => {
-    for (const target of shareTargets) {
+    for (const target of homeTargets) {
       expect(shareIcons[target.id].path).not.toBe("");
       expect(shareIcons[target.id].viewBox).toMatch(/^[\d. ]+$/);
     }

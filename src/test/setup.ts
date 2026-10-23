@@ -1,4 +1,18 @@
 import "@testing-library/jest-dom/vitest";
+import { beforeEach, vi } from "vitest";
+
+// Google sign-in stays off unless a test turns it on, so a local .env can't make results differ from CI.
+beforeEach(() => {
+  for (const key of [
+    "VITE_FIREBASE_API_KEY",
+    "VITE_FIREBASE_AUTH_DOMAIN",
+    "VITE_FIREBASE_PROJECT_ID",
+    "VITE_FIREBASE_STORAGE_BUCKET",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID",
+    "VITE_FIREBASE_APP_ID",
+  ])
+    vi.stubEnv(key, "");
+});
 
 Object.defineProperty(window, "scrollTo", {
   writable: true,

@@ -9,19 +9,23 @@ import {
 } from "@/components/ui/tooltip";
 import {
   fanPositions,
+  homeShare,
+  shareLinkFor,
   shareTargets,
-  shareUrl,
   type ShareTarget,
 } from "@/lib/share";
 import { shareIcons } from "@/lib/share-icons";
 
 // Wide enough that neighbouring 44px bubbles keep a visible gap along the quarter arc.
-const positions = fanPositions(shareTargets.length, 168);
+// Every link has the same targets, so the fan is laid out once.
+const positions = fanPositions(shareTargets(homeShare).length, 168);
 const origin = { x: 0, y: 0 };
 // folder-preview's Rudras spring, so the bubbles pop out the same way its previews do.
 const spring = { type: "spring", stiffness: 200, damping: 15 } as const;
 
-export function ShareLauncher() {
+export function ShareLauncher({ pathname = "/" }: { pathname?: string }) {
+  const link = shareLinkFor(pathname);
+  const targets = shareTargets(link);
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
   const reduced = useReducedMotionConfig();
@@ -56,10 +60,10 @@ export function ShareLauncher() {
   // The link only reaches Instagram once pasted, so say exactly that.
   const copyLink = async (target: ShareTarget) => {
     try {
-      await navigator.clipboard.writeText(shareUrl);
+      await navigator.clipboard.writeText(link.url);
       setStatus(`Link copied. Paste it in an ${target.label} chat.`);
     } catch {
-      setStatus(`Copy this link: ${shareUrl}`);
+      setStatus(`Copy this link: ${link.url}`);
     }
   };
   const choose = (target: ShareTarget) => {
@@ -74,7 +78,7 @@ export function ShareLauncher() {
           ref={trigger}
           type="button"
           className="share-trigger"
-          aria-label="Share this site"
+          aria-label={link.label}
           aria-expanded={open}
           aria-controls={open ? listId : undefined}
           onClick={() => setOpen((value) => !value)}
@@ -95,7 +99,7 @@ export function ShareLauncher() {
               className="share-targets"
               aria-label="Share on"
             >
-              {shareTargets.map((target, i) => {
+              {targets.map((target, i) => {
                 const { x, y } = positions[i] ?? origin;
                 const glyph = shareIcons[target.id];
                 const hidden = reduced

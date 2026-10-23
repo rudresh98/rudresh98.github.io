@@ -11,6 +11,14 @@ import { certifications, sortCertifications } from "./certifications";
 import { courses, coursePath, trainingFormats, type Course } from "./training";
 import { stowly } from "./stowly";
 
+// A link-preview image served from public/; previews crop to 1.91:1, so cards are 1200×630.
+export type SocialImage = {
+  path: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
 export const site = {
   url: "https://rudresh98.github.io",
   name: "Rudresh Oza",
@@ -29,7 +37,7 @@ export const site = {
     width: 1200,
     height: 630,
     alt: "Rudresh Oza — Forward Deployed Engineer (FDE), Cloud & GenAI",
-  },
+  } satisfies SocialImage,
 };
 
 // GitHub Pages serves prerendered routes as folder/index.html and 301-redirects /about to /about/,
@@ -181,7 +189,22 @@ type HeadOptions = {
   fullTitle?: boolean;
   noindex?: boolean;
   jsonLd?: object[];
+  // Replaces the site-wide preview image on this page only.
+  image?: SocialImage;
 };
+
+// Every image tag is emitted together, so a page override never mixes its URL with the default's size or alt.
+function imageMeta(image: SocialImage): Meta[] {
+  const url = absoluteUrl(image.path);
+  return [
+    { property: "og:image", content: url },
+    { property: "og:image:width", content: String(image.width) },
+    { property: "og:image:height", content: String(image.height) },
+    { property: "og:image:alt", content: image.alt },
+    { name: "twitter:image", content: url },
+    { name: "twitter:image:alt", content: image.alt },
+  ];
+}
 
 export function pageHead(
   title: string,
@@ -208,6 +231,7 @@ export function pageHead(
     );
   if (options.noindex)
     meta.push({ name: "robots", content: "noindex, follow" });
+  if (options.image) meta.push(...imageMeta(options.image));
   for (const data of options.jsonLd ?? [])
     meta.push({ "script:ld+json": data });
   return {
@@ -218,7 +242,6 @@ export function pageHead(
 
 // Shared defaults for every page; route-level pageHead entries override these by name/property.
 export function defaultMeta(): Meta[] {
-  const image = absoluteUrl(site.image.path);
   return [
     { title: pageSeo["/"].title },
     { name: "description", content: site.description },
@@ -232,13 +255,8 @@ export function defaultMeta(): Meta[] {
     { property: "og:site_name", content: site.name },
     { property: "og:locale", content: site.locale },
     { property: "og:type", content: "website" },
-    { property: "og:image", content: image },
-    { property: "og:image:width", content: String(site.image.width) },
-    { property: "og:image:height", content: String(site.image.height) },
-    { property: "og:image:alt", content: site.image.alt },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:image", content: image },
-    { name: "twitter:image:alt", content: site.image.alt },
+    ...imageMeta(site.image),
   ];
 }
 
@@ -370,7 +388,8 @@ export function projectJsonLd(project: Project) {
 }
 
 // No offers or ratings are stated; the download URL appears only once the APK is published.
-export function softwareApplicationJsonLd() {
+// Screenshot URLs come from the route, which imports the image assets this module cannot.
+export function softwareApplicationJsonLd(screenshotUrls: string[] = []) {
   const url = canonicalUrl("/stowly");
   return {
     "@context": "https://schema.org",
@@ -381,6 +400,10 @@ export function softwareApplicationJsonLd() {
     url,
     operatingSystem: stowly.platform,
     applicationCategory: "UtilitiesApplication",
+    image: absoluteUrl(stowly.shareImage.path),
+    ...(screenshotUrls.length
+      ? { screenshot: screenshotUrls.map(absoluteUrl) }
+      : {}),
     inLanguage: "en",
     author: { "@id": personId },
     creator: { "@id": personId },

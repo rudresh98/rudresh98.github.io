@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getProject, projects, profile } from "@/lib/portfolio";
 import {
   canonicalUrl,
+  defaultMeta,
   pageHead,
   sitemapXml,
   sitePages,
@@ -28,6 +29,28 @@ describe("Canonical URLs", () => {
     });
     expect(head.meta).toContainEqual({
       title: "About | Rudresh Oza — Forward Deployed Engineer (FDE)",
+    });
+  });
+  it("lets a page replace the site preview image with all of its tags", () => {
+    const head = pageHead("App", "Description", "/stowly", {
+      image: { path: "/app.jpg", width: 1200, height: 630, alt: "App card" },
+    });
+    const image = "https://rudresh98.github.io/app.jpg";
+    for (const tag of [
+      { property: "og:image", content: image },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "App card" },
+      { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: "App card" },
+    ])
+      expect(head.meta).toContainEqual(tag);
+    expect(pageHead("About", "Description", "/about").meta).not.toContainEqual(
+      expect.objectContaining({ property: "og:image" }),
+    );
+    expect(defaultMeta()).toContainEqual({
+      property: "og:image",
+      content: "https://rudresh98.github.io/og-image.png",
     });
   });
   it("keeps unavailable pages out of the index", () => {

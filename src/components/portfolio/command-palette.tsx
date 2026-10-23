@@ -18,6 +18,8 @@ import {
   Github,
   GraduationCap,
   Linkedin,
+  LogIn,
+  LogOut,
   SunMoon,
   type LucideIcon,
 } from "lucide-react";
@@ -30,6 +32,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import resume from "@/assets/rudresh-oza-resume.pdf";
+import { authCopy } from "@/lib/auth";
 import {
   commandGroups,
   commandIndex,
@@ -39,6 +42,7 @@ import {
 } from "@/lib/navigation";
 import { navigationIcons } from "@/lib/navigation-icons";
 import { toggleThemeWithReveal } from "./theme-reveal";
+import { useAuth } from "./auth";
 
 type PaletteState = { open: boolean; setOpen: (open: boolean) => void };
 const PaletteContext = createContext<PaletteState>({
@@ -99,6 +103,8 @@ export function CommandPalette() {
   const { open, setOpen } = useCommandPalette();
   const router = useRouter();
   const entries = useMemo(commandIndex, []);
+  const auth = useAuth();
+  const signedIn = auth.status === "signed-in";
   const [status, setStatus] = useState("");
   useEffect(() => {
     if (!open) setStatus("");
@@ -224,6 +230,34 @@ export function CommandPalette() {
                   </span>
                   <span className="palette-item-label">Toggle theme</span>
                 </CommandItem>
+                {auth.status !== "disabled" && (
+                  <CommandItem
+                    value="action:auth"
+                    keywords={
+                      signedIn
+                        ? ["sign out", "log out", "logout", "account", "google"]
+                        : ["sign in", "log in", "login", "account", "google"]
+                    }
+                    disabled={auth.pending}
+                    onSelect={runAndClose(
+                      signedIn ? auth.signOut : auth.signIn,
+                    )}
+                    onPointerEnter={auth.warm}
+                    className="palette-item"
+                  >
+                    <span className="palette-item-icon" aria-hidden="true">
+                      {signedIn ? <LogOut /> : <LogIn />}
+                    </span>
+                    <span className="palette-item-label">
+                      {signedIn ? authCopy.signOut : authCopy.signIn}
+                    </span>
+                    {signedIn && auth.user?.email && (
+                      <span className="palette-item-meta">
+                        {auth.user.email}
+                      </span>
+                    )}
+                  </CommandItem>
+                )}
                 <CommandItem
                   value="action:email"
                   keywords={["copy", "email", "mail", "contact"]}

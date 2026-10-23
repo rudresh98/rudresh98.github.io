@@ -1,23 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import saveLink from "@/assets/stowly/stowly-save-link.png";
-import homeDark from "@/assets/stowly/stowly-home-dark.png";
-import homeLight from "@/assets/stowly/stowly-home-light.png";
-import savedItem from "@/assets/stowly/stowly-saved-item.png";
-import { stowly, type StowlyScreenId } from "@/lib/stowly";
+import { stowly } from "@/lib/stowly";
 import { stowlyFeatureIcons } from "@/lib/stowly-icons";
+import {
+  stowlyScreenImages as screenImages,
+  stowlyScreenSize as screenSize,
+} from "@/lib/stowly-screens";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./motion";
-
-// Every screenshot is a 780×1688 phone capture; dimensions keep layout stable before the image loads.
-const screenSize = { width: 780, height: 1688 };
-const screenImages: Record<StowlyScreenId, string> = {
-  "save-link": saveLink,
-  "home-dark": homeDark,
-  "home-light": homeLight,
-  "saved-item": savedItem,
-};
 
 const isExternal = (url: string) => /^https?:\/\//.test(url);
 
