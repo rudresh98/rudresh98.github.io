@@ -1,3 +1,5 @@
+import { achievements } from "./portfolio";
+
 export type VisualNode = {
   id: string;
   label: string;
@@ -835,9 +837,18 @@ export const projectVisuals: Record<string, ProjectVisual> = {
     architecture:
       "The React booking SDK is the core engine for bookings, gift cards, passes, transfer, and split, embedded in host channels such as WordPress sites, Android apps, and other websites; a React dashboard serves operators. Both call a GraphQL API resolved by AWS Lambda functions over DynamoDB. Booking requests are queued in Amazon SQS and processed by a worker Lambda, Amazon SNS publishes confirmations, and the SDK polls booking status until tickets are confirmed. Amazon S3 serves the SDK bundle and assets, CloudFormation provisions the stack, and CloudWatch captures logs, metrics, and alarms. Frontend and SDK caching support a smoother checkout experience.",
     impact: [
-      { value: "1,500+", label: "Transactions / six months" },
-      { value: "2,000+", label: "Clients served" },
-      { value: "40%", label: "Faster transactions" },
+      {
+        value: `${achievements.transactions.toLocaleString("en-US")}+`,
+        label: "Transactions / six months",
+      },
+      {
+        value: `${achievements.clients.toLocaleString("en-US")}+`,
+        label: "Clients served",
+      },
+      {
+        value: `${achievements.transactionSpeedPercent}%`,
+        label: "Faster transactions",
+      },
     ],
   },
   "izo-sdwan": {

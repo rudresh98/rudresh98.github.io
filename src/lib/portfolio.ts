@@ -166,12 +166,11 @@ export const projects: Project[] = [
       "Anchor, an operations and reservations platform, serving customer booking and redemption experiences.",
     contributions: [
       "Developed Gift Card and Passes redemption and Manage My Booking capabilities.",
-      "Built transfer and split functionalities for more than 2,000 clients.",
+      `Built transfer and split functionalities for more than ${achievements.clients.toLocaleString("en-US")} clients.`,
       "Integrated Algolia city search and AWS SQS messaging; optimized DynamoDB queries.",
       "Upgraded Node.js from v14 to v20 and implemented SDK and frontend caching.",
     ],
-    outcome:
-      "1,500+ new transactions within six months; transfer and split improvements served 2,000+ clients and improved transaction speed by 40%.",
+    outcome: `${achievements.transactions.toLocaleString("en-US")}+ new transactions within six months; transfer and split improvements served ${achievements.clients.toLocaleString("en-US")}+ clients and improved transaction speed by ${achievements.transactionSpeedPercent}%.`,
     nodes: ["Booking SDK", "GraphQL API", "AWS Lambda", "DynamoDB", "SQS"],
   },
   {

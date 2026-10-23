@@ -12,11 +12,11 @@ import {
 import { projectVisuals } from "@/lib/portfolio-visuals";
 import { testimonials } from "@/lib/testimonials";
 describe("Confirmed professional achievements", () => {
-  it("keeps 1500 transactions over six months", () => {
-    expect(achievements.transactions).toBe(1500);
+  it("keeps 15000 transactions over six months", () => {
+    expect(achievements.transactions).toBe(15000);
     expect(achievements.transactionMonths).toBe(6);
   });
-  it("keeps 2000 clients", () => expect(achievements.clients).toBe(2000));
+  it("keeps 200000 clients", () => expect(achievements.clients).toBe(200000));
   it("keeps 40 percent transaction speed improvement", () =>
     expect(achievements.transactionSpeedPercent).toBe(40));
   it("keeps 15 resolved issues within one month", () => {
