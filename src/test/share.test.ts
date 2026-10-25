@@ -61,6 +61,11 @@ describe("Share targets", () => {
       expect(shareLinkFor(pathname)).toBe(homeShare);
   });
 
+  it("share the homepage from an app page without its own preview card", () => {
+    for (const pathname of ["/split-money", "/split-money/"])
+      expect(shareLinkFor(pathname)).toBe(homeShare);
+  });
+
   it("each have a glyph", () => {
     for (const target of homeTargets) {
       expect(shareIcons[target.id].path).not.toBe("");

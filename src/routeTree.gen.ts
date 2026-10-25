@@ -18,6 +18,7 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ExpertiseRouteImport } from './routes/expertise'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SnugboxRouteImport } from './routes/snugbox'
+import { Route as SplitMoneyRouteImport } from './routes/split-money'
 import { Route as TrainingRouteImport } from './routes/training'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
@@ -69,6 +70,11 @@ const SnugboxRoute = SnugboxRouteImport.update({
   path: '/snugbox',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SplitMoneyRoute = SplitMoneyRouteImport.update({
+  id: '/split-money',
+  path: '/split-money',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrainingRoute = TrainingRouteImport.update({
   id: '/training',
   path: '/training',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/snugbox': typeof SnugboxRoute
+  '/split-money': typeof SplitMoneyRoute
   '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/expertise': typeof ExpertiseRoute
   '/snugbox': typeof SnugboxRoute
+  '/split-money': typeof SplitMoneyRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
   '/projects': typeof ProjectsIndexRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/expertise': typeof ExpertiseRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/snugbox': typeof SnugboxRoute
+  '/split-money': typeof SplitMoneyRoute
   '/training': typeof TrainingRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/training/$courseId': typeof TrainingCourseIdRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
     | '/expertise'
     | '/projects'
     | '/snugbox'
+    | '/split-money'
     | '/training'
     | '/projects/$projectId'
     | '/training/$courseId'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/expertise'
     | '/snugbox'
+    | '/split-money'
     | '/projects/$projectId'
     | '/training/$courseId'
     | '/projects'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/expertise'
     | '/projects'
     | '/snugbox'
+    | '/split-money'
     | '/training'
     | '/projects/$projectId'
     | '/training/$courseId'
@@ -201,6 +213,7 @@ export interface RootRouteChildren {
   ExpertiseRoute: typeof ExpertiseRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   SnugboxRoute: typeof SnugboxRoute
+  SplitMoneyRoute: typeof SplitMoneyRoute
   TrainingRoute: typeof TrainingRouteWithChildren
 }
 
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/snugbox'
       fullPath: '/snugbox'
       preLoaderRoute: typeof SnugboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/split-money': {
+      id: '/split-money'
+      path: '/split-money'
+      fullPath: '/split-money'
+      preLoaderRoute: typeof SplitMoneyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/training': {
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExpertiseRoute: ExpertiseRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   SnugboxRoute: SnugboxRoute,
+  SplitMoneyRoute: SplitMoneyRoute,
   TrainingRoute: TrainingRouteWithChildren,
 }
 export const routeTree = rootRouteImport

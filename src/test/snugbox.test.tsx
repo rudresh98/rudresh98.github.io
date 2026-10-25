@@ -11,10 +11,7 @@ import { join } from "node:path";
 import type { ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 
-import {
-  SnugboxDownload,
-  SnugboxFeature,
-} from "@/components/portfolio/snugbox";
+import { AppBand, AppDownload } from "@/components/portfolio/app-showcase";
 import { navigation } from "@/lib/navigation";
 import {
   canonicalUrl,
@@ -23,7 +20,7 @@ import {
   softwareApplicationJsonLd,
 } from "@/lib/seo";
 import { snugbox } from "@/lib/snugbox";
-import { snugboxScreenSizes } from "@/lib/snugbox-screens";
+import { snugboxScreenImages, snugboxScreenSizes } from "@/lib/snugbox-screens";
 import { routeTree } from "@/routeTree.gen";
 import { Route } from "@/routes/snugbox";
 
@@ -41,7 +38,8 @@ async function renderInRouter(node: ReactNode) {
 
 describe("Snugbox download", () => {
   it("stays a disabled coming-soon button until an APK is published", () => {
-    render(<SnugboxDownload apkUrl={undefined} />);
+    const { apkUrl, ...unpublished } = snugbox;
+    render(<AppDownload app={unpublished} />);
     const button = screen.getByRole("button", { name: /Download APK/ });
     expect(button).toBeDisabled();
     expect(button).toHaveTextContent(/Coming soon/i);
@@ -50,7 +48,9 @@ describe("Snugbox download", () => {
   });
 
   it("becomes a real download once an APK URL is set", () => {
-    render(<SnugboxDownload apkUrl="/downloads/snugbox.apk" />);
+    render(
+      <AppDownload app={{ ...snugbox, apkUrl: "/downloads/snugbox.apk" }} />,
+    );
     const link = screen.getByRole("link", { name: /Download APK/ });
     expect(link).toHaveAttribute("href", "/downloads/snugbox.apk");
     expect(link).toHaveAttribute("download", "Snugbox.apk");
@@ -60,7 +60,7 @@ describe("Snugbox download", () => {
 
   it("opens an external file host in a new tab and says so", () => {
     const url = "https://drive.google.com/drive/folders/example";
-    render(<SnugboxDownload apkUrl={url} />);
+    render(<AppDownload app={{ ...snugbox, apkUrl: url }} />);
     const link = screen.getByRole("link", {
       name: /Download APK.*opens .+ in a new tab/,
     });
@@ -104,7 +104,13 @@ describe("Snugbox page", () => {
   });
 
   it("is reachable from the Projects page band", async () => {
-    await renderInRouter(<SnugboxFeature />);
+    await renderInRouter(
+      <AppBand
+        app={snugbox}
+        images={snugboxScreenImages}
+        sizes={snugboxScreenSizes}
+      />,
+    );
     const band = await screen.findByRole("heading", { name: snugbox.name });
     const link = within(band.parentElement!.parentElement!).getByRole("link", {
       name: /See the app/,
@@ -124,7 +130,7 @@ describe("Snugbox navigation and search", () => {
   });
 
   it("describes the app without inventing a download, price, or rating", () => {
-    const app = softwareApplicationJsonLd();
+    const app = softwareApplicationJsonLd(snugbox);
     expect(app).toMatchObject({
       "@type": "SoftwareApplication",
       name: snugbox.name,
@@ -153,7 +159,7 @@ describe("Snugbox navigation and search", () => {
   });
 
   it("gives search engines the app card and every screenshot", () => {
-    const app = softwareApplicationJsonLd([
+    const app = softwareApplicationJsonLd(snugbox, [
       "/assets/save-link.png",
       "https://cdn.example.com/home.png",
     ]);
@@ -164,7 +170,7 @@ describe("Snugbox navigation and search", () => {
         "https://cdn.example.com/home.png",
       ],
     });
-    expect(softwareApplicationJsonLd()).not.toHaveProperty("screenshot");
+    expect(softwareApplicationJsonLd(snugbox)).not.toHaveProperty("screenshot");
   });
 
   it("is in the sitemap and llms.txt", () => {

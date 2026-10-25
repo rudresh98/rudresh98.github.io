@@ -9,7 +9,7 @@ import {
 import { featuredAreas, skills } from "./skills";
 import { certifications, sortCertifications } from "./certifications";
 import { courses, coursePath, trainingFormats, type Course } from "./training";
-import { snugbox } from "./snugbox";
+import { apps, type AppShowcase } from "./apps";
 
 // A link-preview image served from public/; previews crop to 1.91:1, so cards are 1200×630.
 export type SocialImage = {
@@ -85,6 +85,11 @@ export const pageSeo = {
     description:
       "Snugbox is an Android app by Rudresh Oza for saving links from any app into collections, with automatic previews, a Focus mode, and five color themes.",
   },
+  "/split-money": {
+    title: "Split Money — Trip Expense Splitting App | Rudresh Oza",
+    description:
+      "Split Money is an Android app by Rudresh Oza for sharing trip expenses with friends, with four ways to split and one net balance per friend across trips.",
+  },
   "/certifications": {
     title: "Certifications — Claude, Databricks, Azure | Rudresh Oza",
     description:
@@ -159,6 +164,7 @@ export const sitePages: {
     changefreq: "yearly" as const,
   })),
   { path: "/snugbox", priority: 0.7, changefreq: "monthly" },
+  { path: "/split-money", priority: 0.7, changefreq: "monthly" },
   { path: "/certifications", priority: 0.7, changefreq: "monthly" },
   // Training is the primary selling page.
   { path: "/training", priority: 0.9, changefreq: "monthly" },
@@ -173,7 +179,7 @@ export const sitePages: {
 
 // The date site content last changed. Bump it whenever pages, projects, courses, or credentials
 // change, so sitemap lastmod stays truthful instead of moving with every deploy.
-export const contentUpdated = "2026-10-23";
+export const contentUpdated = "2026-10-25";
 
 export function sitemapXml() {
   const urls = sitePages.map(
@@ -389,18 +395,21 @@ export function projectJsonLd(project: Project) {
 
 // No offers or ratings are stated; the download URL appears only once the APK is published.
 // Screenshot URLs come from the route, which imports the image assets this module cannot.
-export function softwareApplicationJsonLd(screenshotUrls: string[] = []) {
-  const url = canonicalUrl("/snugbox");
+export function softwareApplicationJsonLd(
+  app: AppShowcase,
+  screenshotUrls: string[] = [],
+) {
+  const url = canonicalUrl(app.path);
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": `${url}#app`,
-    name: snugbox.name,
-    description: snugbox.description,
+    name: app.name,
+    description: app.description,
     url,
-    operatingSystem: snugbox.platform,
-    applicationCategory: "UtilitiesApplication",
-    image: absoluteUrl(snugbox.shareImage.path),
+    operatingSystem: app.platform,
+    applicationCategory: app.applicationCategory,
+    ...(app.shareImage ? { image: absoluteUrl(app.shareImage.path) } : {}),
     ...(screenshotUrls.length
       ? { screenshot: screenshotUrls.map(absoluteUrl) }
       : {}),
@@ -408,8 +417,8 @@ export function softwareApplicationJsonLd(screenshotUrls: string[] = []) {
     author: { "@id": personId },
     creator: { "@id": personId },
     isPartOf: { "@id": websiteId },
-    ...(snugbox.apkUrl ? { downloadUrl: absoluteUrl(snugbox.apkUrl) } : {}),
-    ...(snugbox.apkSize ? { fileSize: snugbox.apkSize } : {}),
+    ...(app.apkUrl ? { downloadUrl: absoluteUrl(app.apkUrl) } : {}),
+    ...(app.apkSize ? { fileSize: app.apkSize } : {}),
   };
 }
 
@@ -513,7 +522,7 @@ export function llmsTxt() {
     ),
     "",
     "## Apps",
-    line(snugbox.name, "/snugbox", snugbox.description),
+    ...apps.map((app) => line(app.name, app.path, app.description)),
     "",
     "## Certifications",
     ...sortCertifications(certifications).map(

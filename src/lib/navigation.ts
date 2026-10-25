@@ -42,6 +42,12 @@ export const navigation = [
     summary: "My Android link-saving app",
   },
   {
+    label: "Split Money",
+    to: "/split-money",
+    primary: false,
+    summary: "My Android trip-splitting app",
+  },
+  {
     label: "Certifications",
     to: "/certifications",
     primary: false,

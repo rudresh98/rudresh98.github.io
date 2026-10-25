@@ -7,7 +7,14 @@ import {
 } from "@/lib/seo";
 import { Page } from "@/components/portfolio/content";
 import { ProjectGrid, Collaboration } from "@/components/portfolio/work";
-import { SnugboxFeature } from "@/components/portfolio/snugbox";
+import { AppBand } from "@/components/portfolio/app-showcase";
+import { snugbox } from "@/lib/snugbox";
+import { snugboxScreenImages, snugboxScreenSizes } from "@/lib/snugbox-screens";
+import { splitMoney } from "@/lib/split-money";
+import {
+  splitMoneyScreenImages,
+  splitMoneyScreenSizes,
+} from "@/lib/split-money-screens";
 
 export const Route = createFileRoute("/projects/")({
   head: () =>
@@ -34,7 +41,16 @@ function Projects() {
       <Page>
         <section className="section">
           <ProjectGrid />
-          <SnugboxFeature />
+          <AppBand
+            app={snugbox}
+            images={snugboxScreenImages}
+            sizes={snugboxScreenSizes}
+          />
+          <AppBand
+            app={splitMoney}
+            images={splitMoneyScreenImages}
+            sizes={splitMoneyScreenSizes}
+          />
         </section>
       </Page>
       <Collaboration />

@@ -9,6 +9,7 @@ import {
   Mail,
   Sparkles,
   UserRound,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 import type { PagePath } from "./navigation";
@@ -21,6 +22,7 @@ export const navigationIcons: Record<PagePath, LucideIcon> = {
   "/experience": BriefcaseBusiness,
   "/projects": FolderKanban,
   "/snugbox": Bookmark,
+  "/split-money": Wallet,
   "/certifications": Award,
   "/training": GraduationCap,
   "/contact": Mail,

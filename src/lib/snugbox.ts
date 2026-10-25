@@ -1,44 +1,22 @@
 // Browser-safe and asset-free: the Snugbox page, SEO module, sitemap, and llms.txt all read from here.
 // Features describe only what the app really does, as shown in its screens; screenshots are imported by
 // the presentation component, keyed by screen id.
+import type { AppShowcase } from "./apps";
 
 export type SnugboxFeatureIcon =
   "share" | "collections" | "focus" | "themes" | "reminders" | "backup";
 
 export type SnugboxScreenId = "home" | "settings" | "themes";
 
-export type SnugboxApp = {
-  name: string;
-  tagline: string;
-  description: string;
-  platform: "Android";
-  category: string;
-  // Unset until the APK is published; the download stays a disabled "coming soon" button until then.
-  // An external URL (a file host) opens in a new tab; a same-site path downloads directly.
-  apkUrl?: string;
-  // Named in the button's new-tab notice and the note beneath it.
-  apkHost?: string;
-  // Shown beside the button so visitors know the download size; update it with each release.
-  apkSize?: string;
-  // The /snugbox link-preview card in public/, so shared links show the app instead of the site card.
-  shareImage: { path: string; width: number; height: number; alt: string };
-  features: { title: string; body: string; icon: SnugboxFeatureIcon }[];
-  steps: { title: string; body: string }[];
-  screens: {
-    id: SnugboxScreenId;
-    title: string;
-    caption: string;
-    alt: string;
-  }[];
-};
-
-export const snugbox: SnugboxApp = {
+export const snugbox = {
   name: "Snugbox",
+  path: "/snugbox",
   tagline: "Every link you save, in one calm place.",
   description:
     "Snugbox is an Android app for saving links from any app into collections, with automatic previews, a Focus mode for working through new saves, and five color themes.",
   platform: "Android",
   category: "Link saving & bookmarks",
+  applicationCategory: "UtilitiesApplication",
   apkUrl:
     "https://drive.google.com/file/d/1zxuO-b3duL0mXdOSuzO7p7NBQyjglGyI/view?usp=sharing",
   apkHost: "Google Drive",
@@ -48,6 +26,17 @@ export const snugbox: SnugboxApp = {
     width: 1200,
     height: 630,
     alt: "Snugbox's home and settings screens beside the tagline Every link you save, in one calm place.",
+  },
+  hero: { label: "Home and settings", back: "settings", front: "home" },
+  headings: {
+    features: "Saved links you actually come back to.",
+    steps: "Three steps, no clutter.",
+    screens: {
+      title: "A closer look.",
+      description:
+        "Screens from the Android app, and its five color themes in light and dark.",
+    },
+    cta: ["Stop losing the links", "you meant to come back to."],
   },
   features: [
     {
@@ -118,4 +107,4 @@ export const snugbox: SnugboxApp = {
       alt: "Snugbox's five color themes, Harbor, Slate, Sage, Rosewater, and Dusk, each showing the same collection chips and saved YouTube recipe in a light and a dark version.",
     },
   ],
-};
+} satisfies AppShowcase<SnugboxFeatureIcon, SnugboxScreenId>;
