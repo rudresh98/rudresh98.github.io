@@ -8,6 +8,8 @@ import {
   sitePages,
   siteJsonLd,
   projectJsonLd,
+  googleAnalyticsScript,
+  site,
 } from "@/lib/seo";
 
 describe("Canonical URLs", () => {
@@ -129,5 +131,30 @@ describe("Structured data", () => {
         url: canonicalUrl(`/projects/${project.id}`),
         author: { "@id": "https://rudresh98.github.io/#person" },
       });
+  });
+});
+
+describe("Google Analytics", () => {
+  const run = (search: string) => {
+    window.history.replaceState(null, "", `/${search}`);
+    document.head.innerHTML = "";
+    delete (window as { dataLayer?: unknown }).dataLayer;
+    new Function(googleAnalyticsScript)();
+    return document.head.querySelector<HTMLScriptElement>(
+      'script[src*="googletagmanager.com/gtag/js"]',
+    );
+  };
+  it("loads gtag.js and configures the measurement ID", () => {
+    expect(run("")?.src).toBe(
+      `https://www.googletagmanager.com/gtag/js?id=${site.googleAnalyticsId}`,
+    );
+    const calls = (window as { dataLayer?: IArguments[] }).dataLayer?.map(
+      (args) => Array.from(args),
+    );
+    expect(calls).toContainEqual(["config", site.googleAnalyticsId]);
+  });
+  it("stays off in dock previews", () => {
+    expect(run("?preview=1")).toBeNull();
+    expect((window as { dataLayer?: unknown }).dataLayer).toBeUndefined();
   });
 });

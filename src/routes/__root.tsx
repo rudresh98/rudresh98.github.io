@@ -24,7 +24,12 @@ import { AccessibilityProvider } from "@/components/portfolio/accessibility";
 import { AuthProvider } from "@/components/portfolio/auth";
 import { Toaster } from "@/components/ui/sonner";
 import { accessibilityBootScript } from "@/lib/accessibility";
-import { defaultMeta, site, siteJsonLd } from "@/lib/seo";
+import {
+  defaultMeta,
+  googleAnalyticsScript,
+  site,
+  siteJsonLd,
+} from "@/lib/seo";
 import { isPreviewSearch } from "@/lib/navigation";
 import portrait from "@/assets/rudresh-oza.png";
 
@@ -141,6 +146,10 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <ScriptOnce>{accessibilityBootScript}</ScriptOnce>
+        {/* Analytics only runs in the deployed build, so local development never adds page views. */}
+        {import.meta.env.PROD && (
+          <ScriptOnce>{googleAnalyticsScript}</ScriptOnce>
+        )}
         {/* Head meta keeps one tag per name, so Search Console tokens render here to keep every owner verified. */}
         {site.googleSiteVerifications.map((token) => (
           <meta key={token} name="google-site-verification" content={token} />

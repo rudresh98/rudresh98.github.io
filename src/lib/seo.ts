@@ -32,6 +32,8 @@ export const site = {
     "z7GuwcmWSdVMNpiep72s-ULyfDYwrv4nQ3cQdHLqnBQ",
     "q-iQTVic2hMCEw7MJubIRgmtgNvWUBi4WEI3A8Yv38o",
   ],
+  // Google Analytics 4 measurement ID; its default enhanced measurement counts client-side route changes.
+  googleAnalyticsId: "G-QE4TKFGGQ1",
   image: {
     path: "/og-image.png",
     width: 1200,
@@ -39,6 +41,10 @@ export const site = {
     alt: "Rudresh Oza — Forward Deployed Engineer (FDE), Cloud & GenAI",
   } satisfies SocialImage,
 };
+
+// The standard gtag.js snippet, injected from one inline script so dock previews (?preview=1)
+// never load it and never count as page views.
+export const googleAnalyticsScript = `if(!/[?&]preview=1(&|$)/.test(location.search)){window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",${JSON.stringify(site.googleAnalyticsId)});var s=document.createElement("script");s.async=true;s.src=${JSON.stringify(`https://www.googletagmanager.com/gtag/js?id=${site.googleAnalyticsId}`)};document.head.appendChild(s)}`;
 
 // GitHub Pages serves prerendered routes as folder/index.html and 301-redirects /about to /about/,
 // so the trailing-slash form is the URL that actually returns 200.
