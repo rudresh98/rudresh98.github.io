@@ -33,7 +33,7 @@ export const site = {
     "q-iQTVic2hMCEw7MJubIRgmtgNvWUBi4WEI3A8Yv38o",
   ],
   // Google Analytics 4 measurement ID; its default enhanced measurement counts client-side route changes.
-  googleAnalyticsId: "G-QE4TKFGGQ1",
+  googleAnalyticsId: "G-RJWNK3Z3SL",
   image: {
     path: "/og-image.png",
     width: 1200,
