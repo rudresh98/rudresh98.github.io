@@ -46,3 +46,10 @@ dist/
 /.output
 /.nitro
 /.tanstack
+
+# Impeccable: the launcher downloads its engine binary on first run; caches, critique snapshots, and live-session state stay local
+.claude/skills/impeccable/scripts/bin/
+.impeccable/hook.cache.json
+.impeccable/critique/
+.impeccable/live/*
+!.impeccable/live/config.json
