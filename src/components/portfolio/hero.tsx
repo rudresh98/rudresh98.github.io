@@ -1,20 +1,6 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type PointerEvent,
-} from "react";
+import { useState, type CSSProperties } from "react";
 import { createLink, Link } from "@tanstack/react-router";
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useMotionValue,
-  useReducedMotionConfig,
-  useSpring,
-  useTransform,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotionConfig } from "motion/react";
 import {
   Activity,
   ArrowDown,
@@ -41,39 +27,32 @@ export function Hero() {
   return (
     <section className="hero-x" aria-labelledby="hero-title">
       <div className="hero-x-rail">
-        <p className="eyebrow">
-          Forward Deployed Engineer (FDE) · Cloud & GenAI
+        <p className="hero-x-hire">
+          Need team training?{" "}
+          <Link to="/training">
+            GenAI, full-stack &amp; Databricks courses{" "}
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
         </p>
         <span className="hero-x-rule" aria-hidden="true" />
-        <p className="hero-x-signature">{profile.name} — Portfolio</p>
       </div>
       <div className="hero-x-stage">
         <div className="hero-x-copy">
-          <h1 id="hero-title" className="hero-x-title">
-            <span className="hero-x-line">
-              <span>Engineering</span>
-            </span>{" "}
-            <span className="hero-x-line">
-              <span>
-                the future<span className="text-primary">.</span>
-              </span>
-            </span>{" "}
-            <span className="hero-x-line hero-x-muted">
-              <span>Building what</span>
-            </span>{" "}
-            <span className="hero-x-line">
-              <span className="text-primary">matters.</span>
+          <h1 id="hero-title" className="hero-x-title hero-x-fade">
+            Forward Deployed Engineer{" "}
+            <span className="hero-x-muted">
+              building GenAI agents, apps and cloud platforms
             </span>
           </h1>
           <p className="hero-x-description hero-x-fade">
-            I build scalable digital products, cloud-native platforms, and
-            AI-powered experiences that transform complex problems into
-            practical solutions.
+            {profile.experience} years shipping React and Node.js products, AWS
+            and Azure services and LangGraph agents, from booking flows to
+            supply chain AI
           </p>
           <div className="hero-x-actions hero-x-fade">
             <Button asChild className="hero-x-cta h-12 px-6 shadow-none">
               <ScribbleLink to="/projects" variant="scribble">
-                Explore My Work <ArrowUpRight className="hero-x-up" />
+                Explore my work <ArrowUpRight />
               </ScribbleLink>
             </Button>
             <Button
@@ -82,32 +61,25 @@ export function Hero() {
               className="hero-x-cta h-12 px-6 shadow-none"
             >
               <a href={resume} download="Rudresh-Oza-Resume.pdf">
-                Download Resume <ArrowDown className="hero-x-down" />
+                Download resume <ArrowDown />
               </a>
             </Button>
           </div>
-          <p className="hero-x-hire hero-x-fade">
-            Need team training?{" "}
-            <Link to="/training">
-              Explore GenAI, full-stack &amp; Databricks courses{" "}
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
-          </p>
           <div className="hero-x-status hero-x-fade">
             <img
               src={portrait}
               alt="Rudresh Oza"
-              width={34}
-              height={34}
+              width={36}
+              height={36}
               decoding="async"
             />
             <div className="hero-x-status-text">
               <p className="hero-x-available">
-                <span className="hero-x-pulse" aria-hidden="true" />
+                <span className="hero-x-dot" aria-hidden="true" />
                 {profile.availability}
               </p>
               <p className="hero-x-location">
-                <MapPin size={11} aria-hidden="true" />
+                <MapPin size={12} aria-hidden="true" />
                 {profile.location} · {profile.timezone}
               </p>
             </div>
@@ -124,6 +96,7 @@ export function Hero() {
               <Counter
                 value={fact.value}
                 suffix={fact.suffix}
+                suffixClassName="text-muted-foreground"
                 format={fact.format ?? "full"}
               />
             </p>
@@ -193,37 +166,7 @@ export function HeroSystem() {
   const { width, height, hub, panels } = heroSystem;
   const [activeId, setActiveId] = useState(panels[0].id);
   const active = panels.find((panel) => panel.id === activeId) ?? panels[0];
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.25 });
   const reduced = useReducedMotionConfig();
-  // Ambient float, parallax, and the edge pulse stay off for touch, small screens, and reduced motion.
-  const [ambient, setAmbient] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia("(min-width: 768px) and (pointer: fine)");
-    const sync = () => setAmbient(query.matches);
-    sync();
-    query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
-  }, []);
-  const live = ambient && inView && !reduced;
-  const pointerX = useMotionValue(0),
-    pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 70, damping: 20 }),
-    springY = useSpring(pointerY, { stiffness: 70, damping: 20 });
-  const gridX = useTransform(springX, (v) => v * -8),
-    gridY = useTransform(springY, (v) => v * -8);
-  const layerX = useTransform(springX, (v) => v * 10),
-    layerY = useTransform(springY, (v) => v * 10);
-  const follow = (event: PointerEvent<HTMLDivElement>) => {
-    if (!live || event.pointerType !== "mouse") return;
-    const box = event.currentTarget.getBoundingClientRect();
-    pointerX.set((event.clientX - box.left) / box.width - 0.5);
-    pointerY.set((event.clientY - box.top) / box.height - 0.5);
-  };
-  const settle = () => {
-    pointerX.set(0);
-    pointerY.set(0);
-  };
   const hubStyle = {
     "--x": percent(hub.x, width),
     "--y": percent(hub.y, height),
@@ -239,26 +182,14 @@ export function HeroSystem() {
     >
       <div className="hero-map-head">
         <span id="hero-map-title">Fig. 01 — Engineering system</span>
-        <span className="hero-map-live">
-          <i aria-hidden="true" />
-          Illustrative map
-        </span>
+        <span>Illustrative map</span>
       </div>
       <p id="hero-map-note" className="sr-only">
         Illustrative system map, not a production screenshot.
       </p>
-      <div
-        ref={ref}
-        className="hero-map-canvas"
-        onPointerMove={follow}
-        onPointerLeave={settle}
-      >
-        <motion.div
-          className="hero-map-grid"
-          style={{ x: gridX, y: gridY }}
-          aria-hidden="true"
-        />
-        <motion.div className="hero-map-layer" style={{ x: layerX, y: layerY }}>
+      <div className="hero-map-canvas">
+        <div className="hero-map-grid" aria-hidden="true" />
+        <div className="hero-map-layer">
           <svg
             className="hero-map-edges"
             viewBox={`0 0 ${width} ${height}`}
@@ -276,14 +207,6 @@ export function HeroSystem() {
                 d={edgePath(panel)}
               />
             ))}
-            {live && (
-              <path
-                key={activeId}
-                className="hero-edge-pulse"
-                pathLength={1}
-                d={edgePath(active)}
-              />
-            )}
             {panels
               .flatMap((panel) => [panel.anchor, panel.hubAnchor])
               .map((point) => (
@@ -311,50 +234,34 @@ export function HeroSystem() {
               "--w": percent(panel.width, width),
               "--i": i,
             } as CSSProperties;
-            const floating = live && panel.float;
             return (
               <div key={panel.id} className="hero-node-slot" style={slot}>
-                <motion.div
-                  className="hero-node-float"
-                  animate={{ y: floating ? [0, -4, 0] : 0 }}
-                  transition={
-                    floating
-                      ? {
-                          duration: 7,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: i * 0.9,
-                        }
-                      : { duration: 0.4 }
-                  }
+                <button
+                  type="button"
+                  className="hero-node"
+                  aria-pressed={panel.id === activeId}
+                  aria-controls="hero-inspector"
+                  aria-label={`${panel.title}: ${panel.stack.join(", ")}`}
+                  onMouseEnter={() => setActiveId(panel.id)}
+                  onFocus={() => setActiveId(panel.id)}
+                  onClick={() => setActiveId(panel.id)}
                 >
-                  <button
-                    type="button"
-                    className="hero-node"
-                    aria-pressed={panel.id === activeId}
-                    aria-controls="hero-inspector"
-                    aria-label={`${panel.title}: ${panel.stack.join(", ")}`}
-                    onMouseEnter={() => setActiveId(panel.id)}
-                    onFocus={() => setActiveId(panel.id)}
-                    onClick={() => setActiveId(panel.id)}
-                  >
-                    <span className="hero-node-head">
-                      <span className="hero-node-index">{panel.index}</span>
-                      <Icon size={15} aria-hidden="true" />
-                    </span>
-                    <span className="hero-node-title">{panel.title}</span>
-                    <span className="hero-node-stack">
-                      {panel.stack.map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
-                    </span>
-                    <PanelDetail kind={panel.detail} />
-                  </button>
-                </motion.div>
+                  <span className="hero-node-head">
+                    <span className="hero-node-index">{panel.index}</span>
+                    <Icon size={15} aria-hidden="true" />
+                  </span>
+                  <span className="hero-node-title">{panel.title}</span>
+                  <span className="hero-node-stack">
+                    {panel.stack.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </span>
+                  <PanelDetail kind={panel.detail} />
+                </button>
               </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
       <figcaption className="hero-inspector">
         <div

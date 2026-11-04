@@ -499,18 +499,18 @@
   border-radius: 6px;
 }
 .eyebrow {
-  color: var(--primary);
-  font-size: 0.625rem;
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
   letter-spacing: 0;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 .eyebrow:before {
   content: "";
-  width: 18px;
+  width: 16px;
   height: 1px;
   background: currentColor;
 }
@@ -3232,7 +3232,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: min(calc(100svh - 88px), 940px);
-  padding-top: 30px;
+  padding-top: 32px;
 }
 /* Decorative Skiper19 stroke behind the whole Home page. Content-width and centered on desktop;
    phones keep the curl legible at 640px, right-aligned and cropped. */
@@ -3266,7 +3266,7 @@
 .hero-x-rail {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   animation: hero-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-x-rule {
@@ -3276,103 +3276,72 @@
   transform-origin: left;
   animation: hero-rule 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
 }
-.hero-x-signature {
-  font-size: 0.625rem;
-  font-weight: 600;
-  color: var(--muted-foreground);
-}
 .hero-x-stage {
   display: grid;
   grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
-  gap: 56px;
-  align-items: end;
+  gap: 64px;
+  align-items: center;
   align-content: center;
-  padding-block: 40px 44px;
+  padding-block: 48px;
 }
 .hero-x-copy {
   min-width: 0;
 }
 .hero-x-title {
-  font-size: clamp(2.75rem, 5.2vw, 4.625rem);
-  line-height: 0.98;
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  max-width: 13em;
+  font-size: clamp(2.5rem, 3.9vw, 3.5rem);
+  line-height: 1.06;
+  font-weight: 500;
+  letter-spacing: -0.03em;
   margin: 0;
-}
-.hero-x-line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.1em;
-}
-.hero-x-line > span {
-  display: inline-block;
-  animation: hero-line 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.hero-x-line:nth-child(1) > span {
-  animation-delay: 0.12s;
-}
-.hero-x-line:nth-child(2) > span {
-  animation-delay: 0.21s;
-}
-.hero-x-line:nth-child(3) {
-  margin-top: 0.2em;
-}
-.hero-x-line:nth-child(3) > span {
-  animation-delay: 0.32s;
-}
-.hero-x-line:nth-child(4) > span {
-  animation-delay: 0.41s;
+  text-wrap: balance;
 }
 .hero-x-muted {
   color: var(--muted-foreground);
 }
 .hero-x-description {
-  max-width: 470px;
-  margin-top: 30px;
-  font-size: 0.9375rem;
-  line-height: 1.85;
+  max-width: 34rem;
+  margin-top: 24px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   color: var(--muted-foreground);
 }
 .hero-x-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 32px;
 }
 .hero-x-status {
   display: flex;
   align-items: center;
-  gap: 14px;
-  max-width: 470px;
-  margin-top: 30px;
-  padding-top: 18px;
+  gap: 12px;
+  max-width: 34rem;
+  margin-top: 40px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 .hero-x-fade {
-  animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-x-description.hero-x-fade {
-  animation-delay: 0.52s;
+  animation-delay: 0.05s;
 }
 .hero-x-actions.hero-x-fade {
-  animation-delay: 0.62s;
-}
-.hero-x-hire.hero-x-fade {
-  animation-delay: 0.67s;
+  animation-delay: 0.1s;
 }
 .hero-x-status.hero-x-fade {
-  animation-delay: 0.72s;
+  animation-delay: 0.15s;
 }
 .hero-x-cta {
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s,
-    color 0.25s,
-    border-color 0.25s;
+    transform 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
-.hero-x-cta svg {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+.hero-x-cta:active {
+  transform: scale(0.98);
 }
 /* LineHoverLink's scribble sits under the filled CTA in the primary token; overrides Button's 16px svg sizing. */
 .hero-x-cta.link-hover > span {
@@ -3386,20 +3355,9 @@
   height: 9px;
   stroke: var(--primary);
 }
-@media (hover: hover) {
-  .hero-x-cta:hover {
-    transform: translateY(-2px);
-  }
-  .hero-x-cta:hover .hero-x-up {
-    transform: translate(2px, -2px);
-  }
-  .hero-x-cta:hover .hero-x-down {
-    transform: translateY(2px);
-  }
-}
 .hero-x-status img {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   object-fit: cover;
   object-position: center 25%;
@@ -3415,33 +3373,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.75rem;
-  font-weight: 650;
+  font-size: 0.8125rem;
+  font-weight: 500;
   line-height: 1.5;
 }
-.hero-x-pulse {
-  position: relative;
-  width: 7px;
-  height: 7px;
+.hero-x-dot {
+  width: 6px;
+  height: 6px;
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--signal);
 }
-.hero-x-pulse:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--signal);
-  opacity: 0;
-  animation: hero-ping 2.4s cubic-bezier(0, 0, 0.2, 1) 1.4s 3;
-}
 .hero-x-location {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 3px;
-  font-size: 0.6875rem;
+  gap: 4px;
+  margin-top: 2px;
+  font-size: 0.75rem;
   line-height: 1.5;
   color: var(--muted-foreground);
 }
@@ -3458,11 +3406,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding-bottom: 10px;
-  font-size: 0.5625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  padding-bottom: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--muted-foreground);
 }
 .hero-map-live {
@@ -3482,12 +3429,12 @@
   container-type: inline-size;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: color-mix(in oklab, var(--card) 55%, var(--background));
 }
 .hero-map-grid {
   position: absolute;
-  inset: -14px;
+  inset: 0;
   background-image: radial-gradient(
     circle,
     color-mix(in oklab, var(--foreground) 16%, transparent) 1px,
@@ -3537,14 +3484,6 @@
 .hero-edge.is-active {
   stroke: var(--primary);
 }
-.hero-edge-pulse {
-  fill: none;
-  stroke: var(--primary);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-dasharray: 0.06 1.2;
-  animation: hero-pulse 6s cubic-bezier(0.45, 0, 0.55, 1) 0.4s infinite;
-}
 .hero-port {
   fill: var(--card);
   stroke: color-mix(in oklab, var(--primary) 45%, var(--border));
@@ -3575,7 +3514,7 @@
   align-items: center;
   gap: 0.55em;
   font-size: 0.92em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4;
 }
 .hero-hub i {
@@ -3609,9 +3548,8 @@
   text-align: left;
   cursor: pointer;
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s,
-    box-shadow 0.35s;
+    border-color 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hero-node[aria-pressed="true"] {
   border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
@@ -3619,7 +3557,6 @@
 }
 @media (hover: hover) {
   .hero-node:hover {
-    transform: translateY(-3px);
     border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
     box-shadow: var(--shadow-soft);
   }
@@ -3648,7 +3585,7 @@
 }
 .hero-node-title {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.35;
 }
 .hero-node-stack {
@@ -3715,7 +3652,7 @@
   background: color-mix(in oklab, var(--signal) 70%, var(--border));
 }
 .hero-inspector {
-  margin-top: 14px;
+  margin-top: 12px;
 }
 .hero-inspector-text p {
   min-height: calc(3em * 1.7);
@@ -3726,17 +3663,17 @@
 .hero-inspector-text strong {
   margin-right: 8px;
   color: var(--foreground);
-  font-weight: 700;
+  font-weight: 600;
 }
 .hero-x-strip {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   border-block: 1px solid var(--border);
-  animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both;
+  animation: hero-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 .hero-x-fact {
   min-width: 0;
-  padding: 22px 26px 24px;
+  padding: 24px;
   border-left: 1px solid var(--border);
 }
 .hero-x-fact:first-child {
@@ -3744,23 +3681,21 @@
   border-left: 0;
 }
 .hero-x-fact-context {
-  font-size: 0.5625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
 }
 .hero-x-fact-value {
-  margin-top: 10px;
-  font-size: 2.125rem;
-  font-weight: 650;
+  margin-top: 12px;
+  font-size: 2rem;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 .hero-x-fact-label {
-  margin-top: 6px;
-  font-size: 0.6875rem;
+  margin-top: 8px;
+  font-size: 0.8125rem;
   line-height: 1.6;
   color: var(--muted-foreground);
 }
@@ -3772,7 +3707,7 @@
 @keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(8px);
   }
 }
 @keyframes hero-fade {
@@ -3796,34 +3731,6 @@
     stroke-dashoffset: 1;
   }
 }
-@keyframes hero-pulse {
-  0% {
-    stroke-dashoffset: 0.06;
-    opacity: 0;
-  }
-  4% {
-    opacity: 1;
-  }
-  32% {
-    opacity: 1;
-  }
-  38%,
-  100% {
-    stroke-dashoffset: -1;
-    opacity: 0;
-  }
-}
-@keyframes hero-ping {
-  0% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  80%,
-  100% {
-    opacity: 0;
-    transform: scale(2.6);
-  }
-}
 @media (max-width: 1100px) {
   .hero-x {
     min-height: 0;
@@ -3831,10 +3738,10 @@
   .hero-x-stage {
     grid-template-columns: minmax(0, 1fr);
     gap: 48px;
-    padding-block: 44px 48px;
+    padding-block: 48px;
   }
   .hero-x-title {
-    font-size: clamp(2.625rem, 8vw, 4.75rem);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
   }
   .hero-map {
     max-width: 600px;
@@ -3857,21 +3764,19 @@
   .hero-x {
     padding-top: 24px;
   }
-  .hero-x-rule,
-  .hero-x-signature {
+  .hero-x-rule {
     display: none;
   }
   .hero-x-stage {
-    gap: 36px;
-    padding-block: 28px 36px;
+    gap: 40px;
+    padding-block: 32px 40px;
   }
   .hero-x-title {
-    font-size: clamp(2.25rem, 10.6vw, 3.5rem);
-    letter-spacing: -0.03em;
+    font-size: clamp(2.25rem, 9vw, 2.75rem);
   }
   .hero-x-description {
-    margin-top: 24px;
-    font-size: 0.875rem;
+    margin-top: 20px;
+    font-size: 1rem;
   }
   .hero-x-actions {
     margin-top: 24px;
@@ -3881,7 +3786,7 @@
   }
   .hero-x-status {
     flex-wrap: wrap;
-    margin-top: 28px;
+    margin-top: 32px;
   }
   .hero-map {
     max-width: none;
@@ -3923,8 +3828,7 @@
     display: flex;
     width: auto;
   }
-  .hero-node-float {
-    display: flex;
+  .hero-node-slot > .hero-node {
     flex: 1;
     min-width: 0;
   }
@@ -3936,7 +3840,7 @@
     font-size: 0.94em;
   }
   .hero-x-fact {
-    padding: 18px 16px 20px;
+    padding: 20px 16px;
   }
   .hero-x-fact-value {
     font-size: 1.75rem;
@@ -3954,9 +3858,7 @@
   }
 }
 :root[data-reduce-motion] {
-  .hero-x-cta:hover,
-  .hero-x-cta:hover svg,
-  .hero-node:hover {
+  .hero-x-cta:active {
     transform: none;
   }
 }
@@ -6339,9 +6241,9 @@ html[data-preview] .page-transition {
   animation: none;
 }
 
-/* Home hero: a quiet link to the training courses. */
+/* Home hero rail: a quiet link to the training courses. */
 .hero-x-hire {
-  margin-top: 16px;
+  flex-shrink: 0;
   font-size: 0.8125rem;
   color: var(--muted-foreground);
 }
@@ -6350,8 +6252,8 @@ html[data-preview] .page-transition {
   align-items: center;
   gap: 4px;
   margin-left: 4px;
-  font-weight: 600;
-  color: var(--primary);
+  font-weight: 500;
+  color: var(--foreground);
 }
 .hero-x-hire a svg {
   width: 14px;

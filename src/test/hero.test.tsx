@@ -22,15 +22,15 @@ async function renderHero() {
 }
 
 describe("Home hero", () => {
-  it("leads with the editorial headline and working calls to action", async () => {
+  it("leads with the role headline and working calls to action", async () => {
     const heading = await renderHero();
     expect(heading).toHaveTextContent(
-      "Engineering the future. Building what matters.",
+      "Forward Deployed Engineer building GenAI agents, apps and cloud platforms",
     );
-    const work = screen.getByRole("link", { name: /Explore My Work/ });
+    const work = screen.getByRole("link", { name: /Explore my work/ });
     expect(work).toHaveAttribute("href", "/projects");
     expect(work).toHaveClass("link-hover--scribble");
-    const resume = screen.getByRole("link", { name: /Download Resume/ });
+    const resume = screen.getByRole("link", { name: /Download resume/ });
     expect(resume).toHaveAttribute("download", "Rudresh-Oza-Resume.pdf");
     expect(resume.getAttribute("href")).toMatch(/rudresh-oza-resume.*\.pdf/);
     expect(screen.getByText(profile.availability)).toBeInTheDocument();

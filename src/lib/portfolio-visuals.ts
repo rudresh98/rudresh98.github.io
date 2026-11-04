@@ -2330,7 +2330,6 @@ export type HeroPanel = {
   width: number;
   anchor: Point;
   hubAnchor: Point;
-  float?: boolean;
 };
 export type HeroSystem = {
   width: number;
@@ -2387,7 +2386,6 @@ export const heroSystem: HeroSystem = {
       width: 220,
       anchor: { x: 332, y: 88 },
       hubAnchor: { x: 288, y: 226 },
-      float: true,
     },
     {
       id: "ai",
@@ -2403,7 +2401,6 @@ export const heroSystem: HeroSystem = {
       width: 228,
       anchor: { x: 228, y: 368 },
       hubAnchor: { x: 272, y: 290 },
-      float: true,
     },
     {
       id: "data",

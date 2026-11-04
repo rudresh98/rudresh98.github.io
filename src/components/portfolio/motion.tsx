@@ -30,10 +30,12 @@ export function Reveal({
 export function Counter({
   value,
   suffix = "",
+  suffixClassName = "text-primary",
   format = "full",
 }: {
   value: number;
   suffix?: string;
+  suffixClassName?: string;
   format?: "full" | "compact";
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -67,7 +69,7 @@ export function Counter({
       </span>
       <span aria-hidden="true">
         {show(display)}
-        <span className="text-primary">{suffix}</span>
+        <span className={suffixClassName}>{suffix}</span>
       </span>
     </span>
   );
