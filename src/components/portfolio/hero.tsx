@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from "react";
-import { createLink, Link } from "@tanstack/react-router";
+import { createLink } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotionConfig } from "motion/react";
 import {
   Activity,
@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { LineHoverLink } from "@/components/ui/line-hover-link";
 import portrait from "@/assets/rudresh-oza.png";
 import resume from "@/assets/rudresh-oza-resume.pdf";
-import { heroCredentials, profile } from "@/lib/portfolio";
+import { achievements, heroCredentials, profile } from "@/lib/portfolio";
 import { heroSystem, type HeroPanel } from "@/lib/portfolio-visuals";
 import { Counter } from "./motion";
 import { SocialLinks } from "./shell";
@@ -26,16 +26,6 @@ const ScribbleLink = createLink(LineHoverLink);
 export function Hero() {
   return (
     <section className="hero-x" aria-labelledby="hero-title">
-      <div className="hero-x-rail">
-        <p className="hero-x-hire">
-          Need team training?{" "}
-          <Link to="/training">
-            GenAI, full-stack &amp; Databricks courses{" "}
-            <ArrowUpRight aria-hidden="true" />
-          </Link>
-        </p>
-        <span className="hero-x-rule" aria-hidden="true" />
-      </div>
       <div className="hero-x-stage">
         <div className="hero-x-copy">
           <h1 id="hero-title" className="hero-x-title hero-x-fade">
@@ -45,9 +35,11 @@ export function Hero() {
             </span>
           </h1>
           <p className="hero-x-description hero-x-fade">
-            {profile.experience} years shipping React and Node.js products, AWS
-            and Azure services and LangGraph agents, from booking flows to
-            supply chain AI
+            I work inside client teams, from the first conversation to
+            production: AI supply chain solutions at Celebal Technologies today,
+            and before that transfer and split for Anchor&rsquo;s booking
+            platform, used by {achievements.clients.toLocaleString("en-US")}+
+            clients
           </p>
           <div className="hero-x-actions hero-x-fade">
             <Button asChild className="hero-x-cta h-12 px-6 shadow-none">

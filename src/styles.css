@@ -1411,30 +1411,17 @@
   justify-content: space-between;
   align-items: center;
   color: var(--muted-foreground);
-  font-size: 0.5rem;
-  gap: 10px;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  gap: 12px;
   z-index: 2;
 }
 .visual-caption {
-  top: 17px;
-  text-transform: uppercase;
-  font-weight: 650;
+  top: 12px;
+  font-weight: 500;
 }
 .visual-footer {
-  bottom: 16px;
-  font-size: 0.5625rem;
-}
-.visual-live {
-  font-size: 0.4375rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.visual-live > span {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--signal);
+  bottom: 12px;
 }
 .preview-canvas {
   position: absolute;
@@ -1725,12 +1712,6 @@
   font-weight: 700;
   line-height: 1.5;
 }
-.project-index {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.75rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--muted-foreground);
-}
 .project-title {
   margin-top: 14px;
   font-size: 1.3125rem;
@@ -1846,14 +1827,93 @@
   margin-top: 22px;
 }
 /* Impact figures come from projectVisuals; dt follows dd visually via column-reverse. */
+/* A flagship's request flow, numbered because the order is the information. */
+.project-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 16px;
+  padding: 0;
+  list-style: none;
+  counter-reset: flow-step;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+.project-flow li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  counter-increment: flow-step;
+}
+.project-flow li::before {
+  content: counter(flow-step);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+@media (min-width: 900px) {
+  .project-card[data-flagship] .project-card-inner {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+  .project-card[data-flagship] .project-visual {
+    min-height: 420px;
+  }
+}
+.project-grid-flagship + .project-grid {
+  margin-top: 24px;
+}
+/* Company websites: a plain list, since a brochure site has no system worth drawing. */
+.project-briefs {
+  margin-top: 64px;
+}
+.project-briefs-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.project-briefs ul {
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.project-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 32px;
+  align-items: center;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.project-brief-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.project-brief-summary {
+  max-width: 68ch;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.project-brief-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 640px) {
+  .project-brief {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .card-impact {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 16px;
 }
 .card-impact > div {
   display: flex;
-  flex: 1;
+  flex: 1 1 120px;
   flex-direction: column-reverse;
   justify-content: flex-end;
   min-width: 0;
@@ -2025,9 +2085,6 @@
   padding-block: 32px 72px;
 }
 .collaboration-inner {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
   align-items: center;
@@ -2037,74 +2094,10 @@
   border-radius: 24px;
   background: var(--card);
 }
-.collaboration-inner::before,
-.collaboration-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-.collaboration-inner::before {
-  background:
-    radial-gradient(
-      60% 85% at 100% 0%,
-      color-mix(in oklab, var(--primary) 14%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 70% at 0% 100%,
-      color-mix(in oklab, var(--signal) 9%, transparent),
-      transparent 70%
-    );
-}
-.collaboration-inner::after {
-  background-image: radial-gradient(var(--border) 1px, transparent 1.2px);
-  background-size: 20px 20px;
-  mask-image: radial-gradient(65% 90% at 100% 0%, #000, transparent 75%);
-}
-.collaboration-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  padding: 5px 12px;
-  border: 1px solid color-mix(in oklab, var(--signal) 35%, var(--border));
-  border-radius: 999px;
-  background: var(--signal-soft);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--foreground);
-}
-.status-dot {
-  position: relative;
-  flex: none;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--signal);
-}
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--signal);
-  animation: collaboration-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-@keyframes collaboration-ping {
-  75%,
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
-}
 .collaboration-inner h2 {
-  margin-top: 18px;
   font-size: 2.75rem;
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: 600;
   text-wrap: balance;
 }
 .collaboration-inner h2 + p {
@@ -2113,28 +2106,6 @@
   font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--muted-foreground);
-}
-.collaboration-focus {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-.collaboration-focus li {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--background);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.collaboration-focus svg {
-  width: 14px;
-  height: 14px;
-  color: var(--primary);
 }
 .collaboration-actions {
   display: flex;
@@ -2524,11 +2495,6 @@
     right: 16px;
   }
 }
-@media (max-width: 380px) {
-  .visual-live {
-    display: none;
-  }
-}
 :root[data-reduce-motion] {
   .flow-connector:after {
     display: none;
@@ -2547,14 +2513,12 @@
   .project-live-link:focus-visible svg {
     transform: none;
   }
-  .project-card::before,
-  .status-dot::after {
+  .project-card::before {
     display: none;
   }
 }
 
 .visual-caption {
-  font-size: 0.5625rem;
   color: var(--foreground);
 }
 /* Mobile menu: a Radix Dialog portalled to <body> and laid exactly over the header pill. */
@@ -3230,7 +3194,7 @@
 /* Hero: editorial meets engineering. Entrance runs in CSS from the first prerendered paint; the global reduced-motion rule leaves every element at rest. */
 .hero-x {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   min-height: min(calc(100svh - 88px), 940px);
   padding-top: 32px;
 }
@@ -3263,19 +3227,6 @@
 .dark .home-stroke-path path {
   opacity: 0.2;
 }
-.hero-x-rail {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  animation: hero-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.hero-x-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  transform-origin: left;
-  animation: hero-rule 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-}
 .hero-x-stage {
   display: grid;
   grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
@@ -3305,6 +3256,7 @@
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--muted-foreground);
+  text-wrap: pretty;
 }
 .hero-x-actions {
   display: flex;
@@ -3715,11 +3667,6 @@
     opacity: 0;
   }
 }
-@keyframes hero-rule {
-  from {
-    transform: scaleX(0);
-  }
-}
 @keyframes hero-node {
   from {
     opacity: 0;
@@ -3763,9 +3710,6 @@
 @media (max-width: 767px) {
   .hero-x {
     padding-top: 24px;
-  }
-  .hero-x-rule {
-    display: none;
   }
   .hero-x-stage {
     gap: 40px;
@@ -6239,25 +6183,6 @@ html[data-preview] body {
 }
 html[data-preview] .page-transition {
   animation: none;
-}
-
-/* Home hero rail: a quiet link to the training courses. */
-.hero-x-hire {
-  flex-shrink: 0;
-  font-size: 0.8125rem;
-  color: var(--muted-foreground);
-}
-.hero-x-hire a {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: 4px;
-  font-weight: 500;
-  color: var(--foreground);
-}
-.hero-x-hire a svg {
-  width: 14px;
-  height: 14px;
 }
 
 /* A second architecture on a case study (e.g. a platform's AI agent layer). */

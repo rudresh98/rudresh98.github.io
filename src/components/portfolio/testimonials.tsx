@@ -56,9 +56,8 @@ export function Testimonials() {
     >
       <div className="container-shell section">
         <Reveal>
-          <p className="eyebrow">Testimonials</p>
           <h2 id="testimonials-heading" className="section-heading">
-            Voices from collaboration<span className="text-primary">.</span>
+            Testimonials
           </h2>
         </Reveal>
         <Reveal delay={0.08}>

@@ -95,15 +95,12 @@ export function ClientGlobe() {
       aria-labelledby="client-globe-heading"
     >
       <Reveal className="client-globe-intro">
-        <p className="eyebrow">International collaboration</p>
         <h2 id="client-globe-heading" className="section-heading">
-          Clients across
-          <br />
-          <span className="text-muted-foreground">the globe.</span>
+          Clients in eight countries
         </h2>
         <p className="section-description mt-5">
-          Working with clients across eight countries, including nine cities in
-          India.
+          Including nine cities in India. Select a place to turn the globe to
+          it.
         </p>
         <div className="client-countries" aria-label="Client countries">
           {clientCountries.map((country) => (

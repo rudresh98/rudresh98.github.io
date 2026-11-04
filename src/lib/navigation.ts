@@ -26,7 +26,7 @@ export const navigation = [
   {
     label: "Experience",
     to: "/experience",
-    primary: false,
+    primary: true,
     summary: `${profile.experience} years of engineering roles`,
   },
   {
@@ -56,7 +56,7 @@ export const navigation = [
   {
     label: "Training",
     to: "/training",
-    primary: true,
+    primary: false,
     summary: "Courses I teach",
   },
   {

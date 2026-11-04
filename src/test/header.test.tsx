@@ -142,10 +142,10 @@ describe("Bottom dock", () => {
     expect(secondary).toEqual([
       "About",
       "Expertise",
-      "Experience",
       "Snugbox",
       "Split Money",
       "Certifications",
+      "Training",
     ]);
   });
 

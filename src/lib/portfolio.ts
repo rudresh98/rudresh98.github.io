@@ -88,10 +88,13 @@ export type Project = {
   nodes: string[];
   client?: string;
   links?: ProjectLink[];
+  // Gallery weight: flagships lead large with their request flow; briefs (company websites) list without a diagram.
+  tier?: "flagship" | "brief";
 };
 export const projects: Project[] = [
   {
     id: "music-ai",
+    tier: "flagship",
     title: "AI Agent Platform",
     category: "GenAI",
     client: "Pollstar",
@@ -129,6 +132,7 @@ export const projects: Project[] = [
   },
   {
     id: "supply-chain",
+    tier: "flagship",
     title: "Supply Chain Digital Twin",
     category: "Cloud",
     tags: ["Next.js", "FastAPI", "Supabase", "AWS"],
@@ -157,6 +161,7 @@ export const projects: Project[] = [
   },
   {
     id: "anchor",
+    tier: "flagship",
     title: "Booking & Redemption Platform",
     category: "Full Stack",
     tags: ["React", "GraphQL", "AWS Lambda", "DynamoDB"],
@@ -307,6 +312,7 @@ export const projects: Project[] = [
   },
   {
     id: "maitrii-infotech",
+    tier: "brief",
     title: "Maitrii Infotech Website",
     category: "Web",
     client: "Maitrii Infotech",
@@ -380,6 +386,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai2go",
+    tier: "brief",
     title: "AI2Go Solutions Website",
     category: "Web",
     client: "AI2Go Solutions",
@@ -405,6 +412,7 @@ export const projects: Project[] = [
   },
   {
     id: "qualitech",
+    tier: "brief",
     title: "Qualitech Group Website",
     category: "Web",
     client: "Qualitech Group",
@@ -441,6 +449,8 @@ export function filterProjects(category: Category) {
 export function getProject(projectId: string) {
   return projects.find((project) => project.id === projectId);
 }
+export const projectsInTier = (list: Project[], tier?: Project["tier"]) =>
+  list.filter((project) => project.tier === tier);
 export function getNextProject(projectId: string) {
   const index = projects.findIndex((project) => project.id === projectId);
   return index < 0 ? undefined : projects[(index + 1) % projects.length];

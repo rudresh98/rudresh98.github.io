@@ -128,15 +128,10 @@ export function Architecture({
     >
       <div className="visual-caption">
         <span>Illustrative architecture</span>
-        <span aria-hidden="true">SYSTEM MAP</span>
       </div>
       <div className="preview-canvas">{canvas}</div>
       <div className="visual-footer">
         <span>{visual.title}</span>
-        <span className="visual-live" aria-hidden="true">
-          <span />
-          ENGINEERING STUDY
-        </span>
       </div>
     </div>
   );
@@ -162,7 +157,6 @@ export function ArchitectureFlow({ compact = false }: { compact?: boolean }) {
       className={compact ? "hero-system" : "section architecture-section"}
     >
       <div className="architecture-intro">
-        <p className="eyebrow">Connected by design</p>
         {compact ? (
           <h2>
             One system.
@@ -171,16 +165,9 @@ export function ArchitectureFlow({ compact = false }: { compact?: boolean }) {
           </h2>
         ) : (
           <>
-            <h2 className="section-heading">
-              From architecture
-              <br />
-              <span className="text-muted-foreground">
-                to intelligent products.
-              </span>
-            </h2>
+            <h2 className="section-heading">The layers I build across</h2>
             <p className="section-description">
-              A connected engineering practice, from the first interaction to
-              production insight.
+              Select a layer to see what I do there
             </p>
           </>
         )}

@@ -105,12 +105,7 @@ export function AboutContent({ compact = false }: { compact?: boolean }) {
   return (
     <section className="section grid gap-12 md:grid-cols-2">
       <div>
-        <p className="eyebrow">About me</p>
-        <h2 className="section-heading">
-          An engineer's precision.
-          <br />
-          <span className="text-muted-foreground">A product mindset.</span>
-        </h2>
+        <h2 className="section-heading">How I work</h2>
         <div className="content-prose mt-6">
           <p>
             I'm Rudresh, a software engineer with 6+ years of experience
