@@ -43,7 +43,7 @@ describe("Home hero", () => {
       heroCredentials.length,
     );
     expect(heroCredentials.map((fact) => fact.value)).toEqual([
-      6,
+      Number.parseInt(profile.experience),
       achievements.clients,
       achievements.transactions,
       achievements.transactionSpeedPercent,
