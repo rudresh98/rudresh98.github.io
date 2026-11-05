@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/r2-deck.html"
+        ],
+        "createdAt": "2026-11-04T22:25:30.170Z",
+        "reason": "Claude's call: the door > cassette > label nesting is the literal tape-deck object in a throwaway decision sketch, not stacked UI cards"
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/car-pitwall.html"
+        ],
+        "createdAt": "2026-11-04T22:30:02.747Z",
+        "reason": "Claude's call: purple/green/yellow are motorsport timing-screen semantics (purple = fastest), the literal grammar of the Pit Wall direction; risk disclosed on the card"
+      }
+    ]
+  }
+}

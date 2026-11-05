@@ -457,9 +457,10 @@ export function getNextProject(projectId: string) {
 }
 export const experience = [
   {
-    id: "celebal-fde",
-    role: "Forward Deployed Engineer (FDE)",
-    company: "Celebal Technologies",
+    id: "freelance-fde",
+    role: "Forward Deployed Engineer (Freelancer)",
+    company: "Freelance",
+    selfEmployed: true,
     date: "Feb 2026 — Present",
     location: "Jaipur, India",
     items: [

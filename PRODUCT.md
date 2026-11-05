@@ -27,7 +27,7 @@ A training enquiry is welcome, but it is not a primary success signal.
 
 ## Positioning
 
-Forward deployed in practice. Rudresh works inside client teams and carries a system from the first conversation to production. The client work spans the United States, the United Kingdom, Australia, Germany, Switzerland, Sweden, China, and India. The current role is Forward Deployed Engineer at Celebal Technologies (Feb 2026 to present), building AI supply chain solutions. Before that, as a Software Engineer at HornBlower Encore Studio (May 2023 to Feb 2026), Rudresh worked on Anchor, an operations and reservations platform. Future work should show this embedded, client-side delivery, not a list of technologies.
+Forward deployed in practice. Rudresh works inside client teams and carries a system from the first conversation to production. The client work spans the United States, the United Kingdom, Australia, Germany, Switzerland, Sweden, China, and India. The current role is freelance Forward Deployed Engineer (Feb 2026 to present), building AI supply chain solutions. Before that, as a Software Engineer at HornBlower Encore Studio (May 2023 to Feb 2026), Rudresh worked on Anchor, an operations and reservations platform. Future work should show this embedded, client-side delivery, not a list of technologies.
 
 ## Operating Context
 

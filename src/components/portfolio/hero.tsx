@@ -36,10 +36,9 @@ export function Hero() {
           </h1>
           <p className="hero-x-description hero-x-fade">
             I work inside client teams, from the first conversation to
-            production: AI supply chain solutions at Celebal Technologies today,
-            and before that transfer and split for Anchor&rsquo;s booking
-            platform, used by {achievements.clients.toLocaleString("en-US")}+
-            clients
+            production: freelance AI supply chain solutions today, and before
+            that transfer and split for Anchor&rsquo;s booking platform, used by{" "}
+            {achievements.clients.toLocaleString("en-US")}+ clients
           </p>
           <div className="hero-x-actions hero-x-fade">
             <Button asChild className="hero-x-cta h-12 px-6 shadow-none">

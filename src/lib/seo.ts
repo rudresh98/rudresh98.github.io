@@ -79,7 +79,7 @@ export const pageSeo = {
   },
   "/experience": {
     title: "Experience — Forward Deployed Engineer | Rudresh Oza",
-    description: `Rudresh Oza’s ${profile.experience} year career: Forward Deployed Engineer at Celebal Technologies, software engineer at HornBlower and RevDau, and a technical trainer.`,
+    description: `Rudresh Oza’s ${profile.experience} year career: freelance Forward Deployed Engineer, software engineer at HornBlower and RevDau, and a technical trainer.`,
   },
   "/projects": {
     title: "Projects & Case Studies — GenAI, Cloud, Web | Rudresh Oza",
@@ -307,7 +307,7 @@ export function siteJsonLd(portraitUrl?: string) {
           addressCountry: "IN",
         },
         sameAs: [profile.linkedin, profile.github],
-        ...(current
+        ...(current && !current.selfEmployed
           ? { worksFor: { "@type": "Organization", name: current.company } }
           : {}),
         knowsAbout: [
