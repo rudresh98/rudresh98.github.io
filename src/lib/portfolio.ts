@@ -3,7 +3,7 @@ export const profile = {
   role: "Forward Deployed Engineer (FDE)",
   email: "ozarudresh18@gmail.com",
   location: "Jaipur, India",
-  experience: "6+",
+  experience: "10+",
   availability: "Open to international remote opportunities",
   timezone: "IST (UTC+5:30)",
   linkedin: "https://www.linkedin.com/in/rudreshoza/",
