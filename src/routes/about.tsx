@@ -4,7 +4,10 @@ import {
   pageSeo,
   profilePageJsonLd,
   breadcrumbJsonLd,
+  faqJsonLd,
 } from "@/lib/seo";
+import { aboutFaqs } from "@/lib/faq";
+import { FaqSection } from "@/components/portfolio/faq";
 import {
   Page,
   PageIntro,
@@ -23,6 +26,7 @@ export const Route = createFileRoute("/about")({
           { name: "Home", path: "/" },
           { name: "About", path: "/about" },
         ]),
+        faqJsonLd("/about", aboutFaqs),
       ],
     }),
   component: About,
@@ -69,6 +73,7 @@ function About() {
             ))}
           </div>
         </section>
+        <FaqSection faqs={aboutFaqs} />
       </Page>
       <Collaboration />
     </>

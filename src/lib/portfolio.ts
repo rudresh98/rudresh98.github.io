@@ -3,7 +3,8 @@ export const profile = {
   role: "Forward Deployed Engineer (FDE)",
   email: "ozarudresh18@gmail.com",
   location: "Jaipur, India",
-  experience: "10+",
+  // Whole years of professional engineering since the first role (Apr 2020); training years are counted separately.
+  experience: "6+",
   availability: "Open to international remote opportunities",
   timezone: "IST (UTC+5:30)",
   linkedin: "https://www.linkedin.com/in/rudreshoza/",
@@ -87,6 +88,8 @@ export type Project = {
   outcome: string;
   nodes: string[];
   client?: string;
+  // Shorter search-snippet wording, only when the description is too long to fit 160 characters.
+  seoDescription?: string;
   links?: ProjectLink[];
   // Gallery weight: flagships lead large with their request flow; briefs (company websites) list without a diagram.
   tier?: "flagship" | "brief";
@@ -362,6 +365,8 @@ export const projects: Project[] = [
     ],
     description:
       "A lending and HR SaaS platform with LangGraph AI agents, a web dashboard, and an Android field app for loans, collections, payroll, attendance, and leave.",
+    seoDescription:
+      "A lending and HR SaaS platform with LangGraph AI agents, a web dashboard, and an Android field app for loans and payroll.",
     context:
       "Fund Flick, by Maitrii Infotech, is a lending operations suite for LAP, MSME, vehicle, business, personal, and gold lenders. One SaaS platform covers lending work and the HR suite, with AI agents for HR, on the web and in the Fund Flick app for field officers, collection agents, and managers.",
     contributions: [

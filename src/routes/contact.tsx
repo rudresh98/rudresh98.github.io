@@ -7,7 +7,9 @@ import { Page, PageIntro } from "@/components/portfolio/content";
 import { SocialLinks } from "@/components/portfolio/shell";
 import { authCopy } from "@/lib/auth";
 import { profile, emailDraft } from "@/lib/portfolio";
-import { pageHead, pageSeo, breadcrumbJsonLd } from "@/lib/seo";
+import { pageHead, pageSeo, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { contactFaqs } from "@/lib/faq";
+import { FaqSection } from "@/components/portfolio/faq";
 import resume from "@/assets/rudresh-oza-resume.pdf";
 export const Route = createFileRoute("/contact")({
   head: () =>
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/contact")({
             { name: "Home", path: "/" },
             { name: "Contact", path: "/contact" },
           ]),
+          faqJsonLd("/contact", contactFaqs),
         ],
       },
     ),
@@ -169,6 +172,7 @@ function Contact() {
           </p>
         </form>
       </section>
+      <FaqSection faqs={contactFaqs} />
     </Page>
   );
   function field(

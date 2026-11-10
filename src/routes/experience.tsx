@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { pageHead, pageSeo, breadcrumbJsonLd } from "@/lib/seo";
+import { achievements, profile } from "@/lib/portfolio";
 import {
   Page,
   PageIntro,
@@ -29,7 +30,7 @@ function Experience() {
       <PageIntro
         eyebrow="Career"
         title="Experience Building and Evolving Software."
-        description="6+ years of engineering ownership and 5,000+ students trained—from customer-facing web experiences to cloud platforms and intelligent agents."
+        description={`${profile.experience} years of engineering ownership and ${achievements.studentsTrained.toLocaleString("en-US")}+ students trained—from customer-facing web experiences to cloud platforms and intelligent agents.`}
       />
       <ExperienceContent />
     </Page>

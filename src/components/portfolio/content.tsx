@@ -108,9 +108,9 @@ export function AboutContent({ compact = false }: { compact?: boolean }) {
         <h2 className="section-heading">How I work</h2>
         <div className="content-prose mt-6">
           <p>
-            I'm Rudresh, a software engineer with 6+ years of experience
-            building web applications, enterprise software, cloud-based
-            platforms, and AI-powered solutions.
+            I'm Rudresh, a software engineer with {profile.experience} years of
+            experience building web applications, enterprise software,
+            cloud-based platforms, and AI-powered solutions.
           </p>
           <p>
             My work spans the full engineering lifecycle—from designing

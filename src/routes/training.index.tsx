@@ -4,7 +4,10 @@ import {
   pageSeo,
   breadcrumbJsonLd,
   courseListJsonLd,
+  faqJsonLd,
 } from "@/lib/seo";
+import { trainingFaqs } from "@/lib/faq";
+import { FaqSection } from "@/components/portfolio/faq";
 import { Page, PageIntro } from "@/components/portfolio/content";
 import {
   CourseCards,
@@ -28,6 +31,7 @@ export const Route = createFileRoute("/training/")({
             { name: "Home", path: "/" },
             { name: "Training", path: "/training" },
           ]),
+          faqJsonLd("/training", trainingFaqs),
         ],
       },
     ),
@@ -45,6 +49,7 @@ function Training() {
         <TrainingStats />
         <CourseCards />
         <TrainingFormats />
+        <FaqSection faqs={trainingFaqs} eyebrow="Training questions" />
       </Page>
       <TrainingCta />
     </>

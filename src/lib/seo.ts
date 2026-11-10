@@ -10,6 +10,7 @@ import { featuredAreas, skills } from "./skills";
 import { certifications, sortCertifications } from "./certifications";
 import { courses, coursePath, trainingFormats, type Course } from "./training";
 import { apps, type AppShowcase } from "./apps";
+import { aboutFaqs, contactFaqs, trainingFaqs, type Faq } from "./faq";
 
 // A link-preview image served from public/; previews crop to 1.91:1, so cards are 1200×630.
 export type SocialImage = {
@@ -129,15 +130,38 @@ export function metaDescription(text: string, max = 160) {
 const fitTitle = (...candidates: string[]) =>
   candidates.find((title) => title.length <= 60) ??
   candidates[candidates.length - 1]!;
+// The first candidate that fits 160 characters whole, else the last one trimmed at a word.
+const fitDescription = (...candidates: string[]) =>
+  metaDescription(
+    candidates
+      .map((text) => text.replace(/\s+/g, " ").trim())
+      .find((text) => text.length <= 160) ?? candidates[candidates.length - 1]!,
+  );
 export function projectSeo(project: Project) {
+  const stack = project.tags.slice(0, 2);
+  // Tags that already contain "&" (e.g. "iOS & Android") would read awkwardly when joined.
+  const keywords = stack.some((tag) => tag.includes("&"))
+    ? ""
+    : stack.join(" & ");
+  const about = project.seoDescription ?? project.description;
   return {
+    // The first two stack tags give each case study a searchable keyword beyond its name.
     title: fitTitle(
+      ...(keywords
+        ? [
+            `${project.title}: ${keywords} Case Study | Rudresh Oza`,
+            `${project.title}: ${keywords} | Rudresh Oza`,
+          ]
+        : []),
       `${project.title} Case Study | Rudresh Oza`,
       `${project.title} | Rudresh Oza`,
     ),
-    // The name leads so it survives trimming.
-    description: metaDescription(
-      `Rudresh Oza case study${project.client ? ` for ${project.client}` : ""}: ${project.description}`,
+    // The name leads so it survives trimming; a long client name is shortened before the
+    // description itself is cut.
+    description: fitDescription(
+      `Rudresh Oza case study${project.client ? ` for ${project.client}` : ""}: ${about}`,
+      `Rudresh Oza case study${project.client ? ` for ${project.client.split(" · ")[0]}` : ""}: ${about}`,
+      `Rudresh Oza case study: ${about}`,
     ),
   };
 }
@@ -185,7 +209,7 @@ export const sitePages: {
 
 // The date site content last changed. Bump it whenever pages, projects, courses, or credentials
 // change, so sitemap lastmod stays truthful instead of moving with every deploy.
-export const contentUpdated = "2026-10-25";
+export const contentUpdated = "2026-11-11";
 
 export function sitemapXml() {
   const urls = sitePages.map(
@@ -307,6 +331,12 @@ export function siteJsonLd(portraitUrl?: string) {
           addressCountry: "IN",
         },
         sameAs: [profile.linkedin, profile.github],
+        hasOccupation: {
+          "@type": "Occupation",
+          name: profile.role,
+          occupationLocation: { "@type": "City", name: "Jaipur, India" },
+          skills: featuredAreas.map((area) => area.title).join(", "),
+        },
         ...(current && !current.selfEmployed
           ? { worksFor: { "@type": "Organization", name: current.company } }
           : {}),
@@ -388,6 +418,15 @@ export function projectJsonLd(project: Project) {
     url: canonicalUrl(`/projects/${project.id}`),
     genre: project.category,
     keywords: project.tags.join(", "),
+    ...(project.client
+      ? {
+          sourceOrganization: {
+            "@type": "Organization",
+            name: project.client.split(" · ")[0],
+          },
+        }
+      : {}),
+    dateModified: contentUpdated,
     inLanguage: "en",
     image: absoluteUrl(site.image.path),
     author: { "@id": personId },
@@ -503,6 +542,21 @@ export function courseJsonLd(course: Course) {
   };
 }
 
+// FAQPage markup for the visible FAQ sections; questions and answers match the page text exactly.
+export function faqJsonLd(path: string, faqs: Faq[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    url: canonicalUrl(path),
+    isPartOf: { "@id": websiteId },
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
 // llms.txt: a plain-text site summary for AI answer engines, generated from the same data as the pages.
 export function llmsTxt() {
   const line = (label: string, path: string, note: string) =>
@@ -511,6 +565,9 @@ export function llmsTxt() {
     `# ${profile.name}`,
     "",
     `> ${site.description} Available for remote work worldwide and on-site in Jaipur, India.`,
+    "",
+    "## About",
+    ...aboutFaqs.map((faq) => `- ${faq.question} ${faq.answer}`),
     "",
     "## Training courses",
     ...courses.map((course) =>
@@ -541,6 +598,11 @@ export function llmsTxt() {
     `- LinkedIn: ${profile.linkedin}`,
     `- GitHub: ${profile.github}`,
     line("Contact page", "/contact", "Hire, training, and role enquiries"),
+    "",
+    "## FAQ",
+    ...[...contactFaqs, ...trainingFaqs].map(
+      (faq) => `- ${faq.question} ${faq.answer}`,
+    ),
     "",
   ].join("\n");
 }
